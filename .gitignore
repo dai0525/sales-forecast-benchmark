@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# 虚拟环境
+.venv/
+venv/
+
+# 原始大数据（可用 repro/fetch_m4.py 重新下载）
+data/Daily-train.csv
+data/Daily-train.csv.parts/
+data/Daily-test.csv.parts/
+data/m4_daily.parquet
+data/m4daily.npz
+data/raw/
+data/*.parts
+data/*.chunks
+
+# 日志与临时产物
+logs/
+*.log
+tmp/
+.cache/
+
+# 系统
+.DS_Store
+Thumbs.db

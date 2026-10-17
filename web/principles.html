@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>销量预测 · 从零开始（机制详解版）</title>
+<meta name="description" content="从 28 天小店数据出发，手算基线，逐层拆开 ETS、ARIMA、LightGBM 的残差提升、五个深度模型和 BSTS 的内部机制。">
+<style>
+:root{
+  --blue:#1D4ED8; --blue-2:#3B82F6; --blue-3:#BFD2F6; --wash:#EFF4FF;
+  --line:#D6E2FB; --hair:#E6EBF3; --ink:#0F1B2D; --ink2:#5A6B85; --bg:#fff;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.72 -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;}
+.wrap{max-width:780px;margin:0 auto;padding:0 18px 80px}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--wash);padding:1px 5px;border-radius:4px}
+
+header.top{padding:34px 0 20px;border-bottom:1px solid var(--hair)}
+.kicker{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
+h1{font-size:28px;line-height:1.28;margin:0 0 10px;color:var(--blue);letter-spacing:-.01em;font-weight:800}
+.sub{margin:0;color:var(--ink2);font-size:15px}
+.meta{margin-top:14px;font-size:12.5px;color:var(--ink2)}
+
+h2{font-size:20px;color:var(--blue);margin:0 0 14px;font-weight:800;letter-spacing:-.01em}
+h3{font-size:16px;margin:24px 0 8px;color:var(--ink);font-weight:800}
+h4{font-size:14.5px;margin:16px 0 6px;color:var(--blue);font-weight:800}
+p{margin:0 0 13px}
+ul,ol{margin:0 0 13px;padding-left:20px}
+li{margin:6px 0}
+strong{font-weight:800}
+.lead{font-size:16.5px}
+
+section.ch{margin-top:44px;padding-left:15px;border-left:3px solid var(--blue)}
+section.ch > .num{display:block;font-size:11.5px;font-weight:800;letter-spacing:.14em;color:var(--blue);margin-bottom:4px}
+.note{background:var(--wash);border-left:3px solid var(--blue-3);padding:11px 14px;margin:14px 0;font-size:14.5px}
+.note b{color:var(--blue)}
+.key{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:12px 0;margin:16px 0;font-size:15px}
+.key .tag{color:var(--blue);font-weight:800;font-size:12px;letter-spacing:.1em;display:block;margin-bottom:4px}
+
+.math{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--wash);border-left:3px solid var(--blue);
+  padding:11px 14px;margin:12px 0;font-size:14px;overflow-x:auto;white-space:nowrap}
+
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;border:1px solid var(--hair);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 11px;text-align:right;border-bottom:1px solid var(--hair);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{background:#F7F9FD;color:var(--ink2);font-weight:700;font-size:12px}
+tbody tr:last-child td{border-bottom:0}
+td.good{color:var(--blue);font-weight:800}
+td.warn{color:#B42318}
+.cap{font-size:12.5px;color:var(--ink2);margin:6px 0 0}
+
+figure{margin:18px 0}
+svg{display:block;width:100%;height:auto}
+svg .grid{stroke:var(--hair);stroke-width:1}
+svg text{font-size:11px;fill:var(--ink2);font-family:inherit}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 0;font-size:12.5px;color:var(--ink2)}
+.legend i{display:inline-block;width:16px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle}
+
+.toc{background:var(--wash);padding:14px 16px;margin:22px 0 0;font-size:14px;border-left:3px solid var(--blue)}
+.toc b{color:var(--blue);display:block;margin-bottom:6px;font-size:12px;letter-spacing:.1em}
+.toc ol{margin:0;padding-left:18px}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+
+details{margin:14px 0;border:1px solid var(--hair);border-radius:6px;padding:0 14px}
+details summary{cursor:pointer;padding:12px 0;font-weight:800;color:var(--blue);font-size:14.5px}
+details[open] summary{border-bottom:1px solid var(--hair);margin-bottom:10px}
+details ul{margin-bottom:12px}
+
+.steps{counter-reset:s;margin:14px 0;padding:0;list-style:none}
+.steps li{counter-increment:s;padding-left:34px;position:relative;margin:10px 0}
+.steps li:before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;border:1px solid var(--blue);
+  color:var(--blue);border-radius:50%;font-size:12px;font-weight:800;text-align:center;line-height:20px}
+.foot{margin-top:56px;padding-top:18px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">销量预测 · 零基础 → 机制</p>
+  <h1>算法到底在算什么</h1>
+  <p class="sub">一条 28 天的数据，手算 4 种预测；再把 LightGBM 的残差提升、五个深度模型的计算图、BSTS 的卡尔曼更新，一层层拆开看。</p>
+  <p class="meta">所有数字都在本机实跑（脚本在 <code>repro/</code>），可以逐行复核</p>
+</header>
+
+<div class="toc">
+  <b>目录</b>
+  <ol>
+    <li><a href="#c0">预测只在回答三个问题</a></li>
+    <li><a href="#c1">数据与四种手算基线</a></li>
+    <li><a href="#c2">ETS / Theta：平滑与趋势</a></li>
+    <li><a href="#c3">ARIMA：把过去当特征做回归</a></li>
+    <li><a href="#c4">LightGBM 深挖：特征、单棵树、残差提升</a></li>
+    <li><a href="#c5">五个深度模型的内部计算</a></li>
+    <li><a href="#c6">BSTS：状态空间 + 卡尔曼 + 贝叶斯</a></li>
+    <li><a href="#c7">指标怎么读</a></li>
+    <li><a href="#c8">榜单与进阶坑</a></li>
+  </ol>
+</div>
+
+<!-- 0 -->
+<section class="ch" id="c0">
+  <span class="num">第 0 章</span>
+  <h2>所有算法都在回答三个问题</h2>
+  <ol class="lead">
+    <li><strong>用哪一段过去？</strong>昨天的值、上周同一天、最近 4 周的平均、还是最近 100 周的全部？</li>
+    <li><strong>怎么组合成一个数？</strong>照抄、平均、指数加权、线性回归、还是几百棵树相加？</li>
+    <li><strong>误差怎么量？</strong>决定了你往哪个方向优化。</li>
+  </ol>
+  <p>类比：数字电路里同一功能可以用状态机写，也可以用查找表。输出一样，代价和适用场景不同。预测算法也是——<strong>没有最强，只有匹配数据结构</strong>。</p>
+</section>
+
+<!-- 1 -->
+<section class="ch" id="c1">
+  <span class="num">第 1 章</span>
+  <h2>数据与四种手算基线</h2>
+  <p>某便利店 4 周（28 天）矿泉水销量，预测第 5 周 7 天。</p>
+  <figure><div id="c-hist"></div>
+  <p class="cap">周一到周四平缓，周五抬头，周六冲高，周日落回；整体每周还在缓慢上台阶。</p></figure>
+  <div class="tablewrap"><table id="t-raw"></table></div>
+  <p class="cap">竖着看周六那列始终最高（周内节律）；横着看每周比上周高一点（趋势）。</p>
+
+  <h3>基线 1：Naive —— 把最后一个数复制 7 遍</h3>
+  <div class="math">ŷ<sub>T+h</sub> = y<sub>T</sub>　→　166, 166, …, 166</div>
+  <div class="tablewrap"><table id="t-naive"></table></div>
+  <div class="math">WAPE = Σ|预测−实际| / Σ实际 = 246 / 958 = 25.7%</div>
+
+  <h3>基线 2：SeasonalNaive —— 抄上周同一天</h3>
+  <div class="math">ŷ<sub>T+h</sub> = y<sub>T+h−m</sub>　（m = 7）</div>
+  <div class="tablewrap"><table id="t-seas"></table></div>
+  <div class="math">WAPE = 26 / 958 = 2.7%　（只改了一条规则）</div>
+  <figure><div id="c-seas"></div>
+  <div class="legend"><span><i style="background:#1D4ED8"></i>SeasonalNaive</span><span><i style="background:#0F1B2D"></i>真实值</span></div></figure>
+  <div class="key"><span class="tag">结论</span>季节性是最强、最便宜的先验。真实数据上 SeasonalNaive 就有 <b>15.55%</b>——所以任何模型的第一道门槛是打赢它。</div>
+</section>
+
+<!-- 2 -->
+<section class="ch" id="c2">
+  <span class="num">第 2 章</span>
+  <h2>ETS / Theta：平滑、趋势与三个零件</h2>
+  <h3>移动平均为什么反而变差</h3>
+  <div class="math">ŷ<sub>周一</sub> = (100+102+104+107)/4 = 103.2</div>
+  <div class="tablewrap"><table id="t-ma"></table></div>
+  <p>WAPE <b>7.33%</b>，比 SeasonalNaive 的 2.71% 更差。原因：数据在涨，4 周平均天然滞后，把趋势磨平了。</p>
+
+  <h3>ETS：带遗忘的平均</h3>
+  <div class="math">ŷ<sub>t</sub> = α·y<sub>t−1</sub> + (1−α)·ŷ<sub>t−1</sub>　（α=0.6 → 权重 0.6, 0.24, 0.096, 0.038 …）</div>
+  <figure><div id="c-weights"></div>
+  <p class="cap">每往前一步，权重乘 (1−α)。这就是“指数平滑”这个词的来源。</p></figure>
+
+  <h3>Holt-Winters：三个方程各管一件事</h3>
+  <div class="math">水平 ℓ<sub>t</sub> = α(y<sub>t</sub> − s<sub>t−m</sub>) + (1−α)(ℓ<sub>t−1</sub> + b<sub>t−1</sub>)</div>
+  <div class="math">趋势 b<sub>t</sub> = β(ℓ<sub>t</sub> − ℓ<sub>t−1</sub>) + (1−β)b<sub>t−1</sub></div>
+  <div class="math">季节 s<sub>t</sub> = γ(y<sub>t</sub> − ℓ<sub>t−1</sub> − b<sub>t−1</sub>) + (1−γ)s<sub>t−m</sub></div>
+  <div class="math">预测 ŷ<sub>t+h</sub> = ℓ<sub>t</sub> + h·b<sub>t</sub> + s<sub>t+h−m·⌈h/m⌉</sub></div>
+  <p>三个希腊字母就是三个旋钮：α 管水平多快跟上新数据，β 管趋势多快变，γ 管季节形状多快变。<code>AutoETS(model="ZZZ")</code> 里的 Z 就是“自动决定这三个零件开不开”。</p>
+
+  <h3>手工加回趋势项</h3>
+  <p>每周涨 29.7 → 每天 +4.24：</p>
+  <div class="math">ŷ = 上周同一天 + 4.24</div>
+  <div class="tablewrap"><table id="t-drift"></table></div>
+  <p>WAPE <b>0.54%</b>。同一个结构，多一个趋势项，误差降了 5 倍。</p>
+
+  <h3>Theta：M3 竞赛冠军（2000 年）的极简做法</h3>
+  <p>把序列画成曲线，用 θ 参数控制“曲率”：θ=0 时曲线被拉直成一条趋势直线，θ=2 时就是原序列。</p>
+  <div class="math">ŷ<sub>t+h</sub> = SES(θ=0 直线段外推) + 季节因子 / 2</div>
+  <p>本质是“直线外推 + 半个季节修正”。它拿冠军说明一件事：<strong>结构简单的模型在短序列上极难被打败</strong>。</p>
+
+  <div class="key"><span class="tag">结论</span>先用眼睛找结构（周期、趋势），再让算法估参数。<b>结构对了，参数粗糙也能赢。</b></div>
+</section>
+
+<!-- 3 -->
+<section class="ch" id="c3">
+  <span class="num">第 3 章</span>
+  <h2>ARIMA：把自己的过去当特征做回归</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>字母</th><th>含义</th><th>用的历史</th></tr></thead>
+    <tbody>
+      <tr><td><b>AR(p)</b></td><td>自回归：前 p 个值做线性回归</td><td>y<sub>t−1</sub> … y<sub>t−p</sub></td></tr>
+      <tr><td><b>I(d)</b></td><td>差分 d 次，去掉趋势变平稳</td><td>y<sub>t</sub> − y<sub>t−1</sub></td></tr>
+      <tr><td><b>MA(q)</b></td><td>用前 q 次预测残差修正</td><td>e<sub>t−1</sub> … e<sub>t−q</sub></td></tr>
+    </tbody>
+  </table></div>
+  <div class="math">AR(1)：ŷ<sub>t</sub> = c + φ·y<sub>t−1</sub>　（φ=0.8：明天 ≈ 今天×0.8 + 常数）</div>
+  <p>“自回归”没有玄学：<strong>就是把 lag 当 x 的线性回归</strong>。它和后面 LightGBM 用同一批特征，只是拟合方式从“一条直线”换成“几百棵树”。</p>
+
+  <h3>为什么要差分：看这四周的总量</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>周</th><th>总量</th><th>差分</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 周</td><td>843</td><td>—</td></tr>
+      <tr><td>第 2 周</td><td>874</td><td>+31</td></tr>
+      <tr><td>第 3 周</td><td>902</td><td>+28</td></tr>
+      <tr><td>第 4 周</td><td>932</td><td>+30</td></tr>
+    </tbody>
+  </table></div>
+  <p>原序列均值在漂移（不平稳），差分后稳定在 +30 左右（平稳）。<strong>ARIMA 的 I 就是把这个漂移先减掉，再对残差建模</strong>——否则回归系数会被趋势污染。</p>
+
+  <h3>定阶靠 ACF / PACF 的形状</h3>
+  <ul>
+    <li><b>ACF</b>（自相关函数）：在 lag 7、14、21 出现尖峰 → 有 7 周期结构，需要季节项。</li>
+    <li><b>PACF</b>（偏自相关）：在 lag p 后截断 → AR 阶数取 p。</li>
+  </ul>
+  <p>周期数据还要加季节项：ARIMA(p,d,q)(P,D,Q)<sub>m</sub>。周度数据 m=13（52 周 ÷ 4 季）或 52。</p>
+
+  <h3>AutoARIMA 到底搜了多少</h3>
+  <p>这里更正我之前说错的一句：statsforecast 的 <code>AutoARIMA</code> <strong>不是穷举笛卡尔积</strong>，它默认 <code>stepwise=True</code>，用 Hyndman-Khandakar 逐步搜索，最多评估 <b>94 个候选模型</b>（<code>nmodels=94</code>）。若是全网格（p,q ≤ 5、P,Q ≤ 2、d ≤ 2、D ≤ 1），那才是约 1900 个组合。</p>
+  <p>即便如此，周度季节 ARIMA 每个候选都要拟合一次，实测 4 线程下约 <b>2.6 秒/条序列</b>，250 条就要 10 分钟量级——这就是它在今晚统计基线里最慢的原因。</p>
+  <div class="key"><span class="tag">结论</span>统计模型适合<b>结构清楚、序列短、要可解释</b>的场景；几千条序列的批量预测，逐条拟合会成为工程瓶颈。</div>
+</section>
+
+<!-- 4 -->
+<section class="ch" id="c4">
+  <span class="num">第 4 章</span>
+  <h2>LightGBM 深挖：特征怎么来，树怎么修正误差</h2>
+  <p>这一章回答两个具体问题：<b>① 特征是怎么“提取”出来的？② 决策树是怎样一棵一棵把误差压下去的？</b></p>
+
+  <h3>4.1 特征提取：把一条曲线变成一张表</h3>
+  <p>树模型只看列，完全不知道“行与行的时间顺序”。所以时间信息必须手工编码成列。四步：</p>
+  <ol class="steps">
+    <li><b>对齐时间轴</b>：所有序列右对齐成同宽矩阵（短的左边补 NaN）。这样“往前第 k 天”就是“往左第 k 列”，取 lag 变成一个纯列位移。</li>
+    <li><b>造 lag 特征</b>：把整列下移 1/7/14/28 行，得到 <code>lag1</code>、<code>lag7</code>、<code>lag14</code>、<code>lag28</code>。其中 <code>lag7</code> 就是“上周同一天”——<b>等于把 SeasonalNaive 的先验手工喂给模型</b>。</li>
+    <li><b>滚动窗口</b>：对过去 7/14/28 列求 mean/std/min/max，得到 12 个特征，描述“最近的水平、波动、极值”。</li>
+    <li><b>日历特征</b>：<code>dow</code>（星期几）、<code>day</code>、<code>month</code>、<code>weekofyear</code>、<code>is_weekend</code>，加上 <code>series_id</code>（哪条序列），拼成 22 维特征。</li>
+  </ol>
+  <div class="tablewrap"><table id="t-feat"></table></div>
+  <p class="cap">真实构造出来的样本行。<code>lag1</code>=昨天，<code>lag7</code>=上周同一天，<code>roll7_mean</code>=最近 7 天均值，标签 y=下一天销量。</p>
+
+  <h3>4.2 一棵树能做什么：只会输出几个常数</h3>
+  <p>在一棵深度 2、4 个叶子的树上，所有预测值只有 4 个可能：</p>
+  <div class="tablewrap"><table id="t-leaves"></table></div>
+  <p>用这 4 个常数去预测 7 天，得到 7 天里只有 4 个不同的数：<b>122.3 / 127.7 / 141.9 / 138.5</b>，WAPE <b>12.17%</b>。这就是单棵树的偏差（bias）——它把问题粗分了几档就交卷了。</p>
+  <figure><div id="c-onetree"></div>
+  <div class="legend"><span><i style="background:#1D4ED8"></i>1 棵树（阶梯状）</span><span><i style="background:#0F1B2D"></i>真实值</span></div>
+  <p class="cap">预测是阶梯 —— 一棵树只能在叶子里输出常数，画出来必然是一段段平台。</p></figure>
+
+  <h3>4.3 残差提升：每棵树只负责“上一轮没解释掉的部分”</h3>
+  <p>Boosting 的规则只有两条：</p>
+  <div class="math">残差 r<sub>i</sub> = y<sub>i</sub> − F<sub>m−1</sub>(x<sub>i</sub>)　→　用第 m 棵树去拟合 r</div>
+  <div class="math">F<sub>m</sub> = F<sub>m−1</sub> + η · h<sub>m</sub>(x)　（η = 学习率，本实验 0.3）</div>
+  <p>把第 1 棵树留下的残差算出来（下表），第 2 棵树就是去学这些残差；第 3 棵学第 2 棵剩下的…… 每棵只走一小步（η 缩放），但方向一致。</p>
+  <div class="tablewrap"><table id="t-resid"></table></div>
+  <p class="cap">周六：真实 183，1 棵树只给 141.9（残差 41.1）；60 棵树给到 176.5（残差 6.5）。<b>残差就是下一棵树的训练目标。</b></p>
+  <figure><div id="c-gbdt"></div>
+  <p class="cap">真跑的递归预测 WAPE。1 棵 12.17% → 20 棵 3.68% 触底，<b>再加树反而变差</b>（40 棵 3.86%，60 棵 3.97%）。</p></figure>
+  <div class="tablewrap"><table id="t-curve"></table></div>
+
+  <h3>4.4 为什么叫“梯度”提升</h3>
+  <p>平方损失 L = ½(y−F)² 对 F 求导：∂L/∂F = −(y−F)。<strong>负梯度正好等于残差</strong>，所以“拟合残差”和“沿负梯度走一步”是同一件事。</p>
+  <p>换成 Tweedie / Poisson 损失时，“残差”的定义变了，但“沿负梯度走”不变——这就是 GBDT 能换损失函数的原因。LightGBM 还用二阶导（牛顿步）决定叶子里的输出值，所以收敛比一阶快。</p>
+  <div class="note">残差是<b>训练集</b>上的残差；树多了会把训练残差压到 0，但测试误差反而上升——这就是 40/60 棵树变差的原因。</div>
+
+  <h3>4.5 递归多步：误差是怎么被放大的</h3>
+  <p>预测 13 周不可能一步给出，本工作台的做法是“预测一步 → 把预测值当作已知 → 再预测下一步”：</p>
+  <div class="math">ŷ<sub>t+1</sub> → 填回 lag1 → ŷ<sub>t+2</sub> → … → ŷ<sub>t+13</sub></div>
+  <p>两个后果：</p>
+  <ul>
+    <li><b>误差沿链条复利</b>：第 1 步的误差会成为第 2 步的输入特征。</li>
+    <li><b>lag7 从第 8 步起被污染</b>：那之后“上周同一天”已经有一半是预测出来的。</li>
+  </ul>
+  <p>替代方案是<b>直接多步</b>：为第 1…13 周各训一个模型，互不依赖，代价是训练成本 ×13。</p>
+
+  <h3>4.6 参数表：真实模型用了什么</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>参数</th><th>本工作台</th><th>管什么</th></tr></thead>
+    <tbody>
+      <tr><td>n_estimators</td><td>400</td><td>树的数量 = 迭代轮数</td></tr>
+      <tr><td>learning_rate</td><td>0.05</td><td>每棵树的分量，越小越稳但需要更多树</td></tr>
+      <tr><td>num_leaves</td><td>63</td><td>单棵树容量（叶子越多越容易过拟合）</td></tr>
+      <tr><td>min_child_samples</td><td>40</td><td>叶子最少样本数，抗噪</td></tr>
+      <tr><td>subsample / colsample</td><td>0.8 / 0.8</td><td>行/列采样，注入随机性当正则</td></tr>
+      <tr><td>reg_lambda</td><td>1.0</td><td>L2 正则</td></tr>
+      <tr><td>max_bin</td><td>12</td><td>特征分箱数，越小越快也越粗</td></tr>
+    </tbody>
+  </table></div>
+  <p>目标变换在验证集上选：<b>log1p 的 WAPE 3.06%</b> vs <b>Tweedie 3.11%</b>，选了 log1p。测试集结果 <b>3.78%</b>（1000 条日度序列，预测 14 天）。</p>
+  <div class="key"><span class="tag">结论</span>树模型不自动懂时间。lag7 这类特征是“你对业务的理解”的编码；提升树负责在这张表上做加法修正。<b>特征决定上限，树数决定逼近上限的程度。</b></div>
+</section>
+
+<!-- 5 -->
+<section class="ch" id="c5">
+  <span class="num">第 5 章</span>
+  <h2>五个深度模型：输入、算子、输出</h2>
+  <p>共同外壳：每条序列除以自身均值做归一化 → 输入最近 100 周 → 网络 → 输出 13 周 → 乘回均值。损失用 L1（DeepAR 用似然）。</p>
+
+  <h3>N-HiTS：多速率采样 + 分层插值</h3>
+  <div class="math">ŷ = Σ<sub>k</sub> interp( MLP<sub>k</sub>( avgpool<sub>r<sub>k</sub></sub>(x) ) ),　r<sub>k</sub> ∈ {1, 2, 4}</div>
+  <p>每个 block 先把输入按 r 倍平均池化（相当于“退后看”），过 MLP，再上采样回原长度，作为残差从输入里减掉传给下一个 block。粗尺度抓大形状，细尺度补细节。</p>
+  <figure><div id="c-multi"></div>
+  <p class="cap">原始 vs 4 点池化 vs 13 点池化：每个尺度看到的是不同的“形状”。</p></figure>
+  <p>实测：周度 <b>8.88%</b>，参数量 321.4K。</p>
+
+  <h3>N-BEATSx：把基函数写死，只学系数</h3>
+  <div class="math">forecast = Σ<sub>i</sub> θ<sub>i</sub><sup>f</sup> · b<sub>i</sub>(t),　b<sub>i</sub> = 多项式基 或 傅里叶基</div>
+  <p>每层同时输出 backcast（解释掉的部分）和 forecast（预测）。因为基函数是显式写好的（趋势多项式、季节傅里叶），网络只需要学系数 θ——参数少、可解释、训练快。周度 <b>10.48%</b>，参数量 500.2K。</p>
+
+  <h3>TFT：变量选择 + 注意力 + 分位数</h3>
+  <p>输入分三类：静态特征（门店属性）、已知未来（节假日、促销计划）、仅历史（销量）。三步：</p>
+  <ol>
+    <li><b>VSN 变量选择</b>：<code>v = softmax(MLP(x)) ⊙ x</code>，给每个输入一个可学习权重，不重要的自动压到 0。</li>
+    <li><b>LSTM 编码 + 可解释注意力</b>：注意力权重直接告诉你“这次预测主要看历史哪几段”。</li>
+    <li><b>分位数输出</b>：一次输出 P10/P50/P90，用分位数损失训练。</li>
+  </ol>
+  <p>周度 <b>9.76%</b>，参数只有 38.9K，但训练最慢（509 秒）——注意力序列长度是瓶颈。</p>
+
+  <h3>PatchTST：把序列切成 token</h3>
+  <figure><div id="c-patch"></div>
+  <p class="cap">每个 patch（4 个点）线性投影成一个 token，再做自注意力。序列越长，省得越多。</p></figure>
+  <p>逐点注意力的复杂度是 O(L²)；切成 patch 后 token 数变成 L/P，同时 patch 内部仍保留局部波形。再加上<b>通道独立</b>（每条序列单独过网络、共享权重），避免不同序列互相干扰。周度 <b>8.49%</b>（刚跑完，尚未并入榜单），参数量 78.6K。</p>
+
+  <h3>DeepAR：输出分布，而不是一个点</h3>
+  <div class="math">p(y<sub>t</sub> | h<sub>t</sub>) = N(μ(h<sub>t</sub>), σ(h<sub>t</sub>))　或　负二项(μ, α)</div>
+  <p>训练时用 teacher forcing（下一步输入喂真实值）；预测时自回归采样：从分布里抽一个值 → 喂回网络 → 再抽下一个点，重复几百次得到一条路径，几百条路径就是区间。</p>
+  <figure><div id="c-band"></div>
+  <p class="cap">P10–P90 区间随步长变宽。备货看 P90，清库存看 P10。</p></figure>
+  <p>代价：采样有方差，点预测（中位数）常不如判别式模型准。它的价值在<b>库存决策与风险</b>，不在排行榜名次。</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>模型</th><th>核心算子</th><th>参数</th><th>训练耗时*</th></tr></thead>
+    <tbody>
+      <tr><td>N-HiTS</td><td>多速率池化 + MLP + 插值</td><td>321.4K</td><td>242 s</td></tr>
+      <tr><td>N-BEATSx</td><td>基函数展开 + 残差堆叠</td><td>500.2K</td><td>287 s</td></tr>
+      <tr><td>TFT</td><td>VSN + LSTM + 注意力</td><td>38.9K</td><td>211 s</td></tr>
+      <tr><td>PatchTST</td><td>patch 投影 + Transformer</td><td>78.6K</td><td>18 s</td></tr>
+      <tr><td>DeepAR</td><td>LSTM + 似然采样</td><td>5.4K</td><td>5 s</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">* 300 条日度序列、300 步训练的本机实测（<code>logs/deep_daily.log</code>）。参数量小不代表准，TFT 只有 38.9K 参数却打不过 500K 的 N-BEATSx。</p>
+</section>
+
+<!-- 6 -->
+<section class="ch" id="c6">
+  <span class="num">第 6 章</span>
+  <h2>BSTS：贝叶斯结构时序，到底在做什么</h2>
+  <p>你看到的“概率学时间序列”，代表就是 BSTS（Bayesian Structural Time Series）。它不是一个新模型，而是<b>一个状态空间模型 + 一套贝叶斯推断</b>。</p>
+
+  <h3>6.1 模型：把曲线拆成几个隐状态</h3>
+  <div class="math">观测：y<sub>t</sub> = μ<sub>t</sub> + γ<sub>t</sub> + β<sup>T</sup>x<sub>t</sub> + ε<sub>t</sub>,　ε<sub>t</sub> ~ N(0, σ<sup>2</sup><sub>obs</sub>)</div>
+  <div class="math">水平：μ<sub>t+1</sub> = μ<sub>t</sub> + δ<sub>t</sub> + η<sub>t</sub>　（局部线性趋势）</div>
+  <div class="math">季节：γ<sub>t+1</sub> = −Σ<sub>j=1..m−1</sub> γ<sub>t+1−j</sub> + ω<sub>t</sub></div>
+  <p>写成矩阵就是标准状态空间：<code>α<sub>t+1</sub> = Tα<sub>t</sub> + Rη<sub>t</sub></code>，<code>y<sub>t</sub> = Zα<sub>t</sub> + ε<sub>t</sub></code>。状态 α 里装着“现在的水平、斜率、m 个季节偏移”。</p>
+  <figure><div id="c-decomp"></div>
+  <p class="cap">把一条曲线拆成三份：水平、周内季节偏移、残差。BSTS 的隐状态就是在逐点估计这三份，只不过它每一点都带一个不确定度。</p></figure>
+  <p><b>和 ETS 的区别</b>：ETS 是这套方程的一个特例；BSTS 多了 <code>β<sup>T</sup>x<sub>t</sub></code>（外生变量，如促销、天气）和完整的不确定性传播。</p>
+
+  <h3>6.2 卡尔曼滤波：先预测，再按证据修正</h3>
+  <p>这一步你在控制里见过。给定先验 N(100, 20²)，来了一个观测 110（观测噪声 σ=10），后验是两者按信息量加权：</p>
+  <div class="math">K = σ<sup>2</sup><sub>prior</sub> / (σ<sup>2</sup><sub>prior</sub> + σ<sup>2</sup><sub>obs</sub>) = 400/500 = 0.8</div>
+  <div class="math">μ<sub>post</sub> = 100 + 0.8 × (110 − 100) = 108　　σ<sup>2</sup><sub>post</sub> = (1−K)·400 = 80 → σ ≈ 8.94</div>
+  <figure><div id="c-kalman"></div>
+  <div class="legend"><span><i style="background:#8A97AB"></i>先验 N(100,20²)</span><span><i style="background:#0F1B2D"></i>观测 N(110,10²)</span><span><i style="background:#1D4ED8"></i>后验 N(108,8.9²)</span></div>
+  <p class="cap">先验（虚线）与观测似然（点划）相乘，得到更窄的后验（蓝）。卡尔曼增益 0.8 就是“信观测 80%，信先验 20%”。</p></figure>
+  <p>整条序列就是这么滚动：t 时刻预测 → 观测到 y<sub>t</sub> → 用 K 修正 → 进入 t+1。缺失值可以跳过修正（只用预测），所以 BSTS 对缺数据非常友好。</p>
+
+  <h3>6.3 贝叶斯层：先验 + MCMC</h3>
+  <p>BSTS 在卡尔曼之外加了三样东西：</p>
+  <ol>
+    <li><b>先验</b>：各层方差用逆伽马先验；回归系数用 spike-and-slab（每个系数有一定概率精确为 0），这就是自动变量选择。</li>
+    <li><b>后验采样（Gibbs）</b>：交替做两件事——给定方差，用模拟平滑器抽状态路径；给定状态路径，从共轭后验抽方差。迭代几千次。</li>
+    <li><b>后验预测</b>：每条抽样路径往后推，得到一整族未来 → 分位数就是<b>可信区间</b>（credible interval，“参数落在这里的概率 90%”，比频率派置信区间更符合直觉）。</li>
+  </ol>
+  <p>副产品：把干预后那段“反事实”路径抽出来减掉实际值，就是 CausalImpact 的做法——本质是 BSTS 加反事实推断。</p>
+
+  <h3>6.4 我在你的周度数据上真跑了</h3>
+  <p>环境里没有 MCMC 库（orbit/pymc 都没装），所以用 statsmodels 的 <code>UnobservedComponents</code> 跑了<b>同一个状态空间模型的极大似然版</b>：局部水平 + 随机季节(52) + 观测噪声，卡尔曼滤波 + L-BFGS。这样测的是“结构值多少”，不含先验带来的差异。</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>模型</th><th>序列</th><th>WAPE（逐序列均值）</th><th>总量加权</th><th>耗时</th></tr></thead>
+    <tbody>
+      <tr><td>SeasonalNaive（m=13）</td><td>359</td><td>12.22%</td><td>8.76%</td><td>0 s</td></tr>
+      <tr><td>SeasonalNaive（m=52）</td><td>359</td><td>15.55%</td><td>13.25%</td><td>0 s</td></tr>
+      <tr><td>BSTS 结构模型（m=13）</td><td>359</td><td>8.79%</td><td>—</td><td>89 s</td></tr>
+      <tr><td><b>BSTS 结构模型（m=52）</b></td><td>359</td><td class="good">7.84%</td><td class="good">5.56%</td><td>268 s</td></tr>
+      <tr><td>LightGBM（全局，22 特征）</td><td>359</td><td>8.07%</td><td>—</td><td>148 s</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">M4-Weekly，最后 13 周为测试，同一批 359 条序列。SN(m=52) 与榜单上的 15.55% 完全吻合，说明口径一致（逐序列 WAPE 再取均值）。</p>
+  <p><b>两个反直觉的结论：</b></p>
+  <ol>
+    <li><b>季节周期选错，代价极大</b>：同样 359 条序列、同样是局部水平 + 随机季节，m=13 是 8.79%，m=52 是 7.84%——1 个百分点白送。子集上更夸张：60 条时 14.47% → 9.61%。周度数据的一年是 52 周，13 周只是季度——周期就是模型的先验，选错等于先验错了。</li>
+    <li><b>点预测上 BSTS 略胜 LightGBM</b>：7.84% vs 8.07%。它没有任何跨序列学习，只靠“把每条序列拆成水平 + 年周期 + 噪声”，但 M4-Weekly 的季节性太强，结构对了就够了。</li>
+  </ol>
+  <p>结构选择的影响（m=13、40 条子集的对比）：局部水平 18.38%、局部线性趋势 19.02%、平滑趋势 23.83%、确定性季节 19.21%——<b>加趋势项反而更差</b>，因为随机游走的斜率外推 13 周会把噪声当趋势。所以 BSTS 的“调参”其实只有两件事：<b>要不要趋势、季节周期取多少</b>。</p>
+
+  <h3>6.5 它适合什么，不适合什么</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th></th><th>适合</th><th>不适合</th></tr></thead>
+    <tbody>
+      <tr><td>数据量</td><td>单序列短历史（几十到几百点）</td><td>成千上万条序列</td></tr>
+      <tr><td>需求</td><td>要分解、要区间、要外生变量归因</td><td>只需要跨 SKU 的批量点预测（用 LightGBM 更省）</td></tr>
+      <tr><td>缺失值</td><td>天然支持</td><td>—</td></tr>
+      <tr><td>成本</td><td>单条约 0.75 秒（359 条 268 秒/3 进程）</td><td>上万条序列要逐条拟合；MCMC 版再慢一个量级</td></tr>
+    </tbody>
+  </table></div>
+  <div class="key"><span class="tag">判断</span>在你这份周度数据上，BSTS 不是“只能看区间”的配角——点预测 <b>7.84%</b> 甚至略好于 LightGBM 的 8.07%。但做批量生产我仍选 LightGBM，三个理由：<b>跨序列共享</b>（新上架 SKU 冷启动靠别的序列）、<b>成本线性</b>（逐条拟合，10 万条就是 20 小时量级）、<b>特征显式</b>（促销、节假日想加就加）。BSTS 留给三种场景：单品类深挖、活动增量归因（CausalImpact）、给业务解释“为什么这么预测”。</div>
+</section>
+
+<!-- 7 -->
+<section class="ch" id="c7">
+  <span class="num">第 7 章</span>
+  <h2>指标：为什么是 WAPE</h2>
+  <div class="math">WAPE = Σ|预测 − 实际| / Σ|实际|</div>
+  <ul>
+    <li><b>加权</b>：卖 1000 瓶的店误差 50 瓶，和卖 10 瓶的店误差 5 瓶，权重不同。</li>
+    <li><b>零值安全</b>：MAPE 除以实际值，遇到 0 会爆炸；WAPE 分母是总量。</li>
+    <li><b>可解释</b>：8.07% 就是“预测总量比实际总量偏了 8%”。</li>
+  </ul>
+  <p><b>MASE</b> 是“相对 SeasonalNaive 的倍数”：LightGBM 周度 MASE 0.573，即误差只有基线的 57%。<b>RMSE</b> 重罚大误差，适合缺货成本高的场景。</p>
+  <p>读榜前先确认三件事：<b>数据集、预测步长、指标口径</b>。任何一项不同，名次都不可比。</p>
+</section>
+
+<!-- 8 -->
+<section class="ch" id="c8">
+  <span class="num">第 8 章</span>
+  <h2>榜单与进阶坑</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>模型</th><th>家族</th><th>周度 WAPE</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>SeasonalNaive</td><td>基线</td><td>15.55%</td><td>第一道门槛</td></tr>
+      <tr><td>MovingAvg8</td><td>统计</td><td>10.84%</td><td>滞后于趋势</td></tr>
+      <tr><td>N-BEATSx</td><td>深度</td><td>10.48%</td><td>500.2K 参数</td></tr>
+      <tr><td>TFT</td><td>深度</td><td>9.76%</td><td>训练最慢</td></tr>
+      <tr><td>N-HiTS</td><td>深度</td><td>8.88%</td><td>多尺度</td></tr>
+      <tr><td>PatchTST</td><td>深度</td><td>8.49%</td><td>刚跑完，未并入榜单</td></tr>
+      <tr><td><b>BSTS 结构模型（m=52）</b></td><td>状态空间</td><td class="good">7.84%</td><td>点预测略胜 LightGBM</td></tr>
+      <tr><td><b>LightGBM（全局）</b></td><td>GBDT</td><td class="good">8.07%</td><td>22 特征 + 递归</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">M4-Weekly，359 条序列，预测 13 周，同一套切分与指标（逐序列 WAPE 取均值）。BSTS 一行为极大似然版结构模型，不含 MCMC 先验。</p>
+
+  <details>
+    <summary>递归多步的误差累积（展开）</summary>
+    <ul>
+      <li>第 2 步的输入是第 1 步的预测值，误差沿链条放大，不是相加。</li>
+      <li>13 周里前 3 步通常可控，后 5 步开始失真。</li>
+      <li>对策：直接多步（每步一个模型），或对远期单独建模。</li>
+    </ul>
+  </details>
+  <details>
+    <summary>时序不能随机切分（展开）</summary>
+    <ul>
+      <li>随机切分会让 lag 特征“看到未来”，离线指标虚高，上线就崩。</li>
+      <li>训练段必须永远在测试段之前；验证集也要按时间滚动。</li>
+    </ul>
+  </details>
+  <details>
+    <summary>间歇需求与零膨胀（展开）</summary>
+    <ul>
+      <li>大量 0 的 SKU，用 L2 会预测出 0.3 这种无意义值。</li>
+      <li>对策：log1p、Tweedie/Poisson 损失，或 Croston 类方法。</li>
+    </ul>
+  </details>
+  <details>
+    <summary>NaN 回退与口径不一致（展开）</summary>
+    <ul>
+      <li>个别序列拟合失败 → NaN → 回退 SeasonalNaive，必须在报告里标注。</li>
+      <li>AutoARIMA 只跑子集、深度模型只跑 300 条，和全量模型不能 1:1 比。</li>
+      <li>2.4M 行长表一次性喂给 statsforecast 会 swap，必须分块 + 缓存。</li>
+    </ul>
+  </details>
+  <details>
+    <summary>工程顺序：先基线，再模型（展开）</summary>
+    <ul>
+      <li>SeasonalNaive → ETS/Theta → LightGBM（lag + rolling）→ 深度模型 → BSTS（需要解释/区间时）。</li>
+      <li>每一层都问：比上一层提升多少？值不值这个工程成本？</li>
+      <li>本工作台结论：359 条周度序列上，树模型 + 好特征赢过所有深度模型，训练时间差 1–2 个数量级。</li>
+    </ul>
+  </details>
+</section>
+
+<p class="foot">数据：M4 竞赛 Weekly / Daily 子集，本机复现；手算示例为构造的教学数据。脚本：<code>repro/toy_gbdt.py</code>（提升曲线）、<code>repro/bsts.py</code>（BSTS 结构模型）、<code>repro/baselines.py</code>、<code>repro/lgbm_global.py</code>、<code>repro/deep_models.py</code>。纯前端、无外链。</p>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var C={blue:'#1D4ED8',blue2:'#3B82F6',blue3:'#BFD2F6',ink:'#0F1B2D',ink2:'#5A6B85',hair:'#E6EBF3'};
+
+  var W1=[100,110,105,98,120,160,150],
+      W2=[102,115,109,101,126,166,155],
+      W3=[104,118,112,104,131,172,161],
+      W4=[107,121,116,108,136,178,166],
+      TRUE=[110,125,119,111,140,183,170];
+  var H=W1.concat(W2,W3,W4), WEEKS=[W1,W2,W3,W4];
+  var DOW=['周一','周二','周三','周四','周五','周六','周日'];
+
+  function wape(p,t){var a=0,b=0;for(var i=0;i<t.length;i++){a+=Math.abs(p[i]-t[i]);b+=t[i];}return a/b;}
+  function sum(a){return a.reduce(function(x,y){return x+y;},0);}
+  function mean(a){return sum(a)/a.length;}
+  function r1(v){return Math.round(v*10)/10;}
+
+  var PRED={
+    naive:new Array(7).fill(H[27]),
+    seas:[0,1,2,3,4,5,6].map(function(i){return H[21+i];}),
+    ma:[0,1,2,3,4,5,6].map(function(i){return (H[i]+H[7+i]+H[14+i]+H[21+i])/4;}),
+    drift:[0,1,2,3,4,5,6].map(function(i){return H[21+i]+(sum(W4)-sum(W1))/21;})
+  };
+
+  /* ---------- 折线图 ---------- */
+  var W=720,HGT=250,PAD={l:44,r:14,t:16,b:34};
+  function frame(mn,mx){
+    var out='',i,v,yy;
+    for(i=0;i<=3;i++){
+      v=mn+(mx-mn)*i/3;
+      yy=HGT-PAD.b-(HGT-PAD.t-PAD.b)*i/3;
+      out+='<line class="grid" x1="'+PAD.l+'" y1="'+yy.toFixed(1)+'" x2="'+(W-PAD.r)+'" y2="'+yy.toFixed(1)+'"/>';
+      out+='<text x="'+(PAD.l-6)+'" y="'+(yy+3.5).toFixed(1)+'" text-anchor="end">'+Math.round(v)+'</text>';
+    }
+    return out;
+  }
+  function xOf(i,n){return PAD.l+(W-PAD.l-PAD.r)*(n<=1?0:i/(n-1));}
+  function chart(host,series,opt){
+    opt=opt||{};var n=opt.n||35,all=[];
+    series.forEach(function(s){all=all.concat(s.v.filter(function(x){return typeof x==='number'&&isFinite(x);}));});
+    var mn=Math.min.apply(null,all),mx=Math.max.apply(null,all),pad=(mx-mn)*0.18||10;
+    mn=Math.max(0,mn-pad);mx=mx+pad;
+    var yOf=function(v){return HGT-PAD.b-(HGT-PAD.t-PAD.b)*((v-mn)/(mx-mn));};
+    var out='<svg viewBox="0 0 '+W+' '+HGT+'" role="img" aria-label="折线图">'+frame(mn,mx);
+    [0,7,14,21,27].forEach(function(i){if(i<n){out+='<text x="'+xOf(i,n).toFixed(1)+'" y="'+(HGT-PAD.b+18)+'" text-anchor="middle">D'+(i+1)+'</text>';}});
+    if(n>28){out+='<line x1="'+xOf(27.5,n).toFixed(1)+'" y1="'+PAD.t+'" x2="'+xOf(27.5,n).toFixed(1)+'" y2="'+(HGT-PAD.b)+'" stroke="#C9D6EC" stroke-dasharray="3 3"/>';
+      out+='<text x="'+xOf(27.5,n).toFixed(1)+'" y="'+(PAD.t+10)+'" text-anchor="middle">预测起点</text>';}
+    series.forEach(function(s){
+      var d='',started=false;
+      for(var i=0;i<s.v.length;i++){
+        var v=s.v[i];
+        if(typeof v!=='number'||!isFinite(v)){started=false;continue;}
+        d+=(started?'L':'M')+xOf(i,n).toFixed(1)+' '+yOf(v).toFixed(1);started=true;
+      }
+      out+='<path d="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="'+(s.w||2.4)+'"'+
+           (s.dash?' stroke-dasharray="'+s.dash+'"':'')+' stroke-linejoin="round" stroke-linecap="round"/>';
+      if(s.dots){for(var j=0;j<s.v.length;j++){var vv=s.v[j];if(typeof vv==='number'&&isFinite(vv))
+        out+='<circle cx="'+xOf(j,n).toFixed(1)+'" cy="'+yOf(vv).toFixed(1)+'" r="2.4" fill="'+s.color+'"/>';}}
+    });
+    document.getElementById(host).innerHTML=out+'</svg>';
+  }
+
+  chart('c-hist',[{v:H,color:C.blue,w:2.6,dots:true}],{n:28});
+  var full={v:H.concat(TRUE),color:C.ink,w:2.2};
+  chart('c-seas',[full,{v:new Array(28).fill(null).concat(PRED.seas.map(r1)),color:C.blue,w:2.8,dots:true}],{n:35});
+
+  var ONE=[122.3,127.7,127.7,122.3,127.7,141.9,141.9];
+  chart('c-onetree',[full,{v:new Array(28).fill(null).concat(ONE),color:C.blue,w:2.8,dots:true}],{n:35});
+
+  /* ---------- 表 ---------- */
+  function table(el,head,rows){
+    var h='<thead><tr>'+head.map(function(x){return '<th>'+x+'</th>';}).join('')+'</tr></thead><tbody>';
+    rows.forEach(function(r){h+='<tr>'+r.map(function(x){return '<td>'+x+'</td>';}).join('')+'</tr>';});
+    var node=document.getElementById(el);if(node)node.innerHTML=h+'</tbody>';
+  }
+
+  table('t-raw',['','第 1 周','第 2 周','第 3 周','第 4 周'],
+    DOW.map(function(d,i){return [d].concat(WEEKS.map(function(w){return w[i];}));}));
+
+  function calcTable(el,p){
+    var rows=[],se=0;
+    for(var i=0;i<7;i++){var e=Math.abs(p[i]-TRUE[i]);se+=e;rows.push([DOW[i],TRUE[i],r1(p[i]),r1(e)]);}
+    rows.push(['合计',sum(TRUE),'—',r1(se)]);
+    table(el,['','实际','预测','绝对误差'],rows);
+  }
+  calcTable('t-naive',PRED.naive);calcTable('t-seas',PRED.seas);
+  calcTable('t-ma',PRED.ma);calcTable('t-drift',PRED.drift);
+
+  table('t-feat',['样本','lag1','lag2','lag7','roll7_mean','dow','标签 y'],
+    [14,20,27].map(function(i){
+      return ['D'+(i+1)+' '+DOW[i%7],H[i],(i>=1?H[i-1]:'—'),(i>=7?H[i-7]:'—'),
+        r1(mean(H.slice(Math.max(0,i-6),i+1))),DOW[i%7],(i+1<H.length?H[i+1]:'（最后一天）')];
+    }));
+
+  var LEAVES=[[3,122.3,9],[3,127.7,6],[3,141.9,3],[3,138.5,3]];
+  table('t-leaves',['叶子','深度','输出常数','样本数'],
+    LEAVES.map(function(l,k){return ['叶子 '+(k+1),l[0],l[1],l[2]];}));
+
+  var P1=[122.3,127.7,127.7,122.3,127.7,141.9,141.9],
+      P60=[116.4,137.5,119.9,115.0,135.8,176.5,166.5];
+  table('t-resid',['','真实 y','1 棵树','残差','60 棵树','残差'],
+    TRUE.map(function(y,i){return [DOW[i],y,P1[i],r1(y-P1[i]),P60[i],r1(y-P60[i])];}));
+
+  var CURVE=[[1,12.17],[2,8.91],[5,5.36],[10,4.05],[20,3.68],[40,3.86],[60,3.97]];
+  table('t-curve',['树的数量','递归预测 WAPE'],
+    CURVE.map(function(c){return [c[0],c[1].toFixed(2)+'%'+(c[0]===20?' ← 最好':'')];}));
+
+  /* ---------- 指数权重 ---------- */
+  (function(){
+    var a=0.6,wts=[],cur=1,i;
+    for(i=0;i<8;i++){wts.push(cur);cur*=(1-a);}
+    var w=720,h=200,pad={l:44,r:14,t:14,b:30};
+    var gap=(w-pad.l-pad.r)/wts.length,bw=gap*0.62;
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="指数衰减权重">';
+    for(i=0;i<=2;i++){var yy=h-pad.b-(h-pad.t-pad.b)*i/2;
+      out+='<line class="grid" x1="'+pad.l+'" y1="'+yy+'" x2="'+(w-pad.r)+'" y2="'+yy+'"/>';
+      out+='<text x="'+(pad.l-6)+'" y="'+(yy+3.5)+'" text-anchor="end">'+(i/2).toFixed(1)+'</text>';}
+    wts.forEach(function(v,k){
+      var x=pad.l+gap*k+(gap-bw)/2,bh=(h-pad.t-pad.b)*v;
+      out+='<rect x="'+x.toFixed(1)+'" y="'+(h-pad.b-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(bh,2).toFixed(1)+'" rx="3" fill="'+(k===0?C.blue:C.blue3)+'"/>';
+      out+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(h-pad.b-bh-5).toFixed(1)+'" text-anchor="middle" fill="'+(k===0?C.blue:C.ink2)+'" font-weight="700">'+v.toFixed(2)+'</text>';
+      out+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(h-pad.b+15)+'" text-anchor="middle">t−'+(k+1)+'</text>';
+    });
+    document.getElementById('c-weights').innerHTML=out+'</svg>';
+  })();
+
+  /* ---------- GBDT 曲线 ---------- */
+  (function(){
+    var w=720,h=240,pad={l:44,r:14,t:16,b:34},rows=CURVE,mx=14;
+    var gap=(w-pad.l-pad.r)/rows.length,bw=gap*0.56;
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="树数量与误差">';
+    for(var i=0;i<=3;i++){var yy=h-pad.b-(h-pad.t-pad.b)*i/3;
+      out+='<line class="grid" x1="'+pad.l+'" y1="'+yy+'" x2="'+(w-pad.r)+'" y2="'+yy+'"/>';
+      out+='<text x="'+(pad.l-6)+'" y="'+(yy+3.5)+'" text-anchor="end">'+Math.round(mx*i/3)+'%</text>';}
+    rows.forEach(function(c,k){
+      var bh=(h-pad.t-pad.b)*(c[1]/mx),x=pad.l+gap*k+(gap-bw)/2,y=h-pad.b-bh,best=(c[0]===20);
+      out+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(bh,2).toFixed(1)+'" rx="4" fill="'+(best?C.blue:C.blue3)+'"/>';
+      out+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(y-6).toFixed(1)+'" text-anchor="middle" fill="'+(best?C.blue:C.ink2)+'" font-weight="700">'+c[1].toFixed(1)+'</text>';
+      out+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(h-pad.b+16)+'" text-anchor="middle">'+c[0]+'</text>';
+    });
+    out+='<text x="'+pad.l+'" y="10">WAPE（%）随树数量变化</text>';
+    document.getElementById('c-gbdt').innerHTML=out+'</svg>';
+  })();
+
+  /* ---------- 分解图 ---------- */
+  (function(){
+    var trend=[],i;
+    for(i=0;i<H.length;i++){
+      var lo=Math.max(0,i-3),hi=Math.min(H.length-1,i+3);
+      trend.push(mean(H.slice(lo,hi+1)));
+    }
+    var detr=H.map(function(v,i2){return v-trend[i2];});
+    var byDow=[[],[],[],[],[],[],[]];
+    detr.forEach(function(v,i2){byDow[i2%7].push(v);});
+    var sAvg=byDow.map(mean),seas=[],res=[];
+    for(i=0;i<H.length;i++){seas.push(sAvg[i%7]);res.push(detr[i]-sAvg[i%7]);}
+    var panels=[{d:trend,c:C.blue,t:'水平（7 点中心平均）'},
+                {d:seas,c:C.blue2,t:'周内季节偏移'},
+                {d:res,c:'#8A97AB',t:'残差（噪声）'}];
+    var w=720,ph=110,pad={l:44,r:14,t:20,b:16};
+    var out='<svg viewBox="0 0 '+w+' '+(ph*3+10)+'" role="img" aria-label="分解">';
+    panels.forEach(function(p,pi){
+      var off=pi*ph,mn=Math.min.apply(null,p.d),mx=Math.max.apply(null,p.d);
+      if(mx===mn){mx=mn+1;}
+      var yOf=function(v){return off+ph-pad.b-(ph-pad.t-pad.b)*((v-mn)/(mx-mn));};
+      var xOf=function(i2){return pad.l+(w-pad.l-pad.r)*(i2/(p.d.length-1));};
+      out+='<line class="grid" x1="'+pad.l+'" y1="'+(off+ph-pad.b)+'" x2="'+(w-pad.r)+'" y2="'+(off+ph-pad.b)+'"/>';
+      var d='';
+      p.d.forEach(function(v,i2){d+=(i2?'L':'M')+xOf(i2).toFixed(1)+' '+yOf(v).toFixed(1);});
+      out+='<path d="'+d+'" fill="none" stroke="'+p.c+'" stroke-width="2.2"/>';
+      out+='<text x="'+pad.l+'" y="'+(off+13)+'">'+p.t+'</text>';
+    });
+    document.getElementById('c-decomp').innerHTML=out+'</svg>';
+  })();
+
+  /* ---------- 卡尔曼更新 ---------- */
+  (function(){
+    var w=720,h=240,pad={l:40,r:16,t:20,b:34};
+    function pdf(x,m,s){return Math.exp(-0.5*Math.pow((x-m)/s,2))/(s*Math.sqrt(2*Math.PI));}
+    var xs=[],i;for(i=60;i<=150;i+=1)xs.push(i);
+    var prior=function(x){return pdf(x,100,20);},
+        like=function(x){return pdf(x,110,10);},
+        post=function(x){return pdf(x,108,8.944);};
+    var mx=0;
+    xs.forEach(function(v){mx=Math.max(mx,prior(v),like(v),post(v));});
+    mx*=1.18;
+    var xOf=function(v){return pad.l+(w-pad.l-pad.r)*((v-60)/90);};
+    var yOf=function(v){return h-pad.b-(h-pad.t-pad.b)*(v/mx);};
+    function line(f,color,dash){
+      var d='';
+      xs.forEach(function(v,i2){d+=(i2?'L':'M')+xOf(v).toFixed(1)+' '+yOf(f(v)).toFixed(1);});
+      return '<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="2.2"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';
+    }
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="卡尔曼更新">';
+    out+='<line class="grid" x1="'+pad.l+'" y1="'+(h-pad.b)+'" x2="'+(w-pad.r)+'" y2="'+(h-pad.b)+'"/>';
+    [80,100,110,120,140].forEach(function(v){
+      out+='<text x="'+xOf(v).toFixed(1)+'" y="'+(h-pad.b+18)+'" text-anchor="middle">'+v+'</text>';});
+    out+=line(prior,'#8A97AB','5 4');
+    out+=line(like,'#0F1B2D','2 4');
+    out+=line(post,C.blue,'');
+    document.getElementById('c-kalman').innerHTML=out+'</svg>';
+  })();
+
+  /* ---------- 多尺度 ---------- */
+  (function(){
+    function pool(a,k){var out=[],i;for(i=0;i<a.length;i+=k){out.push(mean(a.slice(i,i+k)));}return out;}
+    var p4=pool(H,4),p13=pool(H,13);
+    var w=720,h=210,pad={l:44,r:14,t:14,b:26},mn=80,mx=190;
+    var xOf=function(i){return pad.l+(w-pad.l-pad.r)*(i/(H.length-1));};
+    var yOf=function(v){return h-pad.b-(h-pad.t-pad.b)*((v-mn)/(mx-mn));};
+    function ln(a,color,wd){
+      var d='';
+      a.forEach(function(v,i){d+=(i?'L':'M')+xOf(i).toFixed(1)+' '+yOf(v).toFixed(1);});
+      return '<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="'+wd+'" stroke-linejoin="round"/>';
+    }
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="多尺度">';
+    out+=ln(H,C.blue3,1.6)+ln(p4,C.blue2,2.4)+ln(p13,C.blue,3);
+    out+='<text x="'+(w-pad.r)+'" y="'+(pad.t+10)+'" text-anchor="end">原始 · 4 点池化 · 13 点池化</text>';
+    document.getElementById('c-multi').innerHTML=out+'</svg>';
+  })();
+
+  /* ---------- patch ---------- */
+  (function(){
+    var w=720,h=150,pad={l:20,r:20,t:24,b:24};
+    var vals=H.slice(0,28),mn=90,mx=190,per=4;
+    var xOf=function(i){return pad.l+(w-pad.l-pad.r)*(i/(vals.length-1));};
+    var yOf=function(v){return h-pad.b-(h-pad.t-pad.b)*((v-mn)/(mx-mn));};
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="patch 切分">';
+    for(var s=0;s<vals.length;s+=per){
+      var x0=xOf(s),x1=xOf(Math.min(s+per,vals.length-1));
+      out+='<rect x="'+x0.toFixed(1)+'" y="'+pad.t+'" width="'+Math.max(x1-x0,1).toFixed(1)+'" height="'+(h-pad.t-pad.b)+'" fill="'+((s/per)%2?C.blue:C.blue2)+'" opacity="0.10"/>';
+      out+='<text x="'+((x0+x1)/2).toFixed(1)+'" y="'+(pad.t-8)+'" text-anchor="middle">P'+(s/per+1)+'</text>';
+    }
+    var d='';
+    for(var i=0;i<vals.length;i++){d+=(i?'L':'M')+xOf(i).toFixed(1)+' '+yOf(vals[i]).toFixed(1);}
+    out+='<path d="'+d+'" fill="none" stroke="'+C.blue+'" stroke-width="2.4" stroke-linejoin="round"/>';
+    document.getElementById('c-patch').innerHTML=out+'</svg>';
+  })();
+
+  /* ---------- DeepAR 区间 ---------- */
+  (function(){
+    var w=720,h=210,pad={l:44,r:14,t:14,b:26};
+    var base=H.slice(-14),last=base[base.length-1],fut=[];
+    for(var i=1;i<=7;i++){fut.push(last+i*1.2);}
+    var n=base.length+fut.length;
+    var xOf=function(i){return pad.l+(w-pad.l-pad.r)*(i/(n-1));};
+    var lo=[],hi=[];
+    for(i=0;i<base.length;i++){lo.push(base[i]);hi.push(base[i]);}
+    for(i=0;i<fut.length;i++){var k=i+1;lo.push(fut[i]-3-k*2.0);hi.push(fut[i]+3+k*2.0);}
+    var mn=Math.min.apply(null,lo),mx=Math.max.apply(null,hi);
+    var yOf=function(v){return h-pad.b-(h-pad.t-pad.b)*((v-mn)/(mx-mn));};
+    var band='M'+xOf(base.length-1).toFixed(1)+' '+yOf(base[base.length-1]).toFixed(1);
+    for(i=base.length;i<n;i++){band+=' L'+xOf(i).toFixed(1)+' '+yOf(hi[i]).toFixed(1);}
+    for(i=n-1;i>=base.length;i--){band+=' L'+xOf(i).toFixed(1)+' '+yOf(lo[i]).toFixed(1);}
+    band+=' Z';
+    function pf(arr,st){
+      var d='';
+      for(var j=st;j<arr.length;j++){d+=(j===st?'M':'L')+xOf(j).toFixed(1)+' '+yOf(arr[j]).toFixed(1);}
+      return d;
+    }
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="概率区间">';
+    out+='<path d="'+band+'" fill="'+C.blue3+'" opacity="0.35" stroke="none"/>';
+    out+='<path d="'+pf(base,0)+'" fill="none" stroke="'+C.ink+'" stroke-width="2.4"/>';
+    out+='<path d="'+pf(base.concat(fut),base.length-1)+'" fill="none" stroke="'+C.blue+'" stroke-width="2.6" stroke-dasharray="5 3"/>';
+    out+='<text x="'+(w-pad.r)+'" y="'+(pad.t+10)+'" text-anchor="end">P10–P90 区间 · 中位数</text>';
+    document.getElementById('c-band').innerHTML=out+'</svg>';
+  })();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+{
+  "model": "LightGBM-global",
+  "n_series": 1000,
+  "horizon": 14,
+  "strategy": "recursive",
+  "selected": "log1p",
+  "features": [
+    "lag1",
+    "lag7",
+    "lag14",
+    "lag28",
+    "roll7_mean",
+    "roll7_std",
+    "roll7_min",
+    "roll7_max",
+    "roll14_mean",
+    "roll14_std",
+    "roll14_min",
+    "roll14_max",
+    "roll28_mean",
+    "roll28_std",
+    "roll28_min",
+    "roll28_max",
+    "dow",
+    "day",
+    "month",
+    "weekofyear",
+    "is_weekend",
+    "series_id"
+  ],
+  "params": {
+    "n_estimators": 400,
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 40,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0,
+    "random_state": 7,
+    "max_bin": 127
+  },
+  "validation": {
+    "log1p": {
+      "wape_mean": 0.030638368119979113,
+      "wape_median": 0.021830363527988932,
+      "smape_mean": 3.0659389202285614,
+      "mase_mean": 1.3299615371538784,
+      "mase_median": 0.9538642607443565,
+      "n_series": 1000
+    },
+    "tweedie": {
+      "wape_mean": 0.031147500208936627,
+      "wape_median": 0.02216018736366946,
+      "smape_mean": 3.1166194811548156,
+      "mase_mean": 1.322877932687186,
+      "mase_median": 0.9452504062970551,
+      "n_series": 1000
+    }
+  },
+  "test": {
+    "log1p": {
+      "wape_mean": 0.03776851006294048,
+      "wape_median": 0.019900842034091794,
+      "smape_mean": 3.392870236162288,
+      "mase_mean": 1.2771450529687762,
+      "mase_median": 0.8625397545611065,
+      "n_series": 1000
+    },
+    "tweedie": {
+      "wape_mean": 0.03797357863191559,
+      "wape_median": 0.019992824968226575,
+      "smape_mean": 3.348918891780784,
+      "mase_mean": 1.2355169473646492,
+      "mase_median": 0.8516846977520958,
+      "n_series": 1000
+    }
+  },
+  "runtime_s": {
+    "log1p": 54.3,
+    "tweedie": 58.7
+  },
+  "total_runtime_s": 276.6,
+  "feature_importance_top": [
+    [
+      "lag1",
+      3360
+    ],
+    [
+      "weekofyear",
+      3254
+    ],
+    [
+      "series_id",
+      3008
+    ],
+    [
+      "day",
+      2403
+    ],
+    [
+      "roll28_std",
+      1966
+    ],
+    [
+      "roll7_std",
+      1676
+    ],
+    [
+      "roll14_std",
+      1482
+    ],
+    [
+      "dow",
+      1190
+    ],
+    [
+      "month",
+      1044
+    ],
+    [
+      "roll7_min",
+      720
+    ],
+    [
+      "lag28",
+      667
+    ],
+    [
+      "roll7_max",
+      640
+    ]
+  ],
+  "notes": "M4 daily; single global model, series id as categorical; log1p+tweedie compared on the last 14 training points; metrics on the official 14-day test horizon."
+}

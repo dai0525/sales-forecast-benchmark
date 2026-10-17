@@ -1,0 +1,141 @@
+{
+  "model": "LightGBM-global",
+  "n_series": 1000,
+  "horizon": 14,
+  "strategy": "recursive",
+  "selected": "log1p",
+  "features": [
+    "lag1",
+    "lag7",
+    "lag14",
+    "lag28",
+    "lag56",
+    "lag364",
+    "roll7_mean",
+    "roll7_std",
+    "roll7_min",
+    "roll7_max",
+    "roll14_mean",
+    "roll14_std",
+    "roll14_min",
+    "roll14_max",
+    "roll28_mean",
+    "roll28_std",
+    "roll28_min",
+    "roll28_max",
+    "roll56_mean",
+    "roll56_std",
+    "roll56_min",
+    "roll56_max",
+    "dow",
+    "day",
+    "month",
+    "weekofyear",
+    "is_weekend",
+    "series_id"
+  ],
+  "params": {
+    "n_estimators": 400,
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 40,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0,
+    "random_state": 7,
+    "max_bin": 127
+  },
+  "validation": {
+    "log1p": {
+      "wape_mean": 0.03064229078243834,
+      "wape_median": 0.022096057389166653,
+      "smape_mean": 3.0681978519252797,
+      "mase_mean": 1.3354619674887673,
+      "mase_median": 0.9437247840950993,
+      "n_series": 1000
+    },
+    "tweedie": {
+      "wape_mean": 0.03105556098755983,
+      "wape_median": 0.02215844048010711,
+      "smape_mean": 3.1102145067547324,
+      "mase_mean": 1.3383384554932298,
+      "mase_median": 0.9456493340290518,
+      "n_series": 1000
+    }
+  },
+  "test": {
+    "log1p": {
+      "wape_mean": 0.03695889770929457,
+      "wape_median": 0.019805573117021944,
+      "smape_mean": 3.353014339684539,
+      "mase_mean": 1.2491059209966007,
+      "mase_median": 0.8625084868541844,
+      "n_series": 1000
+    },
+    "tweedie": {
+      "wape_mean": 0.038006443771605856,
+      "wape_median": 0.019865219205546344,
+      "smape_mean": 3.353767000665869,
+      "mase_mean": 1.2442591174020021,
+      "mase_median": 0.8367616313614255,
+      "n_series": 1000
+    }
+  },
+  "runtime_s": {
+    "log1p": 59.6,
+    "tweedie": 71.5
+  },
+  "total_runtime_s": 288.5,
+  "feature_importance_top": [
+    [
+      "lag1",
+      3224
+    ],
+    [
+      "series_id",
+      2970
+    ],
+    [
+      "weekofyear",
+      2517
+    ],
+    [
+      "lag364",
+      1742
+    ],
+    [
+      "roll56_std",
+      1566
+    ],
+    [
+      "day",
+      1449
+    ],
+    [
+      "roll28_std",
+      1195
+    ],
+    [
+      "roll7_std",
+      1183
+    ],
+    [
+      "roll14_std",
+      993
+    ],
+    [
+      "dow",
+      861
+    ],
+    [
+      "month",
+      785
+    ],
+    [
+      "roll7_min",
+      739
+    ]
+  ],
+  "notes": "M4 daily; single global model, series id as categorical; log1p+tweedie compared on the last 14 training points; metrics on the official 14-day test horizon."
+}

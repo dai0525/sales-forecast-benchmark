@@ -1,0 +1,160 @@
+/* 销量预测工作台 — 蓝白设计系统（手机优先） */
+:root{
+  --blue:#1D4ED8; --blue-2:#3B82F6; --blue-3:#60A5FA; --blue-4:#BFD2F6;
+  --wash:#EFF4FF; --line:#D6E2FB; --hair:#E6EBF3;
+  --ink:#0F1B2D; --ink-2:#5A6B85; --bg:#FFFFFF; --bg-2:#F7F9FD;
+  --r:14px; --maxw:1080px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  text-rendering:optimizeLegibility;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+
+/* ---------- 顶部 ---------- */
+.top{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--hair);
+}
+.top-in{max-width:var(--maxw);margin:0 auto;padding:10px 16px 0}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand h1{margin:0;font-size:19px;letter-spacing:.2px;color:var(--blue);font-weight:800}
+.brand span{font-size:12px;color:var(--ink-2)}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:8px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--ink-2);
+  padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;white-space:nowrap;cursor:pointer;
+  min-height:38px;transition:.15s;
+}
+.tab[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+a.tab{display:inline-flex;align-items:center;text-decoration:none}
+a.tab:hover{border-color:var(--blue);color:var(--blue)}
+
+/* 首屏引导 */
+.firststep{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--blue);
+  border-radius:8px;padding:14px 16px;margin:0 0 18px;display:grid;gap:5px}
+.firststep b{color:var(--ink);font-size:14px}
+.firststep a{color:var(--blue);font-weight:800;font-size:15.5px;text-decoration:none}
+.firststep a:hover{text-decoration:underline}
+.firststep span{color:var(--ink-2);font-size:13px;line-height:1.65}
+
+/* ---------- 内容 ---------- */
+main{max-width:var(--maxw);margin:0 auto;padding:18px 16px 96px}
+.panel{display:none}
+.panel.is-on{display:block;animation:fade .18s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+.sec-hd{margin:6px 0 14px}
+.sec-hd h2{margin:0 0 6px;font-size:22px;color:var(--blue);letter-spacing:.2px}
+.sec-hd p{margin:0;color:var(--ink-2);font-size:14px}
+
+/* 算法卡 */
+.algo{padding:18px 0 22px;border-top:1px solid var(--hair)}
+.algo:first-of-type{border-top:0}
+.algo-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.algo-rank{font:700 13px/1 ui-monospace,monospace;color:var(--blue);background:var(--wash);
+  border:1px solid var(--line);padding:5px 8px;border-radius:8px}
+.algo-name{margin:0;font-size:21px;color:var(--blue);font-weight:800}
+.algo-tag{margin:0;color:var(--ink-2);font-size:13px}
+.algo-lead{margin:8px 0 16px;font-size:15px;color:var(--ink)}
+.algo-lead b{color:var(--blue)}
+.algo-facts{display:grid;grid-template-columns:1fr;gap:8px;margin:16px 0 0;padding:12px 0 0;border-top:1px dashed var(--hair)}
+.algo-facts>div{display:grid;grid-template-columns:88px 1fr;gap:10px;align-items:baseline}
+.algo-facts dt{color:var(--ink-2);font-size:12px;letter-spacing:.4px;text-transform:uppercase}
+.algo-facts dd{margin:0;font-size:14px}
+.algo-note{margin:12px 0 0;padding:10px 12px;background:var(--wash);border-left:3px solid var(--blue);
+  font-size:14px;color:var(--ink);border-radius:0 8px 8px 0}
+
+/* 表格 */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--hair);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--hair);white-space:nowrap}
+th{background:var(--bg-2);color:var(--ink-2);font-size:12px;font-weight:700;letter-spacing:.3px;position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.best{color:var(--blue);font-weight:800}
+
+/* 通用组件 */
+.sfw-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sfw-col{display:flex;flex-direction:column;gap:10px}
+.sfw-grid2{display:grid;grid-template-columns:1fr;gap:12px}
+.sfw-btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:10px;
+  font-size:14px;font-weight:600;min-height:42px;cursor:pointer}
+.sfw-btn.is-on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.sfw-chips{display:flex;gap:8px;flex-wrap:wrap}
+.sfw-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:13px;
+  min-height:38px;cursor:pointer;color:var(--ink-2);font-weight:600}
+.sfw-chip.is-on{background:var(--wash);border-color:var(--blue);color:var(--blue)}
+.sfw-slider{width:100%;accent-color:var(--blue);height:34px}
+.sfw-metric{font:800 26px/1.1 ui-monospace,monospace;color:var(--blue);font-variant-numeric:tabular-nums}
+.sfw-metric-u{font-size:12px;color:var(--ink-2);font-weight:600;margin-left:3px}
+.sfw-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
+.sfw-legend i{display:inline-block;width:12px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+.sfw-cap{font-size:12px;color:var(--ink-2);margin:8px 0 0}
+.sfw-plot{width:100%;height:auto;display:block;overflow:visible}
+.sfw-plot text{font-size:11px;fill:var(--ink-2);font-family:ui-monospace,monospace}
+.sfw-plot .grid{stroke:var(--hair);stroke-width:1}
+.sfw-plot .truth{fill:none;stroke:#8A97AB;stroke-width:1.6;stroke-dasharray:4 3}
+.sfw-plot .pred{fill:none;stroke:var(--blue);stroke-width:2.2;stroke-linejoin:round}
+
+/* 论文库 */
+.papers{display:grid;grid-template-columns:1fr;gap:0}
+.paper{padding:14px 0;border-top:1px solid var(--hair);display:grid;grid-template-columns:auto 1fr;gap:12px}
+.paper:first-child{border-top:0}
+.paper-id{font:700 12px/1 ui-monospace,monospace;color:var(--blue);padding-top:3px}
+.paper h3{margin:0 0 4px;font-size:15px;line-height:1.4;font-weight:700}
+.paper h3 a{color:var(--ink)}
+.paper .meta{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.paper .why{font-size:14px;margin:0;color:var(--ink)}
+.pill{display:inline-block;font-size:11px;padding:2px 7px;border-radius:6px;background:var(--wash);
+  color:var(--blue);border:1px solid var(--line);margin-right:6px;font-weight:600}
+
+/* 底部导航（手机） */
+.bottomnav{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);border-top:1px solid var(--hair);padding:6px 8px calc(6px + env(safe-area-inset-bottom));
+}
+.bottomnav button{flex:1;border:0;background:none;font-size:11px;color:var(--ink-2);display:grid;
+  justify-items:center;gap:3px;padding:4px 0;cursor:pointer;font-weight:600}
+.bottomnav a{flex:1;border:0;background:none;font-size:11px;color:var(--ink-2);display:grid;
+  justify-items:center;gap:3px;padding:4px 0;cursor:pointer;font-weight:600;text-decoration:none}
+.bottomnav button[aria-selected="true"]{color:var(--blue)}
+.bottomnav svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+footer{max-width:var(--maxw);margin:0 auto;padding:8px 16px 24px;color:var(--ink-2);font-size:12px}
+
+/* 平板/横屏 */
+@media (min-width:640px){
+  .sfw-grid2{grid-template-columns:1fr 1fr}
+  .algo-facts{grid-template-columns:1fr 1fr}
+  .papers{grid-template-columns:1fr}
+}
+@media (min-width:900px){
+  main{padding:24px 24px 72px}
+  .bottomnav{display:none}
+  .tabs{margin-top:10px}
+}
+/* 横屏手机：矮高度时压缩纵向间距 */
+@media (max-height:460px) and (min-width:640px){
+  .top-in{padding-top:6px}
+  .brand h1{font-size:16px}
+  .algo{padding:12px 0 16px}
+  main{padding-top:10px}
+}
+
+/* 成绩表：手机上压到屏宽内，避免 MASE 被裁 */
+#bench-body table { font-size: 12.5px; }
+#bench-body th, #bench-body td { padding: 7px 5px; }
+#bench-body th.num, #bench-body td.num { text-align: right; white-space: nowrap; }
+#bench-body td:first-child, #bench-body th:first-child { white-space: normal; line-height: 1.25; }
+@media (max-width: 420px) {
+  #bench-body table { font-size: 11.5px; }
+  #bench-body th, #bench-body td { padding: 6px 3px; }
+  #bench-body .tablewrap table { min-width: 0; width: 100%; }
+}

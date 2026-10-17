@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>销量预测工作台 · 算法讲解 / 复现 / 论文</title>
+<meta name="description" content="销量预测算法交互工作台：LightGBM、N-HiTS、DeepAR、TFT、PatchTST 的原理、可交互例子与本地复现实测">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>销量预测工作台</h1>
+      <span>原理 · 复现 · 论文</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="栏目">
+      <a class="tab" href="principles.html">从零开始</a>
+      <button class="tab" role="tab" data-panel="p-algo" aria-selected="true">算法讲解</button>
+      <button class="tab" role="tab" data-panel="p-bench" aria-selected="false">实测成绩</button>
+      <button class="tab" role="tab" data-panel="p-papers" aria-selected="false">论文库</button>
+      <button class="tab" role="tab" data-panel="p-how" aria-selected="false">怎么用</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ① 算法讲解 -->
+  <section class="panel is-on" id="p-algo" role="tabpanel">
+    <div class="sec-hd">
+      <h2>销量预测算法讲解</h2>
+      <p>五个值得借鉴的算法，每个都能点、能拖、有真实数据例子。往下滑就是全部。</p>
+    </div>
+    <div class="firststep">
+      <b>第一次来，别从这个页面开始</b>
+      <a href="principles.html">→ 先读《从零开始（机制详解）》</a>
+      <span>一条 28 天数据手算 4 种基线 → 逐棵树看 LightGBM 怎么修正残差、lag 特征怎么造 → 五个深度模型的计算图 → BSTS 的卡尔曼更新。看完再回来，这一页才有意义。</span>
+    </div>
+    <div id="algo-list"><p class="sfw-cap">加载中…</p></div>
+  </section>
+
+  <!-- ② 实测成绩 -->
+  <section class="panel" id="p-bench" role="tabpanel">
+    <div class="sec-hd">
+      <h2>实测成绩</h2>
+      <p id="bench-sub">同一份数据、同一套切分，各算法在本机跑出来的真实指标。</p>
+    </div>
+    <div id="bench-body"><p class="sfw-cap">加载中…</p></div>
+  </section>
+
+  <!-- ③ 论文库 -->
+  <section class="panel" id="p-papers" role="tabpanel">
+    <div class="sec-hd">
+      <h2>论文库</h2>
+      <p id="papers-sub">近十年销量预测的综述与方法论文，按算法家族归类，链接均可点开。</p>
+    </div>
+    <div id="papers-body"><p class="sfw-cap">加载中…</p></div>
+  </section>
+
+  <!-- ④ 怎么用 -->
+  <section class="panel" id="p-how" role="tabpanel">
+    <div class="sec-hd">
+      <h2>怎么用这个工作台</h2>
+      <p>给做销量预测课题的人：先看什么、先试什么、别踩什么坑。</p>
+    </div>
+    <div id="how-body"></div>
+  </section>
+</main>
+
+<footer>
+  <p id="built">构建中…</p>
+</footer>
+
+<nav class="bottomnav" aria-label="栏目录航">
+  <a href="principles.html">
+    <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v18H6.5A2.5 2.5 0 0 1 4 18.5z"/><path d="M8 7h7M8 11h7"/></svg>原理
+  </a>
+  <button data-panel="p-algo" aria-selected="true">
+    <svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l4-6 3 4 4-7"/></svg>算法
+  </button>
+  <button data-panel="p-bench" aria-selected="false">
+    <svg viewBox="0 0 24 24"><path d="M5 20V10m7 10V4m7 16v-6"/></svg>成绩
+  </button>
+  <button data-panel="p-papers" aria-selected="false">
+    <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg>论文
+  </button>
+  <button data-panel="p-how" aria-selected="false">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 17v.01M12 13c0-2 2-2 2-4a2 2 0 1 0-3.5 1.3"/></svg>怎么用
+  </button>
+</nav>
+
+<script src="js/app.js"></script>
+<script src="js/algo-lightgbm.js"></script>
+<script src="js/algo-nhits.js"></script>
+<script src="js/algo-deepar.js"></script>
+<script src="js/algo-tft.js"></script>
+<script src="js/algo-patchtst.js"></script>
+</body>
+</html>

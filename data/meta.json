@@ -1,0 +1,10 @@
+{
+  "n_series": 4227,
+  "n_train_steps": 9919,
+  "horizon": 14,
+  "zeros_ratio": 0.0,
+  "len_min": 93,
+  "len_median": 2940,
+  "len_max": 9919,
+  "demo_ids": []
+}

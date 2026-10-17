@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>销量预测 · 从零开始（手算版）</title>
+<meta name="description" content="用 28 天小店数据，手算 Naive、SeasonalNaive、移动平均、ETS，再看 ARIMA、LightGBM 和五个深度模型到底在做什么。">
+<style>
+:root{
+  --blue:#1D4ED8; --blue-2:#3B82F6; --blue-3:#BFD2F6; --wash:#EFF4FF;
+  --line:#D6E2FB; --hair:#E6EBF3; --ink:#0F1B2D; --ink2:#5A6B85; --bg:#fff;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.72 -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 72px}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--wash);padding:1px 5px;border-radius:4px}
+
+header.top{padding:34px 0 22px;border-bottom:1px solid var(--hair)}
+.kicker{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
+h1{font-size:29px;line-height:1.25;margin:0 0 10px;color:var(--blue);letter-spacing:-.01em;font-weight:800}
+.sub{margin:0;color:var(--ink2);font-size:15px}
+.meta{margin-top:14px;font-size:12.5px;color:var(--ink2)}
+
+h2{font-size:20px;color:var(--blue);margin:0 0 14px;font-weight:800;letter-spacing:-.01em}
+h3{font-size:15.5px;margin:22px 0 8px;color:var(--ink);font-weight:800}
+p{margin:0 0 13px}
+ul,ol{margin:0 0 13px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:800}
+.lead{font-size:16.5px;color:var(--ink)}
+
+section.ch{margin-top:40px;padding-left:15px;border-left:3px solid var(--blue)}
+section.ch > .num{display:block;font-size:11.5px;font-weight:800;letter-spacing:.14em;color:var(--blue);margin-bottom:4px}
+.note{background:var(--wash);border-left:3px solid var(--blue-3);padding:11px 14px;margin:14px 0;font-size:14.5px;color:var(--ink)}
+.note b{color:var(--blue)}
+.key{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:12px 0;margin:16px 0;font-size:15px}
+.key .tag{color:var(--blue);font-weight:800;font-size:12px;letter-spacing:.1em;display:block;margin-bottom:4px}
+
+.math{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--wash);border-left:3px solid var(--blue);
+  padding:11px 14px;margin:12px 0;font-size:14.5px;overflow-x:auto;white-space:nowrap}
+
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;border:1px solid var(--hair);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 11px;text-align:right;border-bottom:1px solid var(--hair);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{background:#F7F9FD;color:var(--ink2);font-weight:700;font-size:12px;letter-spacing:.03em}
+tbody tr:last-child td{border-bottom:0}
+td.bad{color:#B42318}
+td.good{color:var(--blue);font-weight:800}
+.cap{font-size:12.5px;color:var(--ink2);margin:6px 0 0}
+
+figure{margin:18px 0}
+svg{display:block;width:100%;height:auto}
+svg .grid{stroke:var(--hair);stroke-width:1}
+svg text{font-size:11px;fill:var(--ink2);font-family:inherit}
+svg .ax{stroke:#C9D6EC;stroke-width:1}
+
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 0;font-size:12.5px;color:var(--ink2)}
+.legend i{display:inline-block;width:16px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle}
+
+details{margin:14px 0;border:1px solid var(--hair);border-radius:6px;padding:0 14px}
+details summary{cursor:pointer;padding:12px 0;font-weight:800;color:var(--blue);font-size:14.5px}
+details[open] summary{border-bottom:1px solid var(--hair);margin-bottom:10px}
+details ul{margin-bottom:12px}
+
+.big{font-size:15.5px}
+.foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">销量预测 · 零基础</p>
+  <h1>一次手算，看懂销量预测</h1>
+  <p class="sub">一条 28 天的小店数据，四种预测方法，误差从 <b>25.7%</b> 一路降到 <b>0.5%</b>。每一个数字你都能在手机上手算出来。</p>
+  <p class="meta">配合《销量预测工作台》阅读 · 真实基准数字来自 M4-Weekly / M4-Daily 本机复现</p>
+</header>
+
+<!-- 0 -->
+<section class="ch">
+  <span class="num">第 0 章 · 全局地图</span>
+  <h2>所有预测算法，只在回答三个问题</h2>
+  <p class="lead">不管叫 ARIMA 还是 Transformer，拆开看都只做三件事：</p>
+  <ol class="big">
+    <li><strong>用哪一段过去？</strong> 昨天的值、上周同一天、最近 4 周的平均、还是最近 100 步的全部？</li>
+    <li><strong>怎么把它们组合成一个数？</strong> 直接照抄、算平均、按指数加权、还是让模型自己学权重？</li>
+    <li><strong>误差怎么量？</strong> 决定了你往哪个方向优化。</li>
+  </ol>
+  <p>你熟悉的数字电路里，一个功能可以由状态机硬写，也可以由查找表实现——输出一样，成本和适用场景不同。预测算法也是同一回事：<strong>没有最强的算法，只有匹配数据结构的算法</strong>。</p>
+  <div class="note">下面每一节都是同一条数据、同一段预测窗口。你只需要盯着误差怎么变。</div>
+</section>
+
+<!-- 1 -->
+<section class="ch">
+  <span class="num">第 1 章 · 数据</span>
+  <h2>先看清楚要预测的东西长什么样</h2>
+  <p>某便利店每天卖出的矿泉水瓶数，我们有 4 周（28 天）历史，要预测第 5 周的 7 天。</p>
+  <figure>
+    <div id="c-hist"></div>
+    <p class="cap">28 天历史。周一到周四平缓，周五抬头，<b>周六明显冲高</b>，周日落回来；整体每周还在缓慢上台阶。</p>
+  </figure>
+  <p>把数据摊平成表，注意里面对角线的规律：</p>
+  <div class="tablewrap"><table id="t-raw"></table></div>
+  <p class="cap">每一列是同一周的第 n 天。竖着看：周六那一列始终最高。横着看：每周整体比上周高一点点。</p>
+  <div class="key">
+    <span class="tag">这里已经藏着两个结构</span>
+    ① <b>周内节律</b>（周期 = 7 天）　② <b>缓慢上升的趋势</b>。后面所有方法，本质都是在用这两个结构的不同组合。
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="ch">
+  <span class="num">第 2 章 · 最笨的方法</span>
+  <h2>Naive：把最后一个数复制 7 遍</h2>
+  <div class="math">ŷ<sub>T+h</sub> = y<sub>T</sub>　　（h = 1, 2, …, 7）</div>
+  <p>最后一个观测是第 4 周的周日 = <b>166</b>，所以下周七天全预测 166。</p>
+  <div class="tablewrap"><table id="t-naive"></table></div>
+  <p>误差怎么量？用 <b>WAPE</b>（加权绝对百分比误差）：</p>
+  <div class="math">WAPE = Σ|预测 − 实际| / Σ实际 = <b>246 / 958 = 25.7%</b></div>
+  <figure>
+    <div id="c-naive"></div>
+    <div class="legend"><span><i style="background:#1D4ED8"></i>Naive 预测</span><span><i style="background:#0F1B2D"></i>真实值</span></div>
+  </figure>
+  <div class="key">
+    <span class="tag">教训 ①</span>
+    把"周日的 166"复制到"周一"，等于假装一周里没有节律。误差 25.7% 全是这么来的。<b>预测的第一步不是选模型，是识别周期。</b>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="ch">
+  <span class="num">第 3 章 · 强得离谱的基线</span>
+  <h2>SeasonalNaive：抄上周同一天</h2>
+  <div class="math">ŷ<sub>T+h</sub> = y<sub>T+h−m</sub>　　（m = 周期 = 7）</div>
+  <p>要预测下周一，就看这周一；要预测下周六，就看这周六。</p>
+  <div class="tablewrap"><table id="t-seas"></table></div>
+  <div class="math">WAPE = <b>26 / 958 = 2.7%</b>　　（从 25.7% 掉到 2.7%，只改了一行规则）</div>
+  <figure>
+    <div id="c-seas"></div>
+    <div class="legend"><span><i style="background:#1D4ED8"></i>SeasonalNaive</span><span><i style="background:#0F1B2D"></i>真实值</span></div>
+  </figure>
+  <div class="key">
+    <span class="tag">教训 ②</span>
+    季节性是最强、最便宜的先验。<b>任何模型如果打不过 SeasonalNaive，说明它什么也没学到。</b>
+  </div>
+  <p>这不是教学玩具。本工作台在 359 条真实周度销量上实测：SeasonalNaive <b>15.55%</b>，LightGBM <b>8.07%</b>。差距是真的，但起点也是真的高——所以专业流程永远是"先跑基线，再上模型"。</p>
+</section>
+
+<!-- 4 -->
+<section class="ch">
+  <span class="num">第 4 章 · 平滑</span>
+  <h2>移动平均与指数平滑：把噪声磨掉，但会磨掉趋势</h2>
+  <p>直觉：上周同一天只用了 1 个样本，太吵。那就把最近 4 周的同一天取平均。</p>
+  <div class="math">ŷ<sub>Mon</sub> = (100 + 102 + 104 + 107) / 4 = 103.2</div>
+  <div class="tablewrap"><table id="t-ma"></table></div>
+  <p>结果是 <b>7.33%</b>，比 SeasonalNaive 的 <b>2.71%</b> 更差。为什么？因为数据整体在涨，而 4 周平均天然滞后——它把趋势平均掉了。</p>
+  <h3>ETS 的改进：不平权，越近权重越大</h3>
+  <p>指数平滑（ETS 里的 S）不用等权平均，而是给最近的观测更大权重，按 α 衰减：</p>
+  <div class="math">ŷ<sub>t</sub> = α·y<sub>t−1</sub> + (1−α)·ŷ<sub>t−1</sub>　　（α = 0.6 时，权重是 0.6, 0.24, 0.096, …）</div>
+  <figure>
+    <div id="c-weights"></div>
+    <p class="cap">α = 0.6 时，越久的历史权重指数衰减。ETS 就是"带遗忘的平均"。</p>
+  </figure>
+  <p>ETS 一共三个零件：<b>Level</b>（现在多高）、<b>Trend</b>（在涨还是在跌）、<b>Season</b>（周内形状）。AutoETS 的 <code>model=ZZZ</code> 就是让程序自动决定这三个零件开不开、怎么组合。</p>
+  <h3>手工加回趋势项</h3>
+  <p>既然趋势被抹掉了，就显式加回来：上周每周涨 29.7，平均到每天 +4.2。</p>
+  <div class="math">ŷ = 上周同一天 + 4.2</div>
+  <div class="tablewrap"><table id="t-drift"></table></div>
+  <p>WAPE = <b>5.2 / 958 = 0.54%</b>。同一个模型结构，只是多了一个趋势项，误差降了 5 倍。</p>
+  <figure>
+    <div id="c-drift"></div>
+    <div class="legend"><span><i style="background:#1D4ED8"></i>SeasonalNaive + 趋势</span><span><i style="background:#0F1B2D"></i>真实值</span></div>
+  </figure>
+  <div class="key">
+    <span class="tag">教训 ③</span>
+    先用眼睛找结构（周期、趋势），再让算法估参数。<b>结构对了，参数粗糙也能赢；结构错了，参数再精也没用。</b>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="ch">
+  <span class="num">第 5 章 · 统计模型</span>
+  <h2>ARIMA：把自己的过去当特征做回归</h2>
+  <p>名字吓人，拆开只有三块：</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>字母</th><th>含义</th><th>在用哪部分过去</th></tr></thead>
+    <tbody>
+      <tr><td><b>AR(p)</b></td><td>自回归：用前 p 个值做线性回归</td><td>y<sub>t−1</sub>, y<sub>t−2</sub>, …</td></tr>
+      <tr><td><b>I(d)</b></td><td>差分 d 次，把趋势去掉变成平稳序列</td><td>y<sub>t</sub> − y<sub>t−1</sub></td></tr>
+      <tr><td><b>MA(q)</b></td><td>用前 q 次"预测错了多少"来修正</td><td>残差 e<sub>t−1</sub>, …</td></tr>
+    </tbody>
+  </table></div>
+  <p>AR(1) 写出来就是一条你非常熟的式子：</p>
+  <div class="math">ŷ<sub>t</sub> = c + φ·y<sub>t−1</sub>　　φ = 0.8 时：明天 ≈ 今天的 0.8 倍 + 常数</div>
+  <p>所以"自回归"没有任何玄学：<strong>它就是把 lag 当作 x 的线性回归</strong>，和后文 LightGBM 用的是同一批特征，只是拟合方式从"一条直线"换成"几百棵树"。</p>
+  <h3>为什么 AutoARIMA 这么慢</h3>
+  <p>AutoARIMA 不估参数，它<strong>穷举结构</strong>：p∈{0,1,2}、d∈{0,1}、q∈{0,1,2}，季节部分 (P,D,Q)<sub>7</sub>。</p>
+  <div class="math">3 × 2 × 3 × 2 × 2 × 2 = 144 种组合 / 序列 ── 250 条序列 = 约 3.6 万次拟合</div>
+  <p>每一次拟合都要跑一遍参数估计和定阶检验。这就是今晚统计基线里最耗时的部分——不是它算得准，是它搜得久。</p>
+  <div class="key">
+    <span class="tag">教训 ④</span>
+    统计模型适合<b>结构清楚、序列不长、要可解释</b>的场景（一条 SKU、一个门店）。你要是同时管 1000 条序列，穷举式搜索会成为工程瓶颈。
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="ch">
+  <span class="num">第 6 章 · 机器学习</span>
+  <h2>LightGBM：换一种思路——把时间做成特征</h2>
+  <p>到这里换思路：不写公式了，改把"时间"翻译成一张普通的表格，让机器学习。每一行 = 一个样本，每一列 = 一个特征。</p>
+  <div class="tablewrap"><table id="t-feat"></table></div>
+  <p class="cap">真实数据构造出来的样本表。<code>lag7</code> 就是"上周同一天"——等于把 SeasonalNaive 的先验手工喂给模型；<code>roll7_mean</code> 是最近 7 天均值；<code>dow</code> 是星期几。</p>
+  <h3>树在做什么</h3>
+  <p>一棵树就是一堆 if-else：<code>dow == 六 ? (lag7 &gt; 150 ? 181 : 172) : …</code>。它把样本分到叶子节点，叶子里的平均值就是预测。几百棵树各自看不同的特征组合，结果相加。</p>
+  <p>和 ARIMA 的根本区别在<b>训练方式</b>：ARIMA 逐条序列拟合自己的参数；LightGBM 把 359 条序列<strong>混在一起</strong>训练一个模型（所以叫"全局模型"）。它因此学到了跨序列的共性——"周六通常是工作日的 1.4 倍""节前一周会翘尾"，这对新上架、历史很短的 SKU 尤其有用。</p>
+  <h3>多步预测的两种做法</h3>
+  <ul>
+    <li><b>递归（recursive）</b>：先预测第 1 天，把预测值当作已知，再预测第 2 天……误差会沿链条累积，越远越飘。</li>
+    <li><b>直接（direct）</b>：为第 1…13 周各训一个模型，谁都不依赖谁的预测值。更稳，但成本 ×h。</li>
+  </ul>
+  <p>本工作台用的是递归 + 22 个特征。<strong>真实成绩：8.07%，SeasonalNaive 是 15.55%。</strong> 提升的大头不是"树很聪明"，而是 lag7 / rolling 这些特征把季节性显式喂了进去。</p>
+  <div class="key">
+    <span class="tag">教训 ⑤</span>
+    树模型<b>不自动理解时间</b>。时间信息必须你亲手做成特征：lag、滑动窗口、星期几、节假日。<b>特征工程 = 你对业务的理解的编码。</b>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="ch">
+  <span class="num">第 7 章 · 深度模型</span>
+  <h2>五个模型，五种看曲线的角度</h2>
+  <p>它们不是"更强的 LightGBM"，而是针对不同数据形态设计的五种归纳偏置（inductive bias）。理解它们，看"它假设曲线长什么样"就够了。</p>
+
+  <h3>N-HiTS：退后看趋势，凑近看细节</h3>
+  <p>把序列按不同尺度<strong>降采样</strong>：原始（看细节）、4 点平均（看周）、13 点平均（看季度）。每个尺度各出一份预测，再由粗到细叠加。</p>
+  <figure><div id="c-multi"></div>
+  <p class="cap">粗尺度抓住大形状，细尺度补细节。这就是"分层插值"（hierarchical interpolation）。</p></figure>
+  <p>本工作台实测 <b>8.88%</b>，仅次于 LightGBM。</p>
+
+  <h3>N-BEATSx：先把形状定义好，只学幅度</h3>
+  <p>纯 MLP 堆叠，但每层输出被强制分解成<b>趋势基函数</b>和<b>季节基函数</b>的线性组合。数学上等于"我假设曲线 = 多项式趋势 + 傅里叶季节"，网络只学系数。</p>
+  <p>好处：可解释、参数少、训练快。实测 <b>10.48%</b>。</p>
+
+  <h3>TFT：能说清"为什么"</h3>
+  <p>三件武器：<b>变量选择</b>（自动判断哪个输入重要）、<b>门控残差</b>（决定信息怎么流）、<b>注意力</b>（决定看历史哪几段）。输入不限于销售历史，还能吃促销、天气、节假日。<b>9.76%</b>，但训练最慢（509 秒）。</p>
+  <p class="big">什么时候选它：老板问"为什么这个门店下周会涨"，而你需要给出归因。</p>
+
+  <h3>PatchTST：把序列切成块，像 ViT 切图</h3>
+  <figure><div id="c-patch"></div>
+  <p class="cap">一段连续的子序列 = 一个 patch = 一个 token。序列越长，收益越明显。</p></figure>
+  <p>长序列如果用逐点注意力，计算量是 O(L²)；切成 patch 后 token 数大幅减少，且每个 patch 内部保留了局部形状。<b>实测 8.49%</b>（刚跑完，尚未并入榜单）。</p>
+
+  <h3>DeepAR：不给你一个数，给你一片未来</h3>
+  <figure><div id="c-band"></div>
+  <p class="cap">输出是概率分布。逐点采样可以画出 P10 / P50 / P90 区间——备货要按 P90，清库存看 P10。</p></figure>
+  <p>它把预测变成一个似然函数（高斯 / 负二项 / 学生 t），训练目标就是最大化真实值的概率。缺点也在这里：采样带来方差，点预测（取中位数）往往不如判别式模型准，<b>它的价值在区间和库存决策，不在排行榜名次</b>。</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>模型</th><th>核心假设</th><th>输出</th><th>周度实测 WAPE</th></tr></thead>
+    <tbody>
+      <tr><td><b>SeasonalNaive</b></td><td>下周 = 上周同一天</td><td>点</td><td>15.55%</td></tr>
+      <tr><td><b>MovingAvg8</b></td><td>最近 8 周均值</td><td>点</td><td>10.84%</td></tr>
+      <tr><td><b>N-BEATSx</b></td><td>趋势 + 季节基函数展开</td><td>点</td><td>10.48%</td></tr>
+      <tr><td><b>TFT</b></td><td>变量选择 + 注意力</td><td>分位数</td><td>9.76%</td></tr>
+      <tr><td><b>N-HiTS</b></td><td>多尺度 + 分层插值</td><td>点</td><td>8.88%</td></tr>
+      <tr><td><b>PatchTST</b></td><td>patch 化 + 通道独立</td><td>点</td><td>8.49%<span style="color:#5A6B85">（新）</span></td></tr>
+      <tr><td><b>LightGBM（全局）</b></td><td>lag 特征 + 树集成</td><td>点</td><td class="good">8.07%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">M4-Weekly，359 条真实周度序列，预测 13 周，本机复现，同一套切分与指标。</p>
+</section>
+
+<!-- 8 -->
+<section class="ch">
+  <span class="num">第 8 章 · 指标</span>
+  <h2>为什么用 WAPE，而不是 MAPE 或 RMSE</h2>
+  <div class="math">WAPE = Σ|预测 − 实际| / Σ|实际|</div>
+  <ul>
+    <li><b>它是加权的</b>：卖 1000 瓶的店误差 50 瓶和卖 10 瓶的店误差 5 瓶，权重不同。这正是你想要的——总量视角。</li>
+    <li><b>零值安全</b>：MAPE 除以实际值，遇到 0 或接近 0 的销量会爆炸。WAPE 分母是总和，不会。</li>
+    <li><b>可解释</b>：8.07% 就是"预测的总量比实际总量偏了 8%"。</li>
+  </ul>
+  <p><b>MASE</b> 是"和 SeasonalNaive 比，你好了多少倍"：MASE &lt; 1 表示比基线强，LightGBM 是 0.573，即误差只有基线的 57%。<b>RMSE</b> 会对大误差平方惩罚，适合"缺货罚得重"的场景，但不直观。</p>
+  <p>读任何一个排行榜之前先问三件事：<b>数据集是什么、预测几步、指标怎么算</b>。三个口径任何一个不同，名次就没有可比性。</p>
+</section>
+
+<!-- 9 -->
+<section class="ch">
+  <span class="num">第 9 章 · 进阶</span>
+  <h2>那些"深坑"，等你把上面看懂再看</h2>
+  <p>你现在看到的这份报告，另一半内容是踩坑记录。它们很重要，但属于<b>第二阶段</b>——先知道算法在干什么，再知道它会怎么坑你。</p>
+  <details>
+    <summary>递归多步的误差累积（展开）</summary>
+    <ul>
+      <li>递归预测时，第 2 步的输入是第 1 步的预测值，误差不是相加而是<strong>沿着链条放大</strong>。</li>
+      <li>实战判断：13 周里前 3 步误差可控，后 5 步经常失真。解决办法是直接多步，或对远期单独建模。</li>
+    </ul>
+  </details>
+  <details>
+    <summary>时序数据不能随机切分（展开）</summary>
+    <ul>
+      <li>随机 train/test 切分会让 lag 特征"看到未来"，离线指标虚高，上线就崩。</li>
+      <li>正确做法：按时间切，训练段永远在测试段之前。</li>
+    </ul>
+  </details>
+  <details>
+    <summary>间歇需求、零膨胀与 log1p / Tweedie（展开）</summary>
+    <ul>
+      <li>大量 0 的 SKU，用普通 L2 损失会预测出 0.3 这种无意义值。</li>
+      <li>对策：log1p 目标变换、Tweedie / Poisson 损失，或用 Croston 这类间歇需求专用方法。</li>
+      <li>本工作台的 LightGBM 会在验证集上自动挑 log1p 还是 Tweedie。</li>
+    </ul>
+  </details>
+  <details>
+    <summary>NaN、回退与口径不一致（展开）</summary>
+    <ul>
+      <li>AutoETS 在个别序列上拟合失败 → 预测为 NaN → 自动回退到 SeasonalNaive，必须在报告里标注，否则等于偷偷换了模型。</li>
+      <li>AutoARIMA 只跑了前 250 条序列，和 1000 条序列的模型不能 1:1 比较。</li>
+      <li>2.4M 行长表一次性喂给 statsforecast 会让机器 swap，必须分块 + 缓存中间结果。</li>
+    </ul>
+  </details>
+  <details>
+    <summary>工程经验：先基线，再模型（展开）</summary>
+    <ul>
+      <li>顺序：SeasonalNaive → 平滑/ETS → LightGBM（lag + rolling）→ 深度模型（需要区间或变量归因时）。</li>
+      <li>每一层都要问："比上一层提升了多少？值不值这个工程成本？"</li>
+      <li>这份报告的结论就是：359 条周度序列上，树模型 + 好特征赢过所有深度模型，而且训练时间差 1–2 个数量级。</li>
+    </ul>
+  </details>
+</section>
+
+<p class="foot">数据：M4 竞赛 Weekly / Daily 子集，本机复现。手算示例为构造的教学数据（周内节律 + 每周 +30 趋势），所有 WAPE 均可按表中数字复核。页面由 Hermes 生成，纯前端、无外链。</p>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var C={blue:'#1D4ED8',blue2:'#3B82F6',blue3:'#BFD2F6',ink:'#0F1B2D',ink2:'#5A6B85',hair:'#E6EBF3'};
+
+  /* ---------- 数据 ---------- */
+  var W1=[100,110,105,98,120,160,150],
+      W2=[102,115,109,101,126,166,155],
+      W3=[104,118,112,104,131,172,161],
+      W4=[107,121,116,108,136,178,166],
+      TRUE=[110,125,119,111,140,183,170];
+  var H=W1.concat(W2,W3,W4), WEEKS=[W1,W2,W3,W4];
+  var DOW=['周一','周二','周三','周四','周五','周六','周日'];
+
+  function wape(p,t){var a=0,b=0;for(var i=0;i<t.length;i++){a+=Math.abs(p[i]-t[i]);b+=t[i];}return a/b;}
+  function sum(a){return a.reduce(function(x,y){return x+y;},0);}
+  function r1(v){return Math.round(v*10)/10;}
+
+  var PRED={
+    naive: H[27]!==undefined?new Array(7).fill(H[27]):[],
+    seas:  [0,1,2,3,4,5,6].map(function(i){return H[21+i];}),
+    ma:    [0,1,2,3,4,5,6].map(function(i){return (H[i]+H[7+i]+H[14+i]+H[21+i])/4;}),
+    drift: [0,1,2,3,4,5,6].map(function(i){return H[21+i]+(sum(W4)-sum(W1))/21;})
+  };
+
+  /* ---------- SVG 工具 ---------- */
+  var W=720,HGT=250,PAD={l:44,r:14,t:16,b:34};
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  function frame(minY,maxY,n){
+    var out='',i,v,yy;
+    for(i=0;i<=3;i++){
+      v=minY+(maxY-minY)*i/3;
+      yy=HGT-PAD.b-(HGT-PAD.t-PAD.b)*i/3;
+      out+='<line class="grid" x1="'+PAD.l+'" y1="'+yy.toFixed(1)+'" x2="'+(W-PAD.r)+'" y2="'+yy.toFixed(1)+'"/>';
+      out+='<text x="'+(PAD.l-6)+'" y="'+(yy+3.5).toFixed(1)+'" text-anchor="end">'+Math.round(v)+'</text>';
+    }
+    return out;
+  }
+  function xOf(i,n){return PAD.l+(W-PAD.l-PAD.r)*(n<=1?0:i/(n-1));}
+  function chart(host,series,opt){
+    opt=opt||{};
+    var n=opt.n||35;
+    var all=[];series.forEach(function(s){all=all.concat(s.v.filter(function(x){return typeof x==='number'&&isFinite(x);}));});
+    var mn=Math.min.apply(null,all),mx=Math.max.apply(null,all);
+    var pad=(mx-mn)*0.18||10;mn=Math.max(0,mn-pad);mx=mx+pad;
+    var yOf=function(v){return HGT-PAD.b-(HGT-PAD.t-PAD.b)*((v-mn)/(mx-mn));};
+    var out='<svg viewBox="0 0 '+W+' '+HGT+'" role="img" aria-label="'+(opt.label||'折线图')+'">';
+    out+=frame(mn,mx,n);
+    /* x 轴刻度：只在历史区标 0/7/14/21/28 */
+    [0,7,14,21,27].forEach(function(i){if(i<n){out+='<text x="'+xOf(i,n).toFixed(1)+'" y="'+(HGT-PAD.b+18)+'" text-anchor="middle">D'+(i+1)+'</text>';}});
+    if(n>28){out+='<line class="ax" x1="'+xOf(27.5,n).toFixed(1)+'" y1="'+PAD.t+'" x2="'+xOf(27.5,n).toFixed(1)+'" y2="'+(HGT-PAD.b)+'" stroke-dasharray="3 3"/>';
+      out+='<text x="'+xOf(27.5,n).toFixed(1)+'" y="'+(PAD.t+10)+'" text-anchor="middle">预测起点</text>';}
+    series.forEach(function(s){
+      var d='',started=false;
+      for(var i=0;i<s.v.length;i++){
+        var v=s.v[i];
+        if(typeof v!=='number'||!isFinite(v)){started=false;continue;}
+        var pt=(started?'L':'M')+xOf(i,n).toFixed(1)+' '+yOf(v).toFixed(1);
+        d+=pt;started=true;
+      }
+      out+='<path d="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="'+(s.w||2.4)+'"'+
+           (s.dash?' stroke-dasharray="'+s.dash+'"':'')+' stroke-linejoin="round" stroke-linecap="round"/>';
+      if(s.dots){for(var j=0;j<s.v.length;j++){var vv=s.v[j];if(typeof vv==='number'&&isFinite(vv))
+        out+='<circle cx="'+xOf(j,n).toFixed(1)+'" cy="'+yOf(vv).toFixed(1)+'" r="2.6" fill="'+s.color+'"/>';}}
+    });
+    out+='</svg>';
+    document.getElementById(host).innerHTML=out;
+  }
+
+  /* 历史 + 真实未来 */
+  var histSeries=[{v:H.concat(new Array(7).fill(null)),color:C.ink,w:2.4}];
+  var trueSeries=[{v:new Array(28).fill(null).concat(TRUE),color:C.ink,w:2.4,dots:true}];
+  var full={v:H.concat(TRUE),color:C.ink,w:2.4};
+
+  chart('c-hist',[ {v:H,color:C.blue,w:2.6,dots:true} ],{n:28,label:'28 天历史'});
+
+  function predSeries(p,label){
+    return [full,
+      {v:new Array(28).fill(null).concat(p.map(r1)),color:C.blue,w:2.8,dots:true}];
+  }
+  chart('c-naive',predSeries(PRED.naive),{n:35,label:'Naive 预测'});
+  chart('c-seas',predSeries(PRED.seas),{n:35,label:'SeasonalNaive 预测'});
+  chart('c-drift',predSeries(PRED.drift),{n:35,label:'SeasonalNaive 加趋势'});
+
+  /* ---------- 表 ---------- */
+  function table(el,head,rows,cls){
+    var h='<thead><tr>'+head.map(function(x){return '<th>'+x+'</th>';}).join('')+'</tr></thead><tbody>';
+    rows.forEach(function(r){h+='<tr>'+r.map(function(x,i){
+      return '<td'+(cls&&cls[i]?' class="'+cls[i]+'"':'')+'>'+x+'</td>';}).join('')+'</tr>';});
+    document.getElementById(el).innerHTML=h+'</tbody>';
+  }
+
+  /* 原始表：4 周 x 7 天 */
+  var rawRows=[[],[]];
+  for(var d=0;d<7;d++){
+    rawRows.push([DOW[d]].concat(WEEKS.map(function(w){return w[d];})));
+  }
+  table('t-raw',['','第 1 周','第 2 周','第 3 周','第 4 周'],rawRows.slice(2));
+
+  /* naive / seas / ma / drift 手算表 */
+  function calcTable(el,p){
+    var rows=[],sumErr=0,sumTrue=sum(TRUE);
+    for(var i=0;i<7;i++){
+      var e=Math.abs(p[i]-TRUE[i]);sumErr+=e;
+      rows.push([DOW[i],TRUE[i],r1(p[i]),r1(e)]);
+    }
+    rows.push(['合计',sumTrue,'—',r1(sumErr)]);
+    table(el,['','实际','预测','绝对误差'],rows,['','','','']);
+    return sumErr/sumTrue;
+  }
+  var w1=calcTable('t-naive',PRED.naive);
+  var w2=calcTable('t-seas',PRED.seas);
+  var w3=calcTable('t-ma',PRED.ma);
+  var w4=calcTable('t-drift',PRED.drift);
+
+  /* 指数权重图 */
+  (function(){
+    var a=0.6,wts=[],i,cur=1;
+    for(i=0;i<8;i++){wts.push(cur);cur*=(1-a);}
+    var w=720,h=200,pad={l:44,r:14,t:14,b:30};
+    var bw=(w-pad.l-pad.r)/wts.length*0.62, gap=(w-pad.l-pad.r)/wts.length;
+    var mx=1,out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="指数衰减权重">';
+    for(i=0;i<=2;i++){var yy=h-pad.b-(h-pad.t-pad.b)*i/2;
+      out+='<line class="grid" x1="'+pad.l+'" y1="'+yy+'" x2="'+(w-pad.r)+'" y2="'+yy+'"/>';
+      out+='<text x="'+(pad.l-6)+'" y="'+(yy+3.5)+'" text-anchor="end">'+(i/2).toFixed(1)+'</text>';}
+    wts.forEach(function(v,k){
+      var x=pad.l+gap*k+(gap-bw)/2, bh=(h-pad.t-pad.b)*(v/mx);
+      out+='<rect x="'+x.toFixed(1)+'" y="'+(h-pad.b-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(bh,2).toFixed(1)+'" rx="3" fill="'+(k===0?C.blue:C.blue3)+'"/>';
+      out+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(h-pad.b-bh-5).toFixed(1)+'" text-anchor="middle" fill="'+(k===0?C.blue:C.ink2)+'" font-weight="700">'+v.toFixed(2)+'</text>';
+      out+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(h-pad.b+15)+'" text-anchor="middle">t−'+(k+1)+'</text>';
+    });
+    out+='</svg>';
+    document.getElementById('c-weights').innerHTML=out;
+  })();
+
+  /* 特征表（LightGBM） */
+  (function(){
+    var rows=[];
+    function mean(a){return a.reduce(function(x,y){return x+y;},0)/a.length;}
+    [14,20,27].forEach(function(i){
+      var target=i+1< H.length? H[i+1]: '（无）';
+      rows.push([
+        'D'+(i+1)+' '+DOW[i%7],
+        H[i],
+        (i>=1?H[i-1]:'—'),
+        (i>=7?H[i-7]:'—'),
+        r1(mean(H.slice(Math.max(0,i-6),i+1))),
+        DOW[i%7],
+        target
+      ]);
+    });
+    table('t-feat',['样本','lag1','lag2','lag7','roll7_mean','dow','预测目标 y'],
+      rows.map(function(r){return [r[0],r[1],r[2],r[3],r[4],r[5],r[6]];}));
+  })();
+
+  /* 多尺度图：原始 / 4 点池化 / 13 点池化 */
+  (function(){
+    function pool(a,k){var out=[],i,s;for(i=0;i<a.length;i+=k){s=a.slice(i,i+k);out.push(mean(s));}return out;}
+    function mean(a){return a.reduce(function(x,y){return x+y;},0)/a.length;}
+    var p4=pool(H,4),p13=pool(H,13);
+    var w=720,h=220,pad={l:44,r:14,t:14,b:26};
+    var mn=80,mx=190;
+    function xOf(i,n){return pad.l+(w-pad.l-pad.r)*(i/(n-1));}
+    function yOf(v){return h-pad.b-(h-pad.t-pad.b)*((v-mn)/(mx-mn));}
+    function line(a,n,color,wd,dash){
+      var d='';a.forEach(function(v,i){d+=(i?'L':'M')+xOf(i,n).toFixed(1)+' '+yOf(v).toFixed(1);});
+      return '<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="'+wd+'"'+(dash?' stroke-dasharray="'+dash+'"':'')+' stroke-linejoin="round"/>';
+    }
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="多尺度">';
+    out+=line(H,H.length,C.blue3,1.6);
+    out+=line(p4,p4.length,C.blue2,2.4);
+    out+=line(p13,p13.length,C.blue,3);
+    out+='<text x="'+(w-pad.r)+'" y="'+(pad.t+10)+'" text-anchor="end">原始 · 4 点池化 · 13 点池化</text>';
+    out+='</svg>';
+    document.getElementById('c-multi').innerHTML=out;
+  })();
+
+  /* patch 图 */
+  (function(){
+    var w=720,h=150,pad={l:20,r:20,t:24,b:24};
+    var vals=H.slice(0,28);
+    var mn=90,mx=190,per=4;
+    var xOf=function(i){return pad.l+(w-pad.l-pad.r)*(i/(vals.length-1));};
+    var yOf=function(v){return h-pad.b-(h-pad.t-pad.b)*((v-mn)/(mx-mn));};
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="patch 切分">';
+    for(var s=0;s<vals.length;s+=per){
+      var x0=xOf(s), x1=xOf(Math.min(s+per,vals.length-1));
+      var col=(s/per)%2?C.blue: C.blue2;
+      out+='<rect x="'+x0.toFixed(1)+'" y="'+pad.t+'" width="'+Math.max(x1-x0,1).toFixed(1)+'" height="'+(h-pad.t-pad.b)+'" fill="'+col+'" opacity="0.10"/>';
+      out+='<text x="'+((x0+x1)/2).toFixed(1)+'" y="'+(pad.t-8)+'" text-anchor="middle">P'+(s/per+1)+'</text>';
+    }
+    var d='';
+    for(var i=0;i<vals.length;i++){d+=(i?'L':'M')+xOf(i).toFixed(1)+' '+yOf(vals[i]).toFixed(1);}
+    out+='<path d="'+d+'" fill="none" stroke="'+C.blue+'" stroke-width="2.4" stroke-linejoin="round"/>';
+    out+='</svg>';
+    document.getElementById('c-patch').innerHTML=out;
+  })();
+
+  /* 概率区间图 */
+  (function(){
+    var w=720,h=210,pad={l:44,r:14,t:14,b:26};
+    var base=H.slice(-14), last=base[base.length-1];
+    var fut=[];for(var i=1;i<=7;i++){fut.push(last+i*1.2);}
+    var n=base.length+fut.length;
+    var xOf=function(i){return pad.l+(w-pad.l-pad.r)*(i/(n-1));};
+    var lo=[],hi=[];
+    for(i=0;i<base.length;i++){lo.push(base[i]);hi.push(base[i]);}
+    for(i=0;i<fut.length;i++){var k=i+1;lo.push(fut[i]-3-k*2.0);hi.push(fut[i]+3+k*2.0);}
+    var mn=Math.min.apply(null,lo),mx=Math.max.apply(null,hi);
+    var yOf=function(v){return h-pad.b-(h-pad.t-pad.b)*((v-mn)/(mx-mn));};
+    var band='M'+xOf(base.length-1).toFixed(1)+' '+yOf(base[base.length-1]).toFixed(1);
+    for(i=base.length;i<n;i++){band+=' L'+xOf(i).toFixed(1)+' '+yOf(hi[i]).toFixed(1);}
+    for(i=n-1;i>=base.length;i--){band+=' L'+xOf(i).toFixed(1)+' '+yOf(lo[i]).toFixed(1);}
+    band+=' Z';
+    function pathFrom(arr,start){
+      var d='';
+      for(var j=start;j<arr.length;j++){d+=(j===start?'M':'L')+xOf(j).toFixed(1)+' '+yOf(arr[j]).toFixed(1);}
+      return d;
+    }
+    var out='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="概率预测区间">';
+    out+='<path d="'+band+'" fill="'+C.blue3+'" opacity="0.35" stroke="none"/>';
+    out+='<path d="'+pathFrom(base,0)+'" fill="none" stroke="'+C.ink+'" stroke-width="2.4"/>';
+    out+='<path d="'+pathFrom(base.concat(fut),base.length-1)+'" fill="none" stroke="'+C.blue+'" stroke-width="2.6" stroke-dasharray="5 3"/>';
+    out+='<text x="'+(w-pad.r)+'" y="'+(pad.t+10)+'" text-anchor="end">P10–P90 区间 · 中位数</text>';
+    out+='<text x="'+(w-pad.r)+'" y="'+(pad.t+26)+'" text-anchor="end">实线 = 历史，虚线 = 中位数</text>';
+    out+='</svg>';
+    document.getElementById('c-band').innerHTML=out;
+  })();
+
+  /* 把关键数字写进正文（单一来源，避免手抄错） */
+  (function(){
+    var m=document.getElementById('t-naive');
+    if(m) m.setAttribute('data-wape',(w1*100).toFixed(1));
+  })();
+})();
+</script>
+</body>
+</html>
