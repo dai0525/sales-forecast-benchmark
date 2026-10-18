@@ -1,0 +1,35 @@
+{
+  "dataset": "Rossmann Store Sales",
+  "unit": "store",
+  "freq": "D",
+  "target": "Sales",
+  "n_complete_stores": 934,
+  "n_series_sampled": 400,
+  "sample_seed": 42,
+  "sample_rule": "from the 934 stores with a complete 942-day calendar, draw 400 without replacement using numpy default_rng(42), then sort",
+  "n_days": 942,
+  "date_min": "2013-01-01",
+  "date_max": "2015-07-31",
+  "n_rows": 376800,
+  "zero_sales_share": 0.16948513800424628,
+  "closed_share": 0.16940021231422506,
+  "promo_share": 0.3821656050955414,
+  "state_holiday_share": 0.02939755838641189,
+  "school_holiday_share": 0.1808067940552017,
+  "mean_sales": 5664.0966796875,
+  "median_sales": 5677.0,
+  "series_mean_sales_min": 2244.503173828125,
+  "series_mean_sales_max": 14320.4658203125,
+  "store_type_levels": {
+    "a": 0,
+    "b": 1,
+    "c": 2,
+    "d": 3
+  },
+  "assortment_levels": {
+    "a": 0,
+    "b": 1,
+    "c": 2
+  },
+  "comp_dist_missing": 1
+}

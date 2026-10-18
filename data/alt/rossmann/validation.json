@@ -1,0 +1,60 @@
+{
+  "dataset": "Rossmann Store Sales",
+  "source": "Kaggle competition, GitHub CSV mirror",
+  "kaggle_url": "https://www.kaggle.com/competitions/rossmann-store-sales/data",
+  "mirror_base": "https://raw.githubusercontent.com/bisman16/Kaggle_Rossmann_Store_Sales_Forecasting/master/data/",
+  "files": {
+    "train.csv": {
+      "file": "train.csv",
+      "bytes": 38057952,
+      "rows": 1017209,
+      "columns": [
+        "Store",
+        "DayOfWeek",
+        "Date",
+        "Sales",
+        "Customers",
+        "Open",
+        "Promo",
+        "StateHoliday",
+        "SchoolHoliday"
+      ],
+      "sha256": "f6e4597c142d7d909a13d53b68a8e85c00b9a4c7b5ff40adbb37d6829cc1f4cc"
+    },
+    "store.csv": {
+      "file": "store.csv",
+      "bytes": 45010,
+      "rows": 1115,
+      "columns": [
+        "Store",
+        "StoreType",
+        "Assortment",
+        "CompetitionDistance",
+        "CompetitionOpenSinceMonth",
+        "CompetitionOpenSinceYear",
+        "Promo2",
+        "Promo2SinceWeek",
+        "Promo2SinceYear",
+        "PromoInterval"
+      ],
+      "sha256": "f56bd124a2849489e6bbb5c000f5fc9640204355e316475c918ae4d089afb344"
+    }
+  },
+  "content": {
+    "n_stores": 1115,
+    "n_dates": 942,
+    "date_min": "2013-01-01",
+    "date_max": "2015-07-31",
+    "n_rows": 1017209,
+    "missing_rate_sales": 0.0,
+    "zero_sales_share": 0.16994639253093513,
+    "closed_share_open0": 0.16989330609540418,
+    "promo_share": 0.3815145166824124,
+    "state_holiday_share_nonzero": 0.03052470043029505,
+    "school_holiday_share": 0.17864666946517382,
+    "store_date_cells": 1050330,
+    "store_date_present": 1017209,
+    "store_date_missing": 33121,
+    "duplicate_store_date": 0
+  }
+}
