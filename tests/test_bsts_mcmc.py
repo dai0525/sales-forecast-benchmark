@@ -36,3 +36,24 @@ def test_r_sampler_rejects_stale_cache_before_sampling(tmp_path):
     r=subprocess.run([rscript,str(tmp_path/'repro'/script.name),str(tmp_path),'trend_harmonic','1000','1'],capture_output=True,text=True,env={**os.environ,'OPENBLAS_NUM_THREADS':'1'})
     assert r.returncode!=0 and 'fingerprint mismatch' in r.stderr
     assert not (out/'001.rds').exists()
+
+
+def test_only_frozen_full_protocol_can_publish_main_benchmark():
+    import numpy as np
+    from bench_bsts_mcmc import is_main_benchmark
+    protocol = dict(kind='trend_harmonic', priors='default', niter=1000,
+                    burn=500, chains=2, horizon=13)
+    indices = np.arange(359)
+    assert is_main_benchmark(protocol, indices, 359)
+    for key, value in [('priors', 'regularized'), ('niter', 4000),
+                       ('kind', 'trend_harmonic_spaced12'), ('burn', 100),
+                       ('chains', 4), ('horizon', 1)]:
+        assert not is_main_benchmark({**protocol, key: value}, indices, 359)
+    assert not is_main_benchmark(protocol, indices[::-1], 359)
+    assert not is_main_benchmark(protocol, indices[:12], 359)
+
+
+def test_predictive_only_diagnostics_cannot_pass_parameter_check():
+    with pytest.raises(ValueError, match='Missing monitored'):
+        diagnostic_summary({'diagnostics': {'variable': ['predictive.h1'],
+                            'rhat': [1.0], 'ess_bulk': [1000], 'ess_tail': [1000]}})

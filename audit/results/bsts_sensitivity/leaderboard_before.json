@@ -1,0 +1,6 @@
+{
+  "repro/metrics_bsts_mcmc.json": "4a09be0eac051ea51f4d1243a6a736125a76fc87eec4a8c8a99832764c2a32d6",
+  "data/weekly_bsts_mcmc_preds.npz": "41a669139d24fc112b7e4769f7ff5f0a0211c6a216387462fd69329b1109b49f",
+  "audit/results/benchmark.json": "31e0a255db9d2f661da3b12116eaf3a35a00ed88f8b68a257036d64e14fab5d8",
+  "web/data/bench.json": "31e0a255db9d2f661da3b12116eaf3a35a00ed88f8b68a257036d64e14fab5d8"
+}

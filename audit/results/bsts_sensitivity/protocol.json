@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-10-18T15:51:15.057342+00:00",
+  "purpose": "Diagnose sampler-budget and prior sensitivity, not select a winner on the official test.",
+  "indices_one_based": [
+    1,
+    34,
+    66,
+    99,
+    131,
+    164,
+    196,
+    229,
+    261,
+    294,
+    326,
+    359
+  ],
+  "arms": [
+    {
+      "prior": "default",
+      "iterations_per_chain": 4000
+    },
+    {
+      "prior": "regularized",
+      "iterations_per_chain": 4000
+    }
+  ],
+  "chains": 2,
+  "burn_fraction": 0.5,
+  "reference": "Same fixed indices from the existing default 1000-iteration full run",
+  "model": "Original R bsts LLT + harmonic seasonal52 K4, unchanged",
+  "regularization": "Existing regularized mode: SdPrior(0.01*training_sd, sample.size=32) for all state innovations; observational prior unchanged",
+  "pass_rule": "Every monitored parameter/final level/slope: Rhat<=1.01 and bulk/tail ESS>=400. Predictive diagnostics separate; no claiming unmonitored states converge.",
+  "decision": "Run both arms regardless of interim results; no test-based choice of prior, iteration count or replacement of official full leaderboard. If strict criteria still fail, document unresolved mixing; do not scale a nonconverged configuration to full benchmark.",
+  "sampler_sha256": "9ce46a00cea083f42407255d066621b8f0a95418b34b966ecfee921cef6f4757"
+}

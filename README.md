@@ -98,3 +98,5 @@ python -m http.server 8899 --directory web
 已核对 DHR、TBATS、BSTS 官方组件及直接相关论文。State-Fourier 可通过状态变换写成已有模型，现阶段应定位工程/实证贡献，不能宣称新模型族。详见 [先行研究与论文定位](PRIOR-ART-STATE-FOURIER.md)。
 
 新增原作者 R `bsts` 包的真正 MCMC 基线，包含参数后验采样、链诊断、全量预测和固定子集的原论文风格季节结构。配置及有限采样预算的限制见 [BSTS-MCMC.md](BSTS-MCMC.md)；R 环境由 `environment-bsts.yml` 定义，入口为 `repro/bench_bsts_mcmc.py`。它和之前仅做 MLE 的 UCM52 是不同实验。
+
+后续补充：[BSTS 收敛与先验敏感性实验](BSTS-SENSITIVITY.md)，在固定12条上比较采样预算和先验强度，结果与全量榜单分开保存。

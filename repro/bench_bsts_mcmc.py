@@ -22,6 +22,7 @@ def read_result(path,expected_id):
 def diagnostic_summary(r):
     d=r['diagnostics']
     keep=[i for i,v in enumerate(d['variable']) if not v.startswith('predictive.')]
+    if not keep:raise ValueError('Missing monitored parameter diagnostics')
     d={k:[v[i] for i in keep] for k,v in d.items()}
     rh=np.array([np.nan if x is None else x for x in d['rhat']])
     bulk=np.array([np.nan if x is None else x for x in d['ess_bulk']])
@@ -32,9 +33,25 @@ def diagnostic_summary(r):
     return {'max_rhat':finite_stat(rh,np.max),'min_bulk_ess':finite_stat(bulk,np.min),'min_tail_ess':finite_stat(tail,np.min), 'passes_all':bool(not bad.any()),'failed_variables':[v for v,b in zip(d['variable'],bad) if b]}
 
 
+def is_main_benchmark(protocol, indices, total):
+    """Only the frozen full experiment may replace the published baseline."""
+    return (protocol.get('kind') == 'trend_harmonic'
+            and protocol.get('priors') == 'default'
+            and protocol.get('niter') == 1000
+            and protocol.get('burn') == 500
+            and protocol.get('chains') == 2
+            and protocol.get('horizon') == 13
+            and total == 359
+            and np.array_equal(indices, np.arange(total)))
+
+
 def export(folder):
     protocol=json.loads((folder/'protocol.json').read_text());train,truth,ids=fg_mp.load()
     indices=np.atleast_1d(protocol['indices']).astype(int)-1
+    if not len(indices) or len(set(indices))!=len(indices) or np.any(indices<0) or np.any(indices>=len(ids)):
+        raise ValueError('Invalid or duplicate BSTS indices')
+    if list(np.atleast_1d(protocol['ids']))!=[ids[i] for i in indices]:
+        raise ValueError('BSTS protocol ID mismatch')
     rows=[read_result(folder/f'{i+1:03d}.json',ids[i]) for i in indices]
     if len(rows)!=len(indices):raise ValueError('Incomplete run')
     preds=np.maximum(np.array([r['mean'] for r in rows]),0)
@@ -66,7 +83,7 @@ def export(folder):
     result['paired_vs_state_fourier']={'delta':float(diff.mean()),'series_bootstrap_95':np.quantile(boot,[.025,.975]).tolist(),'caveat':'Treats saved MCMC point predictions as fixed; excludes Monte Carlo uncertainty and assumes independent series.'}
     (folder/'summary.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
     np.savez_compressed(folder/'predictions.npz',ids=np.array(result['ids']),preds=preds,median=median,lower=lower,upper=upper,truth=actual,chain_means=chain)
-    if len(rows)==359:
+    if is_main_benchmark(protocol, indices, len(ids)):
         np.savez_compressed(ROOT/'data/weekly_bsts_mcmc_preds.npz',ids=np.array(result['ids']),preds=preds)
         (ROOT/'repro/metrics_bsts_mcmc.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
     print(json.dumps({k:v for k,v in result.items() if k not in ['protocol','ids','diagnostics','run']},indent=2))

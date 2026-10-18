@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-18T14:46:09.497838+00:00",
+  "created_utc": "2026-10-18T15:58:52.032890+00:00",
   "original_commit": "83f3947",
   "note": "Working-tree source, reports, input data and experiment artifacts; excludes installed environments and VCS internals. Includes downloaded Daily training CSV if present. No remote push.",
   "files": [
@@ -15,8 +15,13 @@
     },
     {
       "path": "BSTS-MCMC.md",
-      "bytes": 8542,
-      "sha256": "1b5202f3a70af3ed6b92d30d454ec0595b5d5628ce407f41a0fa8210db91ed30"
+      "bytes": 8900,
+      "sha256": "7512169f960b22eb08aa75f8229c5e6cd92b18813de80bb0561528e99f144bab"
+    },
+    {
+      "path": "BSTS-SENSITIVITY.md",
+      "bytes": 4542,
+      "sha256": "ce0e9f303b7b9e4a45912000b6f7d09896bcf6e1ed6d9818b4fd69103dafe868"
     },
     {
       "path": "COMMUNICATION-MPA.md",
@@ -55,8 +60,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7800,
-      "sha256": "c2034ff9bfa7212df8cc621f0d8e2e3e71fbe4c62a39f29ff79bddb62d8d3849"
+      "bytes": 7967,
+      "sha256": "46e8a4d1cc9c4d68719787c590660ad54979936051312d431a4b226f51e9fb92"
     },
     {
       "path": "REPORT-MPA.md",
@@ -65,13 +70,13 @@
     },
     {
       "path": "SNAPSHOT-STATUS.json",
-      "bytes": 790,
-      "sha256": "f9a79f461d7d3595719abb710834bcbeea73469fd4273fdf4e8e5b537fe68bf6"
+      "bytes": 1103,
+      "sha256": "5a4673a218bc541073a908815d2afc0d6cf08d15e21ebba9cb2477c8faf1231a"
     },
     {
       "path": "SNAPSHOT-STATUS.md",
-      "bytes": 575,
-      "sha256": "902c04de39047db6ffb8ed124029fb1897a275981b642c05415d58068e5605b2"
+      "bytes": 790,
+      "sha256": "9cb5fa6ab907af64221a123f279d263af883f00810b90d797e1b69491af23503"
     },
     {
       "path": "audit/original/README.md",
@@ -5899,6 +5904,406 @@
       "sha256": "323f83c0df92c9e09ccc6b021075f942f9652881b5d490ff4f3aa56acb3c9e64"
     },
     {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/001.json",
+      "bytes": 5162,
+      "sha256": "ca0ca8b0d2885976b208a7d09e0bbb9f5923a4ac14557644f7c07f0edb393093"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/001.rds",
+      "bytes": 645327,
+      "sha256": "f73823d14ad5d70e0e2554265870a373e8b7970a05e80eec95811ad238eed69f"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/001_predictive.json",
+      "bytes": 3267,
+      "sha256": "757ecaed5eafd1bbcc4933efc36c0fed2bf610fc39508e6bff18455e8733bc63"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/034.json",
+      "bytes": 5147,
+      "sha256": "41e35712518d9f058b3472f91b1341654db6c557c29a3f054fac8d726e59f4a5"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/034.rds",
+      "bytes": 656557,
+      "sha256": "470846345d5753dd570e6067d1b0c95cb74a68afdc5d4dc27407f6f3d15b6c6c"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/034_predictive.json",
+      "bytes": 3267,
+      "sha256": "f63a8e4a037d04222a2d3f72086658e1d659bf6cca9926d6dfe15ca3250ac8c5"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/066.json",
+      "bytes": 5188,
+      "sha256": "c74d71ebb3fbf59bc02865c51409086cbb586e6245b4c4e15f9c79c42171680f"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/066.rds",
+      "bytes": 638068,
+      "sha256": "3699213bcc90cac3704fe93c33f30bc6e37730d8a61efa5fe0235ee85ab24bcb"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/066_predictive.json",
+      "bytes": 3267,
+      "sha256": "18d3885350c3a156b8c370542679c4fad0103604335eef15eef42176b3cd5ee9"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/099.json",
+      "bytes": 5177,
+      "sha256": "9ca635d0d02baa70cf10794895915db7c2e515e9e50c29edc74003488e51a810"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/099.rds",
+      "bytes": 644246,
+      "sha256": "40aed1a630b34c74ce960de9bf506589a4c295286499d7253c52da37e6f4509d"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/099_predictive.json",
+      "bytes": 3261,
+      "sha256": "8ac52d344637955231dd294a2d02f24326cd2ae7d80794f61fbd60914cc0b0bd"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/131.json",
+      "bytes": 5209,
+      "sha256": "b971ead0601a68b9481a0c8fb1e4c84613182751abac83fd803ceb57aaa3c1f7"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/131.rds",
+      "bytes": 628146,
+      "sha256": "ba03fbfc458938d0f753e7922bbfdb85bbda7c3cfd215366a8ec78f486dcab78"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/131_predictive.json",
+      "bytes": 3278,
+      "sha256": "46135e071794c57a62229c47130d6d78091ece4a7e06e57215c6b07a7520c619"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/164.json",
+      "bytes": 5153,
+      "sha256": "768360042554dde7612d5c520198449ef2ccf454bd2b437a781958c163705d34"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/164.rds",
+      "bytes": 635552,
+      "sha256": "1d4749d9fc7789a77776a0be1cb9bf9a4e01d73e5012b8ad6068a76250d656ec"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/164_predictive.json",
+      "bytes": 3260,
+      "sha256": "9b0a0f8d6a34b6e427592a207bd541360fc16a722b9d220b56c1f4f4ec3ae1c0"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/196.json",
+      "bytes": 5176,
+      "sha256": "b9035efdd51d35de3ef6bcb77891f35c4b045f05bb0ff037702be2a787e3912c"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/196.rds",
+      "bytes": 655325,
+      "sha256": "cbab86310777b579718da5dbc1036c34bd9c39d4b7a23ff6d8994d946df7444d"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/196_predictive.json",
+      "bytes": 3266,
+      "sha256": "a70d111859ef380f51c2071048a4e7064dca71f5f833cdc56f3ff8d3525570ef"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/229.json",
+      "bytes": 5164,
+      "sha256": "7ba90b301481d67a3d2e4646b4f550d8293cb99662e30ac74ce598898286af8a"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/229.rds",
+      "bytes": 655676,
+      "sha256": "0108c967dbe82f7a6fc5e19da49146fa20213ba00c4ef81510783ac3d69754f4"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/229_predictive.json",
+      "bytes": 3264,
+      "sha256": "606ab8683320496c0924c27fec299353a649ca0a836eaa31e96ee57359337617"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/261.json",
+      "bytes": 5179,
+      "sha256": "ddfee5f5c6065bdd29634b3257b69b9f8ecf5f4235fc6b964f205a4135c80495"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/261.rds",
+      "bytes": 653106,
+      "sha256": "1effe4e77cd3e7a78e4552bca14e2b380c7bef69fb2cfb67ba9816d5db93b240"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/261_predictive.json",
+      "bytes": 3267,
+      "sha256": "077dcd1bab92e5736fff13092109c99c5b754e2ddde7fb7f5837ccb9b25e6700"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/294.json",
+      "bytes": 5121,
+      "sha256": "2149cf1fedb71084b606fd0e0557bed8952264618f1da7f8e3f1d116a9b9fcfa"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/294.rds",
+      "bytes": 660087,
+      "sha256": "7a8a37066fab6a355bebec5b37eb7445ee2e7bf6d366856b2625b0b71ca74404"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/294_predictive.json",
+      "bytes": 3269,
+      "sha256": "49e25fdbca598ca7b71c49c088a8ab16b441956075c1ac5535922f358ce86764"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/326.json",
+      "bytes": 5057,
+      "sha256": "3233aae6d700ffe8ac96a6bbd6dea2f14e8aec13cc615b8aceb9c5638dcbab0e"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/326.rds",
+      "bytes": 659607,
+      "sha256": "96fdda9b97c6115f0e4b95ccdbb0d23e3c6cd6304f3f1c39d52f3da17513c78b"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/326_predictive.json",
+      "bytes": 3262,
+      "sha256": "0fc5719a31a55f540c26aa08647e96916cbb6b55c4a28c2955b1ea11319ba4a9"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/359.json",
+      "bytes": 5153,
+      "sha256": "e78e7def0f009facc20bfb5a03a4041fdffe665e3842aa3c382108239e84e975"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/359.rds",
+      "bytes": 657571,
+      "sha256": "e3c642f17a63de242a05fed84a5ac88e44f6be4c46c587de9ffa1ec71b656c4b"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/359_predictive.json",
+      "bytes": 3263,
+      "sha256": "8562501398d124638ec73d2244a1fc5c63e3a867f489e85cb4feb8a287a1a76c"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/predictions.npz",
+      "bytes": 9412,
+      "sha256": "1debe59cb8c115eed4d27763c6ecadd482daf20c181a791b5d1987146da7e7b4"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/protocol.json",
+      "bytes": 1443,
+      "sha256": "3aaa72a82fad952d972db21fb47ef4023bdb841007a6ef5bc6dcedfe38d3aeb7"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/run.json",
+      "bytes": 2455,
+      "sha256": "595cd8ca44dd49e9252dbdcbc797978a9f54a3a145c67f54b8a1b084ce19f9a3"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_default_4000/summary.json",
+      "bytes": 12924,
+      "sha256": "d8f904ae4a36cbdae5ddabd97ae56df78e29e2491870dea19a759997674991a9"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/001.json",
+      "bytes": 5166,
+      "sha256": "f2e1dedcf13cacf205eba70a1e5b2ceed38ebb8dc58ed20cac6194c27e2aef76"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/001.rds",
+      "bytes": 644022,
+      "sha256": "63e3b75b656c5796889d4efaf8230d75c8bcc157682f20b98f2a82a3081b90d6"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/001_predictive.json",
+      "bytes": 3272,
+      "sha256": "a85811b158f0ed65b91dd91a317f57fbb1d337c1ae99f225b0e096c8c42b7f27"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/034.json",
+      "bytes": 5157,
+      "sha256": "0f9e8e0de5aba326c5f01282bfe498cf84abefe532636afdb08164c92e247bc4"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/034.rds",
+      "bytes": 656809,
+      "sha256": "7225e06817459f8472f1b13356bbc236a1ac5a6d72232b996aea1ecc33a5df98"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/034_predictive.json",
+      "bytes": 3273,
+      "sha256": "920be0532a46def719b1bbcdeddd08f78b0706923ac713784efcbc29e21ad333"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/066.json",
+      "bytes": 5179,
+      "sha256": "ced715514d75da6dfe58305ee73845f4b909d41e9212abdcb652b69944a4154a"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/066.rds",
+      "bytes": 643671,
+      "sha256": "e8c849b955e0264c6061394c90f601d6904d8bea34305ff48dbbff884d9103b7"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/066_predictive.json",
+      "bytes": 3277,
+      "sha256": "4a67fad532040d5e94521949f29b277a8511121d3933e997da87ca65ba0da9bc"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/099.json",
+      "bytes": 5188,
+      "sha256": "dec6a5503f9b2c348d7165d60b0d0b675e833a2fbc4deba94ecc1e3100ea5057"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/099.rds",
+      "bytes": 640791,
+      "sha256": "608069970a8bf39296665feec41d97051c7bda98265646b7481573757558fb0d"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/099_predictive.json",
+      "bytes": 3266,
+      "sha256": "fc72245bab87e841245d25299bf7465c880e49e209365f28e39c53027313dfe1"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/131.json",
+      "bytes": 5212,
+      "sha256": "043e0187bf93296941fe968b028bbffa36d73f3543416e020caa0c9a5d088864"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/131.rds",
+      "bytes": 628350,
+      "sha256": "04814c903b29285a1ec7b04b9ef26c0317bdd4ced6bd1889e6d7159cceefd9bd"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/131_predictive.json",
+      "bytes": 3284,
+      "sha256": "0ea7d696e574c57ab517c6100b834e69d9bc3159ffbd967f1ed577dba0883f23"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/164.json",
+      "bytes": 5164,
+      "sha256": "6c854e938b07b13f9b3f32293fa2985caa37ebda5fd14b5ac5a4cbc72103386f"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/164.rds",
+      "bytes": 642970,
+      "sha256": "5f392bff2678569837a41c0d4c2a240f3d4996ece239f787573f3ceb643bd1c8"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/164_predictive.json",
+      "bytes": 3278,
+      "sha256": "f8f546414c2de5165ce7db6775bc01687cd24516b03702303a6b966b84ec2a79"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/196.json",
+      "bytes": 5170,
+      "sha256": "e49f401422f0b226901b12f0f195841375bf89c71c8284bb87d265f5ae05482f"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/196.rds",
+      "bytes": 653596,
+      "sha256": "75242e02fa1466a372ce00a56299b22449888b6e6063f07988fe0cd6f4ca9812"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/196_predictive.json",
+      "bytes": 3266,
+      "sha256": "e93ad2283272b23cb7eac5d27e96c16f65353249f22ad034a27f1623ca3533d7"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/229.json",
+      "bytes": 5172,
+      "sha256": "27afbb0e2cb732695be3da8d2ddcf6bd9b005725aa8f9b96e7fb740bda35f293"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/229.rds",
+      "bytes": 656805,
+      "sha256": "c0e81c5aaacce30bf3f03130f0759b173ba4b9679d623316104fa67d1b51cbda"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/229_predictive.json",
+      "bytes": 3272,
+      "sha256": "d9bb200619c9cbdc237cd514ae0bf017db5df08f1c69c2b88bc0848e4a89e085"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/261.json",
+      "bytes": 5180,
+      "sha256": "e3f7aedbfaa2ef1e8e64b8d4f17ed93c90fa4a4bb5ac86144f6a2b064e561e15"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/261.rds",
+      "bytes": 649080,
+      "sha256": "7c27d82bdb70d366af1c7a226b14d8b480a934ff9c03abdf87ccaf7a17abfb52"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/261_predictive.json",
+      "bytes": 3263,
+      "sha256": "c81df98fade2ff745440473aa4e9a9f9b52d0fce4dab061bc96fcfd97942abcd"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/294.json",
+      "bytes": 5135,
+      "sha256": "170c7705cd298e04c629ee5d0837dc2d4315bce563dd7b922095696fb150420b"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/294.rds",
+      "bytes": 657985,
+      "sha256": "e8f9b98adcd76d3512372adeb5df786b74249fc0ba79f6efcf79b6b82b071060"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/294_predictive.json",
+      "bytes": 3271,
+      "sha256": "6b7a208d6340b33ff4298664ca79fff612253a805977c4008a4e3d969a2606db"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/326.json",
+      "bytes": 5067,
+      "sha256": "c57a44c29a01c8b1292ea0ab3eae033d5b09cb417aa6a494e735f57db5f5eacc"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/326.rds",
+      "bytes": 655829,
+      "sha256": "37fc12848abd4e023aac4b038e6acf9a6165a51c88e23ac9d0da30b29c5cb317"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/326_predictive.json",
+      "bytes": 3271,
+      "sha256": "7898dc149ab67e216d76a85e0f0f06e3c0aacbeb80b5e0e0cd089643eed66724"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/359.json",
+      "bytes": 5145,
+      "sha256": "dc6d4b82750cde5c06b79960dfe81262348943e955f9fc9e7b658bdf89287e14"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/359.rds",
+      "bytes": 654668,
+      "sha256": "1ea191627d85a610982ccb0349b6a6f90ff2c27148a9cfbebdc35811940a7a05"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/359_predictive.json",
+      "bytes": 3274,
+      "sha256": "759e1b59d476ad26082d63065c284c190cd1fc0f2be9ae9911eb8228351bd164"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/predictions.npz",
+      "bytes": 9438,
+      "sha256": "5a6f554600b1589807f8fa8f4aedbb19740c91aa5c346fab82e2e5771f9c0113"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/protocol.json",
+      "bytes": 1451,
+      "sha256": "91fcce1cc3d5533588d215887a550d28957566c0bdad7332d3137fdfbf5d598f"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/run.json",
+      "bytes": 2453,
+      "sha256": "fb87d7d21cc3ec19820cbaf5d1c8db1766f534b67804be4e3d7f12357992b044"
+    },
+    {
+      "path": "audit/results/bsts_mcmc/trend_harmonic_spaced12_regularized_4000/summary.json",
+      "bytes": 12505,
+      "sha256": "96b4807738a615bf2416d63781a0facba471e051b440550457833a01fccf113f"
+    },
+    {
       "path": "audit/results/bsts_mcmc/trend_seasonal52_default_1000/001.json",
       "bytes": 4735,
       "sha256": "f88ed50f14e3bbf19760bb06bc0a971327dcae4825b1e4077c5bd83dbf70deb1"
@@ -6127,6 +6532,36 @@
       "path": "audit/results/bsts_mcmc/trend_trig_1000/run.json",
       "bytes": 1661,
       "sha256": "85fa58334d183253d0c84aeffbab98a3b1c5209149d2e1373697e2b5267d5fd2"
+    },
+    {
+      "path": "audit/results/bsts_sensitivity/default.log",
+      "bytes": 2836,
+      "sha256": "e9d456ec5c67c4c7f5eb88bd1f39a2e00614cc98e7034c8a16c9f53ebd9758ba"
+    },
+    {
+      "path": "audit/results/bsts_sensitivity/leaderboard_before.json",
+      "bytes": 405,
+      "sha256": "2caf4e066365dc17cd7a00d320ceba5b459a18cad5ceca6647226600544e080e"
+    },
+    {
+      "path": "audit/results/bsts_sensitivity/protocol.json",
+      "bytes": 1340,
+      "sha256": "bcd47e1c69671b79b4ade24bf8fb2ef135ab63a69bea397aa32e51cf02c2a948"
+    },
+    {
+      "path": "audit/results/bsts_sensitivity/regularized.log",
+      "bytes": 2842,
+      "sha256": "9f3d105464a8bbe20fcc3add104292fa8dbace9387e1fab10ce3b21152e1bc40"
+    },
+    {
+      "path": "audit/results/bsts_sensitivity/summary.json",
+      "bytes": 25232,
+      "sha256": "9114a17c5482808f3dbcf354e596926ee58205cde6392e405a7cec67ee0cf662"
+    },
+    {
+      "path": "audit/results/bsts_sensitivity/validation.json",
+      "bytes": 278,
+      "sha256": "24e739fb642a6774d3bc6269f11227e9aba713d185ae960334e85c37fce69277"
     },
     {
       "path": "audit/results/communication_capacity.json",
@@ -6675,8 +7110,8 @@
     },
     {
       "path": "repro/bench_bsts_mcmc.py",
-      "bytes": 7597,
-      "sha256": "0bc2df5fc162d64013710d312d0fa2af67c4b4aac2b9f6c7d07c1b96be16de22"
+      "bytes": 8505,
+      "sha256": "fdb8e7aacc517a8f3cb6095e6756a52ac6d1759b6ef449eda66b58df7ed51fbe"
     },
     {
       "path": "repro/bench_deep.py",
@@ -6697,6 +7132,11 @@
       "path": "repro/bsts_predictive_diagnostics.R",
       "bytes": 718,
       "sha256": "74727bc264e4dc646985be8ea172ddc7dd012d53b1f16e840c9c2fda9ef8b494"
+    },
+    {
+      "path": "repro/bsts_sensitivity_report.py",
+      "bytes": 8942,
+      "sha256": "d79b3082a92474d25f259fa1d72e34d9111c3e8889368b6fdd38590a960b699f"
     },
     {
       "path": "repro/bsts_val.py",
@@ -6905,8 +7345,8 @@
     },
     {
       "path": "tests/test_bsts_mcmc.py",
-      "bytes": 1998,
-      "sha256": "89fa3c05b2f1df154174e0c634bbfcbb1b257cb8cb90b9536da48ae390b62f5a"
+      "bytes": 3037,
+      "sha256": "459c89d685c694b281c79fc1a9186eac1d7ff48358cc3c79ae7b8f8943dcef8f"
     },
     {
       "path": "tests/test_discrete_mpa.py",
