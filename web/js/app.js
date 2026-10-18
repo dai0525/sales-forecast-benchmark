@@ -77,7 +77,7 @@
 
   /* ---------- 实测成绩 ---------- */
   function svgBars(models) {
-    var W = 720, H = 260, pad = { l: 8, r: 8, t: 18, b: 46 };
+    var W = 720, H = 320, pad = { l: 8, r: 8, t: 18, b: 104 };
     var rows = models.filter(function (m) { return m.wape != null; })
       .slice().sort(function (a, b) { return a.wape - b.wape; });
     if (!rows.length) return '';
@@ -99,8 +99,11 @@
         '" rx="6" fill="' + (isBest ? '#1D4ED8' : '#BFD2F6') + '"/>');
       out.push('<text x="' + (x + bw / 2) + '" y="' + (y2 - 6) + '" text-anchor="middle" fill="' +
         (isBest ? '#1D4ED8' : '#5A6B85') + '" font-weight="700">' + (m.wape * 100).toFixed(1) + '</text>');
-      out.push('<text x="' + (x + bw / 2) + '" y="' + (H - pad.b + 16) + '" text-anchor="middle">' +
-        m.short.replace(/[<>&]/g, '') + '</text>');
+      var short = m.short.replace(/[<>&]/g, '');
+      if (short.length > 11) short = short.slice(0, 10) + '…';
+      var lx = x + bw / 2, ly = H - pad.b + 12;
+      out.push('<text x="' + lx + '" y="' + ly + '" text-anchor="end" font-size="11" transform="rotate(-32 ' +
+        lx + ' ' + ly + ')">' + short + '</text>');
     });
     out.push('<text x="' + pad.l + '" y="10">WAPE 越低越好（%）</text></svg>');
     return out.join('');
