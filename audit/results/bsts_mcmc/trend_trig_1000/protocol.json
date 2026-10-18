@@ -1,0 +1,19 @@
+{
+  "package": "0.9.11",
+  "R": "R version 4.5.3 (2026-03-11)",
+  "posterior": "1.7.0",
+  "kind": "trend_trig",
+  "indices": [1, 2],
+  "ids": ["W1", "W2"],
+  "niter": 1000,
+  "burn": 500,
+  "chains": 2,
+  "horizon": 13,
+  "seed_rule": "20261018 + series_index*100 + chain",
+  "priors": "Original bsts component and observation defaults, based only on each training series; empirical scale priors, not fully prior-independent Bayes.",
+  "point_forecast": "Mean of posterior predictive distribution, then clip at zero in Python",
+  "diagnostics": "rank-normalized split Rhat, bulk/tail ESS for sampled SDs and final level/slope; target Rhat<=1.01 and ESS>=400",
+  "covariates": "None in M4. No fabricated regression predictors; spike-and-slab regression inapplicable.",
+  "model": "AddLocalLinearTrend + AddTrig(period=52, frequencies=1:4, method=direct)",
+  "workers": 2
+}

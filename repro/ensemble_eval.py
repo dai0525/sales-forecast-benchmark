@@ -26,6 +26,10 @@ def main():
     tr, te = z["train"].T, z["test"].T
     T = np.nan_to_num(te, nan=0.0)
 
+    for file in ['bsts_preds.npz', 'fg_preds.npz']:
+        with np.load(ROOT / 'data' / file) as cached:
+            if list(cached['ids']) != list(z['ids']): raise ValueError(f'ID mismatch: {file}')
+
     fg = np.load(ROOT / "data" / "fg_preds.npz")["preds"]
     bs = np.load(ROOT / "data" / "bsts_preds.npz")["preds"]
     sn = np.vstack([np.array([v[-52 + (i % 52)] for i in range(T.shape[1])])
@@ -44,7 +48,6 @@ def main():
     }
     res = {k: wape_mean(v, T) for k, v in combos.items()}
 
-    oracle = np.minimum(np.minimum(fg, bs), sn)
     # oracle 需要按序列选模型，这里只在"整条序列选最优模型"意义上成立
     per = np.stack([np.abs(fg - T).sum(1) / np.abs(T).sum(1),
                     np.abs(bs - T).sum(1) / np.abs(T).sum(1),
@@ -58,8 +61,8 @@ def main():
     for k, v in sorted(res.items(), key=lambda x: x[1]):
         print(f"  {k:<26} {v * 100:5.2f}%")
     print(f"\n  oracle（逐序列选最优）  {oracle_series * 100:5.2f}%")
-    best_name = min(res, key=res.get)
-    print(f"\n最佳：{best_name} = {res[best_name] * 100:.2f}%  "
+    best_name = "FG-MP + BSTS（算术平均）"  # predeclared; never select on test
+    print(f"\n预先指定组合：{best_name} = {res[best_name] * 100:.2f}%  "
           f"（相对 BSTS 改善 {(individual['BSTS'] - res[best_name]) * 100:.2f} pp）")
 
     out = {"individual": {k: round(v, 5) for k, v in individual.items()},
@@ -68,7 +71,7 @@ def main():
            "best": best_name}
     (ROOT / "repro" / "metrics_ensemble.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-    np.savez_compressed(ROOT / "data" / "ensemble_preds.npz", preds=combos[best_name])
+    np.savez_compressed(ROOT / "data" / "ensemble_preds.npz", preds=combos[best_name], ids=z["ids"])
 
 
 if __name__ == "__main__":

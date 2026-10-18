@@ -1,0 +1,158 @@
+{
+  "weekly_csv_matches_npz": true,
+  "weekly": {
+    "fg": {
+      "wape_mean": 0.08706038538159583,
+      "wape_aggregate": 0.05980154871058648,
+      "smape": 0.08232349607235384,
+      "bias_aggregate": 0.0017563058252932579
+    },
+    "bsts": {
+      "wape_mean": 0.07840264648452185,
+      "wape_aggregate": 0.055646867295215764,
+      "smape": 0.07607897352369368,
+      "bias_aggregate": -0.0018234917249983732
+    }
+  },
+  "daily": {
+    "bench_preds.npz": {
+      "Naive": {
+        "wape_mean": 0.034056393691010635,
+        "wape_aggregate": 0.028632036942154004,
+        "smape": 0.03156591770970611,
+        "bias_aggregate": -0.006735053823856545,
+        "n": 1000
+      },
+      "SeasonalNaive": {
+        "wape_mean": 0.04438208999464699,
+        "wape_aggregate": 0.03669787784855826,
+        "smape": 0.038813348458667435,
+        "bias_aggregate": -0.010121465761803778,
+        "n": 1000
+      },
+      "AutoETS": {
+        "wape_mean": 0.034323701704687425,
+        "wape_aggregate": 0.0316441089410564,
+        "smape": 0.03273440173180898,
+        "bias_aggregate": -0.0031645105714049695,
+        "n": 1000
+      },
+      "Theta": {
+        "wape_mean": 0.03465789752315373,
+        "wape_aggregate": 0.028737033616380765,
+        "smape": 0.031831309923599664,
+        "bias_aggregate": -0.006327202706916632,
+        "n": 1000
+      },
+      "CrostonOptimized": {
+        "wape_mean": 0.03978697225964042,
+        "wape_aggregate": 0.0330472538250163,
+        "smape": 0.03503042850676902,
+        "bias_aggregate": -0.009266053737902001,
+        "n": 1000
+      }
+    },
+    "lgbm_preds.npz": {
+      "log1p_test": {
+        "wape_mean": 0.03695889770929457,
+        "wape_aggregate": 0.03032016848130644,
+        "smape": 0.03353014339684539,
+        "bias_aggregate": -0.00584601828521433,
+        "n": 1000
+      },
+      "tweedie_test": {
+        "wape_mean": 0.038006443771605856,
+        "wape_aggregate": 0.030236288802491917,
+        "smape": 0.033537670006658686,
+        "bias_aggregate": -0.006436275735431522,
+        "n": 1000
+      }
+    },
+    "lgbm_preds_v1.npz": {
+      "log1p_test": {
+        "wape_mean": 0.03776851006294048,
+        "wape_aggregate": 0.03142133914197673,
+        "smape": 0.03392870236162287,
+        "bias_aggregate": -0.0059741381368025905,
+        "n": 1000
+      },
+      "tweedie_test": {
+        "wape_mean": 0.03797357863191559,
+        "wape_aggregate": 0.030116888602789903,
+        "smape": 0.03348918891780784,
+        "bias_aggregate": -0.007571949188288882,
+        "n": 1000
+      }
+    },
+    "lgbm_preds_v2.npz": {
+      "log1p_test": {
+        "wape_mean": 0.03695889770929457,
+        "wape_aggregate": 0.03032016848130644,
+        "smape": 0.03353014339684539,
+        "bias_aggregate": -0.00584601828521433,
+        "n": 1000
+      },
+      "tweedie_test": {
+        "wape_mean": 0.038006443771605856,
+        "wape_aggregate": 0.030236288802491917,
+        "smape": 0.033537670006658686,
+        "bias_aggregate": -0.006436275735431522,
+        "n": 1000
+      }
+    },
+    "preds/AutoARIMA.npz": {
+      "preds": {
+        "wape_mean": 0.0235792800904457,
+        "wape_aggregate": 0.019753626490663465,
+        "smape": 0.022445975854913505,
+        "bias_aggregate": -0.00431729630079295,
+        "n": 250
+      }
+    }
+  },
+  "files": {
+    "bench_preds.npz": "8ec8c0493c1d98456415fca00f28730ae32a01113d8063f464af8c0460c82986",
+    "lgbm_preds.npz": "40c4d0888ab2781758ec1567aa1619fdc6a4bd68056f4f55bef58dced9e7a7c7",
+    "lgbm_preds_v1.npz": "e92b9e6a2f13be2fd72fcb61306e98dc8f5c22e2afb70f484b63a2fc02c4e7fa",
+    "lgbm_preds_v2.npz": "40c4d0888ab2781758ec1567aa1619fdc6a4bd68056f4f55bef58dced9e7a7c7",
+    "preds/AutoARIMA.npz": "b3a4f0195889311753a27c4d1f8336ddc7299cfcdd6d03071bd897f03bd37a18"
+  },
+  "daily_common_250": {
+    "Naive": {
+      "wape_mean": 0.023849594317273307,
+      "wape_aggregate": 0.019843419237097735,
+      "smape": 0.02291773011349399,
+      "bias_aggregate": -0.005024422776954564
+    },
+    "SeasonalNaive": {
+      "wape_mean": 0.02961474274361658,
+      "wape_aggregate": 0.026056370733169566,
+      "smape": 0.02855094923804717,
+      "bias_aggregate": -0.007608152390745942
+    },
+    "AutoETS": {
+      "wape_mean": 0.03129909211812507,
+      "wape_aggregate": 0.03245155882586731,
+      "smape": 0.025932837401287,
+      "bias_aggregate": 0.007122221916776637
+    },
+    "Theta": {
+      "wape_mean": 0.024425939331448078,
+      "wape_aggregate": 0.020124685534933427,
+      "smape": 0.023366283118007303,
+      "bias_aggregate": -0.00460854497315762
+    },
+    "CrostonOptimized": {
+      "wape_mean": 0.0260562049231653,
+      "wape_aggregate": 0.022445301444585748,
+      "smape": 0.025050371795452074,
+      "bias_aggregate": -0.006937004532671881
+    },
+    "AutoARIMA": {
+      "wape_mean": 0.0235792800904457,
+      "wape_aggregate": 0.019753626490663465,
+      "smape": 0.022445975854913505,
+      "bias_aggregate": -0.00431729630079295
+    }
+  }
+}

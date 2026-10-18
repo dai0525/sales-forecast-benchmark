@@ -1,3 +1,5 @@
+> **历史结果，未独立复现。** 本轮未取得此实验的全量预测，不能核验全部分数。部分名称不对应论文完整实现：N-HiTS 为 pooled MLP 简化模型，N-BEATSx 无外生变量，DeepAR 为直接多步 Gaussian LSTM。下文保留原记录；当前审计结论见 [AUDIT.md](../AUDIT.md)。
+
 # M4-Daily 深度模型基准（实跑结果）
 
 - 数据：`data/Daily-train.csv (wide CSV)`，M4-Daily 共 4227 条，取 train 段非零占比>95% 的前 300 条

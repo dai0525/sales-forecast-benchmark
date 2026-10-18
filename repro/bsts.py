@@ -1,4 +1,4 @@
-"""BSTS 的极大似然版：结构时序模型（局部线性趋势 + 随机季节 + 观测噪声）。
+"""BSTS 的极大似然版：结构时序模型（局部水平 + 随机季节 + 观测噪声）。
 
 BSTS (Bayesian Structural Time Series) = 同一个状态空间模型 + 先验 + MCMC。
 statsmodels 的 UnobservedComponents 是同一模型的 Kalman 滤波 + 极大似然估计，
@@ -23,7 +23,7 @@ warnings.filterwarnings("ignore")
 
 ROOT = Path(__file__).resolve().parent.parent
 H = 13          # M4-Weekly 官方预测步长
-SEASON = 13     # 周度数据的年周期（52 周 / 4 季 ≈ 13）
+SEASON = 13     # 季度长度假设；年周期应为 52，不能与季度数混淆
 
 
 def load(n: int | None, tail: int = 200):
@@ -110,7 +110,7 @@ def main():
 
     out = {
         "model": "BSTS-structural (UCM, MLE)",
-        "note": "局部线性趋势 + 随机季节(13) + 观测噪声；Kalman 滤波 + 极大似然。"
+        "note": "局部水平 + 随机季节(13) + 观测噪声；Kalman 滤波 + 极大似然。"
                 "BSTS 的贝叶斯版是同一模型加先验 + MCMC。",
         "n_series": N,
         "horizon": H,

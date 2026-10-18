@@ -36,42 +36,24 @@ LAG_MAX = max(max(LAGS), max(ROLLS))   # 28
 
 # ---------------------------------------------------------------- loading
 def _parse_wide_csv(path: Path) -> tuple[list[str], list[np.ndarray]]:
-    """M4 wide CSV -> (ids, ragged value arrays).  Tolerates "" padding and a
-    truncated last line (a partial download)."""
-    ids: list[str] = []
-    vals: list[np.ndarray] = []
-    bad = 0
-    with open(path, encoding="utf-8") as fh:
-        fh.readline()                       # header = time-column names, unused
-        for line in fh:
-            line = line.strip()
-            if not line:
-                continue
-            parts = line.split(",")
-            sid = parts[0].strip('"')
-            body = ",".join(parts[1:]).strip().strip(",")
-            if body:
-                body = body.replace('"', "")
-                try:
-                    arr = np.fromstring(body, sep=",", dtype=np.float64)
-                except ValueError:
-                    # truncated tail or a stray token: keep the numeric prefix
-                    good = []
-                    for tok in body.split(","):
-                        tok = tok.strip().strip('"')
-                        try:
-                            good.append(float(tok))
-                        except ValueError:
-                            break
-                    arr = np.asarray(good, dtype=np.float64)
-                    bad += 1
-            else:
-                arr = np.empty(0)
-            ids.append(sid)
-            vals.append(arr)
-    if bad:
-        print(f"[warn] {path.name}: {bad} line(s) had non-numeric tails "
-              f"(partial download?)", flush=True)
+    """Strict official wide CSV parser; only trailing padding may be missing."""
+    import csv
+    ids, vals = [], []
+    with path.open(newline='', encoding='utf-8') as fh:
+        reader = csv.reader(fh); next(reader)
+        for row in reader:
+            if not row: continue
+            sid, cells = row[0], row[1:]
+            while cells and cells[-1].strip() in ('', 'NA', 'NaN', 'nan'):
+                cells.pop()
+            try:
+                arr = np.asarray(cells, dtype=float)
+            except ValueError as exc:
+                raise ValueError(f'{path}: invalid observations for {sid}') from exc
+            if not len(arr) or not np.isfinite(arr).all():
+                raise ValueError(f'{path}: missing/interior invalid observations for {sid}')
+            ids.append(sid); vals.append(arr)
+    if len(set(ids)) != len(ids): raise ValueError('Duplicate series IDs')
     return ids, vals
 
 
@@ -93,7 +75,7 @@ def load_m4_daily(n_series: int | None = None, seed: int = 42) -> "DailyData":
         ids, ragged = _parse_wide_csv(csv_train)
         tr = _stack_right(ragged)
         tids, tragged = _parse_wide_csv(csv_test)
-        te = np.vstack([np.pad(a, (0, H - len(a)), constant_values=np.nan)[:H]
+        te = np.vstack([np.pad(a, (0, max(0, H - len(a))), constant_values=np.nan)[:H]
                         for a in tragged]) if tragged else np.empty((0, H))
         if tids != ids:
             raise SystemExit("train/test series ids differ in order")
@@ -108,6 +90,10 @@ def load_m4_daily(n_series: int | None = None, seed: int = 42) -> "DailyData":
         if te.shape[0] != len(ids):
             te = np.ascontiguousarray(te.T)
         test_ids = ids
+    if not all(s.startswith("D") for s in ids) or te.shape != (len(ids), H):
+        raise ValueError("Expected M4 Daily IDs and 14-step test; possible frequency contamination")
+    if not np.isfinite(te).all():
+        raise ValueError("Incomplete test observations")
     if n_series is not None and n_series < len(ids):
         rng = np.random.default_rng(seed)
         keep = np.sort(rng.choice(len(ids), size=n_series, replace=False))

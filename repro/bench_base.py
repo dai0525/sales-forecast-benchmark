@@ -121,12 +121,11 @@ def main():
     df = pd.DataFrame(X)
     df["sid"] = df["sid"].astype("category")
     lab = np.array(Y)
-    # 时间序切分：最后 20% 行做验证（按序列内位置）
-    cut = int(len(df) * 0.85)
+    # 固定超参，全部训练序列参与；序列优先拼接的行不能当时间切分。
     model = lgb.LGBMRegressor(n_estimators=600, learning_rate=0.05, num_leaves=63,
                               min_child_samples=20, subsample=0.9, colsample_bytree=0.9,
-                              reg_lambda=1.0, n_jobs=8, verbose=-1)
-    model.fit(df.iloc[:cut], lab[:cut], categorical_feature=["sid"])
+                              reg_lambda=1.0, random_state=42, n_jobs=4, verbose=-1)
+    model.fit(df, lab, categorical_feature=["sid"])
     imp = sorted(zip(df.columns, model.feature_importances_), key=lambda x: -x[1])[:10]
     print("训练完成", round(time.time() - t, 1), "s", flush=True)
 
@@ -161,6 +160,8 @@ def main():
                            family="gbdt", repo="https://github.com/microsoft/LightGBM",
                            reproduced=True)
     print("LightGBM", res["LightGBM"]["wape"], flush=True)
+
+    np.savez_compressed(DATA / "weekly_lgbm_preds.npz", preds=np.asarray(preds_all), ids=np.array(ids))
 
     # ---------- 导出 ----------
     WEB.mkdir(parents=True, exist_ok=True)

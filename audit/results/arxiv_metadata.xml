@@ -1,0 +1,818 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/m0MgTV8ed6IuRXpRUBzHpbPSIMc</id>
+  <title>arXiv Query: search_query=&amp;id_list=1704.04110,1711.11053,1803.04037,1905.10437,1905.12417,1906.05264,1910.03002,1912.09363,2004.13408,2012.03854,2012.07436,2106.13008,2201.12886,2211.14730,2310.03589,2310.10688,2402.02592,2403.07815,2406.16964,1905.12417,1810.01735&amp;start=0&amp;max_results=60</title>
+  <updated>2026-10-17T18:15:31Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=60&amp;id_list=1704.04110,1711.11053,1803.04037,1905.10437,1905.12417,1906.05264,1910.03002,1912.09363,2004.13408,2012.03854,2012.07436,2106.13008,2201.12886,2211.14730,2310.03589,2310.10688,2402.02592,2403.07815,2406.16964,1905.12417,1810.01735" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>60</opensearch:itemsPerPage>
+  <opensearch:totalResults>20</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2004.13408v2</id>
+    <title>Time Series Forecasting With Deep Learning: A Survey</title>
+    <updated>2020-09-27T14:10:48Z</updated>
+    <link href="https://arxiv.org/abs/2004.13408v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2004.13408v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Numerous deep learning architectures have been developed to accommodate the diversity of time series datasets across different domains. In this article, we survey common encoder and decoder designs used in both one-step-ahead and multi-horizon time series forecasting -- describing how temporal information is incorporated into predictions by each model. Next, we highlight recent developments in hybrid deep learning models, which combine well-studied statistical models with neural network components to improve pure methods in either category. Lastly, we outline some ways in which deep learning can also facilitate decision support with time series data.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-04-28T10:32:26Z</published>
+    <arxiv:primary_category term="stat.ML"/>
+    <arxiv:journal_ref>Philosophical Transactions of the Royal Society A 2020</arxiv:journal_ref>
+    <author>
+      <name>Bryan Lim</name>
+    </author>
+    <author>
+      <name>Stefan Zohren</name>
+    </author>
+    <arxiv:doi>10.1098/rsta.2020.0209</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1098/rsta.2020.0209" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1906.05264v2</id>
+    <title>GluonTS: Probabilistic Time Series Models in Python</title>
+    <updated>2019-06-14T09:26:38Z</updated>
+    <link href="https://arxiv.org/abs/1906.05264v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1906.05264v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We introduce Gluon Time Series (GluonTS, available at https://gluon-ts.mxnet.io), a library for deep-learning-based time series modeling. GluonTS simplifies the development of and experimentation with time series models for common tasks such as forecasting or anomaly detection. It provides all necessary components and tools that scientists need for quickly building new models, for efficiently running and analyzing experiments and for evaluating model accuracy.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-06-12T17:44:53Z</published>
+    <arxiv:comment>ICML Time Series Workshop 2019</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Alexander Alexandrov</name>
+    </author>
+    <author>
+      <name>Konstantinos Benidis</name>
+    </author>
+    <author>
+      <name>Michael Bohlke-Schneider</name>
+    </author>
+    <author>
+      <name>Valentin Flunkert</name>
+    </author>
+    <author>
+      <name>Jan Gasthaus</name>
+    </author>
+    <author>
+      <name>Tim Januschowski</name>
+    </author>
+    <author>
+      <name>Danielle C. Maddix</name>
+    </author>
+    <author>
+      <name>Syama Rangapuram</name>
+    </author>
+    <author>
+      <name>David Salinas</name>
+    </author>
+    <author>
+      <name>Jasper Schulz</name>
+    </author>
+    <author>
+      <name>Lorenzo Stella</name>
+    </author>
+    <author>
+      <name>Ali Caner Türkmen</name>
+    </author>
+    <author>
+      <name>Yuyang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2106.13008v5</id>
+    <title>Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting</title>
+    <updated>2022-01-07T13:39:16Z</updated>
+    <link href="https://arxiv.org/abs/2106.13008v5" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2106.13008v5" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Extending the forecasting time is a critical demand for real applications, such as extreme weather early warning and long-term energy consumption planning. This paper studies the long-term forecasting problem of time series. Prior Transformer-based models adopt various self-attention mechanisms to discover the long-range dependencies. However, intricate temporal patterns of the long-term future prohibit the model from finding reliable dependencies. Also, Transformers have to adopt the sparse versions of point-wise self-attentions for long series efficiency, resulting in the information utilization bottleneck. Going beyond Transformers, we design Autoformer as a novel decomposition architecture with an Auto-Correlation mechanism. We break with the pre-processing convention of series decomposition and renovate it as a basic inner block of deep models. This design empowers Autoformer with progressive decomposition capacities for complex time series. Further, inspired by the stochastic process theory, we design the Auto-Correlation mechanism based on the series periodicity, which conducts the dependencies discovery and representation aggregation at the sub-series level. Auto-Correlation outperforms self-attention in both efficiency and accuracy. In long-term forecasting, Autoformer yields state-of-the-art accuracy, with a 38% relative improvement on six benchmarks, covering five practical applications: energy, traffic, economics, weather and disease. Code is available at this repository: \url{https://github.com/thuml/Autoformer}.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-06-24T13:43:43Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Haixu Wu</name>
+    </author>
+    <author>
+      <name>Jiehui Xu</name>
+    </author>
+    <author>
+      <name>Jianmin Wang</name>
+    </author>
+    <author>
+      <name>Mingsheng Long</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1905.10437v4</id>
+    <title>N-BEATS: Neural basis expansion analysis for interpretable time series forecasting</title>
+    <updated>2020-02-20T21:08:57Z</updated>
+    <link href="https://arxiv.org/abs/1905.10437v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1905.10437v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We focus on solving the univariate times series point forecasting problem using deep learning. We propose a deep neural architecture based on backward and forward residual links and a very deep stack of fully-connected layers. The architecture has a number of desirable properties, being interpretable, applicable without modification to a wide array of target domains, and fast to train. We test the proposed architecture on several well-known datasets, including M3, M4 and TOURISM competition datasets containing time series from diverse domains. We demonstrate state-of-the-art performance for two configurations of N-BEATS for all the datasets, improving forecast accuracy by 11% over a statistical benchmark and by 3% over last year's winner of the M4 competition, a domain-adjusted hand-crafted hybrid between neural network and statistical time series models. The first configuration of our model does not employ any time-series-specific components and its performance on heterogeneous datasets strongly suggests that, contrarily to received wisdom, deep learning primitives such as residual blocks are by themselves sufficient to solve a wide range of forecasting problems. Finally, we demonstrate how the proposed architecture can be augmented to provide outputs that are interpretable without considerable loss in accuracy.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-05-24T20:28:57Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Boris N. Oreshkin</name>
+    </author>
+    <author>
+      <name>Dmitri Carpov</name>
+    </author>
+    <author>
+      <name>Nicolas Chapados</name>
+    </author>
+    <author>
+      <name>Yoshua Bengio</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1711.11053v2</id>
+    <title>A Multi-Horizon Quantile Recurrent Forecaster</title>
+    <updated>2018-06-28T17:54:39Z</updated>
+    <link href="https://arxiv.org/abs/1711.11053v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1711.11053v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose a framework for general probabilistic multi-step time series regression. Specifically, we exploit the expressiveness and temporal nature of Sequence-to-Sequence Neural Networks (e.g. recurrent and convolutional structures), the nonparametric nature of Quantile Regression and the efficiency of Direct Multi-Horizon Forecasting. A new training scheme, *forking-sequences*, is designed for sequential nets to boost stability and performance. We show that the approach accommodates both temporal and static covariates, learning across multiple related series, shifting seasonality, future planned event spikes and cold-starts in real life large-scale forecasting. The performance of the framework is demonstrated in an application to predict the future demand of items sold on Amazon.com, and in a public probabilistic forecasting competition to predict electricity price and load.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2017-11-29T19:01:32Z</published>
+    <arxiv:comment>Published @ 31st Conference on Neural Information Processing Systems (NIPS 2017), Time Series Workshop. Long Beach, CA, USA</arxiv:comment>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>Ruofeng Wen</name>
+    </author>
+    <author>
+      <name>Kari Torkkola</name>
+    </author>
+    <author>
+      <name>Balakrishnan Narayanaswamy</name>
+    </author>
+    <author>
+      <name>Dhruv Madeka</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.02592v2</id>
+    <title>Unified Training of Universal Time Series Forecasting Transformers</title>
+    <updated>2024-05-22T11:49:59Z</updated>
+    <link href="https://arxiv.org/abs/2402.02592v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.02592v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep learning for time series forecasting has traditionally operated within a one-model-per-dataset framework, limiting its potential to leverage the game-changing impact of large pre-trained models. The concept of universal forecasting, emerging from pre-training on a vast collection of time series datasets, envisions a single Large Time Series Model capable of addressing diverse downstream forecasting tasks. However, constructing such a model poses unique challenges specific to time series data: i) cross-frequency learning, ii) accommodating an arbitrary number of variates for multivariate time series, and iii) addressing the varying distributional properties inherent in large-scale data. To address these challenges, we present novel enhancements to the conventional time series Transformer architecture, resulting in our proposed Masked Encoder-based Universal Time Series Forecasting Transformer (Moirai). Trained on our newly introduced Large-scale Open Time Series Archive (LOTSA) featuring over 27B observations across nine domains, Moirai achieves competitive or superior performance as a zero-shot forecaster when compared to full-shot models. Code, data, and model weights can be found at https://github.com/SalesforceAIResearch/uni2ts.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-02-04T20:00:45Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Gerald Woo</name>
+    </author>
+    <author>
+      <name>Chenghao Liu</name>
+    </author>
+    <author>
+      <name>Akshat Kumar</name>
+    </author>
+    <author>
+      <name>Caiming Xiong</name>
+    </author>
+    <author>
+      <name>Silvio Savarese</name>
+    </author>
+    <author>
+      <name>Doyen Sahoo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2012.03854v4</id>
+    <title>Forecasting: theory and practice</title>
+    <updated>2022-01-05T20:08:32Z</updated>
+    <link href="https://arxiv.org/abs/2012.03854v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2012.03854v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Forecasting has always been at the forefront of decision making and planning. The uncertainty that surrounds the future is both exciting and challenging, with individuals and organisations seeking to minimise risks and maximise utilities. The large number of forecasting applications calls for a diverse set of forecasting methods to tackle real-life challenges. This article provides a non-systematic review of the theory and the practice of forecasting. We provide an overview of a wide range of theoretical, state-of-the-art models, methods, principles, and approaches to prepare, produce, organise, and evaluate forecasts. We then demonstrate how such theoretical concepts are applied in a variety of real-life contexts.
+  We do not claim that this review is an exhaustive list of methods and applications. However, we wish that our encyclopedic presentation will offer a point of reference for the rich work that has been undertaken over the last decades, with some key insights for the future of forecasting theory and practice. Given its encyclopedic nature, the intended mode of reading is non-linear. We offer cross-references to allow the readers to navigate through the various topics. We complement the theoretical concepts and applications covered by large lists of free or open-source software implementations and publicly-available databases.</summary>
+    <category term="stat.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="econ.EM" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.OT" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-12-04T16:56:44Z</published>
+    <arxiv:primary_category term="stat.AP"/>
+    <author>
+      <name>Fotios Petropoulos</name>
+    </author>
+    <author>
+      <name>Daniele Apiletti</name>
+    </author>
+    <author>
+      <name>Vassilios Assimakopoulos</name>
+    </author>
+    <author>
+      <name>Mohamed Zied Babai</name>
+    </author>
+    <author>
+      <name>Devon K. Barrow</name>
+    </author>
+    <author>
+      <name>Souhaib Ben Taieb</name>
+    </author>
+    <author>
+      <name>Christoph Bergmeir</name>
+    </author>
+    <author>
+      <name>Ricardo J. Bessa</name>
+    </author>
+    <author>
+      <name>Jakub Bijak</name>
+    </author>
+    <author>
+      <name>John E. Boylan</name>
+    </author>
+    <author>
+      <name>Jethro Browell</name>
+    </author>
+    <author>
+      <name>Claudio Carnevale</name>
+    </author>
+    <author>
+      <name>Jennifer L. Castle</name>
+    </author>
+    <author>
+      <name>Pasquale Cirillo</name>
+    </author>
+    <author>
+      <name>Michael P. Clements</name>
+    </author>
+    <author>
+      <name>Clara Cordeiro</name>
+    </author>
+    <author>
+      <name>Fernando Luiz Cyrino Oliveira</name>
+    </author>
+    <author>
+      <name>Shari De Baets</name>
+    </author>
+    <author>
+      <name>Alexander Dokumentov</name>
+    </author>
+    <author>
+      <name>Joanne Ellison</name>
+    </author>
+    <author>
+      <name>Piotr Fiszeder</name>
+    </author>
+    <author>
+      <name>Philip Hans Franses</name>
+    </author>
+    <author>
+      <name>David T. Frazier</name>
+    </author>
+    <author>
+      <name>Michael Gilliland</name>
+    </author>
+    <author>
+      <name>M. Sinan Gönül</name>
+    </author>
+    <author>
+      <name>Paul Goodwin</name>
+    </author>
+    <author>
+      <name>Luigi Grossi</name>
+    </author>
+    <author>
+      <name>Yael Grushka-Cockayne</name>
+    </author>
+    <author>
+      <name>Mariangela Guidolin</name>
+    </author>
+    <author>
+      <name>Massimo Guidolin</name>
+    </author>
+    <author>
+      <name>Ulrich Gunter</name>
+    </author>
+    <author>
+      <name>Xiaojia Guo</name>
+    </author>
+    <author>
+      <name>Renato Guseo</name>
+    </author>
+    <author>
+      <name>Nigel Harvey</name>
+    </author>
+    <author>
+      <name>David F. Hendry</name>
+    </author>
+    <author>
+      <name>Ross Hollyman</name>
+    </author>
+    <author>
+      <name>Tim Januschowski</name>
+    </author>
+    <author>
+      <name>Jooyoung Jeon</name>
+    </author>
+    <author>
+      <name>Victor Richmond R. Jose</name>
+    </author>
+    <author>
+      <name>Yanfei Kang</name>
+    </author>
+    <author>
+      <name>Anne B. Koehler</name>
+    </author>
+    <author>
+      <name>Stephan Kolassa</name>
+    </author>
+    <author>
+      <name>Nikolaos Kourentzes</name>
+    </author>
+    <author>
+      <name>Sonia Leva</name>
+    </author>
+    <author>
+      <name>Feng Li</name>
+    </author>
+    <author>
+      <name>Konstantia Litsiou</name>
+    </author>
+    <author>
+      <name>Spyros Makridakis</name>
+    </author>
+    <author>
+      <name>Gael M. Martin</name>
+    </author>
+    <author>
+      <name>Andrew B. Martinez</name>
+    </author>
+    <author>
+      <name>Sheik Meeran</name>
+    </author>
+    <author>
+      <name>Theodore Modis</name>
+    </author>
+    <author>
+      <name>Konstantinos Nikolopoulos</name>
+    </author>
+    <author>
+      <name>Dilek Önkal</name>
+    </author>
+    <author>
+      <name>Alessia Paccagnini</name>
+    </author>
+    <author>
+      <name>Anastasios Panagiotelis</name>
+    </author>
+    <author>
+      <name>Ioannis Panapakidis</name>
+    </author>
+    <author>
+      <name>Jose M. Pavía</name>
+    </author>
+    <author>
+      <name>Manuela Pedio</name>
+    </author>
+    <author>
+      <name>Diego J. Pedregal</name>
+    </author>
+    <author>
+      <name>Pierre Pinson</name>
+    </author>
+    <author>
+      <name>Patrícia Ramos</name>
+    </author>
+    <author>
+      <name>David E. Rapach</name>
+    </author>
+    <author>
+      <name>J. James Reade</name>
+    </author>
+    <author>
+      <name>Bahman Rostami-Tabar</name>
+    </author>
+    <author>
+      <name>Michał Rubaszek</name>
+    </author>
+    <author>
+      <name>Georgios Sermpinis</name>
+    </author>
+    <author>
+      <name>Han Lin Shang</name>
+    </author>
+    <author>
+      <name>Evangelos Spiliotis</name>
+    </author>
+    <author>
+      <name>Aris A. Syntetos</name>
+    </author>
+    <author>
+      <name>Priyanga Dilini Talagala</name>
+    </author>
+    <author>
+      <name>Thiyanga S. Talagala</name>
+    </author>
+    <author>
+      <name>Len Tashman</name>
+    </author>
+    <author>
+      <name>Dimitrios Thomakos</name>
+    </author>
+    <author>
+      <name>Thordis Thorarinsdottir</name>
+    </author>
+    <author>
+      <name>Ezio Todini</name>
+    </author>
+    <author>
+      <name>Juan Ramón Trapero Arenas</name>
+    </author>
+    <author>
+      <name>Xiaoqian Wang</name>
+    </author>
+    <author>
+      <name>Robert L. Winkler</name>
+    </author>
+    <author>
+      <name>Alisa Yusupova</name>
+    </author>
+    <author>
+      <name>Florian Ziel</name>
+    </author>
+    <arxiv:doi>10.1016/j.ijforecast.2021.11.001</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1016/j.ijforecast.2021.11.001" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.16964v2</id>
+    <title>Are Language Models Actually Useful for Time Series Forecasting?</title>
+    <updated>2024-10-26T01:43:07Z</updated>
+    <link href="https://arxiv.org/abs/2406.16964v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.16964v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) are being applied to time series forecasting. But are language models actually useful for time series? In a series of ablation studies on three recent and popular LLM-based time series forecasting methods, we find that removing the LLM component or replacing it with a basic attention layer does not degrade forecasting performance -- in most cases, the results even improve! We also find that despite their significant computational cost, pretrained LLMs do no better than models trained from scratch, do not represent the sequential dependencies in time series, and do not assist in few-shot settings. Additionally, we explore time series encoders and find that patching and attention structures perform similarly to LLM-based forecasters.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-22T03:33:38Z</published>
+    <arxiv:comment>Accepted to NeurIPS 2024 (Spotlight)</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Mingtian Tan</name>
+    </author>
+    <author>
+      <name>Mike A. Merrill</name>
+    </author>
+    <author>
+      <name>Vinayak Gupta</name>
+    </author>
+    <author>
+      <name>Tim Althoff</name>
+    </author>
+    <author>
+      <name>Thomas Hartvigsen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1704.04110v3</id>
+    <title>DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks</title>
+    <updated>2019-02-22T13:43:50Z</updated>
+    <link href="https://arxiv.org/abs/1704.04110v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1704.04110v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Probabilistic forecasting, i.e. estimating the probability distribution of a time series' future given its past, is a key enabler for optimizing business processes. In retail businesses, for example, forecasting demand is crucial for having the right inventory available at the right time at the right place. In this paper we propose DeepAR, a methodology for producing accurate probabilistic forecasts, based on training an auto regressive recurrent network model on a large number of related time series. We demonstrate how by applying deep learning techniques to forecasting, one can overcome many of the challenges faced by widely-used classical approaches to the problem. We show through extensive empirical evaluation on several real-world forecasting data sets accuracy improvements of around 15% compared to state-of-the-art methods.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2017-04-13T13:11:53Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>David Salinas</name>
+    </author>
+    <author>
+      <name>Valentin Flunkert</name>
+    </author>
+    <author>
+      <name>Jan Gasthaus</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1912.09363v3</id>
+    <title>Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting</title>
+    <updated>2020-09-27T14:17:28Z</updated>
+    <link href="https://arxiv.org/abs/1912.09363v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1912.09363v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-horizon forecasting problems often contain a complex mix of inputs -- including static (i.e. time-invariant) covariates, known future inputs, and other exogenous time series that are only observed historically -- without any prior information on how they interact with the target. While several deep learning models have been proposed for multi-step prediction, they typically comprise black-box models which do not account for the full range of inputs present in common scenarios. In this paper, we introduce the Temporal Fusion Transformer (TFT) -- a novel attention-based architecture which combines high-performance multi-horizon forecasting with interpretable insights into temporal dynamics. To learn temporal relationships at different scales, the TFT utilizes recurrent layers for local processing and interpretable self-attention layers for learning long-term dependencies. The TFT also uses specialized components for the judicious selection of relevant features and a series of gating layers to suppress unnecessary components, enabling high performance in a wide range of regimes. On a variety of real-world datasets, we demonstrate significant performance improvements over existing benchmarks, and showcase three practical interpretability use-cases of TFT.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-12-19T16:45:40Z</published>
+    <arxiv:primary_category term="stat.ML"/>
+    <author>
+      <name>Bryan Lim</name>
+    </author>
+    <author>
+      <name>Sercan O. Arik</name>
+    </author>
+    <author>
+      <name>Nicolas Loeff</name>
+    </author>
+    <author>
+      <name>Tomas Pfister</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.07815v3</id>
+    <title>Chronos: Learning the Language of Time Series</title>
+    <updated>2024-11-04T17:42:45Z</updated>
+    <link href="https://arxiv.org/abs/2403.07815v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.07815v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We introduce Chronos, a simple yet effective framework for pretrained probabilistic time series models. Chronos tokenizes time series values using scaling and quantization into a fixed vocabulary and trains existing transformer-based language model architectures on these tokenized time series via the cross-entropy loss. We pretrained Chronos models based on the T5 family (ranging from 20M to 710M parameters) on a large collection of publicly available datasets, complemented by a synthetic dataset that we generated via Gaussian processes to improve generalization. In a comprehensive benchmark consisting of 42 datasets, and comprising both classical local models and deep learning methods, we show that Chronos models: (a) significantly outperform other methods on datasets that were part of the training corpus; and (b) have comparable and occasionally superior zero-shot performance on new datasets, relative to methods that were trained specifically on them. Our results demonstrate that Chronos models can leverage time series data from diverse domains to improve zero-shot accuracy on unseen forecasting tasks, positioning pretrained models as a viable tool to greatly simplify forecasting pipelines.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-12T16:53:54Z</published>
+    <arxiv:comment>Code and model checkpoints available at https://github.com/amazon-science/chronos-forecasting</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Abdul Fatir Ansari</name>
+    </author>
+    <author>
+      <name>Lorenzo Stella</name>
+    </author>
+    <author>
+      <name>Caner Turkmen</name>
+    </author>
+    <author>
+      <name>Xiyuan Zhang</name>
+    </author>
+    <author>
+      <name>Pedro Mercado</name>
+    </author>
+    <author>
+      <name>Huibin Shen</name>
+    </author>
+    <author>
+      <name>Oleksandr Shchur</name>
+    </author>
+    <author>
+      <name>Syama Sundar Rangapuram</name>
+    </author>
+    <author>
+      <name>Sebastian Pineda Arango</name>
+    </author>
+    <author>
+      <name>Shubham Kapoor</name>
+    </author>
+    <author>
+      <name>Jasper Zschiegner</name>
+    </author>
+    <author>
+      <name>Danielle C. Maddix</name>
+    </author>
+    <author>
+      <name>Hao Wang</name>
+    </author>
+    <author>
+      <name>Michael W. Mahoney</name>
+    </author>
+    <author>
+      <name>Kari Torkkola</name>
+    </author>
+    <author>
+      <name>Andrew Gordon Wilson</name>
+    </author>
+    <author>
+      <name>Michael Bohlke-Schneider</name>
+    </author>
+    <author>
+      <name>Yuyang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1810.01735v1</id>
+    <title>Fractional Generalizations of Gradient Mechanics</title>
+    <updated>2018-09-11T09:37:35Z</updated>
+    <link href="https://arxiv.org/abs/1810.01735v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1810.01735v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This short chapter provides a fractional generalization of gradient mechanics, an approach (originally advanced by the author in the mid 80s) that has gained world-wide attention in the last decades due to its capability of modeling pattern forming instabilities and size effects in materials, as well as eliminating undesired elastic singularities. It is based on the incorporation of higher-order gradients (in the form of Laplacians) in the classical constitutive equations multiplied by appropriate internal lengths accounting for the geometry/topology of underlying micro/nano structures. This review will focus on the fractional generalization of the gradient elasticity equations (GradEla) an extension of classical elasticity to incorporate the Laplacian of Hookean stress by replacing the standard Laplacian by its fractional counterpart. On introducing the resulting fractional constitutive equation into the classical static equilibrium equation for the stress, a fractional differential equation is obtained whose fundamental solutions are derived by using the Greens function procedure. As an example, Kelvins problem is analyzed within the aforementioned setting. Then, an extension to consider constitutive equations for a restrictive class of nonlinear elastic deformations and deformation theory of plasticity is pursued. Finally, the methodology is applied for extending the authors higher-order diffusion theory from the integer to the fractional case.</summary>
+    <category term="physics.class-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2018-09-11T09:37:35Z</published>
+    <arxiv:comment>arXiv admin note: text overlap with arXiv:1808.03241</arxiv:comment>
+    <arxiv:primary_category term="physics.class-ph"/>
+    <author>
+      <name>E. C. Aifantis</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1910.03002v2</id>
+    <title>High-Dimensional Multivariate Forecasting with Low-Rank Gaussian Copula Processes</title>
+    <updated>2019-10-24T20:16:30Z</updated>
+    <link href="https://arxiv.org/abs/1910.03002v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1910.03002v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Predicting the dependencies between observations from multiple time series is critical for applications such as anomaly detection, financial risk management, causal analysis, or demand forecasting. However, the computational and numerical difficulties of estimating time-varying and high-dimensional covariance matrices often limits existing methods to handling at most a few hundred dimensions or requires making strong assumptions on the dependence between series. We propose to combine an RNN-based time series model with a Gaussian copula process output model with a low-rank covariance structure to reduce the computational complexity and handle non-Gaussian marginal distributions. This permits to drastically reduce the number of parameters and consequently allows the modeling of time-varying correlations of thousands of time series. We show on several real-world datasets that our method provides significant accuracy improvements over state-of-the-art baselines and perform an ablation study analyzing the contributions of the different components of our model.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-10-07T18:41:00Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>David Salinas</name>
+    </author>
+    <author>
+      <name>Michael Bohlke-Schneider</name>
+    </author>
+    <author>
+      <name>Laurent Callot</name>
+    </author>
+    <author>
+      <name>Roberto Medico</name>
+    </author>
+    <author>
+      <name>Jan Gasthaus</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1905.12417v1</id>
+    <title>Deep Factors for Forecasting</title>
+    <updated>2019-05-28T16:27:52Z</updated>
+    <link href="https://arxiv.org/abs/1905.12417v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1905.12417v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Producing probabilistic forecasts for large collections of similar and/or dependent time series is a practically relevant and challenging task. Classical time series models fail to capture complex patterns in the data, and multivariate techniques struggle to scale to large problem sizes. Their reliance on strong structural assumptions makes them data-efficient, and allows them to provide uncertainty estimates. The converse is true for models based on deep neural networks, which can learn complex patterns and dependencies given enough data. In this paper, we propose a hybrid model that incorporates the benefits of both approaches. Our new method is data-driven and scalable via a latent, global, deep component. It also handles uncertainty through a local classical model. We provide both theoretical and empirical evidence for the soundness of our approach through a necessary and sufficient decomposition of exchangeable time series into a global and a local part. Our experiments demonstrate the advantages of our model both in term of data efficiency, accuracy and computational complexity.</summary>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-05-28T16:27:52Z</published>
+    <arxiv:comment>http://proceedings.mlr.press/v97/wang19k/wang19k.pdf. arXiv admin note: substantial text overlap with arXiv:1812.00098</arxiv:comment>
+    <arxiv:primary_category term="stat.ML"/>
+    <arxiv:journal_ref>Proceedings of Machine Learning Research, Volume 97: International Conference on Machine Learning, 2019</arxiv:journal_ref>
+    <author>
+      <name>Yuyang Wang</name>
+    </author>
+    <author>
+      <name>Alex Smola</name>
+    </author>
+    <author>
+      <name>Danielle C. Maddix</name>
+    </author>
+    <author>
+      <name>Jan Gasthaus</name>
+    </author>
+    <author>
+      <name>Dean Foster</name>
+    </author>
+    <author>
+      <name>Tim Januschowski</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2012.07436v3</id>
+    <title>Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting</title>
+    <updated>2021-03-28T14:45:04Z</updated>
+    <link href="https://arxiv.org/abs/2012.07436v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2012.07436v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Many real-world applications require the prediction of long sequence time-series, such as electricity consumption planning. Long sequence time-series forecasting (LSTF) demands a high prediction capacity of the model, which is the ability to capture precise long-range dependency coupling between output and input efficiently. Recent studies have shown the potential of Transformer to increase the prediction capacity. However, there are several severe issues with Transformer that prevent it from being directly applicable to LSTF, including quadratic time complexity, high memory usage, and inherent limitation of the encoder-decoder architecture. To address these issues, we design an efficient transformer-based model for LSTF, named Informer, with three distinctive characteristics: (i) a $ProbSparse$ self-attention mechanism, which achieves $O(L \log L)$ in time complexity and memory usage, and has comparable performance on sequences' dependency alignment. (ii) the self-attention distilling highlights dominating attention by halving cascading layer input, and efficiently handles extreme long input sequences. (iii) the generative style decoder, while conceptually simple, predicts the long time-series sequences at one forward operation rather than a step-by-step way, which drastically improves the inference speed of long-sequence predictions. Extensive experiments on four large-scale datasets demonstrate that Informer significantly outperforms existing methods and provides a new solution to the LSTF problem.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-12-14T11:43:09Z</published>
+    <arxiv:comment>8 pages (main), 5 pages (appendix) and to be appeared in AAAI2021</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Haoyi Zhou</name>
+    </author>
+    <author>
+      <name>Shanghang Zhang</name>
+    </author>
+    <author>
+      <name>Jieqi Peng</name>
+    </author>
+    <author>
+      <name>Shuai Zhang</name>
+    </author>
+    <author>
+      <name>Jianxin Li</name>
+    </author>
+    <author>
+      <name>Hui Xiong</name>
+    </author>
+    <author>
+      <name>Wancai Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1803.04037v1</id>
+    <title>Sales forecasting using WaveNet within the framework of the Kaggle competition</title>
+    <updated>2018-03-11T20:59:35Z</updated>
+    <link href="https://arxiv.org/abs/1803.04037v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1803.04037v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We took part in the Corporacion Favorita Grocery Sales Forecasting competition hosted on Kaggle and achieved the 2nd place. In this abstract paper, we present an overall analysis and solution to the underlying machine-learning problem based on time series data, where major challenges are identified and corresponding preliminary methods are proposed. Our approach is based on the adaptation of dilated convolutional neural network for time series forecasting. By applying this technique iteratively to batches of n examples, a big amount of time series data can be eventually processed with a decent speed and accuracy. We hope this paper could serve, to some extent, as a review and guideline of the time series forecasting benchmark, inspiring further attempts and researches.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2018-03-11T20:59:35Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Glib Kechyn</name>
+    </author>
+    <author>
+      <name>Lucius Yu</name>
+    </author>
+    <author>
+      <name>Yangguang Zang</name>
+    </author>
+    <author>
+      <name>Svyatoslav Kechyn</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.03589v3</id>
+    <title>TimeGPT-1</title>
+    <updated>2024-05-27T23:34:15Z</updated>
+    <link href="https://arxiv.org/abs/2310.03589v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.03589v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we introduce TimeGPT, the first foundation model for time series, capable of generating accurate predictions for diverse datasets not seen during training. We evaluate our pre-trained model against established statistical, machine learning, and deep learning methods, demonstrating that TimeGPT zero-shot inference excels in performance, efficiency, and simplicity. Our study provides compelling evidence that insights from other domains of artificial intelligence can be effectively applied to time series analysis. We conclude that large-scale time series models offer an exciting opportunity to democratize access to precise predictions and reduce uncertainty by leveraging the capabilities of contemporary advancements in deep learning.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-05T15:14:00Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Azul Garza</name>
+    </author>
+    <author>
+      <name>Cristian Challu</name>
+    </author>
+    <author>
+      <name>Max Mergenthaler-Canseco</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2201.12886v6</id>
+    <title>N-HiTS: Neural Hierarchical Interpolation for Time Series Forecasting</title>
+    <updated>2022-11-29T21:55:57Z</updated>
+    <link href="https://arxiv.org/abs/2201.12886v6" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2201.12886v6" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent progress in neural forecasting accelerated improvements in the performance of large-scale forecasting systems. Yet, long-horizon forecasting remains a very difficult task. Two common challenges afflicting the task are the volatility of the predictions and their computational complexity. We introduce N-HiTS, a model which addresses both challenges by incorporating novel hierarchical interpolation and multi-rate data sampling techniques. These techniques enable the proposed method to assemble its predictions sequentially, emphasizing components with different frequencies and scales while decomposing the input signal and synthesizing the forecast. We prove that the hierarchical interpolation technique can efficiently approximate arbitrarily long horizons in the presence of smoothness. Additionally, we conduct extensive large-scale dataset experiments from the long-horizon forecasting literature, demonstrating the advantages of our method over the state-of-the-art methods, where N-HiTS provides an average accuracy improvement of almost 20% over the latest Transformer architectures while reducing the computation time by an order of magnitude (50 times). Our code is available at bit.ly/3VA5DoT</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-01-30T17:52:19Z</published>
+    <arxiv:comment>Accepted at the Thirty-Seventh AAAI Conference on Artificial Intelligence (AAAI-23)</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Cristian Challu</name>
+    </author>
+    <author>
+      <name>Kin G. Olivares</name>
+    </author>
+    <author>
+      <name>Boris N. Oreshkin</name>
+    </author>
+    <author>
+      <name>Federico Garza</name>
+    </author>
+    <author>
+      <name>Max Mergenthaler-Canseco</name>
+    </author>
+    <author>
+      <name>Artur Dubrawski</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.10688v4</id>
+    <title>A decoder-only foundation model for time-series forecasting</title>
+    <updated>2024-04-17T18:24:45Z</updated>
+    <link href="https://arxiv.org/abs/2310.10688v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.10688v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Motivated by recent advances in large language models for Natural Language Processing (NLP), we design a time-series foundation model for forecasting whose out-of-the-box zero-shot performance on a variety of public datasets comes close to the accuracy of state-of-the-art supervised forecasting models for each individual dataset. Our model is based on pretraining a patched-decoder style attention model on a large time-series corpus, and can work well across different forecasting history lengths, prediction lengths and temporal granularities.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-14T17:01:37Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Abhimanyu Das</name>
+    </author>
+    <author>
+      <name>Weihao Kong</name>
+    </author>
+    <author>
+      <name>Rajat Sen</name>
+    </author>
+    <author>
+      <name>Yichen Zhou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2211.14730v2</id>
+    <title>A Time Series is Worth 64 Words: Long-term Forecasting with Transformers</title>
+    <updated>2023-03-05T22:11:56Z</updated>
+    <link href="https://arxiv.org/abs/2211.14730v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2211.14730v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose an efficient design of Transformer-based models for multivariate time series forecasting and self-supervised representation learning. It is based on two key components: (i) segmentation of time series into subseries-level patches which are served as input tokens to Transformer; (ii) channel-independence where each channel contains a single univariate time series that shares the same embedding and Transformer weights across all the series. Patching design naturally has three-fold benefit: local semantic information is retained in the embedding; computation and memory usage of the attention maps are quadratically reduced given the same look-back window; and the model can attend longer history. Our channel-independent patch time series Transformer (PatchTST) can improve the long-term forecasting accuracy significantly when compared with that of SOTA Transformer-based models. We also apply our model to self-supervised pre-training tasks and attain excellent fine-tuning performance, which outperforms supervised training on large datasets. Transferring of masked pre-trained representation on one dataset to others also produces SOTA forecasting accuracy. Code is available at: https://github.com/yuqinie98/PatchTST.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-11-27T05:15:42Z</published>
+    <arxiv:comment>Accepted by ICLR 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yuqi Nie</name>
+    </author>
+    <author>
+      <name>Nam H. Nguyen</name>
+    </author>
+    <author>
+      <name>Phanwadee Sinthong</name>
+    </author>
+    <author>
+      <name>Jayant Kalagnanam</name>
+    </author>
+  </entry>
+</feed>

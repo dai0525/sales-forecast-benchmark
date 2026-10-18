@@ -71,25 +71,24 @@ def main():
     dm = load_models()
     y, te, ids = load()
     N = len(ids)
-    scale = y.mean(axis=1, keepdims=True)
+    scale = y[:, :-H].mean(axis=1, keepdims=True)
     scale[scale <= 0] = 1.0
     ys = y / scale
     ts = te / scale
-    Xtr, Ytr = make_windows(ys)
-    order = np.random.permutation(len(Xtr))
-    Xtr, Ytr = Xtr[order], Ytr[order]
-    n_val = max(1, int(0.12 * len(Xtr)))
-    Xva, Yva = torch.from_numpy(Xtr[:n_val]), torch.from_numpy(Ytr[:n_val])
-    Xtr, Ytr = torch.from_numpy(Xtr[n_val:]), torch.from_numpy(Ytr[n_val:])
+    Xtr, Ytr = make_windows(ys[:, :-H])
+    Xtr, Ytr = torch.from_numpy(Xtr), torch.from_numpy(Ytr)
+    Xva = torch.from_numpy(ys[:, -H-INPUT:-H].astype(np.float32))
+    Yva = torch.from_numpy(ys[:, -H:].astype(np.float32))
+    n_val = N
     Xte = torch.from_numpy(ys[:, -INPUT:].astype(np.float32))
     print(f"序列 {N}，训练窗口 {len(Xtr)}，验证 {n_val}", flush=True)
 
     builders = {
-        "nhits": ("N-HiTS", lambda: dm.NHITS(h=H), "https://github.com/Nixtla/neuralforecast"),
-        "nbeatsx": ("N-BEATSx", lambda: dm.NBEATS(h=H), "https://github.com/Nixtla/neuralforecast"),
-        "tft": ("TFT", lambda: dm.TFT(h=H), "https://github.com/google-research/google-research/tree/master/tft"),
+        "nhits": ("Pooled residual MLP (NHITS-inspired)", lambda: dm.NHITS(h=H), "https://github.com/Nixtla/neuralforecast"),
+        "nbeatsx": ("N-BEATS-style (no exogenous inputs)", lambda: dm.NBEATS(h=H, period=52), "https://github.com/Nixtla/neuralforecast"),
+        "tft": ("TFT-style median model", lambda: dm.TFT(h=H), "https://github.com/google-research/google-research/tree/master/tft"),
         "patchtst": ("PatchTST", lambda: dm.PatchTST(h=H), "https://github.com/yuqinie98/PatchTST"),
-        "deepar": ("DeepAR-LSTM", lambda: dm.DeepARLSTM(h=H), "https://github.com/awslabs/gluonts"),
+        "deepar": ("Direct Gaussian LSTM (not DeepAR)", lambda: dm.DeepARLSTM(h=H), "https://github.com/awslabs/gluonts"),
     }
     results, artifacts = {}, {}
     STEPS = int(__import__("os").environ.get("STEPS", "260"))
@@ -151,6 +150,7 @@ def main():
                                 reproduced=True, repo=repo,
                                 params=sum(p.numel() for p in model.parameters()))
             print(f"{name:12s} WAPE {wape:.4f} sMAPE {smape:.4f} {time.time()-t0:.0f}s", flush=True)
+            np.savez_compressed(DATA / f"weekly_{mid}_preds.npz", preds=pred, ids=np.array(ids))
             artifacts[mid] = dict(model=model, pred=pred, scale=scale, dm=dm)
         except Exception as e:  # noqa: BLE001
             import traceback
@@ -164,12 +164,15 @@ def main():
     base_p = WEB / "bench.json"
     base = json.loads(base_p.read_text(encoding="utf-8")) if base_p.exists() else {"models": []}
     dl_models = [v for v in results.values()]
-    base["models"] = [m for m in base["models"] if m.get("family") != "deep"] + dl_models
+    base["models"] = [m for m in base["models"] if m.get("id") not in results] + dl_models
     for m in base["models"]:
         m["short"] = m.get("short") or m.get("name", "")
     base_p.write_text(json.dumps(base, ensure_ascii=False, indent=1), encoding="utf-8")
+    metrics_path = ROOT / "repro" / "metrics_deep.json"
+    merged_results = json.loads(metrics_path.read_text()) if metrics_path.exists() else {}
+    merged_results.update(results)
     (ROOT / "repro" / "metrics_deep.json").write_text(
-        json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
+        json.dumps(merged_results, ensure_ascii=False, indent=1), encoding="utf-8")
 
     # ---------- 前端交互产物（用第 0 条演示序列的真实输出） ----------
     demo = json.loads((DATA / "demo_series_weekly.json").read_text(encoding="utf-8"))
@@ -188,7 +191,7 @@ def main():
             with torch.no_grad():
                 x = torch.from_numpy((yv[-INPUT:] / artifacts["nhits"]["scale"][i0]).astype(np.float32)).unsqueeze(0)
                 _ = m(x)
-                stacks = getattr(m, "last_stacks", None)
+                stacks = getattr(m, "last_blocks", None)
                 if stacks is not None:
                     st = stacks[0].numpy() * artifacts["nhits"]["scale"][i0]
                     for b in range(st.shape[0]):
@@ -213,8 +216,8 @@ def main():
             with torch.no_grad():
                 xs = torch.from_numpy((yv[-INPUT:] / a["scale"][i0]).astype(np.float32)).unsqueeze(0)
                 for _ in range(20):
-                    if hasattr(model, "sample_paths"):
-                        s = model.sample_paths(xs)[0].numpy() * a["scale"][i0]
+                    if hasattr(model, "sample"):
+                        s = model.sample(xs, n_samples=1, seed=100 + _)[0, 0].numpy() * a["scale"][i0]
                     else:
                         s = pr
                     samples.append(tolist(s))
@@ -237,13 +240,13 @@ def main():
             with torch.no_grad():
                 x = torch.from_numpy((yv[-INPUT:] / a["scale"][i0]).astype(np.float32)).unsqueeze(0)
                 _ = model(x)
-                w = getattr(model, "last_var_weights", None)
+                w = getattr(model, "last_var_w", None)
                 names = getattr(dm, "TFT_VARS", [f"var{i}" for i in range(8)])
                 if w is not None:
-                    w = w[0].detach().numpy().ravel()
+                    w = w[0].detach().numpy().mean(axis=0)
                     vi = [{"name": names[i] if i < len(names) else f"var{i}", "weight": round(float(w[i]), 4)}
                           for i in np.argsort(-w)[:8]]
-                at = getattr(model, "last_attention", None)
+                at = getattr(model, "last_attn", None)
                 if at is not None:
                     at = at[0].detach().numpy().mean(axis=0).ravel()[-28:]
                     at = at / max(at.sum(), 1e-9)
@@ -268,7 +271,7 @@ def main():
             with torch.no_grad():
                 x = torch.from_numpy((yv[-INPUT:] / a["scale"][i0]).astype(np.float32)).unsqueeze(0)
                 _ = model(x)
-                at = getattr(model, "last_patch_attention", None)
+                at = getattr(model, "last_attn", None)
                 if at is not None:
                     at = at[0].detach().numpy().mean(axis=0).ravel()
                     at = at / max(at.sum(), 1e-9)

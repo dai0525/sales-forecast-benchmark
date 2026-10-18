@@ -1,0 +1,17 @@
+{
+  "individual": {
+    "FG-MP": 0.08706,
+    "BSTS": 0.0784,
+    "SeasonalNaive": 0.15553
+  },
+  "combos": {
+    "FG-MP + BSTS（算术平均）": 0.08014,
+    "FG-MP + BSTS（几何平均）": 0.07979,
+    "FG-MP + BSTS（中位数）": 0.08014,
+    "FG + BSTS + SN（算术平均）": 0.09559,
+    "FG×2 + BSTS（偏 FG）": 0.08193,
+    "FG + BSTS×2（偏 BSTS）": 0.07887
+  },
+  "oracle_series": 0.06546,
+  "best": "FG + BSTS×2（偏 BSTS）"
+}

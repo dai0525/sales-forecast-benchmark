@@ -1,0 +1,473 @@
+{
+  "name": "BSTS (R bsts MCMC, LLT + harmonic season K4)",
+  "protocol": {
+    "package": "0.9.11",
+    "R": "R version 4.5.3 (2026-03-11)",
+    "posterior": "1.7.0",
+    "kind": "trend_harmonic_spaced12",
+    "indices": [
+      1,
+      34,
+      66,
+      99,
+      131,
+      164,
+      196,
+      229,
+      261,
+      294,
+      326,
+      359
+    ],
+    "ids": [
+      "W1",
+      "W34",
+      "W66",
+      "W99",
+      "W131",
+      "W164",
+      "W196",
+      "W229",
+      "W261",
+      "W294",
+      "W326",
+      "W359"
+    ],
+    "niter": 4000,
+    "burn": 2000,
+    "chains": 2,
+    "horizon": 13,
+    "seed_rule": "20261018 + series_index*100 + chain",
+    "priors": "default",
+    "prior_note": "default: original package defaults; regularized: innovation SdPrior(.01*sd(y),sample.size=32, upper.limit=sd(y)), observation prior remains default; all scales from train only.",
+    "point_forecast": "Mean of posterior predictive distribution, then clip at zero in Python",
+    "diagnostics": "rank-normalized split Rhat, bulk/tail ESS for sampled SDs and final level/slope; target Rhat<=1.01 and ESS>=400",
+    "covariates": "None in M4. No fabricated regression predictors; spike-and-slab regression inapplicable.",
+    "model": "AddLocalLinearTrend + AddTrig(period=52, frequencies=1:4, method=harmonic)",
+    "workers": 2,
+    "cache_signature": {
+      "train_md5": "e11a8692b369d66a42fe5a0d5ac5b0ac",
+      "ids_md5": "777783c50794606a99785bb8b87e4e8c",
+      "source_md5": "6ed3cd10d7597ffc63a80ddfcdc43507",
+      "kind": "trend_harmonic_spaced12",
+      "niter": "4000",
+      "prior": "default",
+      "seed": "20261018+i*100+chain",
+      "bsts": "0.9.11",
+      "R": "R version 4.5.3 (2026-03-11)"
+    }
+  },
+  "n_series": 12,
+  "ids": [
+    "W1",
+    "W34",
+    "W66",
+    "W99",
+    "W131",
+    "W164",
+    "W196",
+    "W229",
+    "W261",
+    "W294",
+    "W326",
+    "W359"
+  ],
+  "wape_mean": 0.08076335139605552,
+  "wape_aggregate": 0.056159614451685706,
+  "smape": 0.08412286044258319,
+  "bias_aggregate": -0.03478613163265846,
+  "posterior_median_metrics": {
+    "wape_mean": 0.08046393937988189,
+    "wape_aggregate": 0.0556284143024502,
+    "smape": 0.08363372140551856,
+    "bias_aggregate": -0.03419765026126013
+  },
+  "point_forecast": "posterior predictive mean, clipped at zero after averaging",
+  "raw_negative_point_forecasts": 0,
+  "interval95_empirical_coverage": 0.8846153846153846,
+  "interval95_mean_width": 2085.2298492324817,
+  "diagnostics": {
+    "thresholds": {
+      "rhat_max": 1.01,
+      "bulk_ess_min": 400,
+      "tail_ess_min": 400
+    },
+    "all_monitored_variables_pass": 0,
+    "predictive_all_horizons_pass": 7,
+    "series": [
+      {
+        "max_rhat": 2.127704504513868,
+        "min_bulk_ess": 2.6222490420413216,
+        "min_tail_ess": 10.918222346317156,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 2.3153280519181574,
+        "min_bulk_ess": 2.493312703503471,
+        "min_tail_ess": 11.199524964357181,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.7304817654636464,
+        "min_bulk_ess": 3.0907093357449615,
+        "min_tail_ess": 15.803903380563847,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.5410824272303456,
+        "min_bulk_ess": 3.588672672405637,
+        "min_tail_ess": 15.335588357660978,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.9631387713544353,
+        "min_bulk_ess": 2.7543980698386368,
+        "min_tail_ess": 16.505871582148064,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 2.31189672972176,
+        "min_bulk_ess": 2.50873998008716,
+        "min_tail_ess": 15.96520140343099,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.level",
+          "final.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.906257457650855,
+        "min_bulk_ess": 2.840007210745884,
+        "min_tail_ess": 12.072526708432111,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 2.0360709359137306,
+        "min_bulk_ess": 2.7590487624158144,
+        "min_tail_ess": 11.407477190903515,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.level",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.63015491168345,
+        "min_bulk_ess": 3.377503551164317,
+        "min_tail_ess": 13.714799750433635,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.453232616079861,
+        "min_bulk_ess": 3.959429656044845,
+        "min_tail_ess": 11.923868285250826,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.5923605755674328,
+        "min_bulk_ess": 3.6991047491407225,
+        "min_tail_ess": 14.709247193768045,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 2.648437954434864,
+        "min_bulk_ess": 2.370143850890107,
+        "min_tail_ess": 10.839673474443485,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.trig.1"
+        ]
+      }
+    ],
+    "predictive": [
+      {
+        "id": "W1",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0126168847364003,
+        "mean13_mcse": 66.06511790899607
+      },
+      {
+        "id": "W34",
+        "passes_all_horizons": true,
+        "max_rhat": 1.00231196319966,
+        "mean13_mcse": 1.9258048145844102
+      },
+      {
+        "id": "W66",
+        "passes_all_horizons": true,
+        "max_rhat": 1.001429474981028,
+        "mean13_mcse": 0.9033127856954322
+      },
+      {
+        "id": "W99",
+        "passes_all_horizons": false,
+        "max_rhat": 1.011150038375882,
+        "mean13_mcse": 21.038801803745802
+      },
+      {
+        "id": "W131",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0060765324658227,
+        "mean13_mcse": 0.22235746782616503
+      },
+      {
+        "id": "W164",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0414872261641994,
+        "mean13_mcse": 15.360212750284166
+      },
+      {
+        "id": "W196",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0450694264404283,
+        "mean13_mcse": 184.6471562929171
+      },
+      {
+        "id": "W229",
+        "passes_all_horizons": false,
+        "max_rhat": 1.017661231674711,
+        "mean13_mcse": 2.813756999693052
+      },
+      {
+        "id": "W261",
+        "passes_all_horizons": true,
+        "max_rhat": 1.000775224935923,
+        "mean13_mcse": 6.704859745166668
+      },
+      {
+        "id": "W294",
+        "passes_all_horizons": true,
+        "max_rhat": 1.002599059775855,
+        "mean13_mcse": 4.738177541357169
+      },
+      {
+        "id": "W326",
+        "passes_all_horizons": true,
+        "max_rhat": 1.003532682488528,
+        "mean13_mcse": 13.86460898905914
+      },
+      {
+        "id": "W359",
+        "passes_all_horizons": true,
+        "max_rhat": 1.004311687447737,
+        "mean13_mcse": 9.141407569375717
+      }
+    ]
+  },
+  "chain_metrics": [
+    {
+      "wape_mean": 0.08261355068226577,
+      "wape_aggregate": 0.05965658974572036,
+      "smape": 0.08700645253591456,
+      "bias_aggregate": -0.03875295871704318
+    },
+    {
+      "wape_mean": 0.07902031452073366,
+      "wape_aggregate": 0.052712069682394315,
+      "smape": 0.0814568690215635,
+      "bias_aggregate": -0.030819304548273727
+    }
+  ],
+  "fit_predict_sum_series_s": 421.358,
+  "run": {
+    "wall_s": 211.205,
+    "series": [
+      {
+        "index": 1,
+        "ok": true,
+        "runtime_s": 34.448
+      },
+      {
+        "index": 34,
+        "ok": true,
+        "runtime_s": 34.433
+      },
+      {
+        "index": 66,
+        "ok": true,
+        "runtime_s": 34.937
+      },
+      {
+        "index": 99,
+        "ok": true,
+        "runtime_s": 34.435
+      },
+      {
+        "index": 131,
+        "ok": true,
+        "runtime_s": 36.349
+      },
+      {
+        "index": 164,
+        "ok": true,
+        "runtime_s": 36.562
+      },
+      {
+        "index": 196,
+        "ok": true,
+        "runtime_s": 34.763
+      },
+      {
+        "index": 229,
+        "ok": true,
+        "runtime_s": 34.456
+      },
+      {
+        "index": 261,
+        "ok": true,
+        "runtime_s": 34.856
+      },
+      {
+        "index": 294,
+        "ok": true,
+        "runtime_s": 34.869
+      },
+      {
+        "index": 326,
+        "ok": true,
+        "runtime_s": 35.614
+      },
+      {
+        "index": 359,
+        "ok": true,
+        "runtime_s": 35.636
+      }
+    ],
+    "session": [
+      "R version 4.5.3 (2026-03-11)",
+      "Platform: x86_64-conda-linux-gnu",
+      "Running under: Debian GNU/Linux 13 (trixie)",
+      "",
+      "Matrix products: default",
+      "BLAS/LAPACK: /workspace/.research-tools/r-bsts/lib/libopenblasp-r0.3.34.so;  LAPACK version 3.12.0",
+      "",
+      "locale:",
+      " [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       ",
+      " [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   ",
+      " [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          ",
+      "[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   ",
+      "",
+      "time zone: Etc/UTC",
+      "tzcode source: system (glibc)",
+      "",
+      "attached base packages:",
+      "[1] stats     graphics  grDevices utils     datasets  methods   base     ",
+      "",
+      "other attached packages:",
+      "[1] jsonlite_2.0.0      posterior_1.7.0     bsts_0.9.11        ",
+      "[4] xts_0.14.3          zoo_1.9-0           BoomSpikeSlab_1.2.7",
+      "[7] Boom_0.9.17        ",
+      "",
+      "loaded via a namespace (and not attached):",
+      " [1] tensorA_0.36.2.1     backports_1.5.1      lattice_0.23-1      ",
+      " [4] magrittr_2.0.5       glue_1.8.1           abind_1.4-8         ",
+      " [7] tibble_3.3.1         parallel_4.5.3       pkgconfig_2.0.3     ",
+      "[10] generics_0.1.4       lifecycle_1.0.5      cli_3.6.6           ",
+      "[13] grid_4.5.3           vctrs_0.7.3          compiler_4.5.3      ",
+      "[16] tools_4.5.3          distributional_0.9.0 checkmate_2.3.3     ",
+      "[19] pillar_1.11.1        rlang_1.3.0          MASS_7.3-66         "
+    ]
+  },
+  "status": "exploratory: finite-budget MCMC; convergence diagnostics limit interpretation; not a converged gold standard",
+  "same_ids_baselines": {
+    "State-Fourier": {
+      "wape_mean": 0.06464832235566446,
+      "wape_aggregate": 0.029317902250173607,
+      "smape": 0.06380735496140996,
+      "bias_aggregate": -0.004113842385713614
+    },
+    "UCM52-saved": {
+      "wape_mean": 0.06682894826590509,
+      "wape_aggregate": 0.03585006273358173,
+      "smape": 0.06601780180352552,
+      "bias_aggregate": 0.004968753913718445
+    },
+    "FG-original": {
+      "wape_mean": 0.08942017732187935,
+      "wape_aggregate": 0.05123495615725628,
+      "smape": 0.08704396410549052,
+      "bias_aggregate": 0.028006525418360833
+    },
+    "Naive": {
+      "wape_mean": 0.0760617948036618,
+      "wape_aggregate": 0.032389777530824185,
+      "smape": 0.07642006347263916,
+      "bias_aggregate": -0.003053166102128764
+    }
+  },
+  "paired_vs_state_fourier": {
+    "delta": 0.016115029040391048,
+    "series_bootstrap_95": [
+      -0.00852521820613732,
+      0.056966213271317095
+    ],
+    "caveat": "Treats saved MCMC point predictions as fixed; excludes Monte Carlo uncertainty and assumes independent series."
+  }
+}

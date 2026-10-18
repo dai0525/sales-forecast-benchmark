@@ -1,0 +1,41 @@
+{
+ "SeasonalNaive": {
+  "wape": 0.15552843337124897,
+  "wape_med": 0.10572352693010828,
+  "smape": 0.14516870171610155,
+  "mase": 1.1046488117668116,
+  "runtime_s": 0.0,
+  "n_series": 359,
+  "id": "seasonalnaive",
+  "name": "SeasonalNaive",
+  "family": "statistical",
+  "repo": "https://github.com/Nixtla/statsforecast",
+  "reproduced": true
+ },
+ "MovingAvg8": {
+  "wape": 0.10835652145472031,
+  "wape_med": 0.0676291478520237,
+  "smape": 0.1135060174216677,
+  "mase": 0.8006362241694723,
+  "runtime_s": 0.1,
+  "n_series": 359,
+  "id": "movingavg8",
+  "name": "MovingAvg8",
+  "family": "statistical",
+  "repo": "https://github.com/Nixtla/statsforecast",
+  "reproduced": true
+ },
+ "LightGBM": {
+  "wape": 0.08065160468051764,
+  "wape_med": 0.052041620885230844,
+  "smape": 0.07761765287977142,
+  "mase": 0.5727662498382904,
+  "runtime_s": 147.6,
+  "n_series": 359,
+  "id": "lightgbm",
+  "name": "LightGBM (全局)",
+  "family": "gbdt",
+  "repo": "https://github.com/microsoft/LightGBM",
+  "reproduced": true
+ }
+}

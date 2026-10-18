@@ -72,6 +72,7 @@ details ul{margin-bottom:12px}
 </style>
 </head>
 <body>
+<p style="padding:14px;background:#EFF4FF">审计更新：以下旧榜单为历史记录，不能代表论文算法排名。当前可核验结果见<a href="index.html#p-bench">实测成绩</a>；M4 包含多领域序列，不都是销量。部分图为教学示意。</p>
 <div class="wrap">
 
 <header class="top">
@@ -199,8 +200,8 @@ details ul{margin-bottom:12px}
   <div class="math">ŷ<sub>t</sub> = c + φ·y<sub>t−1</sub>　　φ = 0.8 时：明天 ≈ 今天的 0.8 倍 + 常数</div>
   <p>所以"自回归"没有任何玄学：<strong>它就是把 lag 当作 x 的线性回归</strong>，和后文 LightGBM 用的是同一批特征，只是拟合方式从"一条直线"换成"几百棵树"。</p>
   <h3>为什么 AutoARIMA 这么慢</h3>
-  <p>AutoARIMA 不估参数，它<strong>穷举结构</strong>：p∈{0,1,2}、d∈{0,1}、q∈{0,1,2}，季节部分 (P,D,Q)<sub>7</sub>。</p>
-  <div class="math">3 × 2 × 3 × 2 × 2 × 2 = 144 种组合 / 序列 ── 250 条序列 = 约 3.6 万次拟合</div>
+  <p>AutoARIMA 对候选结构估计参数；默认使用<strong>逐步搜索</strong>，不是穷举所有组合：p∈{0,1,2}、d∈{0,1}、q∈{0,1,2}，季节部分 (P,D,Q)<sub>7</sub>。</p>
+  <div class="math">候选数量取决于搜索边界与停止条件；每个候选仍需参数估计</div>
   <p>每一次拟合都要跑一遍参数估计和定阶检验。这就是今晚统计基线里最耗时的部分——不是它算得准，是它搜得久。</p>
   <div class="key">
     <span class="tag">教训 ④</span>
@@ -282,10 +283,10 @@ details ul{margin-bottom:12px}
   <div class="math">WAPE = Σ|预测 − 实际| / Σ|实际|</div>
   <ul>
     <li><b>它是加权的</b>：卖 1000 瓶的店误差 50 瓶和卖 10 瓶的店误差 5 瓶，权重不同。这正是你想要的——总量视角。</li>
-    <li><b>零值安全</b>：MAPE 除以实际值，遇到 0 或接近 0 的销量会爆炸。WAPE 分母是总和，不会。</li>
-    <li><b>可解释</b>：8.07% 就是"预测的总量比实际总量偏了 8%"。</li>
+    <li><b>零值安全</b>：MAPE 除以实际值，遇到 0 或接近 0 的销量会爆炸。WAPE 分母是总和，但全零窗口仍无定义。</li>
+    <li><b>可解释</b>：8.07% 就是"逐点绝对误差总和占实际总量约 8%，不是净总量偏差"。</li>
   </ul>
-  <p><b>MASE</b> 是"和 SeasonalNaive 比，你好了多少倍"：MASE &lt; 1 表示比基线强，LightGBM 是 0.573，即误差只有基线的 57%。<b>RMSE</b> 会对大误差平方惩罚，适合"缺货罚得重"的场景，但不直观。</p>
+  <p><b>MASE</b> 是"和 SeasonalNaive 比，你好了多少倍"：MASE &lt; 1 表示比基线强，LightGBM 是 0.573，即误差为训练段季节差分 MAE 的 57%，不是测试基线误差的 57%。<b>RMSE</b> 会对大误差平方惩罚，适合"缺货罚得重"的场景，但不直观。</p>
   <p>读任何一个排行榜之前先问三件事：<b>数据集是什么、预测几步、指标怎么算</b>。三个口径任何一个不同，名次就没有可比性。</p>
 </section>
 
@@ -311,7 +312,7 @@ details ul{margin-bottom:12px}
   <details>
     <summary>间歇需求、零膨胀与 log1p / Tweedie（展开）</summary>
     <ul>
-      <li>大量 0 的 SKU，用普通 L2 损失会预测出 0.3 这种无意义值。</li>
+      <li>大量 0 的 SKU，用普通 L2 损失会预测出 0.3 这样的期望值（具有统计意义）。</li>
       <li>对策：log1p 目标变换、Tweedie / Poisson 损失，或用 Croston 这类间歇需求专用方法。</li>
       <li>本工作台的 LightGBM 会在验证集上自动挑 log1p 还是 Tweedie。</li>
     </ul>
@@ -455,7 +456,7 @@ details ul{margin-bottom:12px}
 
   /* 指数权重图 */
   (function(){
-    var a=0.6,wts=[],i,cur=1;
+    var a=0.6,wts=[],i,cur=0.6;
     for(i=0;i<8;i++){wts.push(cur);cur*=(1-a);}
     var w=720,h=200,pad={l:44,r:14,t:14,b:30};
     var bw=(w-pad.l-pad.r)/wts.length*0.62, gap=(w-pad.l-pad.r)/wts.length;
@@ -483,7 +484,7 @@ details ul{margin-bottom:12px}
         'D'+(i+1)+' '+DOW[i%7],
         H[i],
         (i>=1?H[i-1]:'—'),
-        (i>=7?H[i-7]:'—'),
+        (i>=6?H[i-6]:'—'),
         r1(mean(H.slice(Math.max(0,i-6),i+1))),
         DOW[i%7],
         target

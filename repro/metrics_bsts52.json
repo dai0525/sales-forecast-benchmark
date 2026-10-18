@@ -3,7 +3,7 @@
   "n_series": 359,
   "horizon": 13,
   "season": 52,
-  "fit_runtime_s": 268.4,
+  "fit_runtime_s": 186.5,
   "wape_mean_perseries": 0.07840264648452185,
   "wape_aggregate": 0.055646867295215764,
   "n_failed": 0,

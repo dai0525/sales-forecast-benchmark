@@ -1,0 +1,15 @@
+{
+  "added_after_initial_results": true,
+  "harmonics": 4,
+  "alphabet": 3,
+  "amplitudes": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "qr": 0.2,
+  "trend_q": 0.0001,
+  "damp": 0.98,
+  "selection": "same three preceding windows per outer origin",
+  "purpose": "Check whether restricting initial MPA experiment to K<=2 caused failure; not a full K4 loopy BP sweep."
+}

@@ -1,164 +1,102 @@
 # 销量预测 Benchmark 与算法实验台
 
-在 **M4 公开数据集**（Weekly / Daily 子集）上，把统计基线、梯度提升、深度时序模型、
-贝叶斯结构时序（BSTS）以及自研的**因子图 + 消息传递（FG-MP）**原型放在同一套口径下实测对比，
-并附一个可交互的网页工作台（`web/`）解释每个算法的原理。
+在 M4 Weekly / Daily 上比较统计、全局 LightGBM、简化深度模型和状态空间模型。M4 包含多个领域，并不全是零售销量。本仓库附算法教学网页。
 
-> 所有数字都是真实跑出来的，脚本可复现；**包含负结果**（见「已知结论 / 负结果」）。
+本次审计以提交 `83f3947` 为起点，修正数据污染、验证泄漏、测试集选参、模型命名和导出问题。原报告与指标保存在 `audit/original/`；完整问题清单见 [AUDIT.md](AUDIT.md)，技术分析、论文与开源项目见 [REPORT-MPA.md](REPORT-MPA.md)。
 
----
+## 核验后的 Weekly 结果
 
-## 1. 实测榜单（Weekly，359 条序列，预测 13 周）
+359 条序列，最近 200 点训练，官方测试 13 步；主指标是每条序列 WAPE 的平均值。原始训练长度不足 200 的 65 条沿用原协议首值左填充。下表由保存的全量预测与 ID 重算，来源为 [机器可读结果](audit/results/benchmark.json)。
 
-指标：**逐序列 WAPE 取均值**（不是总量加权），详见 §4。
+| 模型 | 平均 WAPE | 总量 WAPE |
+|---|---:|---:|
+| **联合状态 Fourier（本次改进）** | **7.313%** | **5.476%** |
+| UCM52（MLE，原称 BSTS） | 7.840% | 5.565% |
+| LightGBM（修正训练样本） | 7.960% | 5.713% |
+| BSTS MCMC†（原版 R 包） | 7.981% | 5.734% |
+| PatchTST | 8.132% | 5.989% |
+| 原 FG backfitting | 8.706% | 5.980% |
+| Naive | 9.001% | 6.340% |
+| NHITS-inspired pooled residual MLP | 9.360% | 6.713% |
+| TFT-style 中位数模型 | 10.463% | 8.311% |
+| MovingAvg8 | 10.836% | 7.840% |
+| N-BEATS-style（无外生变量） | 11.864% | 8.335% |
+| 直接多步 Gaussian LSTM | 13.600% | 10.422% |
+| SeasonalNaive52 | 15.553% | 13.249% |
 
-| 排名 | 模型 | WAPE | 总量加权 WAPE | 耗时（359 条） |
-|---|---|---|---|---|
-| 1 | BSTS（局部水平 + 随机季节 m=52，MLE） | **7.84%** | 5.56% | 268 s |
-| 2 | LightGBM（全局模型，22 维特征） | 8.06% | — | 148 s |
-| 3 | PatchTST | 8.49% | — | 575 s |
-| 4 | **FG-MP（因子图 + 高斯消息传递，本仓库自研原型）** | **8.71%** | 5.98% | **0.3 s** |
-| 5 | N-HiTS | 8.88% | — | — |
-| 6 | TFT | 9.76% | — | — |
-| 7 | N-BEATSx | 10.48% | — | — |
-| 8 | MovingAvg8 | 10.84% | — | — |
-| 9 | SeasonalNaive（52 周） | 15.55% | 13.25% | 0 s |
+† BSTS 使用两条短链，359 条均完成，但没有序列的全部监控参数通过严格收敛阈值；这是有限预算的探索性成绩，不能作为 BSTS 能力上限。详见 [采样诊断与结果](BSTS-MCMC.md)。
 
-Daily（1000 条序列，统计基线 / 深度模型分别跑）：
+原 FG 和 UCM 的主要数字从头复现一致。旧 LightGBM 和深度榜单缺完整预测，不能逐点证实；上表是修正后重新训练的结果。深度模型使用 260 步固定预算、时间验证，保留最佳检查点，没有用验证目标梯度重新拟合；它们多为简化实现，不代表同名论文的最佳水平。各模型调参预算也不相等。
 
-| 类 | 模型 | WAPE | 备注 |
-|---|---|---|---|
-| 统计 | AutoARIMA | **2.36%** | 250 条子集，`stepwise=True`，约 94 个候选，1097 s |
-| 统计 | AutoETS | 3.43% | 1000 条 |
-| 统计 | Theta | 3.47% | |
-| 统计 | Croston | 3.98% | |
-| 统计 | SeasonalNaive | 4.44% | |
-| 深度 | N-HiTS | 3.14% | 300 条 |
-| 深度 | N-BEATSx | 3.31% | |
-| 深度 | DeepAR | 5.21% | |
+**新模型在官方测试段有提升，但没有稳定胜过 UCM。** 三个嵌套历史窗口中只赢一个；平均 WAPE 为 7.864%，UCM 为 7.670%。详见 [历史回测](audit/results/rolling_summary.md)。公开测试已被原项目反复查看，本次是探索性验证，不能称全新盲测。
 
----
+## 研究结论
 
-## 2. 仓库结构
+原 FG 是条件 Kalman 平滑与启发式交替拟合，不是完整联合 BP 或严格 EM。BP 与 Kalman 的等价要求相同的链式线性高斯模型、参数和先验，不能据此推导不同预测模型“精度不可能提高”。
 
-```
-.
-├── repro/                       # 所有可运行的实验脚本（核心）
-│   ├── common.py                # 数据加载、滑窗切分、WAPE/MASE/sMAPE
-│   ├── fetch_m4.py              # 下载 M4 原始数据（Daily/Weekly CSV）
-│   ├── prep_weekly.py           # 预处理：M4 Weekly → data/weekly.npz
-│   ├── bench_base.py            # 统计基线：Naive/SeasonalNaive/MA/Theta/ETS/ARIMA/Croston
-│   ├── baselines.py             # 统计基线（statsforecast 版，日度 1000 条）
-│   ├── lgbm_global.py           # 全局 LightGBM（递归多步，22 维特征）
-│   ├── deep_models.py           # 深度模型定义（PatchTST/N-HiTS/TFT/N-BEATSx/DeepAR）
-│   ├── bench_deep.py            # 深度模型训练与评估
-│   ├── bsts.py                  # BSTS 结构模型（statsmodels UCM，season=13）
-│   ├── bsts52.py                # BSTS season=52 全量（榜单第 1 名）
-│   ├── bsts_val.py              # BSTS 在训练段内部验证窗口的预测（元策略用）
-│   ├── fg_mp.py                 # ★ FG-MP：因子图 + 高斯消息传递（本仓库的研究原型）
-│   ├── ensemble_eval.py         # 融合实验：FG × BSTS × SeasonalNaive
-│   ├── fg_select.py             # 元策略：验证窗口硬选择 / 精度加权融合
-│   ├── toy_gbdt.py              # 教学：逐棵树看 GBDT 残差收敛
-│   └── export_web.py            # 把结果导出成 web/data/*.json
-├── data/                        # 小体积数据（大文件见 .gitignore，可重新下载）
-│   ├── weekly.npz               # Weekly 359×200 train + 359×13 test（已对齐）
-│   ├── fg_preds.npz             # FG-MP 测试段预测
-│   ├── bsts_preds.npz           # BSTS 测试段预测
-│   ├── bsts_val_preds.npz       # BSTS 验证段预测
-│   └── lgbm_preds*.npz
-├── web/                         # 可交互工作台（纯静态 HTML/CSS/JS）
-│   ├── index.html               # 算法讲解 / 实测成绩 / 论文库 / 怎么用
-│   ├── principles.html          # 从零开始（机制详解版，含 10 张 SVG 图）
-│   └── data/bench.json          # 榜单数据（唯一真相源）
-├── REPORT-MPA.md                # ★ MPA/因子图用于销量预测的调研 + 可行性 + 实测报告
-├── CONTRACT.md                  # 指标口径与发布约定
-├── MERGE-NOTE.md                # 工作台与原理页的分工约定
-└── requirements.txt
-```
+新实现使用独立季节系数、阻尼趋势及完整联合协方差更新，属于成熟状态空间与 Fourier 季节方法的工程改进。它证明原实现仍有改进空间，但不构成新的消息传播理论。仅凭总销量无法唯一识别真实促销、价格等因果贡献。下一阶段应在带日期、价格、库存和可预知促销的真实零售数据上，与 UCM 和全局 LightGBM 做多起点对照，再判断是否需要商品关系图。
 
----
+## Daily 核验范围
 
-## 3. 快速开始
+已按官方测试 CSV 与 ID 重算已存预测。1000 条上 Naive 3.4056%、AutoETS 3.4324%、Theta 3.4658%、当前 LightGBM log1p 3.6959%。AutoARIMA 的 2.3579% 只涉及 250 条，同样 250 条的 Naive 为 2.3850%，不能直接与 1000 条榜单比较。
+
+重新下载训练 CSV 后，抽样 ID 和 Naive / SeasonalNaive 预测吻合。其它 Daily 统计模型本次未全部重新训练；Daily 深度结果缺全量预测，仍属未独立复现的历史记录。详见 [原结果核验](audit/results/saved_metrics.json)。
+
+## 复现
+
+推荐独立 Python 3.12 环境；实际依赖版本见 `requirements-audit.txt` 与 `audit/results/environment.json`。
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+python -m venv .venv
+source .venv/bin/activate
+pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+pip install -r requirements-audit.txt
 
-# 1) 拿数据（M4 官方仓库）
-python repro/fetch_m4.py            # 下载 Daily/Weekly CSV 到 data/
-python repro/prep_weekly.py         # → data/weekly.npz
+# 仓库已包含本次 Weekly 数据与保存预测；缺原始 CSV 时下载并预处理
+python repro/fetch_m4.py --only Weekly
+python repro/prep_weekly.py
 
-# 2) 统计基线
-python repro/bench_base.py
+# 快速复算保存成绩、运行新模型和检查
+python repro/audit_saved.py
+OPENBLAS_NUM_THREADS=1 python repro/audit_experiment.py
+python repro/build_audit_report.py
+pytest -q
 
-# 3) 全局 LightGBM
-python repro/lgbm_global.py
+# 从头重训 Weekly 基线、五个深度模型、新模型及嵌套回测（CPU 需数分钟以上）
+bash repro/run_audit.sh
 
-# 4) BSTS（榜单第一名）
-python repro/bsts52.py --jobs 3
-
-# 5) FG-MP 原型（超参只在训练段内部验证窗口选）
-python repro/fg_mp.py --val
-
-# 6) 融合与元策略
-python repro/ensemble_eval.py
-python repro/bsts_val.py && python repro/fg_select.py
-
-# 7) 打开工作台（纯静态，任何静态服务器都行）
+# 浏览工作台
 python -m http.server 8899 --directory web
 ```
 
----
+完整历史 Daily 模型依赖另见 `requirements.txt`。Daily 下载用 `python repro/fetch_m4.py --only Daily`；Daily 导出默认在 `web/data/daily/`，避免覆盖 Weekly。禁用 `postdeploy.py` 的旧硬编码发布流程。
 
-## 4. 指标口径（**重要，跨仓库比较前必读**）
+## 文件入口与指标
 
-```python
-WAPE = sum(|y - ŷ|) / sum(|y|)          # 单条序列内计算
-榜单 WAPE = mean(逐序列 WAPE)            # ← 榜单用的是这个
-总量加权 WAPE = sum(|y-ŷ|)/sum(|y|)      # 全序列汇总，通常更小
-```
+- `repro/fg_state.py`：新联合状态模型；`audit_experiment.py`：训练内选参、消融和配对 bootstrap；`audit_rolling.py`：嵌套历史回测。
+- `repro/fg_mp.py`：保留原算法作数值回归；`bsts52.py`：UCM52；`bench_base.py`：Weekly 基线与 LightGBM；`bench_deep.py`：Weekly 深度训练。
+- `repro/build_audit_report.py`：从保存预测生成榜单，更新 `web/data/bench.json`；`audit/results/`：协议、预测、指标、环境、文献核验和浏览器截图。
+- `tests/test_audit.py`：高斯条件分布独立校验、数据隔离、时间切分等回归测试。
+- `web/`：静态教学工作台；滑块/注意力图不等同于重新训练或因果解释。旧教学页硬编码榜单已标为历史。
 
-**三个容易踩的坑**（都真实发生过）：
+单条 WAPE = Σ|y−ŷ| / Σ|y|；平均 WAPE 对每条序列等权，总量 WAPE 将所有分子与分母先汇总。后者不是净总量偏差。零分母在新审计评估器中报错，不静默丢弃。不同数据子集、预测步长和指标口径不可直接排名。本表不使用 M4 官方 OWA，因此不能与官方 OWA 榜单直接比较。
 
-1. **季节周期**：`SeasonalNaive` 与 BSTS 早期版本一个用 52 周、一个用 13 周，
-   直接比较会得出"BSTS 8.79% 打败 SeasonalNaive 15.55%"的错误结论。
-   统一到 52 后：BSTS **7.84%**、SeasonalNaive **15.55%**，才可比。
-2. **子集 vs 全量**：60 条子集上 BSTS(m=52) 是 9.61%，全量 359 条是 7.84%。子集不可外推。
-3. **逐序列均值 vs 总量加权**：同一模型可以差 1–2 个百分点（BSTS 逐序列 7.84% / 总量 5.56%）。
+数据来源：[M4 Competition](https://github.com/Mcompetitions/M4-methods)。License：MIT。
 
----
+## 补充消融：消息传播到底有没有用？
 
-## 5. 已知结论 / 负结果（对分析者最有价值的部分）
+已完成固定结构/参数的跨成分协方差消融，以及等价精度更新对照。完整更新 7.313%，切断跨成分协方差 11.185%，重新选参 9.319%；等价求解器结果一致。证据支持保留成分间后验依赖，但不支持“MPA 胜过 Kalman”。详见 [消融报告](MESSAGE-ABLATION.md)。
 
-1. **FG-MP 没有打赢 BSTS**（8.71% vs 7.84%）。原因是数学上的：
-   线性高斯因子图上的 sum-product 消息传播**等价于卡尔曼滤波**，
-   所以"用 MPA 做加性分解"与结构时序是同一个估计量，不可能指望它更好。
-2. **FG-MP 与 BSTS 的误差相关系数 0.900**，融合后反而更差
-   （算术平均 8.01% / 几何平均 7.98% / 中位数 8.01%）。
-3. **逐序列选模型也失败**（8.33%）：13 点验证窗口太短，选择噪声大于信号；
-   BSTS 在验证段 6.88% → 测试段 7.84%（衰减 0.96 pp），FG-MP 8.03% → 8.71%。
-   而 oracle（每序列选真正最优）是 6.55%，说明**空间存在，只是选不出来**。
-4. **FG-MP 唯一的确定收益是速度**：0.84 ms/序列 vs BSTS 0.75 s/序列（约 900×）。
-   10 万 SKU：FG-MP 约 84 秒，BSTS 约 21 小时。
-5. **加性分解的可辨识性来自约束，不来自算法**：尺度自由度（`λ·S` 缩放不变）、
-   水平–季节混淆、因子旋转，三者必须靠零和约束 / 单位范数 / 外生变量钉死。
-   详见 `REPORT-MPA.md` §2。
+第二轮进一步固定同一概率模型，对比一次分离、反复反馈、两种更新顺序、精确批量求解和历史验证早停，见 [迭代消融报告](MESSAGE-ITERATIONS.md)。充分迭代改善一次分离，但收敛后与 Kalman 同解。
 
----
+## 通信式 MPA 阶段性结项
 
-## 6. 报告
+已补做真正的有限码本 sum-product、稀疏通信正对照、同模型枚举、四窗口回测、6,561状态容量检查与因子分组诊断。当前销量迁移路线未显示稳定收益，建议暂停；不把结论外推为所有图模型无效。详见 [通信MPA结项报告](COMMUNICATION-MPA.md)。补充实验中的连续先验收缩结果属于探索性发现，原排行榜保持不变。
 
-- [`REPORT-MPA.md`](REPORT-MPA.md) — MPA / 因子图 / Belief Propagation / GAM·EBM / BART / BSTS 调研，
-  可辨识性证明，FG-MP 架构与消息更新式，全部实测数字，论文与开源项目链接。
+## 原创性核查与原版 BSTS
 
----
+已核对 DHR、TBATS、BSTS 官方组件及直接相关论文。State-Fourier 可通过状态变换写成已有模型，现阶段应定位工程/实证贡献，不能宣称新模型族。详见 [先行研究与论文定位](PRIOR-ART-STATE-FOURIER.md)。
 
-## 7. 致谢与数据来源
+新增原作者 R `bsts` 包的真正 MCMC 基线，包含参数后验采样、链诊断、全量预测和固定子集的原论文风格季节结构。配置及有限采样预算的限制见 [BSTS-MCMC.md](BSTS-MCMC.md)；R 环境由 `environment-bsts.yml` 定义，入口为 `repro/bench_bsts_mcmc.py`。它和之前仅做 MLE 的 UCM52 是不同实验。
 
-- 数据：[M4 Competition](https://github.com/Mcompetitions/M4-methods)（公开数据集）
-- 部分基线实现参考 `statsforecast`、`statsmodels`、`pytorch-lightning`
-- 网页工作台的算法讲解由多个 AI 协作产出（见 `MERGE-NOTE.md`）
-
-## 8. License
-
-MIT
+后续补充：[BSTS 收敛与先验敏感性实验](BSTS-SENSITIVITY.md)，在固定12条上比较采样预算和先验强度，结果与全量榜单分开保存。

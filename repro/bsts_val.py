@@ -52,7 +52,7 @@ def main():
     res = Parallel(n_jobs=3, backend="loky")(delayed(fit_one)(Ytr[i]) for i in range(len(ids)))
     preds = np.zeros((len(ids), H))
     for i, r in enumerate(res):
-        preds[i] = r if r is not None else Yva[i - 0].mean()
+        preds[i] = r if r is not None else Ytr[i, -SEASON:-SEASON + H]
     w = float(np.mean(np.abs(preds - Yva).sum(1) / np.maximum(np.abs(Yva).sum(1), 1e-9)))
     print(json.dumps({"n": len(ids), "val_wape": round(w, 5), "failed": sum(r is None for r in res)},
                      ensure_ascii=False))

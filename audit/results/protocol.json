@@ -1,0 +1,464 @@
+{
+  "origins": [
+    161,
+    174,
+    187
+  ],
+  "horizon": 13,
+  "tail": 200,
+  "grid": [
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    }
+  ],
+  "selection": "mean per-series WAPE across all three validation origins",
+  "seed": 42,
+  "test_used_for_selection": false
+}

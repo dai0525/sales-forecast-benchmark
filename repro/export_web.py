@@ -70,6 +70,7 @@ def main() -> int:
 
     bench = np.load(common.DATA / "bench_preds.npz", allow_pickle=False)
     lgbm = np.load(common.DATA / "lgbm_preds.npz", allow_pickle=False)
+    assert list(lgbm["ids"]) == ids, "LightGBM IDs differ"
     assert list(bench["ids"]) == ids, "bench preds were made for a different series set"
 
     preds: dict[str, np.ndarray] = {}
@@ -166,7 +167,7 @@ def main() -> int:
         },
         "series": out_series,
     }
-    web = common.ROOT / "web" / "data" / "series.json"
+    web = common.ROOT / "web" / "data" / "daily" / "series.json"
     common.write_json(web, payload)
     print(f"[web  ] {web.relative_to(common.ROOT)}: {len(out_series)} series "
           f"({', '.join(s['id'] + ':' + s['category'] for s in out_series)})", flush=True)

@@ -1,0 +1,30 @@
+{
+ "patchtst": {
+  "id": "patchtst",
+  "name": "PatchTST",
+  "family": "deep",
+  "wape": 0.08491428780263542,
+  "wape_med": 0.06436074422222776,
+  "smape": 0.08627764176951187,
+  "runtime_s": 574.9,
+  "n_series": 359,
+  "reproduced": true,
+  "repo": "https://github.com/yuqinie98/PatchTST",
+  "params": 77901,
+  "short": "PatchTST"
+ },
+ "deepar": {
+  "id": "deepar",
+  "name": "DeepAR-LSTM",
+  "family": "deep",
+  "wape": 0.18645209688309336,
+  "wape_med": 0.12896488035965226,
+  "smape": 0.16751348749406259,
+  "runtime_s": 2019.4,
+  "n_series": 359,
+  "reproduced": true,
+  "repo": "https://github.com/awslabs/gluonts",
+  "params": 5338,
+  "short": "DeepAR-LSTM"
+ }
+}

@@ -1,0 +1,469 @@
+{
+  "name": "BSTS (R bsts MCMC, LLT + dummy seasonal52), fixed subset",
+  "protocol": {
+    "package": "0.9.11",
+    "R": "R version 4.5.3 (2026-03-11)",
+    "posterior": "1.7.0",
+    "kind": "trend_seasonal52",
+    "indices": [
+      1,
+      34,
+      66,
+      99,
+      131,
+      164,
+      196,
+      229,
+      261,
+      294,
+      326,
+      359
+    ],
+    "ids": [
+      "W1",
+      "W34",
+      "W66",
+      "W99",
+      "W131",
+      "W164",
+      "W196",
+      "W229",
+      "W261",
+      "W294",
+      "W326",
+      "W359"
+    ],
+    "niter": 1000,
+    "burn": 500,
+    "chains": 2,
+    "horizon": 13,
+    "seed_rule": "20261018 + series_index*100 + chain",
+    "priors": "default",
+    "prior_note": "default: original package defaults; regularized: innovation SdPrior(.01*sd(y),sample.size=32, upper.limit=sd(y)), observation prior remains default; all scales from train only.",
+    "point_forecast": "Mean of posterior predictive distribution, then clip at zero in Python",
+    "diagnostics": "rank-normalized split Rhat, bulk/tail ESS for sampled SDs and final level/slope; target Rhat<=1.01 and ESS>=400",
+    "covariates": "None in M4. No fabricated regression predictors; spike-and-slab regression inapplicable.",
+    "model": "AddLocalLinearTrend + AddSeasonal(nseasons=52)",
+    "workers": 1
+  },
+  "n_series": 12,
+  "ids": [
+    "W1",
+    "W34",
+    "W66",
+    "W99",
+    "W131",
+    "W164",
+    "W196",
+    "W229",
+    "W261",
+    "W294",
+    "W326",
+    "W359"
+  ],
+  "wape_mean": 0.0868872588964716,
+  "wape_aggregate": 0.061580570324275066,
+  "smape": 0.09268043592978985,
+  "bias_aggregate": -0.04883262227181688,
+  "posterior_median_metrics": {
+    "wape_mean": 0.08650880055351885,
+    "wape_aggregate": 0.060705821075697934,
+    "smape": 0.0920695991689658,
+    "bias_aggregate": -0.04785893052589689
+  },
+  "point_forecast": "posterior predictive mean, clipped at zero after averaging",
+  "raw_negative_point_forecasts": 0,
+  "interval95_empirical_coverage": 0.8717948717948718,
+  "interval95_mean_width": 1825.6290570568053,
+  "diagnostics": {
+    "thresholds": {
+      "rhat_max": 1.01,
+      "bulk_ess_min": 400,
+      "tail_ess_min": 400
+    },
+    "all_monitored_variables_pass": 0,
+    "predictive_all_horizons_pass": 6,
+    "series": [
+      {
+        "max_rhat": 1.9488625765081922,
+        "min_bulk_ess": 2.785811607465799,
+        "min_tail_ess": 14.662221285305622,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.4536476574567525,
+        "min_bulk_ess": 3.9769839121049406,
+        "min_tail_ess": 34.00007717153471,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.5171445432677588,
+        "min_bulk_ess": 3.685241213924071,
+        "min_tail_ess": 11.341148675262739,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.level",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.8530252702421903,
+        "min_bulk_ess": 2.96626731807993,
+        "min_tail_ess": 19.251746666899884,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 2.0103609091746546,
+        "min_bulk_ess": 2.725625907883594,
+        "min_tail_ess": 14.128107184967492,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.4798056122618295,
+        "min_bulk_ess": 4.03115930214537,
+        "min_tail_ess": 21.006134803706527,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.level",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.315391550002283,
+        "min_bulk_ess": 4.951198117029264,
+        "min_tail_ess": 23.90312382125802,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.5235581638121265,
+        "min_bulk_ess": 3.7781996664478266,
+        "min_tail_ess": 14.300717437937868,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.6761000465540175,
+        "min_bulk_ess": 3.209451469278454,
+        "min_tail_ess": 12.701946668719104,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.6773117433509745,
+        "min_bulk_ess": 3.2546135762857564,
+        "min_tail_ess": 19.349195110113047,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.9618019137418434,
+        "min_bulk_ess": 2.9196678995946663,
+        "min_tail_ess": 11.988888082748733,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.level",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      },
+      {
+        "max_rhat": 1.92745224891367,
+        "min_bulk_ess": 2.797805760957315,
+        "min_tail_ess": 11.33580053769389,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.seasonal"
+        ]
+      }
+    ],
+    "predictive": [
+      {
+        "id": "W1",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0424121681969432,
+        "mean13_mcse": 195.02049983211333
+      },
+      {
+        "id": "W34",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0033115746372279,
+        "mean13_mcse": 3.0993120722634884
+      },
+      {
+        "id": "W66",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0083781487566035,
+        "mean13_mcse": 1.7719217073228353
+      },
+      {
+        "id": "W99",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0488743514536791,
+        "mean13_mcse": 48.900814892990695
+      },
+      {
+        "id": "W131",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0082409462093873,
+        "mean13_mcse": 0.3332801385114828
+      },
+      {
+        "id": "W164",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0425979947309443,
+        "mean13_mcse": 40.42616522035612
+      },
+      {
+        "id": "W196",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0049370391550365,
+        "mean13_mcse": 57.899304623861866
+      },
+      {
+        "id": "W229",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0067199669279376,
+        "mean13_mcse": 1.6249375446468886
+      },
+      {
+        "id": "W261",
+        "passes_all_horizons": false,
+        "max_rhat": 1.0108534554185313,
+        "mean13_mcse": 11.196527464290078
+      },
+      {
+        "id": "W294",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0073527790271193,
+        "mean13_mcse": 9.6195642473795
+      },
+      {
+        "id": "W326",
+        "passes_all_horizons": true,
+        "max_rhat": 1.008191052213657,
+        "mean13_mcse": 18.05737115236376
+      },
+      {
+        "id": "W359",
+        "passes_all_horizons": true,
+        "max_rhat": 1.005235944921977,
+        "mean13_mcse": 13.027561261043195
+      }
+    ]
+  },
+  "chain_metrics": [
+    {
+      "wape_mean": 0.08790970131860293,
+      "wape_aggregate": 0.06478470059999882,
+      "smape": 0.0941687157528207,
+      "bias_aggregate": -0.052027402354341626
+    },
+    {
+      "wape_mean": 0.08593023812291527,
+      "wape_aggregate": 0.058435840162571605,
+      "smape": 0.09127985814415927,
+      "bias_aggregate": -0.04563784218929212
+    }
+  ],
+  "fit_predict_sum_series_s": 374.00300000000004,
+  "run": {
+    "wall_s": 374.341,
+    "series": [
+      {
+        "index": 1,
+        "ok": true,
+        "runtime_s": 30.8
+      },
+      {
+        "index": 34,
+        "ok": true,
+        "runtime_s": 30.619
+      },
+      {
+        "index": 66,
+        "ok": true,
+        "runtime_s": 31.062
+      },
+      {
+        "index": 99,
+        "ok": true,
+        "runtime_s": 30.977
+      },
+      {
+        "index": 131,
+        "ok": true,
+        "runtime_s": 30.869
+      },
+      {
+        "index": 164,
+        "ok": true,
+        "runtime_s": 31.591
+      },
+      {
+        "index": 196,
+        "ok": true,
+        "runtime_s": 30.809
+      },
+      {
+        "index": 229,
+        "ok": true,
+        "runtime_s": 31.265
+      },
+      {
+        "index": 261,
+        "ok": true,
+        "runtime_s": 31.269
+      },
+      {
+        "index": 294,
+        "ok": true,
+        "runtime_s": 32.808
+      },
+      {
+        "index": 326,
+        "ok": true,
+        "runtime_s": 30.811
+      },
+      {
+        "index": 359,
+        "ok": true,
+        "runtime_s": 31.123
+      }
+    ],
+    "session": [
+      "R version 4.5.3 (2026-03-11)",
+      "Platform: x86_64-conda-linux-gnu",
+      "Running under: Debian GNU/Linux 13 (trixie)",
+      "",
+      "Matrix products: default",
+      "BLAS/LAPACK: /workspace/.research-tools/r-bsts/lib/libopenblasp-r0.3.34.so;  LAPACK version 3.12.0",
+      "",
+      "locale:",
+      " [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       ",
+      " [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   ",
+      " [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          ",
+      "[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   ",
+      "",
+      "time zone: Etc/UTC",
+      "tzcode source: system (glibc)",
+      "",
+      "attached base packages:",
+      "[1] stats     graphics  grDevices utils     datasets  methods   base     ",
+      "",
+      "other attached packages:",
+      "[1] jsonlite_2.0.0      posterior_1.7.0     bsts_0.9.11        ",
+      "[4] xts_0.14.3          zoo_1.9-0           BoomSpikeSlab_1.2.7",
+      "[7] Boom_0.9.17        ",
+      "",
+      "loaded via a namespace (and not attached):",
+      " [1] tensorA_0.36.2.1     backports_1.5.1      lattice_0.23-1      ",
+      " [4] magrittr_2.0.5       matrixStats_1.5.0    glue_1.8.1          ",
+      " [7] abind_1.4-8          tibble_3.3.1         parallel_4.5.3      ",
+      "[10] pkgconfig_2.0.3      generics_0.1.4       lifecycle_1.0.5     ",
+      "[13] cli_3.6.6            grid_4.5.3           vctrs_0.7.3         ",
+      "[16] compiler_4.5.3       tools_4.5.3          distributional_0.9.0",
+      "[19] checkmate_2.3.3      pillar_1.11.1        rlang_1.3.0         ",
+      "[22] MASS_7.3-66         "
+    ]
+  },
+  "status": "exploratory: finite-budget MCMC; convergence diagnostics limit interpretation; not a converged gold standard",
+  "same_ids_baselines": {
+    "State-Fourier": {
+      "wape_mean": 0.06464832235566446,
+      "wape_aggregate": 0.029317902250173607,
+      "smape": 0.06380735496140996,
+      "bias_aggregate": -0.004113842385713614
+    },
+    "UCM52-saved": {
+      "wape_mean": 0.06682894826590509,
+      "wape_aggregate": 0.03585006273358173,
+      "smape": 0.06601780180352552,
+      "bias_aggregate": 0.004968753913718445
+    },
+    "FG-original": {
+      "wape_mean": 0.08942017732187935,
+      "wape_aggregate": 0.05123495615725628,
+      "smape": 0.08704396410549052,
+      "bias_aggregate": 0.028006525418360833
+    },
+    "Naive": {
+      "wape_mean": 0.0760617948036618,
+      "wape_aggregate": 0.032389777530824185,
+      "smape": 0.07642006347263916,
+      "bias_aggregate": -0.003053166102128764
+    }
+  },
+  "paired_vs_state_fourier": {
+    "delta": 0.02223893654080714,
+    "series_bootstrap_95": [
+      -0.013482729659238975,
+      0.07361184259438239
+    ],
+    "caveat": "Treats saved MCMC point predictions as fixed; excludes Monte Carlo uncertainty and assumes independent series."
+  }
+}

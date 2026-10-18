@@ -1,0 +1,10 @@
+{
+  "leaderboard_unchanged": {
+    "repro/metrics_bsts_mcmc.json": true,
+    "data/weekly_bsts_mcmc_preds.npz": true,
+    "audit/results/benchmark.json": true,
+    "web/data/bench.json": true
+  },
+  "tests": "19 passed",
+  "diagnostic_report_generated_from_saved_draws": true
+}

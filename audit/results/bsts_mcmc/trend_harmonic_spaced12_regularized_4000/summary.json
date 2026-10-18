@@ -1,0 +1,455 @@
+{
+  "name": "BSTS (R bsts MCMC, LLT + harmonic season K4)",
+  "protocol": {
+    "package": "0.9.11",
+    "R": "R version 4.5.3 (2026-03-11)",
+    "posterior": "1.7.0",
+    "kind": "trend_harmonic_spaced12",
+    "indices": [
+      1,
+      34,
+      66,
+      99,
+      131,
+      164,
+      196,
+      229,
+      261,
+      294,
+      326,
+      359
+    ],
+    "ids": [
+      "W1",
+      "W34",
+      "W66",
+      "W99",
+      "W131",
+      "W164",
+      "W196",
+      "W229",
+      "W261",
+      "W294",
+      "W326",
+      "W359"
+    ],
+    "niter": 4000,
+    "burn": 2000,
+    "chains": 2,
+    "horizon": 13,
+    "seed_rule": "20261018 + series_index*100 + chain",
+    "priors": "regularized",
+    "prior_note": "default: original package defaults; regularized: innovation SdPrior(.01*sd(y),sample.size=32, upper.limit=sd(y)), observation prior remains default; all scales from train only.",
+    "point_forecast": "Mean of posterior predictive distribution, then clip at zero in Python",
+    "diagnostics": "rank-normalized split Rhat, bulk/tail ESS for sampled SDs and final level/slope; target Rhat<=1.01 and ESS>=400",
+    "covariates": "None in M4. No fabricated regression predictors; spike-and-slab regression inapplicable.",
+    "model": "AddLocalLinearTrend + AddTrig(period=52, frequencies=1:4, method=harmonic)",
+    "workers": 2,
+    "cache_signature": {
+      "train_md5": "e11a8692b369d66a42fe5a0d5ac5b0ac",
+      "ids_md5": "777783c50794606a99785bb8b87e4e8c",
+      "source_md5": "6ed3cd10d7597ffc63a80ddfcdc43507",
+      "kind": "trend_harmonic_spaced12",
+      "niter": "4000",
+      "prior": "regularized",
+      "seed": "20261018+i*100+chain",
+      "bsts": "0.9.11",
+      "R": "R version 4.5.3 (2026-03-11)"
+    }
+  },
+  "n_series": 12,
+  "ids": [
+    "W1",
+    "W34",
+    "W66",
+    "W99",
+    "W131",
+    "W164",
+    "W196",
+    "W229",
+    "W261",
+    "W294",
+    "W326",
+    "W359"
+  ],
+  "wape_mean": 0.09300157736278808,
+  "wape_aggregate": 0.07123070323748361,
+  "smape": 0.09981143381460868,
+  "bias_aggregate": -0.05967134076728517,
+  "posterior_median_metrics": {
+    "wape_mean": 0.092912511500871,
+    "wape_aggregate": 0.07125548270661639,
+    "smape": 0.0996950624861014,
+    "bias_aggregate": -0.05974051947736784
+  },
+  "point_forecast": "posterior predictive mean, clipped at zero after averaging",
+  "raw_negative_point_forecasts": 0,
+  "interval95_empirical_coverage": 0.8717948717948718,
+  "interval95_mean_width": 1993.8251552154247,
+  "diagnostics": {
+    "thresholds": {
+      "rhat_max": 1.01,
+      "bulk_ess_min": 400,
+      "tail_ess_min": 400
+    },
+    "all_monitored_variables_pass": 0,
+    "predictive_all_horizons_pass": 12,
+    "series": [
+      {
+        "max_rhat": 1.0377887698619077,
+        "min_bulk_ess": 57.064203789814556,
+        "min_tail_ess": 107.43833230979311,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.0823333641635868,
+        "min_bulk_ess": 21.98057666566257,
+        "min_tail_ess": 88.12141122623886,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.105079204813191,
+        "min_bulk_ess": 15.847335840389078,
+        "min_tail_ess": 124.85858871722718,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.0637229152784484,
+        "min_bulk_ess": 25.68947295436993,
+        "min_tail_ess": 51.504733811402765,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.0354517802375458,
+        "min_bulk_ess": 67.58342795101002,
+        "min_tail_ess": 186.60236652239067,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.022597577958845,
+        "min_bulk_ess": 76.65516358381987,
+        "min_tail_ess": 130.6596706215891,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.254834610477461,
+        "min_bulk_ess": 6.177064315080856,
+        "min_tail_ess": 56.700497556948065,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.obs",
+          "sigma.level",
+          "sigma.slope",
+          "final.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.0040127665020269,
+        "min_bulk_ess": 59.99554988305863,
+        "min_tail_ess": 164.37891025862538,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.080931123947992,
+        "min_bulk_ess": 27.175916451600898,
+        "min_tail_ess": 61.734353839605006,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.090693880732495,
+        "min_bulk_ess": 16.502379574544946,
+        "min_tail_ess": 53.229567983944214,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.0214623426771656,
+        "min_bulk_ess": 36.92567344050198,
+        "min_tail_ess": 117.20220493870492,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      },
+      {
+        "max_rhat": 1.0707920711179106,
+        "min_bulk_ess": 31.500077473929412,
+        "min_tail_ess": 52.86422653408403,
+        "passes_all": false,
+        "failed_variables": [
+          "sigma.level",
+          "sigma.slope",
+          "sigma.trig.1"
+        ]
+      }
+    ],
+    "predictive": [
+      {
+        "id": "W1",
+        "passes_all_horizons": true,
+        "max_rhat": 1.000732298800145,
+        "mean13_mcse": 22.137356129856613
+      },
+      {
+        "id": "W34",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0010506086970818,
+        "mean13_mcse": 3.6458359646055385
+      },
+      {
+        "id": "W66",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0005000115843212,
+        "mean13_mcse": 2.9951896509292233
+      },
+      {
+        "id": "W99",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0018617638161795,
+        "mean13_mcse": 4.958348635720356
+      },
+      {
+        "id": "W131",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0004503391730537,
+        "mean13_mcse": 0.21793571193499128
+      },
+      {
+        "id": "W164",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0010721763804613,
+        "mean13_mcse": 14.327248369989325
+      },
+      {
+        "id": "W196",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0063805951558535,
+        "mean13_mcse": 21.33895461662724
+      },
+      {
+        "id": "W229",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0008103474260779,
+        "mean13_mcse": 1.3148897828649841
+      },
+      {
+        "id": "W261",
+        "passes_all_horizons": true,
+        "max_rhat": 1.00135792599961,
+        "mean13_mcse": 5.19968144880717
+      },
+      {
+        "id": "W294",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0003650241414377,
+        "mean13_mcse": 3.7469801805850116
+      },
+      {
+        "id": "W326",
+        "passes_all_horizons": true,
+        "max_rhat": 1.001489286473451,
+        "mean13_mcse": 6.022298743107596
+      },
+      {
+        "id": "W359",
+        "passes_all_horizons": true,
+        "max_rhat": 1.0006749544030182,
+        "mean13_mcse": 4.781584517019127
+      }
+    ]
+  },
+  "chain_metrics": [
+    {
+      "wape_mean": 0.09345120013551356,
+      "wape_aggregate": 0.07155773951133103,
+      "smape": 0.10053513101217715,
+      "bias_aggregate": -0.060089329718953685
+    },
+    {
+      "wape_mean": 0.09256167039871621,
+      "wape_aggregate": 0.07092956438948,
+      "smape": 0.09910310431896438,
+      "bias_aggregate": -0.0592533518156167
+    }
+  ],
+  "fit_predict_sum_series_s": 417.19800000000004,
+  "run": {
+    "wall_s": 209.592,
+    "series": [
+      {
+        "index": 1,
+        "ok": true,
+        "runtime_s": 35.169
+      },
+      {
+        "index": 34,
+        "ok": true,
+        "runtime_s": 35.212
+      },
+      {
+        "index": 66,
+        "ok": true,
+        "runtime_s": 34.752
+      },
+      {
+        "index": 99,
+        "ok": true,
+        "runtime_s": 35.548
+      },
+      {
+        "index": 131,
+        "ok": true,
+        "runtime_s": 34.225
+      },
+      {
+        "index": 164,
+        "ok": true,
+        "runtime_s": 34.876
+      },
+      {
+        "index": 196,
+        "ok": true,
+        "runtime_s": 34.91
+      },
+      {
+        "index": 229,
+        "ok": true,
+        "runtime_s": 34.746
+      },
+      {
+        "index": 261,
+        "ok": true,
+        "runtime_s": 34.409
+      },
+      {
+        "index": 294,
+        "ok": true,
+        "runtime_s": 34.458
+      },
+      {
+        "index": 326,
+        "ok": true,
+        "runtime_s": 34.46
+      },
+      {
+        "index": 359,
+        "ok": true,
+        "runtime_s": 34.433
+      }
+    ],
+    "session": [
+      "R version 4.5.3 (2026-03-11)",
+      "Platform: x86_64-conda-linux-gnu",
+      "Running under: Debian GNU/Linux 13 (trixie)",
+      "",
+      "Matrix products: default",
+      "BLAS/LAPACK: /workspace/.research-tools/r-bsts/lib/libopenblasp-r0.3.34.so;  LAPACK version 3.12.0",
+      "",
+      "locale:",
+      " [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       ",
+      " [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   ",
+      " [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          ",
+      "[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   ",
+      "",
+      "time zone: Etc/UTC",
+      "tzcode source: system (glibc)",
+      "",
+      "attached base packages:",
+      "[1] stats     graphics  grDevices utils     datasets  methods   base     ",
+      "",
+      "other attached packages:",
+      "[1] jsonlite_2.0.0      posterior_1.7.0     bsts_0.9.11        ",
+      "[4] xts_0.14.3          zoo_1.9-0           BoomSpikeSlab_1.2.7",
+      "[7] Boom_0.9.17        ",
+      "",
+      "loaded via a namespace (and not attached):",
+      " [1] tensorA_0.36.2.1     backports_1.5.1      lattice_0.23-1      ",
+      " [4] magrittr_2.0.5       glue_1.8.1           abind_1.4-8         ",
+      " [7] tibble_3.3.1         parallel_4.5.3       pkgconfig_2.0.3     ",
+      "[10] generics_0.1.4       lifecycle_1.0.5      cli_3.6.6           ",
+      "[13] grid_4.5.3           vctrs_0.7.3          compiler_4.5.3      ",
+      "[16] tools_4.5.3          distributional_0.9.0 checkmate_2.3.3     ",
+      "[19] pillar_1.11.1        rlang_1.3.0          MASS_7.3-66         "
+    ]
+  },
+  "status": "exploratory: finite-budget MCMC; convergence diagnostics limit interpretation; not a converged gold standard",
+  "same_ids_baselines": {
+    "State-Fourier": {
+      "wape_mean": 0.06464832235566446,
+      "wape_aggregate": 0.029317902250173607,
+      "smape": 0.06380735496140996,
+      "bias_aggregate": -0.004113842385713614
+    },
+    "UCM52-saved": {
+      "wape_mean": 0.06682894826590509,
+      "wape_aggregate": 0.03585006273358173,
+      "smape": 0.06601780180352552,
+      "bias_aggregate": 0.004968753913718445
+    },
+    "FG-original": {
+      "wape_mean": 0.08942017732187935,
+      "wape_aggregate": 0.05123495615725628,
+      "smape": 0.08704396410549052,
+      "bias_aggregate": 0.028006525418360833
+    },
+    "Naive": {
+      "wape_mean": 0.0760617948036618,
+      "wape_aggregate": 0.032389777530824185,
+      "smape": 0.07642006347263916,
+      "bias_aggregate": -0.003053166102128764
+    }
+  },
+  "paired_vs_state_fourier": {
+    "delta": 0.028353255007123605,
+    "series_bootstrap_95": [
+      -0.0025089827226964616,
+      0.07657562115448782
+    ],
+    "caveat": "Treats saved MCMC point predictions as fixed; excludes Monte Carlo uncertainty and assumes independent series."
+  }
+}

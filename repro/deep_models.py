@@ -281,7 +281,7 @@ class NHITS(nn.Module):
 
 
 class NBEATSBlock(nn.Module):
-    def __init__(self, input_size, h, units, theta_dim, basis):
+    def __init__(self, input_size, h, units, theta_dim, basis, period=7):
         super().__init__()
         self.h = h
         layers, prev = [], input_size
@@ -292,6 +292,7 @@ class NBEATSBlock(nn.Module):
         self.fc_f = nn.Linear(prev, theta_dim)
         self.fc_b = nn.Linear(prev, input_size)
         self.basis_kind = basis
+        self.period = period
 
     def basis(self, theta, h):
         if self.basis_kind == "trend":
@@ -302,7 +303,7 @@ class NBEATSBlock(nn.Module):
         t = torch.arange(h, device=theta.device).float().unsqueeze(0)
         parts, k = [], 0
         while k + 1 < theta.shape[1]:
-            freq = (k // 2 + 1) * 2 * math.pi / 7.0
+            freq = (k // 2 + 1) * 2 * math.pi / self.period
             parts.append(theta[:, k:k + 1] * torch.cos(freq * t))
             parts.append(theta[:, k + 1:k + 2] * torch.sin(freq * t))
             k += 2
@@ -315,10 +316,10 @@ class NBEATSBlock(nn.Module):
 
 
 class NBEATS(nn.Module):
-    def __init__(self, input_size=INPUT, h=H, units=(256, 256, 256, 256)):
+    def __init__(self, input_size=INPUT, h=H, units=(256, 256, 256, 256), period=7):
         super().__init__()
         self.trend = NBEATSBlock(input_size, h, units, 3, "trend")
-        self.season = NBEATSBlock(input_size, h, units, 6, "season")
+        self.season = NBEATSBlock(input_size, h, units, 6, "season", period=period)
 
     def forward(self, x):
         f_t, b_t, th_t = self.trend(x)
@@ -470,7 +471,7 @@ class PatchTST(nn.Module):
         for i, layer in enumerate(self.encoder.layers):
             if i == last:
                 # 单独取最后一层自注意力（不参与前向，仅用于导出）
-                _, attn_map = layer.self_attn(e, e, e, need_weights=True,
+                _, attn_map = layer.self_attn(layer.norm1(e), layer.norm1(e), layer.norm1(e), need_weights=True,
                                               average_attn_weights=True)
             e = layer(e)
         self.last_attn = attn_map.detach() if attn_map is not None else None
@@ -670,7 +671,7 @@ def main():
     ap.add_argument("--only", type=str, default=None, help="逗号分隔的模型 id")
     args = ap.parse_args()
 
-    out_dir = Path(args.out) if args.out else WEB
+    out_dir = Path(args.out) if args.out else WEB / "daily"
     out_dir.mkdir(parents=True, exist_ok=True)
     torch.set_num_threads(int(os.environ.get("DL_THREADS", max(1, min(5, os.cpu_count() or 1)))))
 
@@ -689,8 +690,8 @@ def main():
         "patchtst": lambda: PatchTST(),
         "deepar": lambda: DeepARLSTM(),
     }
-    names = {"nhits": "N-HiTS", "nbeatsx": "N-BEATSx", "tft": "TFT",
-             "patchtst": "PatchTST", "deepar": "DeepAR-LSTM"}
+    names = {"nhits": "NHITS-inspired pooled MLP", "nbeatsx": "N-BEATS-style (no exogenous inputs)", "tft": "TFT-style median model",
+             "patchtst": "PatchTST", "deepar": "Direct Gaussian LSTM"}
     repos = {
         "nhits": "https://github.com/Nixtla/neuralforecast",
         "nbeatsx": "https://github.com/Nixtla/neuralforecast",
@@ -720,6 +721,7 @@ def main():
             continue
         print(f"\n=== {names[mid]} 训练开始 ===", flush=True)
         try:
+            set_seed(SEED)
             model = builder[mid]()
             n_par = sum(p.numel() for p in model.parameters())
             t0 = time.time()
@@ -757,6 +759,7 @@ def main():
                     pass
                 print(f"\n=== NHITS 变体 n_pool={npool} (steps={max(120, args.steps//2)}) ===", flush=True)
                 try:
+                    set_seed(SEED)
                     mm = NHITS(n_pool=(npool,))
                     steps_v = max(120, args.steps // 2)
                     mm, _ = train_model(mm, panel, max_steps=steps_v, batch=args.batch,
@@ -773,6 +776,7 @@ def main():
             for pl in (8, 16, 24):
                 print(f"\n=== PatchTST 变体 patch_len={pl} ===", flush=True)
                 try:
+                    set_seed(SEED)
                     mm = PatchTST(patch_len=pl, stride=max(4, pl // 2))
                     steps_v = max(120, int(args.steps * 0.8))
                     mm, _ = train_model(mm, panel, max_steps=steps_v, batch=args.batch,
@@ -911,7 +915,7 @@ def main():
                      n_series=r["n_series"], reproduced=True, repo=r["repo"])
                 for r in lb],
         note=(f"本机 CPU（{os.cpu_count()} 核，{torch.get_num_threads()} 线程）真实训练；"
-              f"全部为 PyTorch 自实现（faithful reimplementation），统一 input=100 / h=14 / "
+              f"全部为 PyTorch 自实现（simplified teaching implementations; not faithful paper reproductions），统一 input=100 / h=14 / "
               f"按序列 fit 段均值归一 / L1 或 NLL 损失 / Adam lr=1e-3 / batch={args.batch} / "
               f"max {args.steps} 步 + 验证集早停；runtime_s 含训练+推理。"
               "WAPE/sMAPE/MASE 均为逐序列计算后取均值（中位数见 repro/RESULTS_DL.md）。"
@@ -977,19 +981,14 @@ def main():
     acf1_med = float(np.median(acf1))
     shift_med = float(np.median(panel["test"].mean(axis=1) / panel["P"][:, -100:].mean(axis=1)) - 1.0)
     lines.append("\n## 解读与注意事项\n")
-    lines.append(f"- 这 {N} 条序列 lag-1 自相关中位数 {acf1_med:.3f}（极平滑），测试段均值相对上下文均值中位数 "
-                 f"{shift_med*100:+.1f}%，所以**最后值平推**（WAPE {rb['last_value']['wape']*100:.2f}%）是很强的基线；"
-                 f"在 {args.steps} 步预算下 5 个深度模型都没打赢它。这是真实结果而非评测缺陷："
-                 f"验证集 loss 与测试 loss 同量级，训练窗口全部取自 fit 段，test 只评估一次。")
-    lines.append("- 除以 fit 段均值的归一化会让模型倾向回归窗口均值，遇到水平漂移时误差被放大；"
-                 "换成“以最后值为锚”的增量目标通常能反超 naive（本轮未纳入排行榜，仅作解释）。")
-    lines.append("- 排行榜内部是公平可比的（同数据/同切分/同预算/同损失族），排序与文献一致：N-HiTS ≈ N-BEATS > PatchTST > TFT > DeepAR。")
-    lines.append("- 训练期间本机有并发任务，耗时受负载影响明显，不能当作模型的相对速度。")
-    lines.append("- TFT 注意力接近均匀（见 tft.json），说明该预算下主要靠 LSTM 记忆而不是跨步注意力；"
-                 "DeepAR 高斯头低估方差，低分位覆盖率不足（见 deepar.json 的 calibration）。")
+    lines.append(f"- 这 {N} 条序列 lag-1 自相关中位数 {acf1_med:.3f}；测试段均值相对上下文均值中位数 {shift_med*100:+.1f}%。")
+    lines.append(f"- 最后值基线 WAPE {rb['last_value']['wape']*100:.2f}%；是否胜过它应以本次结果为准，不预设模型排名。")
+    lines.append("- 这些是简化实现；同数据和步数不代表相同调参预算或论文最优结果。归一化、增量目标与概率校准的收益需要独立对照验证。")
+    lines.append("- 注意力权重不能证明模型依赖某个机制或识别因果贡献；区间覆盖率须在保留集上检验。")
+    lines.append("- 耗时受并发任务负载影响，不能直接作为模型相对速度。")
     lines.append("\n## 产物\n")
     for k, v in written.items():
-        lines.append(f"- `web/data/{k}` — {v/1024:.1f} KB")
+        lines.append(f"- `{out_dir}/{k}` — {v/1024:.1f} KB")
     lines.append("\n## 复现\n")
     lines.append("```bash\npython repro/deep_models.py\n```\n")
     lines.append(f"总耗时 {time.time()-t_start:.1f}s。")

@@ -1,0 +1,18 @@
+{
+  "real_history_ge_200": {
+    "n": 294,
+    "scores": {
+      "State-Fourier": 0.06222421071734289,
+      "FG-original": 0.07693563739097495,
+      "UCM52-saved": 0.06675534275049921
+    }
+  },
+  "padded_history_lt_200": {
+    "n": 65,
+    "scores": {
+      "State-Fourier": 0.12247175508335535,
+      "FG-original": 0.13285539936994245,
+      "UCM52-saved": 0.13108429721994727
+    }
+  }
+}
