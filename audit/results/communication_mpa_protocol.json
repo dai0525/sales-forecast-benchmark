@@ -1,0 +1,126 @@
+{
+  "configs": [
+    {
+      "harmonics": 1,
+      "alphabet": 5,
+      "amplitude": 0.5,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "alphabet": 5,
+      "amplitude": 0.5,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "alphabet": 5,
+      "amplitude": 1.0,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "alphabet": 5,
+      "amplitude": 1.0,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "alphabet": 5,
+      "amplitude": 2.0,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "alphabet": 5,
+      "amplitude": 2.0,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "alphabet": 3,
+      "amplitude": 0.5,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "alphabet": 3,
+      "amplitude": 0.5,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "alphabet": 3,
+      "amplitude": 1.0,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "alphabet": 3,
+      "amplitude": 1.0,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "alphabet": 3,
+      "amplitude": 2.0,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "alphabet": 3,
+      "amplitude": 2.0,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    }
+  ],
+  "outer_origins": [
+    161,
+    174,
+    187,
+    200
+  ],
+  "tuning": "three preceding nonoverlapping 13-step windows; exact enumeration chooses model config; MPA chooses damping/iterations on same validation windows only",
+  "damping": [
+    0.3,
+    0.7
+  ],
+  "iterations": [
+    1,
+    5,
+    20,
+    60
+  ],
+  "factor_group": 13,
+  "controls": [
+    "exact same discrete model",
+    "continuous Gaussian coefficients with matched prior variance and dynamics",
+    "one merged factor exact MPA",
+    "previous best State-Fourier and UCM"
+  ],
+  "decision": "Seek predictive benefit across historical folds and official test, plus practical runtime. No test-based winner selection. If absent, pause this transfer route; not a universal impossibility theorem.",
+  "limitations": "Known public test; finite grid; Gaussian dynamics + quantized seasonal coefficients, not business causal factors. Dense Fourier connectivity lacks SCMA sparsity. MPA structure chosen via exact validation model, not exhaustive joint tuning."
+}

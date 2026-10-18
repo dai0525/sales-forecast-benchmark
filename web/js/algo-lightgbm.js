@@ -108,7 +108,7 @@
     for (i = 0; i < 14; i++) {
       // 递归：单步很准，但每步的偏差被喂回下一步，误差随 h 放大
       pR.push(Math.max(1, Math.round(yte[i] + 1.4 + i * 2.1 + (r() - 0.5) * 3)));
-      // 直接多步：一次输出 14 个值，误差不随 h 累积
+      // 对照预测：一次输出 14 个值，误差不随 h 累积
       pD.push(Math.max(1, Math.round(yte[i] * 1.006 + (r() - 0.5) * 14)));
     }
     var fi = [
@@ -154,7 +154,7 @@
     return b > 0 ? a / b : null;
   }
 
-  /* ---------- 图 1：历史 + 真值 + 递归 / 直接多步 ---------- */
+  /* ---------- 图 1：历史 + 真值 + 递归 / 对照预测 ---------- */
   function seriesChart(D) {
     var W = 332, H = 196, pl = 30, pr = 8, pt = 12, pb = 26;
     var tr = arr(D.y_train), te = arr(D.y_test);
@@ -189,7 +189,7 @@
     te.forEach(function (v, i) { tp.push([x(cut + i), y(v)]); });
     o.push('<path d="' + pathOf(tp) + '" fill="none" stroke="' + C.grey + '" stroke-width="1.7" stroke-dasharray="4 3" stroke-linejoin="round"/>');
 
-    // 直接多步：浅蓝
+    // 对照预测：浅蓝
     if (pdd.length) {
       var dp = cut ? [[x(cut - 1), y(tr[cut - 1])]] : [];
       pdd.forEach(function (v, i) { dp.push([x(cut + i), y(v)]); });
@@ -206,7 +206,7 @@
 
     o.push('<text x="' + r1(pl + histW / 2) + '" y="' + (H - 8) + '" text-anchor="middle">' + cut + ' 天历史</text>');
     o.push('<text x="' + r1(pl + histW + futW / 2) + '" y="' + (H - 8) + '" text-anchor="middle">未来 ' + te.length + ' 步</text>');
-    return svgWrap(W, H, o.join(''), 'LightGBM 递归多步与直接多步预测对比');
+    return svgWrap(W, H, o.join(''), 'LightGBM 递归多步与对照预测预测对比');
   }
 
   /* ---------- 图 2：h 步误差累积（上：放大预测；下：每步绝对误差） ---------- */
@@ -242,7 +242,7 @@
     te.slice(0, nH).forEach(function (v, i) { tp.push([x(tail.length + i), y(v)]); });
     o.push('<path d="' + pathOf(tp) + '" fill="none" stroke="' + C.grey + '" stroke-width="1.7" stroke-dasharray="4 3" stroke-linejoin="round"/>');
 
-    // 直接多步（前 h 步）
+    // 对照预测（前 h 步）
     if (pdd.length) {
       var dp = tail.length ? [[x(tail.length - 1), y(tail[tail.length - 1])]] : [];
       for (var d = 0; d < Math.min(h, nH, pdd.length); d++) dp.push([x(tail.length + d), y(pdd[d])]);
@@ -376,12 +376,12 @@
       '<span><i style="background:' + C.ink2 + '"></i>历史（灰实线）</span>' +
       '<span><i style="background:' + C.grey + '"></i>未来真值（灰虚线）</span>' +
       '<span><i style="background:' + C.blue + '"></i>递归预测</span>' +
-      '<span><i style="background:' + C.blue3 + '"></i>直接多步</span>'));
+      '<span><i style="background:' + C.blue3 + '"></i>对照预测</span>'));
     var sHost = el('div', 'sfw-lightgbm-plot');
     sHost.innerHTML = seriesChart(D);
     c1.appendChild(sHost);
     c1.appendChild(html('p', 'sfw-cap',
-      '同一个模型两种用法：蓝线只输出第 1 步，之后把上一步的预测当成 lag 特征再预测下一步；浅蓝线一次性输出全部 ' + arr(D.y_test).length + ' 个值。' +
+      '蓝线为递归预测；本仓库真实数据中的浅蓝线为 SeasonalNaive 对照，共 ' + arr(D.y_test).length + ' 个值。' +
       '前几步两条线几乎重合，越往后差距越大——这就是下一张图要放大的东西。'));
     if (D.demo) c1.appendChild(html('p', 'sfw-cap sfw-lightgbm-demo', demoCapText));
     cards.appendChild(c1);
@@ -413,7 +413,7 @@
 
     c2.appendChild(html('p', 'sfw-cap',
       '柱高 = 每一步的绝对误差（件），深蓝是你当前选的前 h 步。递归每走一步都把上一步的预测喂回模型，误差被反覆复述、逐渐放大；' +
-      '直接多步一次输出 14 个值，误差不随 h 累积——这正是生产里长步长预测更常用「直接多步」或「每步一个模型」的原因。'));
+      '对照预测一次输出 14 个值，误差不随 h 累积——这正是生产里长步长预测更常用「对照预测」或「每步一个模型」的原因。'));
     if (D.demo) c2.appendChild(html('p', 'sfw-cap sfw-lightgbm-demo', demoCapText));
     cards.appendChild(c2);
 
@@ -434,7 +434,7 @@
       hVal.textContent = String(h);
       var w = curWape(h), wd = wapeAt(arr(D.pred_direct), arr(D.y_test), h), ae = avgErr(h);
       big.innerHTML = (isNum(w) ? (w * 100).toFixed(1) : '–') + '<span class="sfw-metric-u">% WAPE · 前 ' + h + ' 步</span>';
-      sub.textContent = '直接多步同 h：' + pct(wd) + ' · 平均单步误差 ' + (isNum(ae) ? ae.toFixed(1) + ' 件' : '–');
+      sub.textContent = '对照预测同 h：' + pct(wd) + ' · 平均单步误差 ' + (isNum(ae) ? ae.toFixed(1) + ' 件' : '–');
       hHost.innerHTML = horizonChart(D, h);
     }
     hIn.addEventListener('input', function () { updateH(+hIn.value); });
@@ -490,7 +490,7 @@
 
     /* ---------- 图 4：特征重要性 ---------- */
     var c4 = el('div', 'sfw-lightgbm-card');
-    c4.appendChild(html('div', 'sfw-lightgbm-hd', '<b>特征重要性 · Top 8</b><span>占总 gain 比重 %，深→浅</span>'));
+    c4.appendChild(html('div', 'sfw-lightgbm-hd', '<b>特征重要性 · Top 8</b><span>导出 split 计数在 Top 8 内的占比 %</span>'));
     var impHost = el('div', 'sfw-lightgbm-plot');
     impHost.innerHTML = impChart(D.feature_importance);
     c4.appendChild(impHost);
@@ -514,11 +514,11 @@
       '<a href="https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree" target="_blank" rel="noopener">论文原文 ↗</a></dd></div>' +
       '<div><dt>开源</dt><dd><a href="https://github.com/microsoft/LightGBM" target="_blank" rel="noopener">github.com/microsoft/LightGBM</a> · MIT</dd></div>' +
       '<div><dt>M5 战绩</dt><dd>M5 冠军方案的主力模型之一：全部 SKU 合成一张表做全局训练</dd></div>' +
-      '<div><dt>本机复现</dt><dd>WAPE ' + pct(full.wape) + ' · 42s（14 步直接多步）' + (D.demo || demoFs ? ' · 示意' : '') + '</dd></div>'));
+      '<div><dt>本机复现</dt><dd>WAPE ' + pct(full.wape) + '（教学面板；完整基准见实测成绩）' + (D.demo || demoFs ? ' · 示意' : '') + '</dd></div>'));
 
     root.appendChild(html('p', 'algo-note',
       '该用：几十到几万个 SKU、有稳定 lag/rolling 特征、要秒级重训和特征重要性归因时，它通常就是性价比最高的第一选择。' +
-      '不该用：需要概率区间（它给的是点预测）、序列极短或大量新品冷启动（没有 lag 可学）时，换 N-HiTS / DeepAR 更合适。'));
+      '不该用：需要概率区间时可用 LightGBM 分位数目标；本实现只训练点预测、序列极短或大量新品冷启动（没有 lag 可学）时，换 N-HiTS / DeepAR 更合适。'));
   }
 
   window.SF = window.SF || {};

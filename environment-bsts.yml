@@ -1,0 +1,8 @@
+name: sales-bsts
+channels:
+  - conda-forge
+dependencies:
+  - r-base=4.5.3
+  - r-bsts=0.9.11
+  - r-posterior=1.7.0
+  - r-jsonlite=2.0.0

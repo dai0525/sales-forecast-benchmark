@@ -12,7 +12,7 @@
   },
   "wape_mean_perseries": 0.08706038538159583,
   "wape_aggregate": 0.05980154871058648,
-  "fit_runtime_s": 1.4,
+  "fit_runtime_s": 5.0,
   "fit_history": [
     0.027,
     0.0249,

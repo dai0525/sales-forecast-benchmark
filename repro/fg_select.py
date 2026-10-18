@@ -34,6 +34,10 @@ def main():
     Ytr, Yva = Y[:, :-H], Y[:, -H:]
     hyper = json.loads((ROOT / "repro" / "metrics_fg.json").read_text(encoding="utf-8"))["hyper"]
 
+    for file in ['bsts_val_preds.npz', 'bsts_preds.npz', 'fg_preds.npz']:
+        with np.load(ROOT / 'data' / file) as cached:
+            if list(cached['ids']) != ids: raise ValueError(f'ID mismatch: {file}')
+
     # ---- FG-MP：训练段拟合 → 验证窗口预测
     m_val = fg.fit(Ytr, 52, 5, qr=hyper["qr"], ridge=hyper["ridge"], kappa=hyper["kappa"])
     val_fg = fg.forecast(m_val, damp=hyper["damp"])
@@ -58,13 +62,16 @@ def main():
     fused = wgt * test_fg + (1 - wgt) * test_bs
     w_fuse = wape_row(fused, T).mean()
 
-    # 3) 收缩系数：λ=0 全信 BSTS，λ=1 全信验证权重
+    # 3) λ=0 等权，λ=1 验证权重；只在验证段选 λ（仍有同窗口复用偏差）
     best_shr, best_w = None, None
     for lam in np.arange(0, 1.01, 0.1):
-        p = (lam * wgt + (1 - lam) * 0.5) * test_fg + (1 - (lam * wgt + (1 - lam) * 0.5)) * test_bs
-        w = wape_row(p, T).mean()
+        p = (lam * wgt + (1 - lam) * 0.5) * val_fg + (1 - (lam * wgt + (1 - lam) * 0.5)) * val_bs
+        w = wape_row(p, Yva).mean()
         if best_w is None or w < best_w:
             best_shr, best_w = lam, w
+
+    selected_weight = best_shr * wgt + (1 - best_shr) * 0.5
+    best_w = wape_row(selected_weight * test_fg + (1-selected_weight)*test_bs, T).mean()
 
     # 4) 误差相关性（同期、逐序列）
     ef, eb = test_fg - T, test_bs - T

@@ -1,0 +1,334 @@
+[
+  {
+    "doi": "10.1016/j.ijforecast.2019.06.004",
+    "title": [
+      "Retail forecasting: Research and practice"
+    ],
+    "container": [
+      "International Journal of Forecasting"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2022,
+          10
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.ijforecast.2023.10.010",
+    "title": [
+      "Forecast reconciliation: A review"
+    ],
+    "container": [
+      "International Journal of Forecasting"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2024,
+          4
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.omega.2021.102513",
+    "title": [
+      "Intermittent demand forecasting for spare parts: A Critical review"
+    ],
+    "container": [
+      "Omega"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2021,
+          12
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1080/00207543.2025.2578701",
+    "title": [
+      "Machine learning algorithms in intermittent demand forecasting: a review"
+    ],
+    "container": [
+      "International Journal of Production Research"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          31
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.ijforecast.2020.07.007",
+    "title": [
+      "Kaggle forecasting competitions: An overlooked learning opportunity"
+    ],
+    "container": [
+      "International Journal of Forecasting"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2021,
+          4
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.ijforecast.2019.05.008",
+    "title": [
+      "Criteria for classifying forecasting methods"
+    ],
+    "container": [
+      "International Journal of Forecasting"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2020,
+          1
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.ijforecast.2019.04.014",
+    "title": [
+      "The M4 Competition: 100,000 time series and 61 forecasting methods"
+    ],
+    "container": [
+      "International Journal of Forecasting"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2020,
+          1
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.ijforecast.2021.11.013",
+    "title": [
+      "M5 accuracy competition: Results, findings, and conclusions"
+    ],
+    "container": [
+      "International Journal of Forecasting"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2022,
+          10
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1371/journal.pone.0194889",
+    "title": [
+      "Statistical and Machine Learning forecasting methods: Concerns and ways forward"
+    ],
+    "container": [
+      "PLOS ONE"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2018,
+          3,
+          27
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1080/00031305.2017.1380080",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "doi": "10.1057/jors.1972.50",
+    "title": [
+      "Forecasting and Stock Control for Intermittent Demands"
+    ],
+    "container": [
+      "Journal of the Operational Research Society"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          1972,
+          9
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.ijforecast.2004.10.001",
+    "title": [
+      "The accuracy of intermittent demand estimates"
+    ],
+    "container": [
+      "International Journal of Forecasting"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2005,
+          4
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.ejor.2011.05.018",
+    "title": [
+      "Intermittent demand: Linking forecasting to inventory obsolescence"
+    ],
+    "container": [
+      "European Journal of Operational Research"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2011,
+          11
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/S0169-2070(00)00066-2",
+    "title": [
+      "The theta model: a decomposition approach to forecasting"
+    ],
+    "container": [
+      "International Journal of Forecasting"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2000,
+          10
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.ejor.2017.02.046",
+    "title": [
+      "Forecasting with temporal hierarchies"
+    ],
+    "container": [
+      "European Journal of Operational Research"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2017,
+          10
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1016/j.csda.2011.03.006",
+    "title": [
+      "Optimal combination forecasts for hierarchical time series"
+    ],
+    "container": [
+      "Computational Statistics &amp; Data Analysis"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2011,
+          9
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1080/01621459.2018.1448825",
+    "title": [
+      "Optimal Forecast Reconciliation for Hierarchical and Grouped Time Series Through Trace Minimization"
+    ],
+    "container": [
+      "Journal of the American Statistical Association"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2018,
+          10,
+          26
+        ]
+      ]
+    },
+    "type": "journal-article"
+  },
+  {
+    "doi": "10.1145/2939672.2939785",
+    "title": [
+      "XGBoost"
+    ],
+    "container": [
+      "Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2016,
+          8,
+          13
+        ]
+      ]
+    },
+    "type": "proceedings-article"
+  },
+  {
+    "doi": "10.1016/j.asoc.2021.107756",
+    "title": [
+      "Hierarchical forecast reconciliation with machine learning"
+    ],
+    "container": [
+      "Applied Soft Computing"
+    ],
+    "year": {
+      "date-parts": [
+        [
+          2021,
+          11
+        ]
+      ]
+    },
+    "type": "journal-article"
+  }
+]

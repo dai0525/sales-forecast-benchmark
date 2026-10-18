@@ -1,0 +1,29 @@
+{
+  "model": "FG-MP (factor graph + Gaussian message passing)",
+  "n_series": 359,
+  "horizon": 13,
+  "period": 52,
+  "iters": 5,
+  "hyper": {
+    "qr": 0.02,
+    "damp": 0.85,
+    "ridge": 20.0,
+    "kappa": 2.0
+  },
+  "wape_mean_perseries": 0.08706038538159583,
+  "wape_aggregate": 0.05980154871058648,
+  "fit_runtime_s": 1.4,
+  "fit_history": [
+    0.027,
+    0.0249,
+    0.0246,
+    0.0244,
+    0.0244
+  ],
+  "lambda_stats": {
+    "min": -0.6021785252941525,
+    "max": 0.9371689162440959,
+    "median": 0.08604448143258332,
+    "n_zero_load": 3
+  }
+}

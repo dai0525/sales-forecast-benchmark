@@ -1,0 +1,5 @@
+{
+  "sample_ids_match_seed42": true,
+  "naive_max_abs_delta": 0.0,
+  "seasonal_max_abs_delta": 0.0
+}

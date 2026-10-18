@@ -1,0 +1,13 @@
+{
+  "model": "BSTS-structural (UCM, MLE)",
+  "note": "局部线性趋势 + 随机季节(13) + 观测噪声；Kalman 滤波 + 极大似然。BSTS 的贝叶斯版是同一模型加先验 + MCMC。",
+  "n_series": 359,
+  "horizon": 13,
+  "fit_runtime_s": 88.7,
+  "wape": 0.08788124531647068,
+  "wape_median": 0.050006485755067845,
+  "mase": 0.878152586692187,
+  "seasonal_naive_wape_same_subset": 0.12220256011726803,
+  "n_failed": 0,
+  "failed_ids": []
+}

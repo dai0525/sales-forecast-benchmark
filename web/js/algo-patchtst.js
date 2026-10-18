@@ -79,7 +79,7 @@
     raw.fake = false;
     if (!raw.stride) raw.stride = 8;
     if (!raw.patch_len) raw.patch_len = 16;
-    if (!raw.patch_len_curve || raw.patch_len_curve.length < 3) raw.patch_len_curve = CURVE;
+    if (!raw.patch_len_curve || !raw.patch_len_curve.length) { raw.patch_len_curve = CURVE; raw.curve_demo = true; }
     if (!raw.context) raw.context = 512;
     return raw;
   }
@@ -212,7 +212,7 @@
     var pad = (wmax - wmin) * 0.18 || 0.01;
     var lo = wmin - pad, hi = wmax + pad;
     var pw = W - L - R, ph = H - T - B, pts = [];
-    function X(v) { return L + pw * (v - xmin) / (xmax - xmin); }
+    function X(v) { return L + pw * (v - xmin) / Math.max(1, xmax - xmin); }
     function Y(v) { return T + ph * (1 - (v - lo) / (hi - lo)); }
     var out = ['<svg class="sfw-plot" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="patch_len 与 WAPE 的关系曲线">'];
     out.push('<text x="' + L + '" y="12" style="font-weight:700">WAPE 随 patch 长度变化（越低越好）</text>');
@@ -399,12 +399,12 @@
       elTok.textContent = String(Math.min(state.pl, g.len));
       elOv.textContent = String(Math.max(0, Math.min(state.pl, g.len) - stride));
       /* 512 点上下文按 stride=patch_len/2 折算（PatchTST 常用配置），用于说明 O(n²) 代价 */
-      var tokCtx = Math.ceil(d.context / (state.pl / 2));
+      var tokCtx = Math.max(1, Math.floor((d.context-state.pl)/stride)+1);
       elCtx.textContent = String(tokCtx);
 
       var wp = interpWape(d.patch_len_curve, state.pl) * 100;
-      wcap.innerHTML = '当前 patch_len=' + state.pl + ' → 插值 WAPE <b style="color:#1D4ED8">' + wp.toFixed(2) + '%</b>' +
-        '（验证集扫参最优：' + bestC.patch_len + ' 点 / ' + (bestC.wape * 100).toFixed(2) + '%）。';
+      wcap.innerHTML = (d.curve_demo ? '示意曲线；' : '曲线仅含已保存实验点；') + '当前 patch_len=' + state.pl + ' → 插值 WAPE <b style="color:#1D4ED8">' + wp.toFixed(2) + '%</b>' +
+        '（历史测试变体/示意曲线最低点（不可用于选参）：' + bestC.patch_len + ' 点 / ' + (bestC.wape * 100).toFixed(2) + '%）。';
       pnote.textContent = state.pl <= 6
         ? '块太小：同样的 512 点上下文要 ' + tokCtx + ' 个 token，注意力矩阵 ' + tokCtx + '² ≈ ' +
           Math.round(tokCtx * tokCtx / 1000) + 'k 项，显存先爆；每块还看不到一个完整周期。'
@@ -417,7 +417,7 @@
         var s = i * stride, e = Math.min(s + Math.min(state.pl, g.len), g.len);
         return 'P' + i + '（第 ' + (g.len - e + 1) + '–' + (g.len - s) + ' 天前）';
       });
-      acap.textContent = '模型最关注的三个 patch：' + ranges.join('、') +
+      acap.textContent = '当前图中前三个 patch（改变切片后为示意权重）：' + ranges.join('、') +
         '。它们合起来盖住的是历史上最像"当下"的那几段。';
     }
 

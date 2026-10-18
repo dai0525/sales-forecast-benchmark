@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/PLw/QmLeXcP0BzlKBnaJbPe8ZDk</id>
+  <title>arXiv Query: search_query=&amp;id_list=2105.06860,2006.03258,1506.00356,2004.13912,0806.3286&amp;start=0&amp;max_results=10</title>
+  <updated>2026-10-17T18:16:30Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=10&amp;id_list=2105.06860,2006.03258,1506.00356,2004.13912,0806.3286" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>5</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/0806.3286v2</id>
+    <title>BART: Bayesian additive regression trees</title>
+    <updated>2010-10-07T09:21:37Z</updated>
+    <link href="https://arxiv.org/abs/0806.3286v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/0806.3286v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We develop a Bayesian "sum-of-trees" model where each tree is constrained by a regularization prior to be a weak learner, and fitting and inference are accomplished via an iterative Bayesian backfitting MCMC algorithm that generates samples from a posterior. Effectively, BART is a nonparametric Bayesian regression approach which uses dimensionally adaptive random basis elements. Motivated by ensemble methods in general, and boosting algorithms in particular, BART is defined by a statistical model: a prior and a likelihood. This approach enables full posterior inference including point and interval estimates of the unknown regression function as well as the marginal effects of potential predictors. By keeping track of predictor inclusion frequencies, BART can also be used for model-free variable selection. BART's many features are illustrated with a bake-off against competing methods on 42 different data sets, with a simulation experiment and on a drug discovery classification problem.</summary>
+    <category term="stat.ME" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2008-06-19T21:00:03Z</published>
+    <arxiv:comment>Published in at http://dx.doi.org/10.1214/09-AOAS285 the Annals of Applied Statistics (http://www.imstat.org/aoas/) by the Institute of Mathematical Statistics (http://www.imstat.org)</arxiv:comment>
+    <arxiv:primary_category term="stat.ME"/>
+    <arxiv:journal_ref>Annals of Applied Statistics 2010, Vol. 4, No. 1, 266-298</arxiv:journal_ref>
+    <author>
+      <name>Hugh A. Chipman</name>
+    </author>
+    <author>
+      <name>Edward I. George</name>
+    </author>
+    <author>
+      <name>Robert E. McCulloch</name>
+    </author>
+    <arxiv:doi>10.1214/09-AOAS285</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1214/09-AOAS285" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2006.03258v4</id>
+    <title>Learned Factor Graphs for Inference from Stationary Time Sequences</title>
+    <updated>2021-12-24T10:26:05Z</updated>
+    <link href="https://arxiv.org/abs/2006.03258v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2006.03258v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The design of methods for inference from time sequences has traditionally relied on statistical models that describe the relation between a latent desired sequence and the observed one. A broad family of model-based algorithms have been derived to carry out inference at controllable complexity using recursive computations over the factor graph representing the underlying distribution. An alternative model-agnostic approach utilizes machine learning (ML) methods. Here we propose a framework that combines model-based algorithms and data-driven ML tools for stationary time sequences. In the proposed approach, neural networks are developed to separately learn specific components of a factor graph describing the distribution of the time sequence, rather than the complete inference task. By exploiting stationary properties of this distribution, the resulting approach can be applied to sequences of varying temporal duration. Learned factor graph can be realized using compact neural networks that are trainable using small training sets, or alternatively, be used to improve upon existing deep inference systems. We present an inference algorithm based on learned stationary factor graphs, which learns to implement the sum-product scheme from labeled data, and can be applied to sequences of different lengths. Our experimental results demonstrate the ability of the proposed learned factor graphs to learn to carry out accurate inference from small training sets for sleep stage detection using the Sleep-EDF dataset, as well as for symbol detection in digital communications with unknown channels.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-06-05T07:06:19Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Nir Shlezinger</name>
+    </author>
+    <author>
+      <name>Nariman Farsad</name>
+    </author>
+    <author>
+      <name>Yonina C. Eldar</name>
+    </author>
+    <author>
+      <name>Andrea J. Goldsmith</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2004.13912v2</id>
+    <title>Neural Additive Models: Interpretable Machine Learning with Neural Nets</title>
+    <updated>2021-10-24T19:24:59Z</updated>
+    <link href="https://arxiv.org/abs/2004.13912v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2004.13912v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Deep neural networks (DNNs) are powerful black-box predictors that have achieved impressive performance on a wide variety of tasks. However, their accuracy comes at the cost of intelligibility: it is usually unclear how they make their decisions. This hinders their applicability to high stakes decision-making domains such as healthcare. We propose Neural Additive Models (NAMs) which combine some of the expressivity of DNNs with the inherent intelligibility of generalized additive models. NAMs learn a linear combination of neural networks that each attend to a single input feature. These networks are trained jointly and can learn arbitrarily complex relationships between their input feature and the output. Our experiments on regression and classification datasets show that NAMs are more accurate than widely used intelligible models such as logistic regression and shallow decision trees. They perform similarly to existing state-of-the-art generalized additive models in accuracy, but are more flexible because they are based on neural nets instead of boosted trees. To demonstrate this, we show how NAMs can be used for multitask learning on synthetic data and on the COMPAS recidivism data due to their composability, and demonstrate that the differentiability of NAMs allows them to train more complex interpretable models for COVID-19.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-04-29T01:28:32Z</published>
+    <arxiv:comment>Spotlight (Top 3%) at NeurIPS 2021</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Rishabh Agarwal</name>
+    </author>
+    <author>
+      <name>Levi Melnick</name>
+    </author>
+    <author>
+      <name>Nicholas Frosst</name>
+    </author>
+    <author>
+      <name>Xuezhou Zhang</name>
+    </author>
+    <author>
+      <name>Ben Lengerich</name>
+    </author>
+    <author>
+      <name>Rich Caruana</name>
+    </author>
+    <author>
+      <name>Geoffrey Hinton</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1506.00356v1</id>
+    <title>Inferring causal impact using Bayesian structural time-series models</title>
+    <updated>2015-06-01T05:55:13Z</updated>
+    <link href="https://arxiv.org/abs/1506.00356v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1506.00356v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>An important problem in econometrics and marketing is to infer the causal impact that a designed market intervention has exerted on an outcome metric over time. This paper proposes to infer causal impact on the basis of a diffusion-regression state-space model that predicts the counterfactual market response in a synthetic control that would have occurred had no intervention taken place. In contrast to classical difference-in-differences schemes, state-space models make it possible to (i) infer the temporal evolution of attributable impact, (ii) incorporate empirical priors on the parameters in a fully Bayesian treatment, and (iii) flexibly accommodate multiple sources of variation, including local trends, seasonality and the time-varying influence of contemporaneous covariates. Using a Markov chain Monte Carlo algorithm for posterior inference, we illustrate the statistical properties of our approach on simulated data. We then demonstrate its practical utility by estimating the causal effect of an online advertising campaign on search-related site visits. We discuss the strengths and limitations of state-space models in enabling causal attribution in those settings where a randomised experiment is unavailable. The CausalImpact R package provides an implementation of our approach.</summary>
+    <category term="stat.AP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2015-06-01T05:55:13Z</published>
+    <arxiv:comment>Published at http://dx.doi.org/10.1214/14-AOAS788 in the Annals of Applied Statistics (http://www.imstat.org/aoas/) by the Institute of Mathematical Statistics (http://www.imstat.org)</arxiv:comment>
+    <arxiv:primary_category term="stat.AP"/>
+    <arxiv:journal_ref>Annals of Applied Statistics 2015, Vol. 9, No. 1, 247-274</arxiv:journal_ref>
+    <author>
+      <name>Kay H. Brodersen</name>
+    </author>
+    <author>
+      <name>Fabian Gallusser</name>
+    </author>
+    <author>
+      <name>Jim Koehler</name>
+    </author>
+    <author>
+      <name>Nicolas Remy</name>
+    </author>
+    <author>
+      <name>Steven L. Scott</name>
+    </author>
+    <arxiv:doi>10.1214/14-AOAS788</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1214/14-AOAS788" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2105.06860v1</id>
+    <title>A Tutorial to Sparse Code Multiple Access</title>
+    <updated>2021-05-14T14:33:27Z</updated>
+    <link href="https://arxiv.org/abs/2105.06860v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2105.06860v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Sparse Code Multiple Access (SCMA) is an enabling code-domain non-orthogonal multiple access (NOMA)scheme for massive connectivity and ultra low-latency in future machine-type communication networks. As an evolved variant of code division multiple access (CDMA), multiple users in SCMA are separated by assigning distinctive codebooks which display certain sparsity. At an SCMA receiver, efficient multiuser detection is carried out by employing the message passing algorithm (MPA) which exploits the sparsity of codebooks to achieve error rate performance approaching to that of the maximum likelihood receiver. Despite numerous research efforts on SCMA in recent years, a comprehensive and in-depth tutorial to SCMA is missing, to the best of our knowledge. To fill this gap and to stimulate more forthcoming research, we introduce the principles of SCMA encoding, codebook design, and MPA based decoding in a self-contained manner for layman researchers and engineers.</summary>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-05-14T14:33:27Z</published>
+    <arxiv:primary_category term="cs.IT"/>
+    <author>
+      <name>Saumya Chaturvedi</name>
+    </author>
+    <author>
+      <name>Zilong Liu</name>
+    </author>
+    <author>
+      <name>Vivek Ashok Bohara</name>
+    </author>
+    <author>
+      <name>Anand Srivastava</name>
+    </author>
+    <author>
+      <name>Pei Xiao</name>
+    </author>
+  </entry>
+</feed>

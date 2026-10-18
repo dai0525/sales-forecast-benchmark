@@ -1,0 +1,129 @@
+{
+  "seed": 20261018,
+  "samples": 1000,
+  "neighbors": [
+    [
+      0,
+      1,
+      2
+    ],
+    [
+      0,
+      3,
+      4
+    ],
+    [
+      1,
+      3,
+      5
+    ],
+    [
+      2,
+      4,
+      5
+    ]
+  ],
+  "gains": [
+    [
+      0.9983761905237539,
+      0.248378378883676,
+      0.9095150325694368,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -0.05696474519627885,
+      0.0,
+      0.0,
+      0.9983138870185967,
+      -0.975060334956757,
+      0.0
+    ],
+    [
+      0.0,
+      -0.968663089470801,
+      0.0,
+      -0.05804638650097492,
+      0.0,
+      -0.8227694363750098
+    ],
+    [
+      0.0,
+      0.0,
+      0.4156710304197494,
+      0.0,
+      -0.2219399540281484,
+      0.5683752761751244
+    ]
+  ],
+  "note": "Known signatures and Gaussian noise, BPSK sparse superposition. Not learned from sales and not claimed to be standard SCMA codebook performance.",
+  "runs": {
+    "0.2": {
+      "results": {
+        "exact": {
+          "bit_error_rate": 0.046
+        },
+        "1": {
+          "bit_error_rate": 0.11983333333333333,
+          "marginal_mean_tv": 0.18440919369148764,
+          "max_message_probability_change": 0.35,
+          "max_belief_probability_change": 0.469798657718114
+        },
+        "5": {
+          "bit_error_rate": 0.048,
+          "marginal_mean_tv": 0.014007102186118383,
+          "max_message_probability_change": 0.22542707544079998,
+          "max_belief_probability_change": 0.21068391255773056
+        },
+        "20": {
+          "bit_error_rate": 0.046,
+          "marginal_mean_tv": 0.007213170870658982,
+          "max_message_probability_change": 0.00950719187278315,
+          "max_belief_probability_change": 0.010485068213271886
+        },
+        "60": {
+          "bit_error_rate": 0.046,
+          "marginal_mean_tv": 0.007568906760277511,
+          "max_message_probability_change": 0.0007738316985237415,
+          "max_belief_probability_change": 0.0009122526577524659
+        }
+      },
+      "exact_s": 0.01869717399995352,
+      "mpa_60_steps_s": 1.1965514440003062
+    },
+    "0.7": {
+      "results": {
+        "exact": {
+          "bit_error_rate": 0.18216666666666667
+        },
+        "1": {
+          "bit_error_rate": 0.2085,
+          "marginal_mean_tv": 0.12556693196337404,
+          "max_message_probability_change": 0.34999862240492485,
+          "max_belief_probability_change": 0.46737835725541516
+        },
+        "5": {
+          "bit_error_rate": 0.182,
+          "marginal_mean_tv": 0.005942291212939541,
+          "max_message_probability_change": 0.05960304376248449,
+          "max_belief_probability_change": 0.059693109492945595
+        },
+        "20": {
+          "bit_error_rate": 0.18166666666666667,
+          "marginal_mean_tv": 0.00289150060927095,
+          "max_message_probability_change": 9.212193142205116e-07,
+          "max_belief_probability_change": 9.352699124609565e-07
+        },
+        "60": {
+          "bit_error_rate": 0.18166666666666667,
+          "marginal_mean_tv": 0.0028915041075336582,
+          "max_message_probability_change": 3.3306690738754696e-16,
+          "max_belief_probability_change": 3.3306690738754696e-16
+        }
+      },
+      "exact_s": 0.010425779999877705,
+      "mpa_60_steps_s": 1.2175178229999801
+    }
+  }
+}

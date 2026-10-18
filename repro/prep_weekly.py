@@ -25,7 +25,10 @@ def load(path):
     if body and _is_id(body[0][0]):
         # 行优先：每行一条序列，首列是 id，其余是时间步
         ids = [row[0].strip().strip('"') for row in body]
-        mat = np.array([[_num(x) for x in row[1:]] for row in body], dtype=float)
+        width = max(len(row)-1 for row in body)
+        mat = np.full((len(body), width), np.nan)
+        for i, row in enumerate(body):
+            mat[i, :len(row)-1] = [_num(x) for x in row[1:]]
         return ids, mat  # (N, T)
     ids = [h.strip().strip('"') for h in header]
     mat = np.array([[_num(x) for x in row] for row in body], dtype=float).T
@@ -48,9 +51,9 @@ def main():
     print("train", tr.shape, "test", te.shape, "ids", len(ids))
     assert ids == ids2, (ids[:3], ids2[:3])
     assert te.shape[1] == H, te.shape
-    te = np.nan_to_num(te, nan=0.0)
+    if not np.isfinite(te).all():
+        raise ValueError("Incomplete Weekly test data")
     np.savez_compressed(D / "weekly.npz", train=tr.T, test=te.T, ids=np.array(ids))
-    np.savez_compressed(D / "m4daily.npz", train=tr.T, test=te.T, ids=np.array(ids))
     # 统计与演示序列用去掉尾部空值补齐后的真实段
     clean = []
     for i in range(tr.shape[0]):

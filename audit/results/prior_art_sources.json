@@ -1,0 +1,296 @@
+{
+  "checked_date": "2026-10-18",
+  "method": "Web search plus primary-source opens and direct HTTP metadata checks. Failed fetches retained; indexed source evidence distinguished in report.",
+  "queries": [
+    "De Livera Hyndman Snyder 2011 trigonometric damped trend state space TBATS",
+    "Young Pedregal Tych 1999 dynamic harmonic regression Kalman",
+    "damped trend Fourier Kalman forecasting",
+    "Dynamic harmonic regression Damped Trend",
+    "Fourier semilocal forecasting",
+    "Kalman filter shared covariance multiple time series forecasting",
+    "Principles and algorithms for forecasting groups of time series global local 2021"
+  ],
+  "references": [
+    {
+      "key": "dhr1999",
+      "title": "Dynamic harmonic regression",
+      "url": "https://research.lancaster-university.uk/en/publications/dynamic-harmonic-regression/",
+      "citation": "1999; Young, Pedregal, Tych; Journal of Forecasting 18(6),369–394",
+      "checked_scope": "Abstract checked; state-space DHR, Kalman and fixed-interval smoothing, noise variance ratio selection.",
+      "status": 200,
+      "bytes": 48333,
+      "sha256": "cb3771ef0572cf3a5f3e92021196949c4f3aaeeec773b2fa92d52037ae744949",
+      "final_url": "https://research.lancaster-university.uk/en/publications/dynamic-harmonic-regression/"
+    },
+    {
+      "key": "tbats",
+      "title": "Forecasting time series with complex seasonal patterns using exponential smoothing",
+      "url": "https://robjhyndman.com/papers/ComplexSeasonality.pdf",
+      "citation": "2010 author working paper; published JASA 2011 DOI 10.1198/jasa.2011.tm09771",
+      "checked_scope": "Sections 2.2–2.3, equations (3)–(4): damped trend and trigonometric states; zero seasonal smoothing gives deterministic seasonal pattern; single-source innovations differ from current independent Q.",
+      "fetch_error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "key": "semilocal",
+      "title": "bsts AddSemilocalLinearTrend",
+      "url": "https://search.r-project.org/CRAN/refmans/bsts/html/add.semilocal.linear.trend.html",
+      "citation": "bsts 0.9.10 official reference",
+      "checked_scope": "Description equations: level random walk plus slope; slope AR1 around D. D=0 with rescaled slope is current trend model.",
+      "status": 200,
+      "bytes": 6727,
+      "sha256": "8ef4ebf03a167a99e327b6c14b029a12ebccfa33189cd7a6e8398f00506af003",
+      "final_url": "https://search.r-project.org/CRAN/refmans/bsts/html/add.semilocal.linear.trend.html"
+    },
+    {
+      "key": "trig",
+      "title": "bsts AddTrig",
+      "url": "https://search.r-project.org/CRAN/refmans/bsts/html/add.trig.html",
+      "citation": "bsts 0.9.10 official reference",
+      "checked_scope": "Details: direct sine/cosine state coefficients with random walk; harmonic rotating-state form; our static coefficients are zero-process-noise restriction.",
+      "status": 200,
+      "bytes": 7407,
+      "sha256": "608e1741ff078a63916633599217c052eda396798c74f24567685a84ed2d57da",
+      "final_url": "https://search.r-project.org/CRAN/refmans/bsts/html/add.trig.html"
+    },
+    {
+      "key": "ucm",
+      "title": "statsmodels UnobservedComponents",
+      "url": "https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.structural.UnobservedComponents.html",
+      "citation": "official reference",
+      "checked_scope": "Frequency-domain Seasonal equations and stochastic_freq_seasonal=False; no claim damped trend is built into default UCM.",
+      "status": 200,
+      "bytes": 121755,
+      "sha256": "50d9d373952408a1af1da160ddc11d5578b3a5e553e5615783f1cfb5b0b090fc",
+      "final_url": "https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.structural.UnobservedComponents.html"
+    },
+    {
+      "key": "fpp3",
+      "title": "Forecasting: Principles and Practice, dynamic harmonic regression",
+      "url": "https://otexts.com/fpp3/dhr.html",
+      "citation": "Hyndman and Athanasopoulos, section 10.5",
+      "checked_scope": "Fourier regression plus ARMA errors; adjacent family, not identical stochastic trend model.",
+      "status": 202,
+      "bytes": 183,
+      "sha256": "e409b3b5e547669bf1d831f97dd9050b8db73cb090185acc7f79704414f1845e",
+      "final_url": "https://otexts.com/fpp3/dhr.html"
+    },
+    {
+      "key": "bsts2014",
+      "title": "Predicting the present with Bayesian structural time series",
+      "url": "https://people.ischool.berkeley.edu/~hal/Papers/2013/pred-present-with-bsts.pdf",
+      "citation": "Scott and Varian 2014; DOI 10.1504/IJMMNO.2014.059942",
+      "checked_scope": "Bayesian structural states and spike-and-slab regression, posterior model averaging; differs from plug-in grid-selected noise parameters.",
+      "status": 200,
+      "bytes": 1557375,
+      "sha256": "89743bcff9aa55da4ced3a15f43d8ec1583652cd0f51245688cd8569d117d24a",
+      "final_url": "https://people.ischool.berkeley.edu/~hal/Papers/2013/pred-present-with-bsts.pdf"
+    },
+    {
+      "key": "prophet",
+      "title": "Forecasting at Scale",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1380080",
+      "citation": "Taylor and Letham 2018",
+      "checked_scope": "Fourier seasonality and modular regression predecessor, not identical damped stochastic trend.",
+      "fetch_error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "key": "global",
+      "title": "Principles and algorithms for forecasting groups of time series: Locality and globality",
+      "url": "https://arxiv.org/abs/2008.00444",
+      "citation": "Montero-Manso and Hyndman 2021; DOI 10.1016/j.ijforecast.2021.03.004",
+      "checked_scope": "Global/local learning precedent, not a claim of exact State-Fourier implementation.",
+      "status": 200,
+      "bytes": 45403,
+      "sha256": "89bdeece94036441a33b31f6d829fef65c0361bfc868cc0cb65b14dc6c11af92",
+      "final_url": "https://arxiv.org/abs/2008.00444"
+    },
+    {
+      "key": "ldhr",
+      "title": "Linear Dynamic Harmonic Regression official project page",
+      "url": "https://www.ucm.es/fundamentos-analisis-economico2/linear-dynamic-harmonic-regression-ldhr",
+      "citation": "Bujosa, Garcia-Ferrer and Young 2007; DOI 10.1016/j.csda.2007.07.008",
+      "checked_scope": "University page confirms paper, GPL toolbox, and links to DHR1999.",
+      "status": 200,
+      "bytes": 19544,
+      "sha256": "69d55e0dd908f8cfbe76994d27a389eb4385dc5e539f69b4a1d50cc93a7d30c3",
+      "final_url": "https://www.ucm.es/fundamentos-analisis-economico2/linear-dynamic-harmonic-regression-ldhr"
+    },
+    {
+      "key": "forecast_code",
+      "title": "forecast TBATS source",
+      "url": "https://raw.githubusercontent.com/robjhyndman/forecast/master/R/tbats.R",
+      "citation": "official source",
+      "checked_scope": "Open source implementation of TBATS, damping and harmonics.",
+      "status": 200,
+      "bytes": 25301,
+      "sha256": "fb913bf98d35291a9ebfc0b27ebc206dd33b885f9108b3585fcec56639067dd0",
+      "final_url": "https://raw.githubusercontent.com/robjhyndman/forecast/master/R/tbats.R"
+    },
+    {
+      "key": "bsts_code",
+      "title": "bsts R source",
+      "url": "https://raw.githubusercontent.com/cran/bsts/master/R/bsts.R",
+      "citation": "CRAN source mirror",
+      "checked_scope": "MCMC structural state model implementation; not current plug-in model.",
+      "status": 200,
+      "bytes": 30122,
+      "sha256": "5a7cd24c5e4e28dfbd1fba05a008a1d5baa89557f4197382f43e67eb624492b3",
+      "final_url": "https://raw.githubusercontent.com/cran/bsts/master/R/bsts.R"
+    }
+  ],
+  "crossref_verification": [
+    {
+      "doi": "10.1002/(SICI)1099-131X(199911)18:6<369::AID-FOR748>3.0.CO;2-K",
+      "title": [
+        "Dynamic harmonic regression"
+      ],
+      "author": [
+        "Peter C. Young",
+        "Diego J. Pedregal",
+        "Wlodek Tych"
+      ],
+      "published": {
+        "date-parts": [
+          [
+            1999,
+            11
+          ]
+        ]
+      },
+      "journal": [
+        "Journal of Forecasting"
+      ],
+      "volume": "18",
+      "issue": "6",
+      "page": "369-394"
+    },
+    {
+      "doi": "10.1198/jasa.2011.tm09771",
+      "title": [
+        "Forecasting Time Series With Complex Seasonal Patterns Using Exponential Smoothing"
+      ],
+      "author": [
+        "Alysha M. De Livera",
+        "Rob J. Hyndman",
+        "Ralph D. Snyder"
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2011,
+            12
+          ]
+        ]
+      },
+      "journal": [
+        "Journal of the American Statistical Association"
+      ],
+      "volume": "106",
+      "issue": "496",
+      "page": "1513-1527"
+    },
+    {
+      "doi": "10.1504/IJMMNO.2014.059942",
+      "title": [
+        "Predicting the present with Bayesian structural time series"
+      ],
+      "author": [
+        "Steven L. Scott",
+        "Hal R. Varian"
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2014
+          ]
+        ]
+      },
+      "journal": [
+        "International Journal of Mathematical Modelling and Numerical Optimisation"
+      ],
+      "volume": "5",
+      "issue": "1/2",
+      "page": "4"
+    },
+    {
+      "doi": "10.1080/00031305.2017.1380080",
+      "title": [
+        "Forecasting at Scale"
+      ],
+      "author": [
+        "Sean J. Taylor",
+        "Benjamin Letham"
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2018,
+            1,
+            2
+          ]
+        ]
+      },
+      "journal": [
+        "The American Statistician"
+      ],
+      "volume": "72",
+      "issue": "1",
+      "page": "37-45"
+    },
+    {
+      "doi": "10.1016/j.ijforecast.2021.03.004",
+      "title": [
+        "Principles and algorithms for forecasting groups of time series: Locality and globality"
+      ],
+      "author": [
+        "Pablo Montero-Manso",
+        "Rob J. Hyndman"
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2021,
+            10
+          ]
+        ]
+      },
+      "journal": [
+        "International Journal of Forecasting"
+      ],
+      "volume": "37",
+      "issue": "4",
+      "page": "1632-1653"
+    },
+    {
+      "doi": "10.1016/j.csda.2007.07.008",
+      "title": [
+        "Linear dynamic harmonic regression"
+      ],
+      "author": [
+        "Marcos Bujosa",
+        "Antonio García-Ferrer",
+        "Peter C. Young"
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2007,
+            10
+          ]
+        ]
+      },
+      "journal": [
+        "Computational Statistics &amp; Data Analysis"
+      ],
+      "volume": "52",
+      "issue": "2",
+      "page": "999-1024"
+    }
+  ],
+  "web_primary_source_verification": {
+    "tbats": "Web reader successfully opened 40-page author PDF (October 2010 version), despite direct HTTP 403. Sections 2.2–2.3 and formulas (3)-(4) checked.",
+    "prophet": "Publisher article text retrieved through web search, despite direct HTTP 403. Fourier section verified.",
+    "fpp3": "Official page full excerpt retrieved by web reader; direct request returns 202 challenge.",
+    "bsts2014": "Author 21-page PDF opened by web reader and direct HTTP200; structural equations and MCMC sections checked."
+  }
+}

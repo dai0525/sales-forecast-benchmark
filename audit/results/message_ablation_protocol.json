@@ -1,0 +1,469 @@
+{
+  "modes": [
+    "full",
+    "block",
+    "information"
+  ],
+  "block_definition": "After each observation, zero only covariance between level/trend and all seasonal coefficients; keep within-block covariance, shared observation innovation and identical priors/dynamics.",
+  "fixed_control": "Select full hyperparameters using preceding three validation windows; use same hyperparameters for block.",
+  "retuned_control": "Also select block independently using same grid and preceding windows.",
+  "outer_origins": [
+    161,
+    174,
+    187,
+    200
+  ],
+  "grid": [
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 0,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 1,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 2,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 4,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.002,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.02,
+      "trend_q": 0.001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.0,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.0001,
+      "damp": 0.98
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.9
+    },
+    {
+      "harmonics": 8,
+      "qr": 0.2,
+      "trend_q": 0.001,
+      "damp": 0.98
+    }
+  ],
+  "limitation": "Block approximation still uses observation messages; this is not removal of all message passing. Public test is previously observed."
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2105.06860",
+    "status": 200,
+    "excerpt": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head><script>document.documentElement.classList.add('js');</script>  <title>[2105.06860] A Tutorial to Sparse Code Multiple Access</title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/static/browse/0.3.4/images/icons/apple-touch-icon.png\">\n  <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/static/browse/0.3.4/images/icons/favicon-32x32.png\">\n  <link rel=\"icon\" type=\"image/png\""
+  },
+  {
+    "url": "https://doi.org/10.1109/18.910572",
+    "status": 202,
+    "excerpt": ""
+  },
+  {
+    "url": "https://api.github.com/search/repositories?q=SCMA+MPA&per_page=5",
+    "status": 200,
+    "repos": [
+      {
+        "url": "https://github.com/klimentyev/scma_mex",
+        "description": "Log-MPA mex implementation"
+      },
+      {
+        "url": "https://github.com/ekagra-ranjan/Auto-SCMA",
+        "description": "NCC 2021 - Auto-SCMA: Learning Codebook for Sparse Code Multiple Access using Machine Learning"
+      },
+      {
+        "url": "https://github.com/Louis-zjc/scma-mpa",
+        "description": null
+      },
+      {
+        "url": "https://github.com/jacksondale/CUDA-based-MPA",
+        "description": "MPA decoder for SCMA using CUDA architecture and GPU"
+      },
+      {
+        "url": "https://github.com/minervapriyadarsini/MIMO-SCMA-Codebook-Design",
+        "description": "MATLAB simulation code for MIMO-SCMA codebook design and joint MPA detection presented at IEEE PIMRC 2026."
+      }
+    ]
+  }
+]

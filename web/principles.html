@@ -77,6 +77,7 @@ details ul{margin-bottom:12px}
 </style>
 </head>
 <body>
+<p style="padding:14px;background:#EFF4FF">审计更新：以下旧榜单为历史记录，不能代表论文算法排名。当前可核验结果见<a href="index.html#p-bench">实测成绩</a>；M4 包含多领域序列，不都是销量。部分图为教学示意。</p>
 <div class="wrap">
 
 <header class="top">
@@ -165,9 +166,9 @@ details ul{margin-bottom:12px}
   <p>WAPE <b>0.54%</b>。同一个结构，多一个趋势项，误差降了 5 倍。</p>
 
   <h3>Theta：M3 竞赛冠军（2000 年）的极简做法</h3>
-  <p>把序列画成曲线，用 θ 参数控制“曲率”：θ=0 时曲线被拉直成一条趋势直线，θ=2 时就是原序列。</p>
-  <div class="math">ŷ<sub>t+h</sub> = SES(θ=0 直线段外推) + 季节因子 / 2</div>
-  <p>本质是“直线外推 + 半个季节修正”。它拿冠军说明一件事：<strong>结构简单的模型在短序列上极难被打败</strong>。</p>
+  <p>把序列画成曲线，用 θ 参数控制“曲率”：θ=0 时曲线被拉直成一条趋势直线，θ=1 时是原序列，θ=2 时放大去趋势偏离。</p>
+  <div class="math">ŷ = ½ × θ=0 趋势线外推 + ½ × θ=2 序列的 SES 预测（必要时先去季节、再还原）</div>
+  <p>本质是趋势线外推与放大去趋势序列的指数平滑组合。它拿冠军说明一件事：<strong>结构简单的模型在短序列上极难被打败</strong>。</p>
 
   <div class="key"><span class="tag">结论</span>先用眼睛找结构（周期、趋势），再让算法估参数。<b>结构对了，参数粗糙也能赢。</b></div>
 </section>
@@ -254,7 +255,7 @@ details ul{margin-bottom:12px}
   <div class="note">残差是<b>训练集</b>上的残差；树多了会把训练残差压到 0，但测试误差反而上升——这就是 40/60 棵树变差的原因。</div>
 
   <h3>4.5 递归多步：误差是怎么被放大的</h3>
-  <p>预测 13 周不可能一步给出，本工作台的做法是“预测一步 → 把预测值当作已知 → 再预测下一步”：</p>
+  <p>预测 13 周可以直接输出；本实现选择递归，本工作台的做法是“预测一步 → 把预测值当作已知 → 再预测下一步”：</p>
   <div class="math">ŷ<sub>t+1</sub> → 填回 lag1 → ŷ<sub>t+2</sub> → … → ŷ<sub>t+13</sub></div>
   <p>两个后果：</p>
   <ul>
@@ -273,7 +274,7 @@ details ul{margin-bottom:12px}
       <tr><td>min_child_samples</td><td>40</td><td>叶子最少样本数，抗噪</td></tr>
       <tr><td>subsample / colsample</td><td>0.8 / 0.8</td><td>行/列采样，注入随机性当正则</td></tr>
       <tr><td>reg_lambda</td><td>1.0</td><td>L2 正则</td></tr>
-      <tr><td>max_bin</td><td>12</td><td>特征分箱数，越小越快也越粗</td></tr>
+      <tr><td>max_bin</td><td>127</td><td>特征分箱数，越小越快也越粗</td></tr>
     </tbody>
   </table></div>
   <p>目标变换在验证集上选：<b>log1p 的 WAPE 3.06%</b> vs <b>Tweedie 3.11%</b>，选了 log1p。测试集结果 <b>3.78%</b>（1000 条日度序列，预测 14 天）。</p>
@@ -360,7 +361,7 @@ details ul{margin-bottom:12px}
   <ol>
     <li><b>先验</b>：各层方差用逆伽马先验；回归系数用 spike-and-slab（每个系数有一定概率精确为 0），这就是自动变量选择。</li>
     <li><b>后验采样（Gibbs）</b>：交替做两件事——给定方差，用模拟平滑器抽状态路径；给定状态路径，从共轭后验抽方差。迭代几千次。</li>
-    <li><b>后验预测</b>：每条抽样路径往后推，得到一整族未来 → 分位数就是<b>可信区间</b>（credible interval，“参数落在这里的概率 90%”，比频率派置信区间更符合直觉）。</li>
+    <li><b>后验预测</b>：每条抽样路径往后推，得到一整族未来 → 分位数就是<b>可信区间</b>（这里是未来观测的后验预测区间，不是参数可信区间）。</li>
   </ol>
   <p>副产品：把干预后那段“反事实”路径抽出来减掉实际值，就是 CausalImpact 的做法——本质是 BSTS 加反事实推断。</p>
 
@@ -404,10 +405,10 @@ details ul{margin-bottom:12px}
   <div class="math">WAPE = Σ|预测 − 实际| / Σ|实际|</div>
   <ul>
     <li><b>加权</b>：卖 1000 瓶的店误差 50 瓶，和卖 10 瓶的店误差 5 瓶，权重不同。</li>
-    <li><b>零值安全</b>：MAPE 除以实际值，遇到 0 会爆炸；WAPE 分母是总量。</li>
-    <li><b>可解释</b>：8.07% 就是“预测总量比实际总量偏了 8%”。</li>
+    <li><b>零值安全</b>：MAPE 除以实际值，遇到 0 会爆炸；WAPE 分母是总量；全零预测窗口仍无定义。逐序列平均也不等于跨序列总量加权。</li>
+    <li><b>可解释</b>：8.07% 就是“逐点绝对误差总和占实际总量约 8%，不是净总量偏差”。</li>
   </ul>
-  <p><b>MASE</b> 是“相对 SeasonalNaive 的倍数”：LightGBM 周度 MASE 0.573，即误差只有基线的 57%。<b>RMSE</b> 重罚大误差，适合缺货成本高的场景。</p>
+  <p><b>MASE</b> 是“相对 SeasonalNaive 的倍数”：LightGBM 周度 MASE 0.573，即误差为训练段季节差分 MAE 的 57%，不是测试基线误差的 57%。<b>RMSE</b> 重罚大误差，适合缺货成本高的场景。</p>
   <p>读榜前先确认三件事：<b>数据集、预测步长、指标口径</b>。任何一项不同，名次都不可比。</p>
 </section>
 
@@ -448,7 +449,7 @@ details ul{margin-bottom:12px}
   <details>
     <summary>间歇需求与零膨胀（展开）</summary>
     <ul>
-      <li>大量 0 的 SKU，用 L2 会预测出 0.3 这种无意义值。</li>
+      <li>大量 0 的 SKU，用 L2 会预测出 0.3 这样的期望值（具有统计意义）。</li>
       <li>对策：log1p、Tweedie/Poisson 损失，或 Croston 类方法。</li>
     </ul>
   </details>
@@ -565,7 +566,7 @@ details ul{margin-bottom:12px}
 
   table('t-feat',['样本','lag1','lag2','lag7','roll7_mean','dow','标签 y'],
     [14,20,27].map(function(i){
-      return ['D'+(i+1)+' '+DOW[i%7],H[i],(i>=1?H[i-1]:'—'),(i>=7?H[i-7]:'—'),
+      return ['D'+(i+1)+' '+DOW[i%7],H[i],(i>=1?H[i-1]:'—'),(i>=6?H[i-6]:'—'),
         r1(mean(H.slice(Math.max(0,i-6),i+1))),DOW[i%7],(i+1<H.length?H[i+1]:'（最后一天）')];
     }));
 
@@ -584,7 +585,7 @@ details ul{margin-bottom:12px}
 
   /* ---------- 指数权重 ---------- */
   (function(){
-    var a=0.6,wts=[],cur=1,i;
+    var a=0.6,wts=[],cur=0.6,i;
     for(i=0;i<8;i++){wts.push(cur);cur*=(1-a);}
     var w=720,h=200,pad={l:44,r:14,t:14,b:30};
     var gap=(w-pad.l-pad.r)/wts.length,bw=gap*0.62;

@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://proceedings.mlr.press/v97/wang19k.html",
+    "status": 200,
+    "saved": "source_0.txt",
+    "bytes": 15374
+  },
+  {
+    "url": "https://papers.nips.cc/paper/2018/hash/5cf68969fb67aa6082363a6d4e6468e2-Abstract.html",
+    "status": 200,
+    "saved": "source_1.txt",
+    "bytes": 9293
+  },
+  {
+    "url": "https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.structural.UnobservedComponents.html",
+    "status": 200,
+    "saved": "source_2.txt",
+    "bytes": 121755
+  },
+  {
+    "url": "https://api.crossref.org/works/10.1109/18.910572",
+    "status": 200,
+    "saved": "source_3.txt",
+    "bytes": 5751
+  },
+  {
+    "url": "https://export.arxiv.org/api/query?id_list=2105.06860,2006.03258,1506.00356,2004.13912,0806.3286",
+    "status": 200,
+    "saved": "source_4.txt",
+    "bytes": 12746
+  },
+  {
+    "url": "https://github.com/pgmpy/pgmpy",
+    "status": 200,
+    "saved": "source_5.txt",
+    "bytes": 393809
+  },
+  {
+    "url": "https://github.com/uber/orbit",
+    "status": 200,
+    "saved": "source_6.txt",
+    "bytes": 367369
+  },
+  {
+    "url": "https://github.com/interpretml/interpret",
+    "status": 200,
+    "saved": "source_7.txt",
+    "bytes": 473037
+  },
+  {
+    "url": "https://github.com/dswah/pyGAM",
+    "status": 200,
+    "saved": "source_8.txt",
+    "bytes": 316793
+  },
+  {
+    "url": "https://github.com/awslabs/gluonts",
+    "status": 200,
+    "saved": "source_9.txt",
+    "bytes": 352797
+  },
+  {
+    "url": "https://github.com/Nixtla/neuralforecast",
+    "status": 200,
+    "saved": "source_10.txt",
+    "bytes": 389974
+  }
+]

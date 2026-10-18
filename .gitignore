@@ -27,3 +27,7 @@ tmp/
 # 系统
 .DS_Store
 Thumbs.db
+
+# Incomplete downloads
+data/*.csv.part
+.pytest_cache/

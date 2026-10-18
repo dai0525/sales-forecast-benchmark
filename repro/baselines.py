@@ -19,6 +19,7 @@ Usage: python repro/baselines.py [--series 1000] [--arima-series 250] [--jobs 4]
 from __future__ import annotations
 
 import argparse
+import hashlib
 import sys
 import time
 import warnings
@@ -109,6 +110,12 @@ def main() -> int:
     t_all = time.time()
     data = common.load_m4_daily(n_series=args.series, seed=args.seed)
     N, ids = data.n, data.ids
+    fingerprint = hashlib.sha256(data.train.tobytes() + "|".join(ids).encode()).hexdigest()
+    def valid_cache(cp, expected):
+        if not cp.exists(): return False
+        z = np.load(cp)
+        return ("ids" in z and list(z["ids"]) == expected and
+                "fingerprint" in z and str(z["fingerprint"]) == fingerprint)
     print(f"[data] {N} series, horizon {common.H}, median length "
           f"{int(np.median(data.lengths()))}", flush=True)
 
@@ -132,12 +139,12 @@ def main() -> int:
         timings = load_timings()
         for name, mk, _note in specs:
             cp = cache_path(name)
-            if cp.exists() and not args.force:
+            if valid_cache(cp, ids) and not args.force:
                 print(f"[skip] {name} cached", flush=True)
                 continue
             t0 = time.time()
             p = predict_chunked(mk(), df, ids, common.H, jobs, args.chunk, name)
-            np.savez_compressed(cp, preds=p.astype(np.float32))
+            np.savez_compressed(cp, preds=p.astype(np.float32), ids=np.array(ids), fingerprint=fingerprint)
             timings[name] = round(time.time() - t0, 1)
             save_timings(timings)
             print(f"[stat] {name:17s} computed in {time.time()-t0:.0f}s "
@@ -146,14 +153,14 @@ def main() -> int:
         # ---- AutoARIMA: expensive, bounded subset, reported with its own n_series
         if args.arima_series and args.arima_series > 0:
             cp = cache_path("AutoARIMA")
-            if not cp.exists() or args.force:
+            if not valid_cache(cp, ids[:min(args.arima_series, N)]) or args.force:
                 sub_ids = ids[: min(args.arima_series, N)]
                 t0 = time.time()
                 print(f"[stat] AutoARIMA on {len(sub_ids)} series ...", flush=True)
                 p = predict_chunked(AutoARIMA(season_length=common.SEASON), df,
                                     sub_ids, common.H, jobs, 50, "AutoARIMA")
                 np.savez_compressed(cp, preds=p.astype(np.float32),
-                                    ids=np.array(sub_ids))
+                                    ids=np.array(sub_ids), fingerprint=fingerprint)
                 print(f"[stat] AutoARIMA computed in {time.time()-t0:.0f}s", flush=True)
 
     # ---------------- scoring
@@ -165,6 +172,8 @@ def main() -> int:
         cp = cache_path(name)
         if not cp.exists():
             continue
+        if not valid_cache(cp, ids):
+            raise ValueError(f"Unverified cache {cp}; rerun without --finalize-only")
         p = np.load(cp)["preds"].astype(np.float64)
         if p.shape[0] != N:
             continue

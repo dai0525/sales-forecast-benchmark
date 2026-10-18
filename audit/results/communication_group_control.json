@@ -1,0 +1,112 @@
+{
+  "5": {
+    "mpa": {
+      "wape_mean": 0.07538800397767748,
+      "wape_aggregate": 0.057042014607783936,
+      "smape": 0.07565797566239907,
+      "bias_aggregate": -0.013624434849545784
+    },
+    "exact": {
+      "wape_mean": 0.0753144579476268,
+      "wape_aggregate": 0.05698639401769191,
+      "smape": 0.07555752854723091,
+      "bias_aggregate": -0.01345500853902159
+    },
+    "exact_prediction_difference_across_groupings": 0.0,
+    "mpa_mean_tv": 0.004963439440027848,
+    "n_factors": 40,
+    "steps": 60,
+    "damping": 0.3,
+    "mpa_s": 14.39178137099998,
+    "max_message_probability_change": 2.9208258034429946e-10,
+    "max_belief_probability_change": 2.4328106196236376e-10
+  },
+  "13": {
+    "mpa": {
+      "wape_mean": 0.0753883333926989,
+      "wape_aggregate": 0.05705756256095709,
+      "smape": 0.07567554589161092,
+      "bias_aggregate": -0.013698596654164322
+    },
+    "exact": {
+      "wape_mean": 0.0753144579476268,
+      "wape_aggregate": 0.05698639401769192,
+      "smape": 0.07555752854723091,
+      "bias_aggregate": -0.013455008539021592
+    },
+    "exact_prediction_difference_across_groupings": 7.275957614183426e-12,
+    "mpa_mean_tv": 0.0065913185418402034,
+    "n_factors": 16,
+    "steps": 60,
+    "damping": 0.3,
+    "mpa_s": 6.132560451000245,
+    "max_message_probability_change": 3.942645099286324e-10,
+    "max_belief_probability_change": 2.1193535815200448e-10
+  },
+  "26": {
+    "mpa": {
+      "wape_mean": 0.0753821770976455,
+      "wape_aggregate": 0.05705421944792486,
+      "smape": 0.07566586821305928,
+      "bias_aggregate": -0.01368353785007928
+    },
+    "exact": {
+      "wape_mean": 0.0753144579476268,
+      "wape_aggregate": 0.05698639401769192,
+      "smape": 0.0755575285472309,
+      "bias_aggregate": -0.013455008539021592
+    },
+    "exact_prediction_difference_across_groupings": 7.275957614183426e-12,
+    "mpa_mean_tv": 0.005483014906748602,
+    "n_factors": 8,
+    "steps": 60,
+    "damping": 0.3,
+    "mpa_s": 2.9641184090000934,
+    "max_message_probability_change": 5.884348563967023e-10,
+    "max_belief_probability_change": 1.9700907571973403e-10
+  },
+  "52": {
+    "mpa": {
+      "wape_mean": 0.0753138224340339,
+      "wape_aggregate": 0.056984868366232816,
+      "smape": 0.07555542228498238,
+      "bias_aggregate": -0.013448112094058868
+    },
+    "exact": {
+      "wape_mean": 0.0753144579476268,
+      "wape_aggregate": 0.05698639401769193,
+      "smape": 0.0755575285472309,
+      "bias_aggregate": -0.013455008539021592
+    },
+    "exact_prediction_difference_across_groupings": 7.275957614183426e-12,
+    "mpa_mean_tv": 0.0001445762983659907,
+    "n_factors": 4,
+    "steps": 60,
+    "damping": 0.3,
+    "mpa_s": 1.4394170410000697,
+    "max_message_probability_change": 1.8103596399754451e-10,
+    "max_belief_probability_change": 1.925631876176226e-10
+  },
+  "200": {
+    "mpa": {
+      "wape_mean": 0.0753144579476268,
+      "wape_aggregate": 0.05698639401769193,
+      "smape": 0.07555752854723091,
+      "bias_aggregate": -0.013455008539021594
+    },
+    "exact": {
+      "wape_mean": 0.07531445794762677,
+      "wape_aggregate": 0.05698639401769193,
+      "smape": 0.07555752854723091,
+      "bias_aggregate": -0.013455008539021592
+    },
+    "exact_prediction_difference_across_groupings": 7.275957614183426e-12,
+    "mpa_mean_tv": 1.0397070141677603e-16,
+    "n_factors": 1,
+    "steps": 1,
+    "damping": 1.0,
+    "mpa_s": 0.006312687999979971,
+    "max_message_probability_change": 0.6612803909004041,
+    "max_belief_probability_change": 0.7170819189923334
+  }
+}

@@ -11,7 +11,8 @@
 在线性-高斯假设下，sum-product 消息 = 均值/方差，因此：
   - 变量→因子 消息：高斯 N(μ, σ²)
   - 因子→变量 消息：线性组合的高斯
-  - 迭代到不动点 = EM / 交替最小二乘（backfitting）
+  - 整体实现是启发式 backfitting；只有条件水平子问题使用 Kalman/RTS。
+    λ·S 是双线性项，未传播其联合不确定性，不能称为精确 BP 或 EM。
 
 关键区别（相对于 SCMA 的 MPA）：
   SCMA 的码本是离散有限集，消息是 M 维向量；这里因子是连续高斯，消息退化成
@@ -152,7 +153,7 @@ def fit(Y: np.ndarray, period: int = PERIOD, iters: int = 5,
         S /= s_norm
         lam = lam * s_norm                    # 归一化后把尺度还给 λ
 
-        # 训练段一步预测误差（诊断用）
+        # 训练段平滑重构误差（包含后向信息，不是一步预测误差）
         pred1 = L + lam[:, None] * S[phase]
         hist.append(float(np.abs(pred1 - Y).sum() / np.abs(Y).sum()))
         if verbose:
@@ -191,8 +192,8 @@ def forecast(model, h: int = H, damp: float = 1.0, drift_win: int = 26):
     acc = 0.0
     for i in range(h):
         acc += damp ** (i + 1)
-        out[:, i] = (level_T + d * acc + lam * S[model["fut_phase"][i]]
-                     + model["S_ind"][:, model["fut_phase"][i]])
+        out[:, i] = (level_T + d * acc + lam * S[(L.shape[1] + i) % len(S)]
+                     + model["S_ind"][:, (L.shape[1] + i) % len(S)])
     return np.clip(out, 0, None) * model["scale"][:, None]
 
 
@@ -220,7 +221,10 @@ def main():
     print(f"[data] {len(ids)} series × {Y.shape[1]} 周，预测 {H} 周", flush=True)
 
     t0 = time.time()
-    chosen = {"qr": args.qr, "damp": 1.0, "ridge": args.ridge}
+    chosen = {"qr": args.qr, "damp": 1.0, "ridge": args.ridge, "kappa": 10.0}
+
+    if args.sweep:
+        ap.error("Test-set tuning is disabled. Use --val.")
 
     if args.val:
         # ---- 只用训练段：前 T-H 周训练，最后 H 周验证
@@ -253,7 +257,7 @@ def main():
                 if best is None or ww < best[0]:
                     best = (ww, qr, damp, m, p)
         w, qr, damp, model, pred = best
-        chosen = {"qr": qr, "damp": damp, "ridge": args.ridge}
+        chosen = {"qr": qr, "damp": damp, "ridge": args.ridge, "kappa": 10.0}
         print(f"[best] qr={qr} damp={damp} WAPE {w * 100:.2f}%")
     else:
         model = fit(Y, args.period, args.iters, qr=args.qr, ridge=args.ridge, verbose=True)

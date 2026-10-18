@@ -59,6 +59,9 @@
       sec.querySelector('.algo-name').textContent = mod.title || id;
       sec.querySelector('.algo-tag').textContent = mod.tagline || '';
       host.appendChild(sec);
+      var notice = document.createElement('p'); notice.className = 'algo-note';
+      notice.textContent = '审计说明：本页介绍论文思想，仓库深度模型为简化实现；交互改变不等于重新训练。图形示意、插值和单序列误差不能当作全量 benchmark。';
+      sec.insertBefore(notice, sec.querySelector('.algo-body'));
       try {
         var p = mod.mount(sec.querySelector('.algo-body'), { load: load, data: DATA, fmt: fmt });
         if (p && p.catch) p.catch(function (err) {
@@ -112,7 +115,7 @@
     var ds = b.dataset || {};
     document.getElementById('bench-sub').textContent =
       '数据集：' + (ds.name || 'M4') + '，' + (ds.n_series || '?') + ' 条序列，预测 ' +
-      (ds.horizon || '?') + ' 步；同一套切分、同一套指标。';
+      (ds.horizon || '?') + ' 步；逐序列 WAPE 均值。审计状态见表下注释。';
     var rows = b.models.slice().sort(function (a, c) { return (a.wape == null) - (c.wape == null) || a.wape - c.wape; });
     var html = svgBars(rows);
     html += '<div class="tablewrap" style="margin-top:14px"><table><thead><tr>' +
@@ -180,15 +183,15 @@
       '<p class="algo-note">经验顺序：SeasonalNaive → LightGBM(全局 + lag/rolling 特征) → N-HiTS/DeepAR(需要概率区间时) → TFT(需要可解释变量归因时)</p></section>' +
       '<section class="algo"><header class="algo-hd"><span class="algo-rank">B</span>' +
       '<h2 class="algo-name" style="font-size:17px">评价指标别选错</h2></header>' +
-      '<p class="algo-lead">销量预测优先看 <b>WAPE</b>（加权绝对百分比误差，对总量敏感、零值友好）；MASE 用来和基线比"比 naive 好多少"；RMSE 只在你想重罚大误差时用。sMAPE 在接近 0 的序列上会爆炸，别单独用。</p></section>' +
+      '<p class="algo-lead">销量预测优先看 <b>WAPE</b>（加权绝对百分比误差，对总量敏感、零值友好）；MASE 用来和基线比"比 naive 好多少"；RMSE 只在你想重罚大误差时用。sMAPE 有界于 0–200%，但在接近 0 时不稳定，别单独用。</p></section>' +
       '<section class="algo"><header class="algo-hd"><span class="algo-rank">C</span>' +
       '<h2 class="algo-name" style="font-size:17px">三个常见坑</h2></header>' +
       '<p class="algo-lead">① <b>随机切分</b>：时序必须按时间切，随机切会让 lag 特征泄漏未来。<br>' +
       '② <b>递归多步</b>：h 步里每一步都用上一步的预测当特征，误差会累积——本工作台的 LightGBM 演示就是让你亲手看这个累积。<br>' +
-      '③ <b>间歇需求</b>：大量 0 的 SKU 用 log1p/普通 L2 会预测出 0.3 这种无意义值，改用 Tweedie/Poisson 目标或 Croston。</p></section>' +
+      '③ <b>间歇需求</b>：大量 0 的 SKU 用 log1p/普通 L2 会预测出 0.3 这样的期望销量（可以有意义），改用 Tweedie/Poisson 目标或 Croston。</p></section>' +
       '<section class="algo"><header class="algo-hd"><span class="algo-rank">D</span>' +
       '<h2 class="algo-name" style="font-size:17px">数据与代码</h2></header>' +
-      '<p class="algo-lead">本工作台所有数字都是在本机跑出来的：数据集为 M4 竞赛的 Weekly 子集（359 条真实周度销量序列，每条取最近 200 周，预测未来 13 周），同一套切分、同一套指标。代码与原始输出都在 <code>repro/</code> 与 <code>web/data/</code> 下。</p>' +
+      '<p class="algo-lead">本工作台所有数字都是在本机跑出来的：数据集为 M4 竞赛的 Weekly 子集（359 条来自不同领域的周度时间序列，每条取最近 200 周，预测未来 13 周），同一套切分、同一套指标。代码与原始输出都在 <code>repro/</code> 与 <code>web/data/</code> 下。</p>' +
       '<p class="algo-note">复现脚本：<code>repro/baselines.py</code>、<code>repro/lgbm_global.py</code>、<code>repro/deep_models.py</code>、<code>repro/bsts52.py</code>；指标：<code>web/data/bench.json</code></p></section>';
   }
 
@@ -205,8 +208,8 @@
     renderHow(r[2]);
     var b = r[0];
     document.getElementById('built').textContent =
-      '构建于 ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC · 数据 ' +
-      ((b && b.dataset && b.dataset.name) || 'M4') + ' · 全部指标为本机实测';
+      '页面打开于 ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC · 数据 ' +
+      ((b && b.dataset && b.dataset.name) || 'M4') + ' · 审计结果与教学示意见各图说明';
     if (location.hash) selectPanel(location.hash.slice(1));
   });
 })();

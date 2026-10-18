@@ -1,0 +1,13 @@
+{
+  "model": "BSTS-structural (UCM, MLE), season=52",
+  "n_series": 359,
+  "horizon": 13,
+  "season": 52,
+  "fit_runtime_s": 268.4,
+  "wape_mean_perseries": 0.07840264648452185,
+  "wape_aggregate": 0.055646867295215764,
+  "n_failed": 0,
+  "baseline_sn52_mean_perseries": 0.15552843337124897,
+  "baseline_sn52_aggregate": 0.1324927031344794,
+  "baseline_sn13_mean_perseries": 0.12220256011726803
+}

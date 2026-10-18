@@ -1,0 +1,742 @@
+{
+  "161": {
+    "exact": {
+      "wape_mean": 0.08540601644024294,
+      "wape_aggregate": 0.0672616580588234,
+      "smape": 0.0855060529928712,
+      "bias_aggregate": -0.021997126614789666
+    },
+    "validation_selected_iteration": {
+      "key": "level_first_50",
+      "validation_mean": 0.0992591871110768,
+      "test": {
+        "wape_mean": 0.08543909115726182,
+        "wape_aggregate": 0.06722073038550687,
+        "smape": 0.08550079404314034,
+        "bias_aggregate": -0.021733559853820007
+      }
+    },
+    "validation_scores": {
+      "level_first_1": 0.10951628907784507,
+      "level_first_2": 0.10684585469690426,
+      "level_first_5": 0.10367021968172042,
+      "level_first_10": 0.10194700280208463,
+      "level_first_25": 0.09959417567759611,
+      "level_first_50": 0.0992591871110768,
+      "level_first_100": 0.09930931818159139,
+      "level_first_200": 0.09931137351701003,
+      "level_first_500": 0.09931137550587527,
+      "season_first_1": 0.3361749378126637,
+      "season_first_2": 0.2671850046173723,
+      "season_first_5": 0.18739937869703924,
+      "season_first_10": 0.14250956395093461,
+      "season_first_25": 0.10572684028872538,
+      "season_first_50": 0.09941707555154013,
+      "season_first_100": 0.0993061285314772,
+      "season_first_200": 0.09931137024604207,
+      "season_first_500": 0.09931137550587528
+    },
+    "batch_vs_kalman_max_abs": 8.332342986250296e-06,
+    "variants": {
+      "level_first_1": {
+        "wape_mean": 0.11186372501125601,
+        "wape_aggregate": 0.07957974192737585,
+        "smape": 0.10486995476802052,
+        "bias_aggregate": -0.0026886672837774786,
+        "prediction_max_abs_to_exact": 6575.014682158537,
+        "component_mean_max_abs_normalized": 1.8333615864842638
+      },
+      "level_first_2": {
+        "wape_mean": 0.10526139015515272,
+        "wape_aggregate": 0.07615603663585967,
+        "smape": 0.10030372338423171,
+        "bias_aggregate": -0.006678159667124592,
+        "prediction_max_abs_to_exact": 5016.579501918994,
+        "component_mean_max_abs_normalized": 1.3592731087871837
+      },
+      "level_first_5": {
+        "wape_mean": 0.09534363115135182,
+        "wape_aggregate": 0.0711108779745919,
+        "smape": 0.09318461585559104,
+        "bias_aggregate": -0.012985654653778074,
+        "prediction_max_abs_to_exact": 2935.2915759953785,
+        "component_mean_max_abs_normalized": 0.9247092011160536
+      },
+      "level_first_10": {
+        "wape_mean": 0.08941893621206108,
+        "wape_aggregate": 0.06819360950054823,
+        "smape": 0.08856232143356098,
+        "bias_aggregate": -0.017001328903267145,
+        "prediction_max_abs_to_exact": 1543.2071043774595,
+        "component_mean_max_abs_normalized": 0.5739289174723385
+      },
+      "level_first_25": {
+        "wape_mean": 0.08596400151253006,
+        "wape_aggregate": 0.06716612729794232,
+        "smape": 0.08584711143143584,
+        "bias_aggregate": -0.020478439900689382,
+        "prediction_max_abs_to_exact": 414.37696554291233,
+        "component_mean_max_abs_normalized": 0.19277381554105544
+      },
+      "level_first_50": {
+        "wape_mean": 0.08543909115726182,
+        "wape_aggregate": 0.06722073038550687,
+        "smape": 0.08550079404314034,
+        "bias_aggregate": -0.021733559853820007,
+        "prediction_max_abs_to_exact": 66.40660829229728,
+        "component_mean_max_abs_normalized": 0.031444087124539166
+      },
+      "level_first_100": {
+        "wape_mean": 0.0854065574948705,
+        "wape_aggregate": 0.06726054492552214,
+        "smape": 0.08550541236546819,
+        "bias_aggregate": -0.02198938942221391,
+        "prediction_max_abs_to_exact": 1.7719106910235496,
+        "component_mean_max_abs_normalized": 0.000835895181076296
+      },
+      "level_first_200": {
+        "wape_mean": 0.08540601633306391,
+        "wape_aggregate": 0.06726165645280012,
+        "smape": 0.0855060517368299,
+        "bias_aggregate": -0.021997118161414128,
+        "prediction_max_abs_to_exact": 0.0012742352464556461,
+        "component_mean_max_abs_normalized": 5.995998866303864e-07
+      },
+      "level_first_500": {
+        "wape_mean": 0.08540601590521625,
+        "wape_aggregate": 0.06726165713020073,
+        "smape": 0.08550605223822266,
+        "bias_aggregate": -0.02199712418073749,
+        "prediction_max_abs_to_exact": 0.00011691735562635586,
+        "component_mean_max_abs_normalized": 2.646994587962581e-07
+      },
+      "season_first_1": {
+        "wape_mean": 0.23870507207584998,
+        "wape_aggregate": 0.2340512939549971,
+        "smape": 0.2728989426974705,
+        "bias_aggregate": -0.2286743825189955,
+        "prediction_max_abs_to_exact": 9016.541527763773,
+        "component_mean_max_abs_normalized": 13.845340744213399
+      },
+      "season_first_2": {
+        "wape_mean": 0.18113552993318136,
+        "wape_aggregate": 0.17650246598283265,
+        "smape": 0.19924343349481657,
+        "bias_aggregate": -0.16510535680941904,
+        "prediction_max_abs_to_exact": 6097.386586092507,
+        "component_mean_max_abs_normalized": 8.79250316650218
+      },
+      "season_first_5": {
+        "wape_mean": 0.12222038050983312,
+        "wape_aggregate": 0.11352838411209473,
+        "smape": 0.12779400436110858,
+        "bias_aggregate": -0.09041138462337076,
+        "prediction_max_abs_to_exact": 3655.374698122767,
+        "component_mean_max_abs_normalized": 4.167308215244237
+      },
+      "season_first_10": {
+        "wape_mean": 0.09896337974286123,
+        "wape_aggregate": 0.08599371349291463,
+        "smape": 0.10076072254570279,
+        "bias_aggregate": -0.05406111022718239,
+        "prediction_max_abs_to_exact": 2106.65918356731,
+        "component_mean_max_abs_normalized": 2.1838723674193545
+      },
+      "season_first_25": {
+        "wape_mean": 0.0878833176649779,
+        "wape_aggregate": 0.07118609464541113,
+        "smape": 0.08829442167000306,
+        "bias_aggregate": -0.03022317090258421,
+        "prediction_max_abs_to_exact": 599.5145314130277,
+        "component_mean_max_abs_normalized": 0.6384590508795185
+      },
+      "season_first_50": {
+        "wape_mean": 0.08572346516490027,
+        "wape_aggregate": 0.06780517411375524,
+        "smape": 0.08588438296252139,
+        "bias_aggregate": -0.023314957682568853,
+        "prediction_max_abs_to_exact": 92.89756231416686,
+        "component_mean_max_abs_normalized": 0.10293422556760845
+      },
+      "season_first_100": {
+        "wape_mean": 0.08541375705895037,
+        "wape_aggregate": 0.0672753491773244,
+        "smape": 0.0855160319903176,
+        "bias_aggregate": -0.022032402974998717,
+        "prediction_max_abs_to_exact": 2.3278865098473034,
+        "component_mean_max_abs_normalized": 0.0027337690163307116
+      },
+      "season_first_200": {
+        "wape_mean": 0.08540602124209096,
+        "wape_aggregate": 0.0672616666309378,
+        "smape": 0.0855060596465748,
+        "bias_aggregate": -0.021997149302761847,
+        "prediction_max_abs_to_exact": 0.001474873504776042,
+        "component_mean_max_abs_normalized": 1.8088838302787735e-06
+      },
+      "season_first_500": {
+        "wape_mean": 0.08540601590521633,
+        "wape_aggregate": 0.06726165713020084,
+        "smape": 0.08550605223822277,
+        "bias_aggregate": -0.02199712418073773,
+        "prediction_max_abs_to_exact": 0.00011691734835039824,
+        "component_mean_max_abs_normalized": 2.646994587962581e-07
+      }
+    }
+  },
+  "174": {
+    "exact": {
+      "wape_mean": 0.08309305232607617,
+      "wape_aggregate": 0.05922595368277891,
+      "smape": 0.08388537513348888,
+      "bias_aggregate": -0.00010989223902841223
+    },
+    "validation_selected_iteration": {
+      "key": "level_first_50",
+      "validation_mean": 0.0796956548706284,
+      "test": {
+        "wape_mean": 0.08310321832514343,
+        "wape_aggregate": 0.05921048164694977,
+        "smape": 0.08375100423713971,
+        "bias_aggregate": 0.00037956158468082003
+      }
+    },
+    "validation_scores": {
+      "level_first_1": 0.09798166452112035,
+      "level_first_2": 0.09293888195357795,
+      "level_first_5": 0.0861453145094665,
+      "level_first_10": 0.08239043279209408,
+      "level_first_25": 0.07988841510767154,
+      "level_first_50": 0.0796956548706284,
+      "level_first_100": 0.0797510682869345,
+      "level_first_200": 0.07975323677837669,
+      "level_first_500": 0.07975323875920684,
+      "season_first_1": 0.27437336894624015,
+      "season_first_2": 0.22285592707718951,
+      "season_first_5": 0.15267152545919838,
+      "season_first_10": 0.11337446383483125,
+      "season_first_25": 0.0851260931103502,
+      "season_first_50": 0.08016570330594329,
+      "season_first_100": 0.07976140340902887,
+      "season_first_200": 0.0797532442494819,
+      "season_first_500": 0.07975323875920691
+    },
+    "batch_vs_kalman_max_abs": 9.450366633245721e-06,
+    "variants": {
+      "level_first_1": {
+        "wape_mean": 0.10165643461838929,
+        "wape_aggregate": 0.06883175644237984,
+        "smape": 0.09628479549084785,
+        "bias_aggregate": 0.0142300646616753,
+        "prediction_max_abs_to_exact": 2456.018393032831,
+        "component_mean_max_abs_normalized": 1.5937076455391805
+      },
+      "level_first_2": {
+        "wape_mean": 0.09911013594898306,
+        "wape_aggregate": 0.06673928810846272,
+        "smape": 0.09440627393072701,
+        "bias_aggregate": 0.012628575469454074,
+        "prediction_max_abs_to_exact": 2094.9052480923056,
+        "component_mean_max_abs_normalized": 1.3366475267259688
+      },
+      "level_first_5": {
+        "wape_mean": 0.09459697316560521,
+        "wape_aggregate": 0.06384655604209685,
+        "smape": 0.09126633389914954,
+        "bias_aggregate": 0.010170624299817918,
+        "prediction_max_abs_to_exact": 1338.6480472687836,
+        "component_mean_max_abs_normalized": 0.8821685311908194
+      },
+      "level_first_10": {
+        "wape_mean": 0.09019721085443841,
+        "wape_aggregate": 0.061722660715418744,
+        "smape": 0.0882916012822104,
+        "bias_aggregate": 0.007590828934756263,
+        "prediction_max_abs_to_exact": 1024.8889924348268,
+        "component_mean_max_abs_normalized": 0.5517347340628342
+      },
+      "level_first_25": {
+        "wape_mean": 0.08437500686325743,
+        "wape_aggregate": 0.05956780651173474,
+        "smape": 0.0843416485196278,
+        "bias_aggregate": 0.002718481718663477,
+        "prediction_max_abs_to_exact": 390.7439605840691,
+        "component_mean_max_abs_normalized": 0.18945636273338273
+      },
+      "level_first_50": {
+        "wape_mean": 0.08310321832514343,
+        "wape_aggregate": 0.05921048164694977,
+        "smape": 0.08375100423713971,
+        "bias_aggregate": 0.00037956158468082003,
+        "prediction_max_abs_to_exact": 67.26814969817133,
+        "component_mean_max_abs_normalized": 0.03251648778891081
+      },
+      "level_first_100": {
+        "wape_mean": 0.08309269902453105,
+        "wape_aggregate": 0.05922527653276452,
+        "smape": 0.08388068647773975,
+        "bias_aggregate": -9.536830493061589e-05,
+        "prediction_max_abs_to_exact": 1.9777371229265555,
+        "component_mean_max_abs_normalized": 0.0009598380312940691
+      },
+      "level_first_200": {
+        "wape_mean": 0.08309305242465889,
+        "wape_aggregate": 0.05922595361404632,
+        "smape": 0.08388537171107918,
+        "bias_aggregate": -0.00010988223421320713,
+        "prediction_max_abs_to_exact": 0.0016933093074840144,
+        "component_mean_max_abs_normalized": 8.466719412236756e-07
+      },
+      "level_first_500": {
+        "wape_mean": 0.08309305261437037,
+        "wape_aggregate": 0.05922595413467087,
+        "smape": 0.083885375693367,
+        "bias_aggregate": -0.00010989499725348432,
+        "prediction_max_abs_to_exact": 0.00015026592882350087,
+        "component_mean_max_abs_normalized": 2.1618524215227808e-07
+      },
+      "season_first_1": {
+        "wape_mean": 0.2448598756402482,
+        "wape_aggregate": 0.22641213419824954,
+        "smape": 0.2881191597066114,
+        "bias_aggregate": -0.22003937036356738,
+        "prediction_max_abs_to_exact": 9647.406310825772,
+        "component_mean_max_abs_normalized": 9.799593144545844
+      },
+      "season_first_2": {
+        "wape_mean": 0.21443744138166207,
+        "wape_aggregate": 0.19594363180256977,
+        "smape": 0.2481434598429143,
+        "bias_aggregate": -0.18796490409219258,
+        "prediction_max_abs_to_exact": 7793.083465827363,
+        "component_mean_max_abs_normalized": 8.702554665606934
+      },
+      "season_first_5": {
+        "wape_mean": 0.16735387534326812,
+        "wape_aggregate": 0.14743085376611295,
+        "smape": 0.1889053498136334,
+        "bias_aggregate": -0.13388328154516718,
+        "prediction_max_abs_to_exact": 5858.990558939142,
+        "component_mean_max_abs_normalized": 6.854325762138952
+      },
+      "season_first_10": {
+        "wape_mean": 0.13125758373421736,
+        "wape_aggregate": 0.11031069319385989,
+        "smape": 0.1442296176769226,
+        "bias_aggregate": -0.08803770346974174,
+        "prediction_max_abs_to_exact": 4228.240398012378,
+        "component_mean_max_abs_normalized": 4.466562811208638
+      },
+      "season_first_25": {
+        "wape_mean": 0.09276283724158406,
+        "wape_aggregate": 0.0709024930276085,
+        "smape": 0.0967044274597656,
+        "bias_aggregate": -0.029708919583676816,
+        "prediction_max_abs_to_exact": 1486.930459079529,
+        "component_mean_max_abs_normalized": 1.509289537801584
+      },
+      "season_first_50": {
+        "wape_mean": 0.08383540603299093,
+        "wape_aggregate": 0.0604242043829609,
+        "smape": 0.08510840786958948,
+        "bias_aggregate": -0.005196194190142663,
+        "prediction_max_abs_to_exact": 255.80297440833237,
+        "component_mean_max_abs_normalized": 0.2607765758696806
+      },
+      "season_first_100": {
+        "wape_mean": 0.08310811592742115,
+        "wape_aggregate": 0.059254178650076955,
+        "smape": 0.08391448590904849,
+        "bias_aggregate": -0.0002606105258775489,
+        "prediction_max_abs_to_exact": 7.570220674992015,
+        "component_mean_max_abs_normalized": 0.007720949744498495
+      },
+      "season_first_200": {
+        "wape_mean": 0.08309306587168343,
+        "wape_aggregate": 0.05922597888680482,
+        "smape": 0.0838854012770238,
+        "bias_aggregate": -0.00011002724210276165,
+        "prediction_max_abs_to_exact": 0.006785258636227809,
+        "component_mean_max_abs_normalized": 6.8615137039096386e-06
+      },
+      "season_first_500": {
+        "wape_mean": 0.08309305261437042,
+        "wape_aggregate": 0.05922595413467096,
+        "smape": 0.08388537569336706,
+        "bias_aggregate": -0.00010989499725382886,
+        "prediction_max_abs_to_exact": 0.00015026592882350087,
+        "component_mean_max_abs_normalized": 2.161852563631328e-07
+      }
+    }
+  },
+  "187": {
+    "exact": {
+      "wape_mean": 0.06740823154229889,
+      "wape_aggregate": 0.04842616209795807,
+      "smape": 0.06617608229986519,
+      "bias_aggregate": 0.00399429302604545
+    },
+    "validation_selected_iteration": {
+      "key": "level_first_50",
+      "validation_mean": 0.08184301494372069,
+      "test": {
+        "wape_mean": 0.06739282664294631,
+        "wape_aggregate": 0.04838828134139293,
+        "smape": 0.06620103053078406,
+        "bias_aggregate": 0.0038177797388404206
+      }
+    },
+    "validation_scores": {
+      "level_first_1": 0.10318848603030499,
+      "level_first_2": 0.09869299182142187,
+      "level_first_5": 0.0917699282231567,
+      "level_first_10": 0.08675718923755864,
+      "level_first_25": 0.08244993887121327,
+      "level_first_50": 0.08184301494372069,
+      "level_first_100": 0.08189930981547543,
+      "level_first_200": 0.08190216514071136,
+      "level_first_500": 0.08190216792054089,
+      "season_first_1": 0.2639837081390229,
+      "season_first_2": 0.2014487630026113,
+      "season_first_5": 0.1356300451915398,
+      "season_first_10": 0.10716467290116867,
+      "season_first_25": 0.08688934381168152,
+      "season_first_50": 0.08238927016550364,
+      "season_first_100": 0.0819132357920046,
+      "season_first_200": 0.0819021774120697,
+      "season_first_500": 0.08190216792054097
+    },
+    "batch_vs_kalman_max_abs": 1.3545491128752474e-05,
+    "variants": {
+      "level_first_1": {
+        "wape_mean": 0.07869849032448745,
+        "wape_aggregate": 0.05337357644680506,
+        "smape": 0.07681772982645427,
+        "bias_aggregate": 0.00347231428454554,
+        "prediction_max_abs_to_exact": 2236.781044305897,
+        "component_mean_max_abs_normalized": 1.8852265530197139
+      },
+      "level_first_2": {
+        "wape_mean": 0.07381465223517385,
+        "wape_aggregate": 0.05052522155274287,
+        "smape": 0.072514831556275,
+        "bias_aggregate": 0.0027924651939143634,
+        "prediction_max_abs_to_exact": 1656.68912087223,
+        "component_mean_max_abs_normalized": 1.3326278675615932
+      },
+      "level_first_5": {
+        "wape_mean": 0.06991711186696602,
+        "wape_aggregate": 0.04902226495947517,
+        "smape": 0.06915026771578768,
+        "bias_aggregate": 0.0019401478427322177,
+        "prediction_max_abs_to_exact": 1441.8258587303717,
+        "component_mean_max_abs_normalized": 0.8858993184363411
+      },
+      "level_first_10": {
+        "wape_mean": 0.06945775027398718,
+        "wape_aggregate": 0.04900832276715909,
+        "smape": 0.06885203572254843,
+        "bias_aggregate": 0.0019092193803995521,
+        "prediction_max_abs_to_exact": 1036.4495475515314,
+        "component_mean_max_abs_normalized": 0.575830734418251
+      },
+      "level_first_25": {
+        "wape_mean": 0.06771513889022847,
+        "wape_aggregate": 0.048415816539809635,
+        "smape": 0.06672223441896732,
+        "bias_aggregate": 0.0030673287735667404,
+        "prediction_max_abs_to_exact": 350.79673179198653,
+        "component_mean_max_abs_normalized": 0.19578302460920494
+      },
+      "level_first_50": {
+        "wape_mean": 0.06739282664294631,
+        "wape_aggregate": 0.04838828134139293,
+        "smape": 0.06620103053078406,
+        "bias_aggregate": 0.0038177797388404206,
+        "prediction_max_abs_to_exact": 56.53350405008587,
+        "component_mean_max_abs_normalized": 0.032222797383171464
+      },
+      "level_first_100": {
+        "wape_mean": 0.06740762151475488,
+        "wape_aggregate": 0.04842501884167622,
+        "smape": 0.06617669975780036,
+        "bias_aggregate": 0.0039885597291819536,
+        "prediction_max_abs_to_exact": 1.4759167930042167,
+        "component_mean_max_abs_normalized": 0.0008724327287650269
+      },
+      "level_first_200": {
+        "wape_mean": 0.06740823110686846,
+        "wape_aggregate": 0.04842616136373121,
+        "smape": 0.06617608296562211,
+        "bias_aggregate": 0.003994286937672265,
+        "prediction_max_abs_to_exact": 0.0010602127131278394,
+        "component_mean_max_abs_normalized": 6.438113389073408e-07
+      },
+      "level_first_500": {
+        "wape_mean": 0.06740823156195411,
+        "wape_aggregate": 0.048426162229673726,
+        "smape": 0.06617608239016394,
+        "bias_aggregate": 0.003994292010753575,
+        "prediction_max_abs_to_exact": 0.00012528961815405637,
+        "component_mean_max_abs_normalized": 2.968085581755986e-07
+      },
+      "season_first_1": {
+        "wape_mean": 0.26948172329449854,
+        "wape_aggregate": 0.2533410402353979,
+        "smape": 0.3170092103809801,
+        "bias_aggregate": -0.252336163327975,
+        "prediction_max_abs_to_exact": 10511.624907318313,
+        "component_mean_max_abs_normalized": 10.199128980234983
+      },
+      "season_first_2": {
+        "wape_mean": 0.21830237712587938,
+        "wape_aggregate": 0.20299045846194907,
+        "smape": 0.24939632079189647,
+        "bias_aggregate": -0.20018437076745335,
+        "prediction_max_abs_to_exact": 8072.319067281751,
+        "component_mean_max_abs_normalized": 9.030324135515796
+      },
+      "season_first_5": {
+        "wape_mean": 0.15224106243242191,
+        "wape_aggregate": 0.13821335010814337,
+        "smape": 0.1664947093933842,
+        "bias_aggregate": -0.13028567891433288,
+        "prediction_max_abs_to_exact": 5885.805454618669,
+        "component_mean_max_abs_normalized": 7.5619246667464886
+      },
+      "season_first_10": {
+        "wape_mean": 0.10594697806020019,
+        "wape_aggregate": 0.09257919861876567,
+        "smape": 0.11114214545547213,
+        "bias_aggregate": -0.07657049732406072,
+        "prediction_max_abs_to_exact": 3652.55963070751,
+        "component_mean_max_abs_normalized": 4.960794622692519
+      },
+      "season_first_25": {
+        "wape_mean": 0.0715570322627398,
+        "wape_aggregate": 0.05514366891397683,
+        "smape": 0.07158714119154426,
+        "bias_aggregate": -0.018808819746266473,
+        "prediction_max_abs_to_exact": 1047.5228489005967,
+        "component_mean_max_abs_normalized": 1.453937128556622
+      },
+      "season_first_50": {
+        "wape_mean": 0.06743427173064007,
+        "wape_aggregate": 0.048786342255700846,
+        "smape": 0.06636415440217884,
+        "bias_aggregate": 0.0007982543621545848,
+        "prediction_max_abs_to_exact": 150.0075372290812,
+        "component_mean_max_abs_normalized": 0.20284642910315304
+      },
+      "season_first_100": {
+        "wape_mean": 0.0674067956058851,
+        "wape_aggregate": 0.04843123364443,
+        "smape": 0.06617769905413791,
+        "bias_aggregate": 0.003930263325779901,
+        "prediction_max_abs_to_exact": 3.162032413885754,
+        "component_mean_max_abs_normalized": 0.003985802627012855
+      },
+      "season_first_200": {
+        "wape_mean": 0.06740823121398977,
+        "wape_aggregate": 0.04842616456966214,
+        "smape": 0.06617608305350649,
+        "bias_aggregate": 0.003994265686933056,
+        "prediction_max_abs_to_exact": 0.0016750997165217996,
+        "component_mean_max_abs_normalized": 1.5846864322502374e-06
+      },
+      "season_first_500": {
+        "wape_mean": 0.06740823156195412,
+        "wape_aggregate": 0.04842616222967376,
+        "smape": 0.06617608239016395,
+        "bias_aggregate": 0.003994292010753441,
+        "prediction_max_abs_to_exact": 0.00012528962543001398,
+        "component_mean_max_abs_normalized": 2.9680856528102595e-07
+      }
+    }
+  },
+  "200": {
+    "exact": {
+      "wape_mean": 0.07313254047875994,
+      "wape_aggregate": 0.05475517839550837,
+      "smape": 0.07291887241338442,
+      "bias_aggregate": -0.007375242343124959
+    },
+    "validation_selected_iteration": {
+      "key": "level_first_500",
+      "validation_mean": 0.07798146514502614,
+      "test": {
+        "wape_mean": 0.07313254047079715,
+        "wape_aggregate": 0.0547551782786262,
+        "smape": 0.07291887234556331,
+        "bias_aggregate": -0.007375241274545845
+      }
+    },
+    "validation_scores": {
+      "level_first_1": 0.09743335895604477,
+      "level_first_2": 0.09258951754860371,
+      "level_first_5": 0.08624745983649333,
+      "level_first_10": 0.08249917384535348,
+      "level_first_25": 0.07874809837710668,
+      "level_first_50": 0.07800438794337142,
+      "level_first_100": 0.07798167375207271,
+      "level_first_200": 0.07798146534707559,
+      "level_first_500": 0.07798146514502614,
+      "season_first_1": 0.23237172417688443,
+      "season_first_2": 0.1975682769663195,
+      "season_first_5": 0.14532930015346648,
+      "season_first_10": 0.11094463449010088,
+      "season_first_25": 0.08338796299174935,
+      "season_first_50": 0.0783460312246312,
+      "season_first_100": 0.07798851144061687,
+      "season_first_200": 0.07798147100822783,
+      "season_first_500": 0.07798146514502619
+    },
+    "batch_vs_kalman_max_abs": 1.8587024896987714e-05,
+    "variants": {
+      "level_first_1": {
+        "wape_mean": 0.09063979663848047,
+        "wape_aggregate": 0.063824463715958,
+        "smape": 0.09457010413613225,
+        "bias_aggregate": -0.02655681996819621,
+        "prediction_max_abs_to_exact": 5064.427335954784,
+        "component_mean_max_abs_normalized": 1.6075925141750291
+      },
+      "level_first_2": {
+        "wape_mean": 0.08702874367554146,
+        "wape_aggregate": 0.062078482469395894,
+        "smape": 0.0899810922327579,
+        "bias_aggregate": -0.02529499631276783,
+        "prediction_max_abs_to_exact": 4079.145251869246,
+        "component_mean_max_abs_normalized": 1.3594714676654345
+      },
+      "level_first_5": {
+        "wape_mean": 0.08128868670975178,
+        "wape_aggregate": 0.05931870843109541,
+        "smape": 0.0829851795815642,
+        "bias_aggregate": -0.021341459898971155,
+        "prediction_max_abs_to_exact": 2273.220963820462,
+        "component_mean_max_abs_normalized": 0.9153933086388637
+      },
+      "level_first_10": {
+        "wape_mean": 0.07655584097324435,
+        "wape_aggregate": 0.056955657693165414,
+        "smape": 0.07748861459385273,
+        "bias_aggregate": -0.01673644388465066,
+        "prediction_max_abs_to_exact": 1270.0282407337118,
+        "component_mean_max_abs_normalized": 0.5903541404947843
+      },
+      "level_first_25": {
+        "wape_mean": 0.07266280237989207,
+        "wape_aggregate": 0.05491282455735778,
+        "smape": 0.07278878678242576,
+        "bias_aggregate": -0.010569047916999835,
+        "prediction_max_abs_to_exact": 413.35907893843523,
+        "component_mean_max_abs_normalized": 0.19610041098680098
+      },
+      "level_first_50": {
+        "wape_mean": 0.07290674346640115,
+        "wape_aggregate": 0.054729200513825474,
+        "smape": 0.07275190597266894,
+        "bias_aggregate": -0.007936743065785217,
+        "prediction_max_abs_to_exact": 71.97615544402834,
+        "component_mean_max_abs_normalized": 0.03201700632426041
+      },
+      "level_first_100": {
+        "wape_mean": 0.0731249956248881,
+        "wape_aggregate": 0.05475413876519054,
+        "smape": 0.07291317240175543,
+        "bias_aggregate": -0.0073926537688638935,
+        "prediction_max_abs_to_exact": 2.2117824588394797,
+        "component_mean_max_abs_normalized": 0.000973032459398393
+      },
+      "level_first_200": {
+        "wape_mean": 0.07313253327354222,
+        "wape_aggregate": 0.05475517729537279,
+        "smape": 0.07291886690921921,
+        "bias_aggregate": -0.007375257970569874,
+        "prediction_max_abs_to_exact": 0.002076176272566954,
+        "component_mean_max_abs_normalized": 9.189403598064416e-07
+      },
+      "level_first_500": {
+        "wape_mean": 0.07313254047079715,
+        "wape_aggregate": 0.0547551782786262,
+        "smape": 0.07291887234556331,
+        "bias_aggregate": -0.007375241274545845,
+        "prediction_max_abs_to_exact": 9.505056368652731e-05,
+        "component_mean_max_abs_normalized": 1.1308220848604833e-07
+      },
+      "season_first_1": {
+        "wape_mean": 0.19333518674754063,
+        "wape_aggregate": 0.16887163766617572,
+        "smape": 0.20506386637226381,
+        "bias_aggregate": -0.12112496492563994,
+        "prediction_max_abs_to_exact": 9310.781136577567,
+        "component_mean_max_abs_normalized": 14.341339271902621
+      },
+      "season_first_2": {
+        "wape_mean": 0.14731619227377665,
+        "wape_aggregate": 0.12665762138860132,
+        "smape": 0.14877490896327678,
+        "bias_aggregate": -0.08246081870201961,
+        "prediction_max_abs_to_exact": 6303.297379901087,
+        "component_mean_max_abs_normalized": 10.491675119207207
+      },
+      "season_first_5": {
+        "wape_mean": 0.09859136029610995,
+        "wape_aggregate": 0.07796501745397397,
+        "smape": 0.09555394898672397,
+        "bias_aggregate": -0.0346708333412461,
+        "prediction_max_abs_to_exact": 3020.551955132425,
+        "component_mean_max_abs_normalized": 5.155445510308566
+      },
+      "season_first_10": {
+        "wape_mean": 0.08368647021314628,
+        "wape_aggregate": 0.062054446078809514,
+        "smape": 0.08135855597669402,
+        "bias_aggregate": -0.016469052097142983,
+        "prediction_max_abs_to_exact": 1828.7911561749388,
+        "component_mean_max_abs_normalized": 2.430827120281454
+      },
+      "season_first_25": {
+        "wape_mean": 0.07525421066907027,
+        "wape_aggregate": 0.05594576646470005,
+        "smape": 0.07446694749705945,
+        "bias_aggregate": -0.009228047910379181,
+        "prediction_max_abs_to_exact": 611.8408226660831,
+        "component_mean_max_abs_normalized": 0.5953399363217684
+      },
+      "season_first_50": {
+        "wape_mean": 0.07335557957513113,
+        "wape_aggregate": 0.0548785080183738,
+        "smape": 0.07305780367103128,
+        "bias_aggregate": -0.007679317504770067,
+        "prediction_max_abs_to_exact": 110.2210774645464,
+        "component_mean_max_abs_normalized": 0.080014413816839
+      },
+      "season_first_100": {
+        "wape_mean": 0.07313869722435766,
+        "wape_aggregate": 0.054758625385669585,
+        "smape": 0.07292254285526906,
+        "bias_aggregate": -0.00738420693554798,
+        "prediction_max_abs_to_exact": 3.5721969003643608,
+        "component_mean_max_abs_normalized": 0.001554607703743438
+      },
+      "season_first_200": {
+        "wape_mean": 0.0731325463890521,
+        "wape_aggregate": 0.05475518159531566,
+        "smape": 0.07291887590565455,
+        "bias_aggregate": -0.007375249471965609,
+        "prediction_max_abs_to_exact": 0.0035317603142175358,
+        "component_mean_max_abs_normalized": 7.946503473021949e-07
+      },
+      "season_first_500": {
+        "wape_mean": 0.0731325404707972,
+        "wape_aggregate": 0.0547551782786262,
+        "smape": 0.07291887234556334,
+        "bias_aggregate": -0.007375241274545841,
+        "prediction_max_abs_to_exact": 9.505052003078163e-05,
+        "component_mean_max_abs_normalized": 1.1308219427519361e-07
+      }
+    }
+  }
+}

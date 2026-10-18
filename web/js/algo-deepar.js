@@ -107,7 +107,7 @@
       var s = raw.samples;
       raw.p90 = raw.y_test.map(function (_, i) { return q(s.map(function (p) { return p[i]; }), 0.9); });
     }
-    if (!raw.calibration || !raw.calibration.length) raw.calibration = synth().calibration;
+    if (!raw.calibration || !raw.calibration.length) raw.calibration = [];
     return raw;
   }
 
@@ -210,7 +210,7 @@
     out.push('<line x1="' + x0 + '" y1="' + (y0 + S) + '" x2="' + (x0 + S) + '" y2="' + y0 + '" stroke="' + C.truth + '" stroke-width="1.4" stroke-dasharray="4 3"/>');
     var poly = [];
     cal.forEach(function (c) {
-      var px = X(c.actual), py = Y(c.nominal);
+      var px = X(c.nominal), py = Y(c.actual);
       pts.push([px, py]);
       poly.push(fx(px) + ',' + fx(py));
       out.push('<circle cx="' + fx(px) + '" cy="' + fx(py) + '" r="2.8" fill="' + C.blue + '"/>');
@@ -218,8 +218,8 @@
     out.push('<polyline points="' + poly.join(' ') + '" fill="none" stroke="' + C.blue + '" stroke-width="1.6" stroke-opacity="0.55"/>');
     var c90 = cal[cal.length - 1];
     if (c90) {
-      pts.push([X(c90.actual), Y(c90.nominal)]);
-      out.push('<circle cx="' + fx(X(c90.actual)) + '" cy="' + fx(Y(c90.nominal)) + '" r="5" fill="none" stroke="' + C.blue + '" stroke-width="1.6"/>');
+      pts.push([X(c90.nominal), Y(c90.actual)]);
+      out.push('<circle cx="' + fx(X(c90.nominal)) + '" cy="' + fx(Y(c90.actual)) + '" r="5" fill="none" stroke="' + C.blue + '" stroke-width="1.6"/>');
     }
     out.push('<text x="' + x0 + '" y="' + (y0 + S + 14) + '">0%</text>');
     out.push('<text x="' + (x0 + S) + '" y="' + (y0 + S + 14) + '" text-anchor="end">100%</text>');
@@ -328,7 +328,7 @@
       var paths = state.idx.map(function (i) { return pool[i]; });
       fanBox.innerHTML = buildFan(d, paths).html;
       var m = measure(paths, d.y_test);
-      elW.textContent = '±' + m.width.toFixed(0) + '%';
+      elW.textContent = '' + m.width.toFixed(0) + '%';
       elH.textContent = m.hit.toFixed(0) + '%';
       nShow.textContent = String(state.n);
       if (state.n <= 2) {
@@ -345,14 +345,14 @@
     var wg = buildWidths(d);
     wBox.innerHTML = wg.html;
     root.querySelector('[data-wcap]').textContent =
-      'h=1 只有 ±' + Math.round(wg.info.w1) + '%，到 h=' + d.y_test.length + ' 变成 ±' + Math.round(wg.info.wl) +
+      'h=1 区间全宽为 ' + Math.round(wg.info.w1) + '%，到 h=' + d.y_test.length + ' 全宽为 ' + Math.round(wg.info.wl) +
       '%（' + wg.info.ratio.toFixed(1) + ' 倍）。越远越糊，不是模型偷懒，是它在诚实报价。';
 
     var cg = buildCalib(d);
     cBox.innerHTML = cg.html;
     root.querySelector('[data-calcap]').textContent = cg.actual90 == null
       ? '点贴着对角线才算诚实。'
-      : '名义 90% 只覆盖了 ' + (cg.actual90 * 100).toFixed(1) + '%：区间偏窄。按它的 P90 备货会缺货。';
+      : 'P90 的单侧经验覆盖率为 ' + (cg.actual90 * 100).toFixed(1) + '%；偏差可能来自位置或尺度误差，需多个窗口验证。';
 
     root.querySelector('[data-resample]').addEventListener('click', function () {
       state.idx = rand();

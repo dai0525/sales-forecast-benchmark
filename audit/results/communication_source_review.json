@@ -1,0 +1,17 @@
+[
+  {
+    "source": "https://github.com/klimentyev/scma_mex/blob/master/src/scma_log_mpa.c",
+    "sha256": "304ea70cd95051778c690b2ee813abd0e4fb73e177e00af36eea8e3e222300bf",
+    "checked": "Log-MPA uses Gaussian codeword likelihood, log-sum-exp factor updates, extrinsic variable updates and final posterior symbol scores. Source inspected, not compiled; independent Python implementation used for experiments."
+  },
+  {
+    "source": "https://github.com/klimentyev/scma_mex/blob/master/src/scma_dec_mex.c",
+    "sha256": "b645b87a5743507f2231029f70e56039b29b5fd06c185f5863316d921302050c",
+    "checked": "Log-MPA uses Gaussian codeword likelihood, log-sum-exp factor updates, extrinsic variable updates and final posterior symbol scores. Source inspected, not compiled; independent Python implementation used for experiments."
+  },
+  {
+    "source": "https://github.com/klimentyev/scma_mex/blob/master/README.md",
+    "sha256": "5f4927a7f6a44aafa3d67c177da0e580ab314366c30972b8307099f04a6598cf",
+    "checked": "Log-MPA uses Gaussian codeword likelihood, log-sum-exp factor updates, extrinsic variable updates and final posterior symbol scores. Source inspected, not compiled; independent Python implementation used for experiments."
+  }
+]

@@ -366,7 +366,7 @@
     }
     var real = !!(raw && arr(raw.y_train).length >= 2 && (arr(raw.pred).length || arr(raw.y_test).length));
     var D = real ? normalize(raw) : demoData();
-    if (!D.pred.length) D.pred = arr(D.y_test);
+    if (!D.pred.length) D = demoData();
     var isDemo = D.demo;
     var demoCapText = '示意数据，真实结果生成后自动替换。';
 
@@ -499,7 +499,7 @@
     c3.appendChild(s3);
     c3.appendChild(html('p', 'sfw-cap',
       'pool=2 先把输入两两合并再上采样回来，序列变短、算力更省，但周内尖峰被抹平了——曲线更「顺」，代价直接写在 WAPE 上。' +
-      '曲线是按池化比重采样的示形，WAPE 为实测值。'));
+      '曲线是按池化比重采样的示形，WAPE 来自保存结果或已标注的示意值，曲线不是该池化参数的重新训练输出。'));
     if (D.demo) c3.appendChild(html('p', 'sfw-cap sfw-nhits-demo', demoCapText));
     cards.appendChild(c3);
 

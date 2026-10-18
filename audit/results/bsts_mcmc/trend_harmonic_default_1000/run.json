@@ -1,0 +1,1527 @@
+{
+  "wall_s": 379.18,
+  "series": [
+    {
+      "index": 1,
+      "cached": true
+    },
+    {
+      "index": 2,
+      "cached": true
+    },
+    {
+      "index": 3,
+      "cached": true
+    },
+    {
+      "index": 4,
+      "cached": true
+    },
+    {
+      "index": 5,
+      "cached": true
+    },
+    {
+      "index": 6,
+      "cached": true
+    },
+    {
+      "index": 7,
+      "cached": true
+    },
+    {
+      "index": 8,
+      "cached": true
+    },
+    {
+      "index": 9,
+      "cached": true
+    },
+    {
+      "index": 10,
+      "cached": true
+    },
+    {
+      "index": 11,
+      "cached": true
+    },
+    {
+      "index": 12,
+      "cached": true
+    },
+    {
+      "index": 13,
+      "cached": true
+    },
+    {
+      "index": 14,
+      "cached": true
+    },
+    {
+      "index": 15,
+      "cached": true
+    },
+    {
+      "index": 16,
+      "cached": true
+    },
+    {
+      "index": 17,
+      "cached": true
+    },
+    {
+      "index": 18,
+      "cached": true
+    },
+    {
+      "index": 19,
+      "cached": true
+    },
+    {
+      "index": 20,
+      "cached": true
+    },
+    {
+      "index": 21,
+      "cached": true
+    },
+    {
+      "index": 22,
+      "cached": true
+    },
+    {
+      "index": 23,
+      "cached": true
+    },
+    {
+      "index": 24,
+      "cached": true
+    },
+    {
+      "index": 25,
+      "cached": true
+    },
+    {
+      "index": 26,
+      "cached": true
+    },
+    {
+      "index": 27,
+      "cached": true
+    },
+    {
+      "index": 28,
+      "cached": true
+    },
+    {
+      "index": 29,
+      "cached": true
+    },
+    {
+      "index": 30,
+      "cached": true
+    },
+    {
+      "index": 31,
+      "cached": true
+    },
+    {
+      "index": 32,
+      "cached": true
+    },
+    {
+      "index": 33,
+      "cached": true
+    },
+    {
+      "index": 34,
+      "cached": true
+    },
+    {
+      "index": 35,
+      "cached": true
+    },
+    {
+      "index": 36,
+      "cached": true
+    },
+    {
+      "index": 37,
+      "cached": true
+    },
+    {
+      "index": 38,
+      "cached": true
+    },
+    {
+      "index": 39,
+      "cached": true
+    },
+    {
+      "index": 40,
+      "cached": true
+    },
+    {
+      "index": 41,
+      "cached": true
+    },
+    {
+      "index": 42,
+      "cached": true
+    },
+    {
+      "index": 43,
+      "cached": true
+    },
+    {
+      "index": 44,
+      "cached": true
+    },
+    {
+      "index": 45,
+      "cached": true
+    },
+    {
+      "index": 46,
+      "cached": true
+    },
+    {
+      "index": 47,
+      "cached": true
+    },
+    {
+      "index": 48,
+      "cached": true
+    },
+    {
+      "index": 49,
+      "cached": true
+    },
+    {
+      "index": 50,
+      "cached": true
+    },
+    {
+      "index": 51,
+      "cached": true
+    },
+    {
+      "index": 52,
+      "cached": true
+    },
+    {
+      "index": 53,
+      "cached": true
+    },
+    {
+      "index": 54,
+      "cached": true
+    },
+    {
+      "index": 55,
+      "cached": true
+    },
+    {
+      "index": 56,
+      "cached": true
+    },
+    {
+      "index": 57,
+      "cached": true
+    },
+    {
+      "index": 58,
+      "cached": true
+    },
+    {
+      "index": 59,
+      "cached": true
+    },
+    {
+      "index": 60,
+      "cached": true
+    },
+    {
+      "index": 61,
+      "cached": true
+    },
+    {
+      "index": 62,
+      "cached": true
+    },
+    {
+      "index": 63,
+      "cached": true
+    },
+    {
+      "index": 64,
+      "cached": true
+    },
+    {
+      "index": 65,
+      "cached": true
+    },
+    {
+      "index": 66,
+      "cached": true
+    },
+    {
+      "index": 67,
+      "cached": true
+    },
+    {
+      "index": 68,
+      "cached": true
+    },
+    {
+      "index": 69,
+      "cached": true
+    },
+    {
+      "index": 70,
+      "cached": true
+    },
+    {
+      "index": 71,
+      "cached": true
+    },
+    {
+      "index": 72,
+      "cached": true
+    },
+    {
+      "index": 73,
+      "cached": true
+    },
+    {
+      "index": 74,
+      "cached": true
+    },
+    {
+      "index": 75,
+      "cached": true
+    },
+    {
+      "index": 76,
+      "cached": true
+    },
+    {
+      "index": 77,
+      "cached": true
+    },
+    {
+      "index": 78,
+      "cached": true
+    },
+    {
+      "index": 79,
+      "cached": true
+    },
+    {
+      "index": 80,
+      "cached": true
+    },
+    {
+      "index": 81,
+      "cached": true
+    },
+    {
+      "index": 82,
+      "cached": true
+    },
+    {
+      "index": 83,
+      "cached": true
+    },
+    {
+      "index": 84,
+      "cached": true
+    },
+    {
+      "index": 85,
+      "cached": true
+    },
+    {
+      "index": 86,
+      "cached": true
+    },
+    {
+      "index": 87,
+      "cached": true
+    },
+    {
+      "index": 88,
+      "cached": true
+    },
+    {
+      "index": 89,
+      "cached": true
+    },
+    {
+      "index": 90,
+      "cached": true
+    },
+    {
+      "index": 91,
+      "cached": true
+    },
+    {
+      "index": 92,
+      "cached": true
+    },
+    {
+      "index": 93,
+      "cached": true
+    },
+    {
+      "index": 94,
+      "cached": true
+    },
+    {
+      "index": 95,
+      "cached": true
+    },
+    {
+      "index": 96,
+      "cached": true
+    },
+    {
+      "index": 97,
+      "cached": true
+    },
+    {
+      "index": 98,
+      "cached": true
+    },
+    {
+      "index": 99,
+      "cached": true
+    },
+    {
+      "index": 100,
+      "cached": true
+    },
+    {
+      "index": 101,
+      "cached": true
+    },
+    {
+      "index": 102,
+      "cached": true
+    },
+    {
+      "index": 103,
+      "cached": true
+    },
+    {
+      "index": 104,
+      "cached": true
+    },
+    {
+      "index": 105,
+      "cached": true
+    },
+    {
+      "index": 106,
+      "cached": true
+    },
+    {
+      "index": 107,
+      "cached": true
+    },
+    {
+      "index": 108,
+      "cached": true
+    },
+    {
+      "index": 109,
+      "cached": true
+    },
+    {
+      "index": 110,
+      "cached": true
+    },
+    {
+      "index": 111,
+      "cached": true
+    },
+    {
+      "index": 112,
+      "cached": true
+    },
+    {
+      "index": 113,
+      "cached": true
+    },
+    {
+      "index": 114,
+      "cached": true
+    },
+    {
+      "index": 115,
+      "cached": true
+    },
+    {
+      "index": 116,
+      "cached": true
+    },
+    {
+      "index": 117,
+      "cached": true
+    },
+    {
+      "index": 118,
+      "cached": true
+    },
+    {
+      "index": 119,
+      "cached": true
+    },
+    {
+      "index": 120,
+      "cached": true
+    },
+    {
+      "index": 121,
+      "cached": true
+    },
+    {
+      "index": 122,
+      "cached": true
+    },
+    {
+      "index": 123,
+      "cached": true
+    },
+    {
+      "index": 124,
+      "cached": true
+    },
+    {
+      "index": 125,
+      "cached": true
+    },
+    {
+      "index": 126,
+      "cached": true
+    },
+    {
+      "index": 127,
+      "cached": true
+    },
+    {
+      "index": 128,
+      "cached": true
+    },
+    {
+      "index": 129,
+      "cached": true
+    },
+    {
+      "index": 130,
+      "cached": true
+    },
+    {
+      "index": 131,
+      "cached": true
+    },
+    {
+      "index": 132,
+      "cached": true
+    },
+    {
+      "index": 133,
+      "cached": true
+    },
+    {
+      "index": 134,
+      "cached": true
+    },
+    {
+      "index": 135,
+      "cached": true
+    },
+    {
+      "index": 136,
+      "cached": true
+    },
+    {
+      "index": 137,
+      "cached": true
+    },
+    {
+      "index": 138,
+      "cached": true
+    },
+    {
+      "index": 139,
+      "cached": true
+    },
+    {
+      "index": 140,
+      "cached": true
+    },
+    {
+      "index": 141,
+      "cached": true
+    },
+    {
+      "index": 142,
+      "cached": true
+    },
+    {
+      "index": 143,
+      "cached": true
+    },
+    {
+      "index": 144,
+      "cached": true
+    },
+    {
+      "index": 145,
+      "cached": true
+    },
+    {
+      "index": 146,
+      "cached": true
+    },
+    {
+      "index": 147,
+      "cached": true
+    },
+    {
+      "index": 148,
+      "cached": true
+    },
+    {
+      "index": 149,
+      "cached": true
+    },
+    {
+      "index": 150,
+      "cached": true
+    },
+    {
+      "index": 151,
+      "cached": true
+    },
+    {
+      "index": 152,
+      "cached": true
+    },
+    {
+      "index": 153,
+      "cached": true
+    },
+    {
+      "index": 154,
+      "cached": true
+    },
+    {
+      "index": 155,
+      "cached": true
+    },
+    {
+      "index": 156,
+      "cached": true
+    },
+    {
+      "index": 157,
+      "cached": true
+    },
+    {
+      "index": 158,
+      "cached": true
+    },
+    {
+      "index": 159,
+      "cached": true
+    },
+    {
+      "index": 160,
+      "cached": true
+    },
+    {
+      "index": 161,
+      "cached": true
+    },
+    {
+      "index": 162,
+      "cached": true
+    },
+    {
+      "index": 163,
+      "cached": true
+    },
+    {
+      "index": 164,
+      "cached": true
+    },
+    {
+      "index": 165,
+      "cached": true
+    },
+    {
+      "index": 166,
+      "cached": true
+    },
+    {
+      "index": 167,
+      "cached": true
+    },
+    {
+      "index": 168,
+      "cached": true
+    },
+    {
+      "index": 169,
+      "cached": true
+    },
+    {
+      "index": 170,
+      "cached": true
+    },
+    {
+      "index": 171,
+      "cached": true
+    },
+    {
+      "index": 172,
+      "cached": true
+    },
+    {
+      "index": 173,
+      "cached": true
+    },
+    {
+      "index": 174,
+      "cached": true
+    },
+    {
+      "index": 175,
+      "cached": true
+    },
+    {
+      "index": 176,
+      "cached": true
+    },
+    {
+      "index": 177,
+      "cached": true
+    },
+    {
+      "index": 178,
+      "cached": true
+    },
+    {
+      "index": 179,
+      "cached": true
+    },
+    {
+      "index": 180,
+      "cached": true
+    },
+    {
+      "index": 181,
+      "cached": true
+    },
+    {
+      "index": 182,
+      "cached": true
+    },
+    {
+      "index": 183,
+      "cached": true
+    },
+    {
+      "index": 184,
+      "cached": true
+    },
+    {
+      "index": 185,
+      "cached": true
+    },
+    {
+      "index": 186,
+      "cached": true
+    },
+    {
+      "index": 187,
+      "cached": true
+    },
+    {
+      "index": 188,
+      "cached": true
+    },
+    {
+      "index": 189,
+      "cached": true
+    },
+    {
+      "index": 190,
+      "cached": true
+    },
+    {
+      "index": 191,
+      "cached": true
+    },
+    {
+      "index": 192,
+      "cached": true
+    },
+    {
+      "index": 193,
+      "cached": true
+    },
+    {
+      "index": 194,
+      "cached": true
+    },
+    {
+      "index": 195,
+      "cached": true
+    },
+    {
+      "index": 196,
+      "cached": true
+    },
+    {
+      "index": 197,
+      "cached": true
+    },
+    {
+      "index": 198,
+      "cached": true
+    },
+    {
+      "index": 199,
+      "cached": true
+    },
+    {
+      "index": 200,
+      "cached": true
+    },
+    {
+      "index": 201,
+      "cached": true
+    },
+    {
+      "index": 202,
+      "cached": true
+    },
+    {
+      "index": 203,
+      "cached": true
+    },
+    {
+      "index": 204,
+      "cached": true
+    },
+    {
+      "index": 205,
+      "cached": true
+    },
+    {
+      "index": 206,
+      "cached": true
+    },
+    {
+      "index": 207,
+      "cached": true
+    },
+    {
+      "index": 208,
+      "cached": true
+    },
+    {
+      "index": 209,
+      "cached": true
+    },
+    {
+      "index": 210,
+      "cached": true
+    },
+    {
+      "index": 211,
+      "cached": true
+    },
+    {
+      "index": 212,
+      "cached": true
+    },
+    {
+      "index": 213,
+      "cached": true
+    },
+    {
+      "index": 214,
+      "cached": true
+    },
+    {
+      "index": 215,
+      "cached": true
+    },
+    {
+      "index": 216,
+      "cached": true
+    },
+    {
+      "index": 217,
+      "cached": true
+    },
+    {
+      "index": 218,
+      "cached": true
+    },
+    {
+      "index": 219,
+      "cached": true
+    },
+    {
+      "index": 220,
+      "cached": true
+    },
+    {
+      "index": 221,
+      "cached": true
+    },
+    {
+      "index": 222,
+      "cached": true
+    },
+    {
+      "index": 223,
+      "cached": true
+    },
+    {
+      "index": 224,
+      "cached": true
+    },
+    {
+      "index": 225,
+      "cached": true
+    },
+    {
+      "index": 226,
+      "cached": true
+    },
+    {
+      "index": 227,
+      "cached": true
+    },
+    {
+      "index": 228,
+      "cached": true
+    },
+    {
+      "index": 229,
+      "cached": true
+    },
+    {
+      "index": 230,
+      "cached": true
+    },
+    {
+      "index": 231,
+      "cached": true
+    },
+    {
+      "index": 232,
+      "cached": true
+    },
+    {
+      "index": 233,
+      "cached": true
+    },
+    {
+      "index": 234,
+      "cached": true
+    },
+    {
+      "index": 235,
+      "cached": true
+    },
+    {
+      "index": 236,
+      "cached": true
+    },
+    {
+      "index": 237,
+      "cached": true
+    },
+    {
+      "index": 238,
+      "cached": true
+    },
+    {
+      "index": 239,
+      "cached": true
+    },
+    {
+      "index": 240,
+      "cached": true
+    },
+    {
+      "index": 241,
+      "cached": true
+    },
+    {
+      "index": 242,
+      "cached": true
+    },
+    {
+      "index": 243,
+      "cached": true
+    },
+    {
+      "index": 244,
+      "cached": true
+    },
+    {
+      "index": 245,
+      "cached": true
+    },
+    {
+      "index": 246,
+      "cached": true
+    },
+    {
+      "index": 247,
+      "cached": true
+    },
+    {
+      "index": 248,
+      "cached": true
+    },
+    {
+      "index": 249,
+      "cached": true
+    },
+    {
+      "index": 250,
+      "cached": true
+    },
+    {
+      "index": 251,
+      "cached": true
+    },
+    {
+      "index": 252,
+      "cached": true
+    },
+    {
+      "index": 253,
+      "cached": true
+    },
+    {
+      "index": 254,
+      "cached": true
+    },
+    {
+      "index": 255,
+      "cached": true
+    },
+    {
+      "index": 256,
+      "cached": true
+    },
+    {
+      "index": 257,
+      "cached": true
+    },
+    {
+      "index": 258,
+      "cached": true
+    },
+    {
+      "index": 259,
+      "cached": true
+    },
+    {
+      "index": 260,
+      "cached": true
+    },
+    {
+      "index": 261,
+      "cached": true
+    },
+    {
+      "index": 262,
+      "cached": true
+    },
+    {
+      "index": 263,
+      "cached": true
+    },
+    {
+      "index": 264,
+      "cached": true
+    },
+    {
+      "index": 265,
+      "cached": true
+    },
+    {
+      "index": 266,
+      "cached": true
+    },
+    {
+      "index": 267,
+      "cached": true
+    },
+    {
+      "index": 268,
+      "cached": true
+    },
+    {
+      "index": 269,
+      "cached": true
+    },
+    {
+      "index": 270,
+      "cached": true
+    },
+    {
+      "index": 271,
+      "cached": true
+    },
+    {
+      "index": 272,
+      "cached": true
+    },
+    {
+      "index": 273,
+      "cached": true
+    },
+    {
+      "index": 274,
+      "cached": true
+    },
+    {
+      "index": 275,
+      "ok": true,
+      "runtime_s": 9.009
+    },
+    {
+      "index": 276,
+      "ok": true,
+      "runtime_s": 8.827
+    },
+    {
+      "index": 277,
+      "ok": true,
+      "runtime_s": 8.689
+    },
+    {
+      "index": 278,
+      "ok": true,
+      "runtime_s": 8.734
+    },
+    {
+      "index": 279,
+      "ok": true,
+      "runtime_s": 8.823
+    },
+    {
+      "index": 280,
+      "ok": true,
+      "runtime_s": 8.658
+    },
+    {
+      "index": 281,
+      "ok": true,
+      "runtime_s": 9.34
+    },
+    {
+      "index": 282,
+      "ok": true,
+      "runtime_s": 9.482
+    },
+    {
+      "index": 283,
+      "ok": true,
+      "runtime_s": 8.617
+    },
+    {
+      "index": 284,
+      "ok": true,
+      "runtime_s": 8.581
+    },
+    {
+      "index": 285,
+      "ok": true,
+      "runtime_s": 8.673
+    },
+    {
+      "index": 286,
+      "ok": true,
+      "runtime_s": 8.75
+    },
+    {
+      "index": 287,
+      "ok": true,
+      "runtime_s": 8.651
+    },
+    {
+      "index": 288,
+      "ok": true,
+      "runtime_s": 8.711
+    },
+    {
+      "index": 289,
+      "ok": true,
+      "runtime_s": 8.695
+    },
+    {
+      "index": 290,
+      "ok": true,
+      "runtime_s": 8.701
+    },
+    {
+      "index": 291,
+      "ok": true,
+      "runtime_s": 8.709
+    },
+    {
+      "index": 292,
+      "ok": true,
+      "runtime_s": 8.697
+    },
+    {
+      "index": 293,
+      "ok": true,
+      "runtime_s": 8.816
+    },
+    {
+      "index": 294,
+      "ok": true,
+      "runtime_s": 8.779
+    },
+    {
+      "index": 295,
+      "ok": true,
+      "runtime_s": 8.856
+    },
+    {
+      "index": 296,
+      "ok": true,
+      "runtime_s": 8.722
+    },
+    {
+      "index": 297,
+      "ok": true,
+      "runtime_s": 8.917
+    },
+    {
+      "index": 298,
+      "ok": true,
+      "runtime_s": 8.742
+    },
+    {
+      "index": 299,
+      "ok": true,
+      "runtime_s": 8.66
+    },
+    {
+      "index": 300,
+      "ok": true,
+      "runtime_s": 8.812
+    },
+    {
+      "index": 301,
+      "ok": true,
+      "runtime_s": 8.693
+    },
+    {
+      "index": 302,
+      "ok": true,
+      "runtime_s": 8.664
+    },
+    {
+      "index": 303,
+      "ok": true,
+      "runtime_s": 8.841
+    },
+    {
+      "index": 304,
+      "ok": true,
+      "runtime_s": 8.656
+    },
+    {
+      "index": 305,
+      "ok": true,
+      "runtime_s": 8.665
+    },
+    {
+      "index": 306,
+      "ok": true,
+      "runtime_s": 8.794
+    },
+    {
+      "index": 307,
+      "ok": true,
+      "runtime_s": 8.743
+    },
+    {
+      "index": 308,
+      "ok": true,
+      "runtime_s": 8.963
+    },
+    {
+      "index": 309,
+      "ok": true,
+      "runtime_s": 8.732
+    },
+    {
+      "index": 310,
+      "ok": true,
+      "runtime_s": 8.757
+    },
+    {
+      "index": 311,
+      "ok": true,
+      "runtime_s": 8.836
+    },
+    {
+      "index": 312,
+      "ok": true,
+      "runtime_s": 8.668
+    },
+    {
+      "index": 313,
+      "ok": true,
+      "runtime_s": 8.745
+    },
+    {
+      "index": 314,
+      "ok": true,
+      "runtime_s": 8.815
+    },
+    {
+      "index": 315,
+      "ok": true,
+      "runtime_s": 8.638
+    },
+    {
+      "index": 316,
+      "ok": true,
+      "runtime_s": 8.802
+    },
+    {
+      "index": 317,
+      "ok": true,
+      "runtime_s": 8.679
+    },
+    {
+      "index": 318,
+      "ok": true,
+      "runtime_s": 8.756
+    },
+    {
+      "index": 319,
+      "ok": true,
+      "runtime_s": 8.884
+    },
+    {
+      "index": 320,
+      "ok": true,
+      "runtime_s": 8.793
+    },
+    {
+      "index": 321,
+      "ok": true,
+      "runtime_s": 8.68
+    },
+    {
+      "index": 322,
+      "ok": true,
+      "runtime_s": 8.64
+    },
+    {
+      "index": 323,
+      "ok": true,
+      "runtime_s": 8.846
+    },
+    {
+      "index": 324,
+      "ok": true,
+      "runtime_s": 8.794
+    },
+    {
+      "index": 325,
+      "ok": true,
+      "runtime_s": 8.739
+    },
+    {
+      "index": 326,
+      "ok": true,
+      "runtime_s": 8.722
+    },
+    {
+      "index": 327,
+      "ok": true,
+      "runtime_s": 8.82
+    },
+    {
+      "index": 328,
+      "ok": true,
+      "runtime_s": 8.831
+    },
+    {
+      "index": 329,
+      "ok": true,
+      "runtime_s": 9.06
+    },
+    {
+      "index": 330,
+      "ok": true,
+      "runtime_s": 8.913
+    },
+    {
+      "index": 331,
+      "ok": true,
+      "runtime_s": 8.638
+    },
+    {
+      "index": 332,
+      "ok": true,
+      "runtime_s": 8.766
+    },
+    {
+      "index": 333,
+      "ok": true,
+      "runtime_s": 8.659
+    },
+    {
+      "index": 334,
+      "ok": true,
+      "runtime_s": 8.944
+    },
+    {
+      "index": 335,
+      "ok": true,
+      "runtime_s": 8.71
+    },
+    {
+      "index": 336,
+      "ok": true,
+      "runtime_s": 8.843
+    },
+    {
+      "index": 337,
+      "ok": true,
+      "runtime_s": 8.765
+    },
+    {
+      "index": 338,
+      "ok": true,
+      "runtime_s": 8.787
+    },
+    {
+      "index": 339,
+      "ok": true,
+      "runtime_s": 8.714
+    },
+    {
+      "index": 340,
+      "ok": true,
+      "runtime_s": 8.732
+    },
+    {
+      "index": 341,
+      "ok": true,
+      "runtime_s": 8.813
+    },
+    {
+      "index": 342,
+      "ok": true,
+      "runtime_s": 8.799
+    },
+    {
+      "index": 343,
+      "ok": true,
+      "runtime_s": 8.87
+    },
+    {
+      "index": 344,
+      "ok": true,
+      "runtime_s": 8.822
+    },
+    {
+      "index": 345,
+      "ok": true,
+      "runtime_s": 8.774
+    },
+    {
+      "index": 346,
+      "ok": true,
+      "runtime_s": 8.698
+    },
+    {
+      "index": 347,
+      "ok": true,
+      "runtime_s": 8.645
+    },
+    {
+      "index": 348,
+      "ok": true,
+      "runtime_s": 8.715
+    },
+    {
+      "index": 349,
+      "ok": true,
+      "runtime_s": 8.797
+    },
+    {
+      "index": 350,
+      "ok": true,
+      "runtime_s": 8.673
+    },
+    {
+      "index": 351,
+      "ok": true,
+      "runtime_s": 9.049
+    },
+    {
+      "index": 352,
+      "ok": true,
+      "runtime_s": 8.84
+    },
+    {
+      "index": 353,
+      "ok": true,
+      "runtime_s": 8.605
+    },
+    {
+      "index": 354,
+      "ok": true,
+      "runtime_s": 8.675
+    },
+    {
+      "index": 355,
+      "ok": true,
+      "runtime_s": 8.744
+    },
+    {
+      "index": 356,
+      "ok": true,
+      "runtime_s": 8.598
+    },
+    {
+      "index": 357,
+      "ok": true,
+      "runtime_s": 8.701
+    },
+    {
+      "index": 358,
+      "ok": true,
+      "runtime_s": 8.817
+    },
+    {
+      "index": 359,
+      "ok": true,
+      "runtime_s": 8.763
+    }
+  ],
+  "session": ["R version 4.5.3 (2026-03-11)", "Platform: x86_64-conda-linux-gnu", "Running under: Debian GNU/Linux 13 (trixie)", "", "Matrix products: default", "BLAS/LAPACK: /workspace/.research-tools/r-bsts/lib/libopenblasp-r0.3.34.so;  LAPACK version 3.12.0", "", "locale:", " [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       ", " [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   ", " [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          ", "[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   ", "", "time zone: Etc/UTC", "tzcode source: system (glibc)", "", "attached base packages:", "[1] stats     graphics  grDevices utils     datasets  methods   base     ", "", "other attached packages:", "[1] jsonlite_2.0.0      posterior_1.7.0     bsts_0.9.11        ", "[4] xts_0.14.3          zoo_1.9-0           BoomSpikeSlab_1.2.7", "[7] Boom_0.9.17        ", "", "loaded via a namespace (and not attached):", " [1] tensorA_0.36.2.1     backports_1.5.1      lattice_0.23-1      ", " [4] magrittr_2.0.5       glue_1.8.1           abind_1.4-8         ", " [7] tibble_3.3.1         parallel_4.5.3       pkgconfig_2.0.3     ", "[10] generics_0.1.4       lifecycle_1.0.5      cli_3.6.6           ", "[13] grid_4.5.3           vctrs_0.7.3          compiler_4.5.3      ", "[16] tools_4.5.3          distributional_0.9.0 checkmate_2.3.3     ", "[19] pillar_1.11.1        rlang_1.3.0          MASS_7.3-66         "]
+}

@@ -96,11 +96,11 @@ def training_rows(Y: np.ndarray, max_origins: int, rng: np.random.Generator):
     idx_l, col_l = [], []
     for i in range(N):
         L = int(np.sum(~np.isnan(Y[i])))
-        lo = T - L + LAG_MIN             # first column with enough history behind it
+        lo = T - L + max(max(LAGS), max(ROLLS)) - 1             # first column with enough history behind it
         hi = T - 2                        # need cols+1 valid
-        if hi <= lo:
+        if hi < lo:
             continue
-        cols = np.arange(lo, hi)
+        cols = np.arange(lo, hi + 1)
         if len(cols) > max_origins:
             # keep the recent half exactly, sample the rest (recency matters)
             recent = cols[-max_origins // 2:]
