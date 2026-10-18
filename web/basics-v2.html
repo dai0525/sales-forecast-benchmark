@@ -77,7 +77,7 @@ details ul{margin-bottom:12px}
 </style>
 </head>
 <body>
-<p style="padding:14px;background:#EFF4FF">审计更新：以下旧榜单为历史记录，不能代表论文算法排名。当前可核验结果见<a href="index.html#p-bench">实测成绩</a>；M4 包含多领域序列，不都是销量。部分图为教学示意。</p>
+<p style="padding:14px;background:#EFF4FF">审计更新：关键数字已按审计重跑更新（UCM/BSTS 与 FG 逐点复现；LightGBM、深度模型为修正后重训；深度模型是简化实现，不代表同名论文水平）。完整榜单见<a href="index.html#p-bench">实测成绩</a>；M4 包含多领域序列，不都是销量；部分图为教学示意。</p>
 <div class="wrap">
 
 <header class="top">
@@ -292,11 +292,11 @@ details ul{margin-bottom:12px}
   <p>每个 block 先把输入按 r 倍平均池化（相当于“退后看”），过 MLP，再上采样回原长度，作为残差从输入里减掉传给下一个 block。粗尺度抓大形状，细尺度补细节。</p>
   <figure><div id="c-multi"></div>
   <p class="cap">原始 vs 4 点池化 vs 13 点池化：每个尺度看到的是不同的“形状”。</p></figure>
-  <p>实测：周度 <b>8.88%</b>，参数量 321.4K。</p>
+  <p>实测：周度 <b>9.36%</b>，参数量 321.4K。</p>
 
   <h3>N-BEATSx：把基函数写死，只学系数</h3>
   <div class="math">forecast = Σ<sub>i</sub> θ<sub>i</sub><sup>f</sup> · b<sub>i</sub>(t),　b<sub>i</sub> = 多项式基 或 傅里叶基</div>
-  <p>每层同时输出 backcast（解释掉的部分）和 forecast（预测）。因为基函数是显式写好的（趋势多项式、季节傅里叶），网络只需要学系数 θ——参数少、可解释、训练快。周度 <b>10.48%</b>，参数量 500.2K。</p>
+  <p>每层同时输出 backcast（解释掉的部分）和 forecast（预测）。因为基函数是显式写好的（趋势多项式、季节傅里叶），网络只需要学系数 θ——参数少、可解释、训练快。周度 <b>11.86%</b>，参数量 500.2K。</p>
 
   <h3>TFT：变量选择 + 注意力 + 分位数</h3>
   <p>输入分三类：静态特征（门店属性）、已知未来（节假日、促销计划）、仅历史（销量）。三步：</p>
@@ -305,12 +305,12 @@ details ul{margin-bottom:12px}
     <li><b>LSTM 编码 + 可解释注意力</b>：注意力权重直接告诉你“这次预测主要看历史哪几段”。</li>
     <li><b>分位数输出</b>：一次输出 P10/P50/P90，用分位数损失训练。</li>
   </ol>
-  <p>周度 <b>9.76%</b>，参数只有 38.9K，但训练最慢（509 秒）——注意力序列长度是瓶颈。</p>
+  <p>周度 <b>10.46%</b>，参数只有 38.9K，但训练最慢（509 秒）——注意力序列长度是瓶颈。</p>
 
   <h3>PatchTST：把序列切成 token</h3>
   <figure><div id="c-patch"></div>
   <p class="cap">每个 patch（4 个点）线性投影成一个 token，再做自注意力。序列越长，省得越多。</p></figure>
-  <p>逐点注意力的复杂度是 O(L²)；切成 patch 后 token 数变成 L/P，同时 patch 内部仍保留局部波形。再加上<b>通道独立</b>（每条序列单独过网络、共享权重），避免不同序列互相干扰。周度 <b>8.49%</b>（刚跑完，尚未并入榜单），参数量 78.6K。</p>
+  <p>逐点注意力的复杂度是 O(L²)；切成 patch 后 token 数变成 L/P，同时 patch 内部仍保留局部波形。再加上<b>通道独立</b>（每条序列单独过网络、共享权重），避免不同序列互相干扰。周度 <b>8.13%</b>（审计后重训，已并入榜单），参数量 78.6K。</p>
 
   <h3>DeepAR：输出分布，而不是一个点</h3>
   <div class="math">p(y<sub>t</sub> | h<sub>t</sub>) = N(μ(h<sub>t</sub>), σ(h<sub>t</sub>))　或　负二项(μ, α)</div>
@@ -374,14 +374,14 @@ details ul{margin-bottom:12px}
       <tr><td>SeasonalNaive（m=52）</td><td>359</td><td>15.55%</td><td>13.25%</td><td>0 s</td></tr>
       <tr><td>BSTS 结构模型（m=13）</td><td>359</td><td>8.79%</td><td>—</td><td>89 s</td></tr>
       <tr><td><b>BSTS 结构模型（m=52）</b></td><td>359</td><td class="good">7.84%</td><td class="good">5.56%</td><td>268 s</td></tr>
-      <tr><td>LightGBM（全局，22 特征）</td><td>359</td><td>8.07%</td><td>—</td><td>148 s</td></tr>
+      <tr><td>LightGBM（全局，22 特征）</td><td>359</td><td>7.96%</td><td>—</td><td>117 s</td></tr>
     </tbody>
   </table></div>
   <p class="cap">M4-Weekly，最后 13 周为测试，同一批 359 条序列。SN(m=52) 与榜单上的 15.55% 完全吻合，说明口径一致（逐序列 WAPE 再取均值）。</p>
   <p><b>两个反直觉的结论：</b></p>
   <ol>
     <li><b>季节周期选错，代价极大</b>：同样 359 条序列、同样是局部水平 + 随机季节，m=13 是 8.79%，m=52 是 7.84%——1 个百分点白送。子集上更夸张：60 条时 14.47% → 9.61%。周度数据的一年是 52 周，13 周只是季度——周期就是模型的先验，选错等于先验错了。</li>
-    <li><b>点预测上 BSTS 略胜 LightGBM</b>：7.84% vs 8.07%。它没有任何跨序列学习，只靠“把每条序列拆成水平 + 年周期 + 噪声”，但 M4-Weekly 的季节性太强，结构对了就够了。</li>
+    <li><b>点预测上 BSTS 略胜 LightGBM</b>：7.84% vs 7.96%。它没有任何跨序列学习，只靠“把每条序列拆成水平 + 年周期 + 噪声”，但 M4-Weekly 的季节性太强，结构对了就够了。</li>
   </ol>
   <p>结构选择的影响（m=13、40 条子集的对比）：局部水平 18.38%、局部线性趋势 19.02%、平滑趋势 23.83%、确定性季节 19.21%——<b>加趋势项反而更差</b>，因为随机游走的斜率外推 13 周会把噪声当趋势。所以 BSTS 的“调参”其实只有两件事：<b>要不要趋势、季节周期取多少</b>。</p>
 
@@ -395,7 +395,7 @@ details ul{margin-bottom:12px}
       <tr><td>成本</td><td>单条约 0.75 秒（359 条 268 秒/3 进程）</td><td>上万条序列要逐条拟合；MCMC 版再慢一个量级</td></tr>
     </tbody>
   </table></div>
-  <div class="key"><span class="tag">判断</span>在你这份周度数据上，BSTS 不是“只能看区间”的配角——点预测 <b>7.84%</b> 甚至略好于 LightGBM 的 8.07%。但做批量生产我仍选 LightGBM，三个理由：<b>跨序列共享</b>（新上架 SKU 冷启动靠别的序列）、<b>成本线性</b>（逐条拟合，10 万条就是 20 小时量级）、<b>特征显式</b>（促销、节假日想加就加）。BSTS 留给三种场景：单品类深挖、活动增量归因（CausalImpact）、给业务解释“为什么这么预测”。</div>
+  <div class="key"><span class="tag">判断</span>在你这份周度数据上，BSTS 不是“只能看区间”的配角——点预测 <b>7.84%</b> 甚至略好于 LightGBM 的 7.96%。但做批量生产我仍选 LightGBM，三个理由：<b>跨序列共享</b>（新上架 SKU 冷启动靠别的序列）、<b>成本线性</b>（逐条拟合，10 万条就是 20 小时量级）、<b>特征显式</b>（促销、节假日想加就加）。BSTS 留给三种场景：单品类深挖、活动增量归因（CausalImpact）、给业务解释“为什么这么预测”。</div>
 </section>
 
 <!-- 7 -->
@@ -406,7 +406,7 @@ details ul{margin-bottom:12px}
   <ul>
     <li><b>加权</b>：卖 1000 瓶的店误差 50 瓶，和卖 10 瓶的店误差 5 瓶，权重不同。</li>
     <li><b>零值安全</b>：MAPE 除以实际值，遇到 0 会爆炸；WAPE 分母是总量；全零预测窗口仍无定义。逐序列平均也不等于跨序列总量加权。</li>
-    <li><b>可解释</b>：8.07% 就是“逐点绝对误差总和占实际总量约 8%，不是净总量偏差”。</li>
+    <li><b>可解释</b>：7.96% 就是“逐点绝对误差总和占实际总量约 8%，不是净总量偏差”。</li>
   </ul>
   <p><b>MASE</b> 是“相对 SeasonalNaive 的倍数”：LightGBM 周度 MASE 0.573，即误差为训练段季节差分 MAE 的 57%，不是测试基线误差的 57%。<b>RMSE</b> 重罚大误差，适合缺货成本高的场景。</p>
   <p>读榜前先确认三件事：<b>数据集、预测步长、指标口径</b>。任何一项不同，名次都不可比。</p>
@@ -421,15 +421,18 @@ details ul{margin-bottom:12px}
     <tbody>
       <tr><td>SeasonalNaive</td><td>基线</td><td>15.55%</td><td>第一道门槛</td></tr>
       <tr><td>MovingAvg8</td><td>统计</td><td>10.84%</td><td>滞后于趋势</td></tr>
-      <tr><td>N-BEATSx</td><td>深度</td><td>10.48%</td><td>500.2K 参数</td></tr>
-      <tr><td>TFT</td><td>深度</td><td>9.76%</td><td>训练最慢</td></tr>
-      <tr><td>N-HiTS</td><td>深度</td><td>8.88%</td><td>多尺度</td></tr>
-      <tr><td>PatchTST</td><td>深度</td><td>8.49%</td><td>刚跑完，未并入榜单</td></tr>
-      <tr><td><b>BSTS 结构模型（m=52）</b></td><td>状态空间</td><td class="good">7.84%</td><td>点预测略胜 LightGBM</td></tr>
-      <tr><td><b>LightGBM（全局）</b></td><td>GBDT</td><td class="good">8.07%</td><td>22 特征 + 递归</td></tr>
+      <tr><td>直接多步 Gaussian LSTM</td><td>深度</td><td>13.60%</td><td>不是自回归 DeepAR</td></tr>
+      <tr><td>N-BEATS-style（无外生变量）</td><td>深度</td><td>11.86%</td><td>简化实现</td></tr>
+      <tr><td>TFT-style 中位数模型</td><td>深度</td><td>10.46%</td><td>训练最慢</td></tr>
+      <tr><td>NHITS-inspired pooled MLP</td><td>深度</td><td>9.36%</td><td>无分层插值</td></tr>
+      <tr><td>PatchTST</td><td>深度</td><td>8.13%</td><td>审计后重训</td></tr>
+      <tr><td>FG backfitting 原型</td><td>因子图</td><td>8.71%</td><td>本仓库原型</td></tr>
+      <tr><td><b>UCM52（原称 BSTS）</b></td><td>状态空间</td><td class="good">7.84%</td><td>MLE 版，非 MCMC</td></tr>
+      <tr><td><b>LightGBM（全局）</b></td><td>GBDT</td><td class="good">7.96%</td><td>22 特征 + 递归</td></tr>
+      <tr><td><b>联合状态 Fourier</b></td><td>状态空间</td><td class="good">7.31%</td><td>审计新增，未稳定胜 UCM</td></tr>
     </tbody>
   </table></div>
-  <p class="cap">M4-Weekly，359 条序列，预测 13 周，同一套切分与指标（逐序列 WAPE 取均值）。BSTS 一行为极大似然版结构模型，不含 MCMC 先验。</p>
+  <p class="cap">M4-Weekly，359 条序列，预测 13 周，同一套切分与指标（逐序列 WAPE 取均值）。UCM52 一行为极大似然版结构模型，不含 MCMC 先验；LightGBM 与深度模型为审计后重训，深度模型是简化实现。</p>
 
   <details>
     <summary>递归多步的误差累积（展开）</summary>
