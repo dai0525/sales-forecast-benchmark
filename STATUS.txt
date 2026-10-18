@@ -1,0 +1,43 @@
+STATUS — 第二数据集（Rossmann Store Sales）实测
+worktree: /opt/data/workspace/sf-dataset2   branch: code/dataset2
+执行者: subagent（父 agent 负责整合 README/REPORT-MPA/web）
+全部时间为本机本地时间，2026-10-18。
+
+17:38  START     读 CONTRACT/common/fg_state/bsts52/bench_base，确认仓库口径
+17:39  PROBE     网络探测：kaggle 401（无凭据，按预期跳过）；raw.githubusercontent 可用；
+                 UCI/zenodo 可达；huggingface 不可达
+17:40  DATA-FIND 命中 GitHub 镜像 train.csv（38,057,952 B）+ store.csv，表头与 9 列结构核对通过
+17:41  DOWNLOAD  完成（88 s），1,017,209 行 + 表头；store.csv 1,115 行
+17:41  VALIDATE  repro/alt/fetch_rossmann.py 六项校验通过 -> data/alt/rossmann/validation.json
+                 门店 1115 / 日期 2013-01-01..2015-07-31 / 942 天 / 零销量 16.99% /
+                 Promo 38.15% / StateHoliday 3.05% / 缺 Sales 0.0 / 重复 (Store,Date) 0
+17:42  PREP      repro/alt/prep_rossmann.py：934 家日历完整门店中抽 400（seed 42）
+                 -> panel.npz 400×942 = 376,800 观测
+17:43  SMOKE     repro/alt/bench_rossmann.py --quick（80 序列 / 1 原点）13 s 跑通
+17:44  BENCH     全量启动（400 序列，选参 13 个候选 + 3 原点 × 7 模型）
+17:47  BENCH-DONE  ~4 分钟；metrics.json + 21 个模型 npz + 3 个 truth npz
+17:48  VERIFY    repro/alt/verify_rossmann.py：24 个 npz 全部重算，与 metrics.json 逐条一致
+                 （容差 1e-6）；配对 bootstrap 2000 次写 verification.json
+17:49  REPORT    repro/alt/report_rossmann.py -> leaderboard.md/.csv、diagnostics.json、ALT-DATASET.md
+17:50  REPORT-FIX 修正两处夸大表述（零膨胀占比、排名"整体翻转"），改为按文件重算的口径；
+                 分步长诊断改为「只统计营业日 + 按门店日均归一化」，剔除耶稣受难日列失真
+17:52  DONE      产出齐备，未 commit（留给父 agent 一起整合）
+
+结论摘要（数字见 ALT-DATASET.md / audit/results/rossmann/metrics.json）
+  1. LightGBM-direct 9.34% 平均 WAPE，第一；State-Fourier 25.64%、UCM 25.97%、
+     SeasonalNaive7 28.72%、MovingAvg 43.01%。
+  2. 同一 LightGBM 去掉 promo/open/假期/门店属性 -> 19.86%，说明优势来自外生变量。
+  3. State-Fourier 领先 UCM 0.32 pp（CI -0.49..-0.17），但胜率仅 50.6%，一个原点被反超。
+  4. 与 M4 Weekly 的 5 个同名族 Spearman 0.60：单变量次序大体不变，第一名换人且量级反转。
+
+阻塞点：无。
+已尝试但未采用：
+  - Kaggle 官方下载（401，无凭据）——按任务要求不尝试登录下载
+  - HuggingFace（huggingface.co 不可达）
+  - Favorita/M5、UCI Bike Sharing 未触发（第一候选成功，按优先级不降级）
+
+复现：
+  PY=/opt/data/workspace/sales-forecast/.venv/bin/python
+  $PY repro/alt/fetch_rossmann.py && $PY repro/alt/prep_rossmann.py
+  $PY repro/alt/bench_rossmann.py && $PY repro/alt/verify_rossmann.py
+  $PY repro/alt/report_rossmann.py

@@ -1,0 +1,660 @@
+{
+  "origins": {
+    "o816": {
+      "origin": 816,
+      "train_end": "2015-03-27",
+      "test_start": "2015-03-28",
+      "test_end": "2015-05-08",
+      "models": {
+        "SeasonalNaive7": {
+          "wape_mean": 0.3551293030019595,
+          "wape_median": 0.35521178438795364,
+          "wape_aggregate": 0.3521125523712595,
+          "smape_mean": 37.85958717356701,
+          "mase_mean": 1.068097876077843,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        },
+        "MovingAvg": {
+          "wape_mean": 0.4917264659825928,
+          "wape_median": 0.4901224944463525,
+          "wape_aggregate": 0.48662933774215444,
+          "smape_mean": 66.25541917064395,
+          "mase_mean": 1.4909647516625641,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        },
+        "UCM7": {
+          "wape_mean": 0.31913105601254244,
+          "wape_median": 0.3165366444886853,
+          "wape_aggregate": 0.31623681533789827,
+          "smape_mean": 46.31192854773717,
+          "mase_mean": 0.9601464598388545,
+          "n_series": 400,
+          "n_negative_clipped": 1278,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 11.37,
+          "n_failed_fallback": 0
+        },
+        "StateFourier7": {
+          "wape_mean": 0.31213566353217426,
+          "wape_median": 0.3139432591969531,
+          "wape_aggregate": 0.3094200168877067,
+          "smape_mean": 38.33943107256357,
+          "mase_mean": 0.9413638956257029,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.04
+        },
+        "LGBM-direct": {
+          "wape_mean": 0.10580612545614347,
+          "wape_median": 0.10126433141267818,
+          "wape_aggregate": 0.10458762305884015,
+          "smape_mean": 31.256960059514665,
+          "mase_mean": 0.32885217716566045,
+          "n_series": 400,
+          "n_negative_clipped": 1579,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 24.43
+        },
+        "LGBM-cal": {
+          "wape_mean": 0.2524510426771118,
+          "wape_median": 0.24963859347570155,
+          "wape_aggregate": 0.25031610258932335,
+          "smape_mean": 50.55933926896798,
+          "mase_mean": 0.7714861415028382,
+          "n_series": 400,
+          "n_negative_clipped": 573,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 12.0
+        },
+        "SeasonalNaive7+Open": {
+          "wape_mean": 0.28244155386694964,
+          "wape_median": 0.2818704186855296,
+          "wape_aggregate": 0.28019311146957504,
+          "smape_mean": 23.776253840233668,
+          "mase_mean": 0.8460488786874951,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        }
+      },
+      "pred_files": {
+        "SeasonalNaive7": "audit/results/rossmann/preds/preds_SeasonalNaive7_o816.npz",
+        "MovingAvg": "audit/results/rossmann/preds/preds_MovingAvg_o816.npz",
+        "UCM7": "audit/results/rossmann/preds/preds_UCM7_o816.npz",
+        "StateFourier7": "audit/results/rossmann/preds/preds_StateFourier7_o816.npz",
+        "LGBM-direct": "audit/results/rossmann/preds/preds_LGBM-direct_o816.npz",
+        "LGBM-cal": "audit/results/rossmann/preds/preds_LGBM-cal_o816.npz",
+        "SeasonalNaive7+Open": "audit/results/rossmann/preds/preds_SeasonalNaive7plusOpen_o816.npz"
+      }
+    },
+    "o858": {
+      "origin": 858,
+      "train_end": "2015-05-08",
+      "test_start": "2015-05-09",
+      "test_end": "2015-06-19",
+      "models": {
+        "SeasonalNaive7": {
+          "wape_mean": 0.2797535914829826,
+          "wape_median": 0.27668884673390276,
+          "wape_aggregate": 0.2760582974183219,
+          "smape_mean": 26.98140601452301,
+          "mase_mean": 0.7852526301242605,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        },
+        "MovingAvg": {
+          "wape_mean": 0.43420368816025673,
+          "wape_median": 0.43565646906411615,
+          "wape_aggregate": 0.4271251529771804,
+          "smape_mean": 58.79814648588522,
+          "mase_mean": 1.2324150614454685,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        },
+        "UCM7": {
+          "wape_mean": 0.2527301519515818,
+          "wape_median": 0.2463651485198038,
+          "wape_aggregate": 0.24992892309783613,
+          "smape_mean": 50.56318385209848,
+          "mase_mean": 0.7061308487917686,
+          "n_series": 400,
+          "n_negative_clipped": 156,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 13.34,
+          "n_failed_fallback": 0
+        },
+        "StateFourier7": {
+          "wape_mean": 0.24658773911827375,
+          "wape_median": 0.24486433170310146,
+          "wape_aggregate": 0.2433939712252439,
+          "smape_mean": 50.18943343811974,
+          "mase_mean": 0.6903405804798883,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.04
+        },
+        "LGBM-direct": {
+          "wape_mean": 0.08820936297416689,
+          "wape_median": 0.08500689459966143,
+          "wape_aggregate": 0.08720915212808016,
+          "smape_mean": 23.740946719083162,
+          "mase_mean": 0.2567698404427845,
+          "n_series": 400,
+          "n_negative_clipped": 1948,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 25.7
+        },
+        "LGBM-cal": {
+          "wape_mean": 0.22580784046672606,
+          "wape_median": 0.2299190487277155,
+          "wape_aggregate": 0.22329305602021834,
+          "smape_mean": 39.284661436110326,
+          "mase_mean": 0.647366050952217,
+          "n_series": 400,
+          "n_negative_clipped": 1148,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 12.22
+        },
+        "SeasonalNaive7+Open": {
+          "wape_mean": 0.18994230379170937,
+          "wape_median": 0.18520126756778688,
+          "wape_aggregate": 0.1879450407511035,
+          "smape_mean": 15.017120300237293,
+          "mase_mean": 0.534999339654634,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        }
+      },
+      "pred_files": {
+        "SeasonalNaive7": "audit/results/rossmann/preds/preds_SeasonalNaive7_o858.npz",
+        "MovingAvg": "audit/results/rossmann/preds/preds_MovingAvg_o858.npz",
+        "UCM7": "audit/results/rossmann/preds/preds_UCM7_o858.npz",
+        "StateFourier7": "audit/results/rossmann/preds/preds_StateFourier7_o858.npz",
+        "LGBM-direct": "audit/results/rossmann/preds/preds_LGBM-direct_o858.npz",
+        "LGBM-cal": "audit/results/rossmann/preds/preds_LGBM-cal_o858.npz",
+        "SeasonalNaive7+Open": "audit/results/rossmann/preds/preds_SeasonalNaive7plusOpen_o858.npz"
+      }
+    },
+    "o900": {
+      "origin": 900,
+      "train_end": "2015-06-19",
+      "test_start": "2015-06-20",
+      "test_end": "2015-07-31",
+      "models": {
+        "SeasonalNaive7": {
+          "wape_mean": 0.22663128128888935,
+          "wape_median": 0.22207179021954743,
+          "wape_aggregate": 0.22105075966014076,
+          "smape_mean": 18.003929941848295,
+          "mase_mean": 0.6370864529371962,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        },
+        "MovingAvg": {
+          "wape_mean": 0.36448297654741557,
+          "wape_median": 0.3559169024323391,
+          "wape_aggregate": 0.35726213272760476,
+          "smape_mean": 47.25152756617925,
+          "mase_mean": 1.0547050157330005,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        },
+        "UCM7": {
+          "wape_mean": 0.20709591383398504,
+          "wape_median": 0.19385726534829528,
+          "wape_aggregate": 0.20259921205946899,
+          "smape_mean": 41.68087212990181,
+          "mase_mean": 0.5849722585473942,
+          "n_series": 400,
+          "n_negative_clipped": 186,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 13.32,
+          "n_failed_fallback": 0
+        },
+        "StateFourier7": {
+          "wape_mean": 0.21058512486834666,
+          "wape_median": 0.20793350596807642,
+          "wape_aggregate": 0.20657064261192853,
+          "smape_mean": 42.09660639847967,
+          "mase_mean": 0.5978479264324063,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.08
+        },
+        "LGBM-direct": {
+          "wape_mean": 0.08631523319473501,
+          "wape_median": 0.08068946290333529,
+          "wape_aggregate": 0.08408288754799331,
+          "smape_mean": 19.6233273292822,
+          "mase_mean": 0.252327595373327,
+          "n_series": 400,
+          "n_negative_clipped": 1320,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 26.95
+        },
+        "LGBM-cal": {
+          "wape_mean": 0.1174036212509829,
+          "wape_median": 0.1098575158587054,
+          "wape_aggregate": 0.11504356434279156,
+          "smape_mean": 26.766335412054087,
+          "mase_mean": 0.34057850445503973,
+          "n_series": 400,
+          "n_negative_clipped": 915,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 13.57
+        },
+        "SeasonalNaive7+Open": {
+          "wape_mean": 0.2243655887712637,
+          "wape_median": 0.22207179021954743,
+          "wape_aggregate": 0.21983967863191395,
+          "smape_mean": 17.789644227562583,
+          "mase_mean": 0.6322641286306792,
+          "n_series": 400,
+          "n_negative_clipped": 0,
+          "n_wape_zero_denominator": 0,
+          "runtime_s": 0.0
+        }
+      },
+      "pred_files": {
+        "SeasonalNaive7": "audit/results/rossmann/preds/preds_SeasonalNaive7_o900.npz",
+        "MovingAvg": "audit/results/rossmann/preds/preds_MovingAvg_o900.npz",
+        "UCM7": "audit/results/rossmann/preds/preds_UCM7_o900.npz",
+        "StateFourier7": "audit/results/rossmann/preds/preds_StateFourier7_o900.npz",
+        "LGBM-direct": "audit/results/rossmann/preds/preds_LGBM-direct_o900.npz",
+        "LGBM-cal": "audit/results/rossmann/preds/preds_LGBM-cal_o900.npz",
+        "SeasonalNaive7+Open": "audit/results/rossmann/preds/preds_SeasonalNaive7plusOpen_o900.npz"
+      }
+    }
+  },
+  "summary": {
+    "SeasonalNaive7": {
+      "wape_mean": 0.28717139192461044,
+      "wape_mean_by_origin": [
+        0.355129,
+        0.279754,
+        0.226631
+      ],
+      "wape_aggregate": 0.28307386981657406,
+      "wape_aggregate_by_origin": [
+        0.352113,
+        0.276058,
+        0.221051
+      ],
+      "runtime_s_mean": 0.0
+    },
+    "MovingAvg": {
+      "wape_mean": 0.43013771023008834,
+      "wape_mean_by_origin": [
+        0.491726,
+        0.434204,
+        0.364483
+      ],
+      "wape_aggregate": 0.4236722078156466,
+      "wape_aggregate_by_origin": [
+        0.486629,
+        0.427125,
+        0.357262
+      ],
+      "runtime_s_mean": 0.0
+    },
+    "UCM7": {
+      "wape_mean": 0.25965237393270313,
+      "wape_mean_by_origin": [
+        0.319131,
+        0.25273,
+        0.207096
+      ],
+      "wape_aggregate": 0.2562549834984011,
+      "wape_aggregate_by_origin": [
+        0.316237,
+        0.249929,
+        0.202599
+      ],
+      "runtime_s_mean": 12.676666666666668
+    },
+    "StateFourier7": {
+      "wape_mean": 0.2564361758395982,
+      "wape_mean_by_origin": [
+        0.312136,
+        0.246588,
+        0.210585
+      ],
+      "wape_aggregate": 0.25312821024162635,
+      "wape_aggregate_by_origin": [
+        0.30942,
+        0.243394,
+        0.206571
+      ],
+      "runtime_s_mean": 0.05333333333333334
+    },
+    "LGBM-direct": {
+      "wape_mean": 0.09344357387501512,
+      "wape_mean_by_origin": [
+        0.105806,
+        0.088209,
+        0.086315
+      ],
+      "wape_aggregate": 0.09195988757830453,
+      "wape_aggregate_by_origin": [
+        0.104588,
+        0.087209,
+        0.084083
+      ],
+      "runtime_s_mean": 25.69333333333333
+    },
+    "LGBM-cal": {
+      "wape_mean": 0.19855416813160695,
+      "wape_mean_by_origin": [
+        0.252451,
+        0.225808,
+        0.117404
+      ],
+      "wape_aggregate": 0.19621757431744444,
+      "wape_aggregate_by_origin": [
+        0.250316,
+        0.223293,
+        0.115044
+      ],
+      "runtime_s_mean": 12.596666666666666
+    },
+    "SeasonalNaive7+Open": {
+      "wape_mean": 0.2322498154766409,
+      "wape_mean_by_origin": [
+        0.282442,
+        0.189942,
+        0.224366
+      ],
+      "wape_aggregate": 0.22932594361753086,
+      "wape_aggregate_by_origin": [
+        0.280193,
+        0.187945,
+        0.21984
+      ],
+      "runtime_s_mean": 0.0
+    }
+  },
+  "selection": {
+    "origin": 774,
+    "rows": [
+      {
+        "model": "SeasonalNaive7",
+        "config": {},
+        "wape_mean": 0.20696826903662063,
+        "wape_aggregate": 0.1873891060826938,
+        "runtime_s": 0.0
+      },
+      {
+        "model": "MovingAvg",
+        "config": {
+          "window": 14
+        },
+        "wape_mean": 0.3854592886562237,
+        "wape_aggregate": 0.34990468425092264,
+        "runtime_s": 0.0
+      },
+      {
+        "model": "MovingAvg",
+        "config": {
+          "window": 28
+        },
+        "wape_mean": 0.3853976090784155,
+        "wape_aggregate": 0.35549167019022515,
+        "runtime_s": 0.0
+      },
+      {
+        "model": "MovingAvg",
+        "config": {
+          "window": 56
+        },
+        "wape_mean": 0.3841124074293086,
+        "wape_aggregate": 0.3565713570008279,
+        "runtime_s": 0.0
+      },
+      {
+        "model": "UCM7",
+        "config": {
+          "stochastic": true
+        },
+        "wape_mean": 0.19919386509242265,
+        "wape_aggregate": 0.17924950649411275,
+        "runtime_s": 27.3,
+        "n_failed_fallback": 0
+      },
+      {
+        "model": "UCM7",
+        "config": {
+          "stochastic": false
+        },
+        "wape_mean": 0.19576655313585647,
+        "wape_aggregate": 0.17598901890302293,
+        "runtime_s": 10.99,
+        "n_failed_fallback": 0
+      },
+      {
+        "model": "StateFourier7",
+        "config": {
+          "harmonics": 2,
+          "qr": 0.02,
+          "damp": 0.98,
+          "trend_q": 0.0
+        },
+        "wape_mean": 0.2814759566149917,
+        "wape_aggregate": 0.2579850931133269,
+        "runtime_s": 0.05
+      },
+      {
+        "model": "StateFourier7",
+        "config": {
+          "harmonics": 2,
+          "qr": 0.05,
+          "damp": 0.98,
+          "trend_q": 0.0
+        },
+        "wape_mean": 0.2842425425550419,
+        "wape_aggregate": 0.26367351679377515,
+        "runtime_s": 0.03
+      },
+      {
+        "model": "StateFourier7",
+        "config": {
+          "harmonics": 3,
+          "qr": 0.02,
+          "damp": 0.98,
+          "trend_q": 0.0
+        },
+        "wape_mean": 0.19411232662754582,
+        "wape_aggregate": 0.168060244707118,
+        "runtime_s": 0.03
+      },
+      {
+        "model": "StateFourier7",
+        "config": {
+          "harmonics": 3,
+          "qr": 0.05,
+          "damp": 0.98,
+          "trend_q": 0.0
+        },
+        "wape_mean": 0.19693806822567958,
+        "wape_aggregate": 0.17342000250384984,
+        "runtime_s": 0.04
+      },
+      {
+        "model": "LGBM-direct",
+        "config": {
+          "params": {
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "num_leaves": 63,
+            "min_child_samples": 50,
+            "subsample": 0.9,
+            "colsample_bytree": 0.9,
+            "reg_lambda": 1.0
+          }
+        },
+        "wape_mean": 0.09274356694758538,
+        "wape_aggregate": 0.0861619234595036,
+        "runtime_s": 18.51
+      },
+      {
+        "model": "LGBM-direct",
+        "config": {
+          "params": {
+            "n_estimators": 600,
+            "learning_rate": 0.05,
+            "num_leaves": 63,
+            "min_child_samples": 50,
+            "subsample": 0.9,
+            "colsample_bytree": 0.9,
+            "reg_lambda": 1.0
+          }
+        },
+        "wape_mean": 0.09207124026908414,
+        "wape_aggregate": 0.08628251486998172,
+        "runtime_s": 25.61
+      },
+      {
+        "model": "LGBM-cal",
+        "config": {
+          "params": {
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "num_leaves": 63,
+            "min_child_samples": 50,
+            "subsample": 0.9,
+            "colsample_bytree": 0.9,
+            "reg_lambda": 1.0
+          }
+        },
+        "wape_mean": 0.15319744679429667,
+        "wape_aggregate": 0.12776998729256658,
+        "runtime_s": 10.72
+      },
+      {
+        "model": "LGBM-cal",
+        "config": {
+          "params": {
+            "n_estimators": 600,
+            "learning_rate": 0.05,
+            "num_leaves": 63,
+            "min_child_samples": 50,
+            "subsample": 0.9,
+            "colsample_bytree": 0.9,
+            "reg_lambda": 1.0
+          }
+        },
+        "wape_mean": 0.15400033636149282,
+        "wape_aggregate": 0.1276888429970373,
+        "runtime_s": 19.94
+      },
+      {
+        "model": "SeasonalNaive7+Open",
+        "config": {},
+        "wape_mean": 0.1893497387257132,
+        "wape_aggregate": 0.18399742242843448,
+        "runtime_s": 0.0
+      }
+    ],
+    "chosen": {
+      "SeasonalNaive7": {
+        "config": {},
+        "val_wape_mean": 0.20696826903662063
+      },
+      "MovingAvg": {
+        "config": {
+          "window": 56
+        },
+        "val_wape_mean": 0.3841124074293086
+      },
+      "UCM7": {
+        "config": {
+          "stochastic": false
+        },
+        "val_wape_mean": 0.19576655313585647
+      },
+      "StateFourier7": {
+        "config": {
+          "harmonics": 3,
+          "qr": 0.02,
+          "damp": 0.98,
+          "trend_q": 0.0
+        },
+        "val_wape_mean": 0.19411232662754582
+      },
+      "LGBM-direct": {
+        "config": {
+          "params": {
+            "n_estimators": 600,
+            "learning_rate": 0.05,
+            "num_leaves": 63,
+            "min_child_samples": 50,
+            "subsample": 0.9,
+            "colsample_bytree": 0.9,
+            "reg_lambda": 1.0
+          }
+        },
+        "val_wape_mean": 0.09207124026908414
+      },
+      "LGBM-cal": {
+        "config": {
+          "params": {
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "num_leaves": 63,
+            "min_child_samples": 50,
+            "subsample": 0.9,
+            "colsample_bytree": 0.9,
+            "reg_lambda": 1.0
+          }
+        },
+        "val_wape_mean": 0.15319744679429667
+      },
+      "SeasonalNaive7+Open": {
+        "config": {},
+        "val_wape_mean": 0.1893497387257132
+      }
+    },
+    "val_window": [
+      "2015-02-14",
+      "2015-03-27"
+    ]
+  },
+  "protocol": {
+    "dataset": "Rossmann Store Sales",
+    "freq": "D",
+    "horizon": 42,
+    "season": 7,
+    "n_series": 400,
+    "outer_origins": [
+      816,
+      858,
+      900
+    ],
+    "val_origin": 774,
+    "sampling": "400 of 934 complete stores, numpy default_rng(42), sorted",
+    "metric_primary": "mean over series of sum|y-yhat|/sum|y| (per-series WAPE)",
+    "metric_secondary": "sum|y-yhat|/sum|y| over all series and steps",
+    "zero_denominator": "raises ValueError, never dropped",
+    "negative_forecasts": "clipped to 0, count recorded per model/origin",
+    "covariates": "promo/open/school/state/store meta treated as known at forecast time"
+  }
+}

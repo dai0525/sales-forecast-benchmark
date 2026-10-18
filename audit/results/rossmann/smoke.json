@@ -1,0 +1,126 @@
+{
+  "selection": [
+    {
+      "model": "SeasonalNaive7",
+      "config": {},
+      "wape_mean": 0.18686411572970635,
+      "wape_aggregate": 0.18459491284867507,
+      "runtime_s": 0.0
+    },
+    {
+      "model": "MovingAvg",
+      "config": {
+        "window": 14
+      },
+      "wape_mean": 0.3485911468320787,
+      "wape_aggregate": 0.3446799156845371,
+      "runtime_s": 0.0
+    },
+    {
+      "model": "StateFourier7",
+      "config": {
+        "harmonics": 2,
+        "qr": 0.02,
+        "damp": 0.98,
+        "trend_q": 0.0
+      },
+      "wape_mean": 0.25633859571073625,
+      "wape_aggregate": 0.25641800844710194,
+      "runtime_s": 0.03
+    },
+    {
+      "model": "LGBM-direct",
+      "config": {
+        "params": {
+          "n_estimators": 300,
+          "learning_rate": 0.05,
+          "num_leaves": 63,
+          "min_child_samples": 50,
+          "subsample": 0.9,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 1.0
+        }
+      },
+      "wape_mean": 0.08481460504777213,
+      "wape_aggregate": 0.08395462958738137,
+      "runtime_s": 9.17
+    },
+    {
+      "model": "LGBM-cal",
+      "config": {
+        "params": {
+          "n_estimators": 300,
+          "learning_rate": 0.05,
+          "num_leaves": 63,
+          "min_child_samples": 50,
+          "subsample": 0.9,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 1.0
+        }
+      },
+      "wape_mean": 0.13073444142655513,
+      "wape_aggregate": 0.12906468491013862,
+      "runtime_s": 3.25
+    },
+    {
+      "model": "SeasonalNaive7+Open",
+      "config": {},
+      "wape_mean": 0.18565303650723375,
+      "wape_aggregate": 0.1835592574818539,
+      "runtime_s": 0.0
+    }
+  ],
+  "chosen": {
+    "SeasonalNaive7": {
+      "config": {},
+      "val_wape_mean": 0.18686411572970635
+    },
+    "MovingAvg": {
+      "config": {
+        "window": 14
+      },
+      "val_wape_mean": 0.3485911468320787
+    },
+    "StateFourier7": {
+      "config": {
+        "harmonics": 2,
+        "qr": 0.02,
+        "damp": 0.98,
+        "trend_q": 0.0
+      },
+      "val_wape_mean": 0.25633859571073625
+    },
+    "LGBM-direct": {
+      "config": {
+        "params": {
+          "n_estimators": 300,
+          "learning_rate": 0.05,
+          "num_leaves": 63,
+          "min_child_samples": 50,
+          "subsample": 0.9,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 1.0
+        }
+      },
+      "val_wape_mean": 0.08481460504777213
+    },
+    "LGBM-cal": {
+      "config": {
+        "params": {
+          "n_estimators": 300,
+          "learning_rate": 0.05,
+          "num_leaves": 63,
+          "min_child_samples": 50,
+          "subsample": 0.9,
+          "colsample_bytree": 0.9,
+          "reg_lambda": 1.0
+        }
+      },
+      "val_wape_mean": 0.13073444142655513
+    },
+    "SeasonalNaive7+Open": {
+      "config": {},
+      "val_wape_mean": 0.18565303650723375
+    }
+  }
+}

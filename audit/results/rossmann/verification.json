@@ -1,0 +1,258 @@
+{
+  "n_files": 24,
+  "models": [
+    "LGBM-cal",
+    "LGBM-direct",
+    "MovingAvg",
+    "SeasonalNaive7",
+    "SeasonalNaive7+Open",
+    "StateFourier7",
+    "UCM7"
+  ],
+  "checks": [
+    {
+      "model": "LGBM-cal",
+      "origin": "o816",
+      "wape_mean": 0.252451,
+      "wape_aggregate": 0.250316,
+      "match": true
+    },
+    {
+      "model": "LGBM-cal",
+      "origin": "o858",
+      "wape_mean": 0.225808,
+      "wape_aggregate": 0.223293,
+      "match": true
+    },
+    {
+      "model": "LGBM-cal",
+      "origin": "o900",
+      "wape_mean": 0.117404,
+      "wape_aggregate": 0.115044,
+      "match": true
+    },
+    {
+      "model": "LGBM-direct",
+      "origin": "o816",
+      "wape_mean": 0.105806,
+      "wape_aggregate": 0.104588,
+      "match": true
+    },
+    {
+      "model": "LGBM-direct",
+      "origin": "o858",
+      "wape_mean": 0.088209,
+      "wape_aggregate": 0.087209,
+      "match": true
+    },
+    {
+      "model": "LGBM-direct",
+      "origin": "o900",
+      "wape_mean": 0.086315,
+      "wape_aggregate": 0.084083,
+      "match": true
+    },
+    {
+      "model": "MovingAvg",
+      "origin": "o816",
+      "wape_mean": 0.491726,
+      "wape_aggregate": 0.486629,
+      "match": true
+    },
+    {
+      "model": "MovingAvg",
+      "origin": "o858",
+      "wape_mean": 0.434204,
+      "wape_aggregate": 0.427125,
+      "match": true
+    },
+    {
+      "model": "MovingAvg",
+      "origin": "o900",
+      "wape_mean": 0.364483,
+      "wape_aggregate": 0.357262,
+      "match": true
+    },
+    {
+      "model": "SeasonalNaive7",
+      "origin": "o816",
+      "wape_mean": 0.355129,
+      "wape_aggregate": 0.352113,
+      "match": true
+    },
+    {
+      "model": "SeasonalNaive7",
+      "origin": "o858",
+      "wape_mean": 0.279754,
+      "wape_aggregate": 0.276058,
+      "match": true
+    },
+    {
+      "model": "SeasonalNaive7",
+      "origin": "o900",
+      "wape_mean": 0.226631,
+      "wape_aggregate": 0.221051,
+      "match": true
+    },
+    {
+      "model": "SeasonalNaive7+Open",
+      "origin": "o816",
+      "wape_mean": 0.282442,
+      "wape_aggregate": 0.280193,
+      "match": true
+    },
+    {
+      "model": "SeasonalNaive7+Open",
+      "origin": "o858",
+      "wape_mean": 0.189942,
+      "wape_aggregate": 0.187945,
+      "match": true
+    },
+    {
+      "model": "SeasonalNaive7+Open",
+      "origin": "o900",
+      "wape_mean": 0.224366,
+      "wape_aggregate": 0.21984,
+      "match": true
+    },
+    {
+      "model": "StateFourier7",
+      "origin": "o816",
+      "wape_mean": 0.312136,
+      "wape_aggregate": 0.30942,
+      "match": true
+    },
+    {
+      "model": "StateFourier7",
+      "origin": "o858",
+      "wape_mean": 0.246588,
+      "wape_aggregate": 0.243394,
+      "match": true
+    },
+    {
+      "model": "StateFourier7",
+      "origin": "o900",
+      "wape_mean": 0.210585,
+      "wape_aggregate": 0.206571,
+      "match": true
+    },
+    {
+      "model": "UCM7",
+      "origin": "o816",
+      "wape_mean": 0.319131,
+      "wape_aggregate": 0.316237,
+      "match": true
+    },
+    {
+      "model": "UCM7",
+      "origin": "o858",
+      "wape_mean": 0.25273,
+      "wape_aggregate": 0.249929,
+      "match": true
+    },
+    {
+      "model": "UCM7",
+      "origin": "o900",
+      "wape_mean": 0.207096,
+      "wape_aggregate": 0.202599,
+      "match": true
+    }
+  ],
+  "recomputed": {
+    "LGBM-cal": {
+      "wape_mean": 0.19855416798134776,
+      "wape_aggregate": 0.19621757963951938,
+      "by_origin": [
+        0.252451,
+        0.225808,
+        0.117404
+      ]
+    },
+    "LGBM-direct": {
+      "wape_mean": 0.09344357375887774,
+      "wape_aggregate": 0.09195988970167895,
+      "by_origin": [
+        0.105806,
+        0.088209,
+        0.086315
+      ]
+    },
+    "MovingAvg": {
+      "wape_mean": 0.43013771023008834,
+      "wape_aggregate": 0.423672218445748,
+      "by_origin": [
+        0.491726,
+        0.434204,
+        0.364483
+      ]
+    },
+    "SeasonalNaive7": {
+      "wape_mean": 0.28717139192461044,
+      "wape_aggregate": 0.28307387693710556,
+      "by_origin": [
+        0.355129,
+        0.279754,
+        0.226631
+      ]
+    },
+    "SeasonalNaive7+Open": {
+      "wape_mean": 0.2322498154766409,
+      "wape_aggregate": 0.22932594873453707,
+      "by_origin": [
+        0.282442,
+        0.189942,
+        0.224366
+      ]
+    },
+    "StateFourier7": {
+      "wape_mean": 0.2564361758888673,
+      "wape_aggregate": 0.25312821656621093,
+      "by_origin": [
+        0.312136,
+        0.246588,
+        0.210585
+      ]
+    },
+    "UCM7": {
+      "wape_mean": 0.2596523736234457,
+      "wape_aggregate": 0.25625498960963633,
+      "by_origin": [
+        0.319131,
+        0.25273,
+        0.207096
+      ]
+    }
+  },
+  "bootstrap": {
+    "StateFourier7 - UCM7": {
+      "mean_diff": -0.003216197734578344,
+      "ci95": [
+        -0.004912961909575479,
+        -0.0016977458374637132
+      ],
+      "p_two_sided": 0.001,
+      "n_series_origins": 1200,
+      "share_series_a_better": 0.5058333333333334
+    },
+    "LGBM-direct - LGBM-cal": {
+      "mean_diff": -0.10511059422247002,
+      "ci95": [
+        -0.10866305217900935,
+        -0.10138354454451144
+      ],
+      "p_two_sided": 0.0,
+      "n_series_origins": 1200,
+      "share_series_a_better": 0.9758333333333333
+    },
+    "LGBM-direct - StateFourier7": {
+      "mean_diff": -0.1629926021299896,
+      "ci95": [
+        -0.16638310113888533,
+        -0.1595187645083745
+      ],
+      "p_two_sided": 0.0,
+      "n_series_origins": 1200,
+      "share_series_a_better": 0.9941666666666666
+    }
+  }
+}

@@ -31,3 +31,8 @@ Thumbs.db
 # Incomplete downloads
 data/*.csv.part
 .pytest_cache/
+
+# Rossmann 原始 CSV（38 MB，用 repro/alt/fetch_rossmann.py 重新下载并校验）
+data/alt/rossmann/train.csv
+data/alt/rossmann/store.csv
+data/alt/rossmann/*.part
