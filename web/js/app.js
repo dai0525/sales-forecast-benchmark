@@ -118,7 +118,8 @@
     var ds = b.dataset || {};
     document.getElementById('bench-sub').textContent =
       '数据集：' + (ds.name || 'M4') + '，' + (ds.n_series || '?') + ' 条序列，预测 ' +
-      (ds.horizon || '?') + ' 步；逐序列 WAPE 均值。审计状态见表下注释。';
+      (ds.horizon || '?') + ' 步' + (ds.n_origins ? '，' + ds.n_origins + ' 个滚动原点' : '') +
+      '；逐序列 WAPE 均值。审计状态见表下注释。';
     var rows = b.models.slice().sort(function (a, c) { return (a.wape == null) - (c.wape == null) || a.wape - c.wape; });
     var html = svgBars(rows);
     html += '<div class="tablewrap" style="margin-top:14px"><table><thead><tr>' +
@@ -198,15 +199,36 @@
       '<p class="algo-note">复现脚本：<code>repro/baselines.py</code>、<code>repro/lgbm_global.py</code>、<code>repro/deep_models.py</code>、<code>repro/bsts52.py</code>；指标：<code>web/data/bench.json</code></p></section>';
   }
 
+  /* ---------- 数据集切换 ---------- */
+  function wireDatasetSwitch() {
+    var btns = [].slice.call(document.querySelectorAll('#bench-ds .ds-btn'));
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btns.forEach(function (b) { b.classList.toggle('is-on', b === btn); });
+        var alt = btn.getAttribute('data-ds') === 'rossmann';
+        var d = alt ? DATA.benchAlt : DATA.bench;
+        if (!d) return;
+        renderBench(d);
+        var b2 = d.dataset || {};
+        document.getElementById('built').textContent =
+          '页面打开于 ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC · 数据 ' +
+          (b2.name || 'M4') + ' · 审计结果与教学示意见各图说明';
+      });
+    });
+  }
+
   /* ---------- 启动 ---------- */
   Promise.all([
     load('bench.json'), load('papers.json'), load('how.json'),
-    load('lgbm.json'), load('nhits.json'), load('deepar.json'), load('tft.json'), load('patchtst.json'), load('series.json')
+    load('lgbm.json'), load('nhits.json'), load('deepar.json'), load('tft.json'), load('patchtst.json'), load('series.json'),
+    load('bench_alt.json')
   ]).then(function (r) {
     DATA.bench = r[0]; DATA.papers = r[1]; DATA.how = r[2];
     DATA.lgbm = r[3]; DATA.nhits = r[4]; DATA.deepar = r[5]; DATA.tft = r[6]; DATA.patchtst = r[7]; DATA.series = r[8];
+    DATA.benchAlt = r[9];
     mountAlgos();
     renderBench(r[0]);
+    wireDatasetSwitch();
     renderPapers(r[1]);
     renderHow(r[2]);
     var b = r[0];

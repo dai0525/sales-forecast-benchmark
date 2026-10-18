@@ -1,0 +1,44 @@
+{
+  "State-Fourier - UCM52-saved": {
+    "delta_pp": -0.527,
+    "ci_lo": -1.034,
+    "ci_hi": -0.096,
+    "p_boot": 0.0188,
+    "win_rate": 63.0
+  },
+  "State-Fourier - LightGBM": {
+    "delta_pp": -0.647,
+    "ci_lo": -1.5,
+    "ci_hi": 0.069,
+    "p_boot": 0.079,
+    "win_rate": 54.9
+  },
+  "UCM52-saved - LightGBM": {
+    "delta_pp": -0.12,
+    "ci_lo": -0.937,
+    "ci_hi": 0.62,
+    "p_boot": 0.8022,
+    "win_rate": 49.0
+  },
+  "State-Fourier - FG-original": {
+    "delta_pp": -1.393,
+    "ci_lo": -2.699,
+    "ci_hi": -0.537,
+    "p_boot": 0.0,
+    "win_rate": 60.2
+  },
+  "State-Fourier - SeasonalNaive52": {
+    "delta_pp": -8.24,
+    "ci_lo": -11.139,
+    "ci_hi": -5.997,
+    "p_boot": 0.0,
+    "win_rate": 81.6
+  },
+  "FG-original - UCM52-saved": {
+    "delta_pp": 0.866,
+    "ci_lo": 0.251,
+    "ci_hi": 1.794,
+    "p_boot": 0.0016,
+    "win_rate": 46.8
+  }
+}

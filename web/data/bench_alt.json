@@ -1,0 +1,113 @@
+{
+  "dataset": {
+    "name": "Rossmann Store Sales（400 店抽样，审计）",
+    "n_series": 400,
+    "horizon": 42,
+    "freq": "D",
+    "n_origins": 3,
+    "factors": [
+      "Promo",
+      "StateHoliday",
+      "SchoolHoliday",
+      "StoreType",
+      "Assortment",
+      "CompetitionDistance"
+    ],
+    "source": "https://www.kaggle.com/competitions/rossmann-store-sales/data",
+    "note": "3 个扩张窗原点（o=816/858/900）分别打分后取平均；超参只在更早的内部验证原点 o=774 选择。"
+  },
+  "models": [
+    {
+      "id": "LGBM-direct",
+      "name": "LightGBM 直接多步（含促销/假日/门店）",
+      "short": "LightGBM+外生",
+      "family": "gbdt",
+      "wape_mean": 0.093444,
+      "wape_aggregate": 0.09196,
+      "runtime_s": 77.08,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 1,
+      "wape": 0.093444
+    },
+    {
+      "id": "LGBM-cal",
+      "name": "LightGBM 仅日历（消融）",
+      "short": "LightGBM 仅日历",
+      "family": "gbdt",
+      "wape_mean": 0.198554,
+      "wape_aggregate": 0.196218,
+      "runtime_s": 37.79,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 2,
+      "wape": 0.198554
+    },
+    {
+      "id": "SeasonalNaive7+Open",
+      "name": "SeasonalNaive7+Open",
+      "short": "SeasonalNaive7+Open",
+      "family": "other",
+      "wape_mean": 0.23225,
+      "wape_aggregate": 0.229326,
+      "runtime_s": 0.0,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 3,
+      "wape": 0.23225
+    },
+    {
+      "id": "StateFourier7",
+      "name": "State-Fourier（周期 7）",
+      "short": "State-Fourier",
+      "family": "state",
+      "wape_mean": 0.256436,
+      "wape_aggregate": 0.253128,
+      "runtime_s": 0.16,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 4,
+      "wape": 0.256436
+    },
+    {
+      "id": "UCM7",
+      "name": "UCM 局部水平+季节（周期 7）",
+      "short": "UCM7",
+      "family": "state",
+      "wape_mean": 0.259652,
+      "wape_aggregate": 0.256255,
+      "runtime_s": 38.03,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 5,
+      "wape": 0.259652
+    },
+    {
+      "id": "SeasonalNaive7",
+      "name": "SeasonalNaive（周期 7）",
+      "short": "SeasonalNaive7",
+      "family": "baseline",
+      "wape_mean": 0.287171,
+      "wape_aggregate": 0.283074,
+      "runtime_s": 0.0,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 6,
+      "wape": 0.287171
+    },
+    {
+      "id": "MovingAvg",
+      "name": "MovingAvg（窗口 56）",
+      "short": "MovingAvg56",
+      "family": "baseline",
+      "wape_mean": 0.430138,
+      "wape_aggregate": 0.423672,
+      "runtime_s": 0.0,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 7,
+      "wape": 0.430138
+    }
+  ],
+  "note": "H=42 天；3 个扩张窗原点（o=816/858/900）各打分一次后取平均；超参只在更早的内部验证原点 o=774 选择，测试段未参与选参；负预测 clip 到 0 并逐模型记录。数据：Rossmann Store Sales 400 店抽样，闭店日占 18.2%。LGBM-cal 是同一模型的日历-only 消融，用来看外生变量的增量价值。"
+}

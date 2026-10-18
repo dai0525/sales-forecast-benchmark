@@ -158,3 +158,11 @@ footer{max-width:var(--maxw);margin:0 auto;padding:8px 16px 24px;color:var(--ink
   #bench-body th, #bench-body td { padding: 6px 3px; }
   #bench-body .tablewrap table { min-width: 0; width: 100%; }
 }
+
+/* 数据集切换（实测成绩页） */
+.ds-switch{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.ds-btn{appearance:none;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink2);
+  border-radius:999px;padding:8px 14px;font:600 13px/1.2 inherit;transition:.15s}
+.ds-btn:hover{border-color:var(--blue-3);color:var(--blue)}
+.ds-btn.is-on{background:var(--blue);border-color:var(--blue);color:#fff}
+.ds-btn:focus-visible{outline:2px solid var(--blue-3);outline-offset:2px}

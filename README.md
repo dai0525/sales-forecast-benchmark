@@ -1,6 +1,6 @@
 # 销量预测 Benchmark 与算法实验台
 
-在 M4 Weekly / Daily 上比较统计、全局 LightGBM、简化深度模型和状态空间模型。M4 包含多个领域，并不全是零售销量。本仓库附算法教学网页。
+在 **M4 Weekly / Daily** 与 **Rossmann Store Sales** 上比较统计、全局 LightGBM、简化深度模型和状态空间模型。M4 包含多个领域，并不全是零售销量；Rossmann 带促销/假日等外生因子。本仓库附算法教学网页。
 
 本次审计以提交 `83f3947` 为起点，修正数据污染、验证泄漏、测试集选参、模型命名和导出问题。原报告与指标保存在 `audit/original/`；完整问题清单见 [AUDIT.md](AUDIT.md)，技术分析、论文与开源项目见 [REPORT-MPA.md](REPORT-MPA.md)。
 
@@ -29,6 +29,38 @@
 原 FG 和 UCM 的主要数字从头复现一致。旧 LightGBM 和深度榜单缺完整预测，不能逐点证实；上表是修正后重新训练的结果。深度模型使用 260 步固定预算、时间验证，保留最佳检查点，没有用验证目标梯度重新拟合；它们多为简化实现，不代表同名论文的最佳水平。各模型调参预算也不相等。
 
 **新模型在官方测试段有提升，但没有稳定胜过 UCM。** 三个嵌套历史窗口中只赢一个；平均 WAPE 为 7.864%，UCM 为 7.670%。详见 [历史回测](audit/results/rolling_summary.md)。公开测试已被原项目反复查看，本次是探索性验证，不能称全新盲测。
+
+## 第二个数据集：Rossmann Store Sales（带外生因子）
+
+M4 Weekly 是纯单变量、无协变量、季节性极强的数据；为了检验「这些算法是不是只对这份数据有效」，
+增加了 **Rossmann**（Kaggle 竞赛，德国药妆店日销量）：400 家完整日历门店抽样，H=42 天，
+3 个扩张窗原点（o=816/858/900），超参只在更早的内部验证原点 o=774 选择。
+因子：`Promo`（38.2% 的天）、`StateHoliday`、`SchoolHoliday`、`StoreType`、`Assortment`、`CompetitionDistance`。
+详见 [ALT-DATASET.md](ALT-DATASET.md)。
+
+| 排名 | 模型 | 平均 WAPE | 总量 WAPE |
+|---:|---|---:|---:|
+| 1 | **LightGBM 直接多步（含促销/假日/门店）** | **9.34%** | 9.20% |
+| 2 | LightGBM 仅日历（消融） | 19.86% | 19.62% |
+| 3 | SeasonalNaive7 + 营业开关 | 23.22% | 22.93% |
+| 4 | State-Fourier（周期 7） | 25.64% | 25.31% |
+| 5 | UCM（local level + 季节，周期 7） | 25.97% | 25.63% |
+| 6 | SeasonalNaive（周期 7） | 28.72% | 28.31% |
+| 7 | MovingAvg（窗口 56） | 43.01% | 42.37% |
+
+**结论（与 M4 对照）**：
+
+1. **赢家换人、量级反转**：LightGBM 在 M4 排第 3（落后榜首 0.65 pp），在 Rossmann 排第 1
+   （领先 16.3 pp，1,200 个配对中 99.4% 更好，bootstrap 95% CI [-16.6, -16.0] pp）。
+2. **优势来自「有没有可用因子」，不是模型族**：同一套 LightGBM 去掉 promo/营业开关/节假日/门店属性后
+   从 9.34% 退化到 19.86%（10.5 pp），逐原点在 11.7%–25.2% 摆动；这个损失是从
+   SeasonalNaive 换成最好的状态空间模型所能拿到的 3.1 pp 的 3.4 倍。
+3. **单变量族内部次序大体保持**（5 个同名模型 Spearman 秩相关 0.60）：UCM 与 State-Fourier
+   仍是最好的单变量模型，且两者在 Rossmann 上只差 0.32 pp、只有 50.6% 的序列新模型更好，
+   o=900 窗口 UCM 反超——**不要因为 M4 上的 0.53 pp 就替换 UCM**。
+4. **零膨胀解释约四成**：闭店日占 18.2%，状态模型约 25% 的误差落在闭店日而 LightGBM 只有 1.7%；
+   剔除闭店日后差距仍有 9.9 pp。**跨数据集只能比方向和量级，绝对 WAPE 不可横比**
+   （M4 7–16%，Rossmann 9–43%）。
 
 ## 研究结论
 
@@ -76,8 +108,9 @@ python -m http.server 8899 --directory web
 - `repro/fg_state.py`：新联合状态模型；`audit_experiment.py`：训练内选参、消融和配对 bootstrap；`audit_rolling.py`：嵌套历史回测。
 - `repro/fg_mp.py`：保留原算法作数值回归；`bsts52.py`：UCM52；`bench_base.py`：Weekly 基线与 LightGBM；`bench_deep.py`：Weekly 深度训练。
 - `repro/build_audit_report.py`：从保存预测生成榜单，更新 `web/data/bench.json`；`audit/results/`：协议、预测、指标、环境、文献核验和浏览器截图。
-- `tests/test_audit.py`：高斯条件分布独立校验、数据隔离、时间切分等回归测试。
-- `web/`：静态教学工作台；滑块/注意力图不等同于重新训练或因果解释。旧教学页硬编码榜单已标为历史。
+- `repro/alt/`：第二数据集（Rossmann）的下载/校验、预处理、基准、独立重算与网页导出；报告见 [ALT-DATASET.md](ALT-DATASET.md)。
+- `tests/test_audit.py`：高斯条件分布独立校验、数据隔离、时间切分等回归测试；`tests/test_alt_rossmann.py`：第二数据集口径测试。
+- `web/`：静态教学工作台；滑块/注意力图不等同于重新训练或因果解释。教学页旧榜单已按审计重跑更新，深度模型标注为简化实现。
 
 单条 WAPE = Σ|y−ŷ| / Σ|y|；平均 WAPE 对每条序列等权，总量 WAPE 将所有分子与分母先汇总。后者不是净总量偏差。零分母在新审计评估器中报错，不静默丢弃。不同数据子集、预测步长和指标口径不可直接排名。本表不使用 M4 官方 OWA，因此不能与官方 OWA 榜单直接比较。
 
