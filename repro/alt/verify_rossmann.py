@@ -49,13 +49,22 @@ def main() -> None:
     out = {"n_files": len(files) + len(ORIGINS), "models": models, "checks": [],
            "recomputed": {}, "bootstrap": {}}
     per_series = {}
+    panel=np.load(ROOT / "data/alt/rossmann/panel.npz",allow_pickle=False)
     for m in models:
         wm, wa = [], []
         for key in ORIGINS:
             truth, ids = load(key)
+            origin=int(key[1:])
+            if ids!=list(panel['ids']) or not np.array_equal(truth,panel['y'][:,origin:origin+42]):
+                raise ValueError('Saved truth differs from modelling panel')
+            canonical=np.load(PRED/f'truth_{key}.npz',allow_pickle=False)
+            expected_dates=panel['dates'][origin:origin+42].astype('datetime64[D]').astype(str)
+            if not np.array_equal(canonical['dates'],expected_dates):raise ValueError('Truth dates differ from panel')
             z = np.load(PRED / orig_by_name[m][key], allow_pickle=False)
             if [str(s) for s in z["ids"]] != ids:
                 raise SystemExit(f"{m}/{key}: id mismatch")
+            if not np.array_equal(z['truth'],truth) or not np.array_equal(z['dates'],canonical['dates']):
+                raise ValueError('Prediction truth/date mismatch')
             p = np.clip(z["preds"].astype(float), 0, None)
             if p.shape != truth.shape:
                 raise SystemExit(f"{m}/{key}: shape {p.shape} vs {truth.shape}")
@@ -88,13 +97,17 @@ def main() -> None:
     for a, b in (("StateFourier7", "UCM7"), ("LGBM-direct", "LGBM-cal"),
                  ("LGBM-direct", "StateFourier7")):
         diffs = np.concatenate([per_series[(a, k)] - per_series[(b, k)] for k in ORIGINS])
-        n = len(diffs)
-        boot = np.array([diffs[rng.integers(0, n, n)].mean() for _ in range(2000)])
+        # Preserve within-store dependence across forecast origins.
+        store_diffs=np.stack([per_series[(a,k)]-per_series[(b,k)] for k in ORIGINS]).mean(0)
+        n = len(store_diffs)
+        boot = np.array([store_diffs[rng.integers(0,n,n)].mean() for _ in range(2000)])
         lo, hi = np.percentile(boot, [2.5, 97.5])
         out["bootstrap"][f"{a} - {b}"] = {
             "mean_diff": float(diffs.mean()), "ci95": [float(lo), float(hi)],
-            "p_two_sided": float(2 * min((boot <= 0).mean(), (boot >= 0).mean())),
-            "n_series_origins": int(n),
+            "bootstrap_unit": "store; all three origins retained together",
+            "n_store_clusters": int(n),
+            "limitation": "Conditional on three dates; shared calendar shocks across stores not captured; not a generalization CI over future dates",
+            "n_series_origins": int(len(diffs)),
             "share_series_a_better": float((diffs < 0).mean()),
         }
 

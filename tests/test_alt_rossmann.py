@@ -83,3 +83,30 @@ def test_metrics_match_saved_predictions():
             p = np.clip(z["preds"].astype(float), 0, None)
             agg = np.abs(t - p).sum() / t.sum()
             assert agg == pytest.approx(rec["wape_aggregate"], abs=1e-6), f"{model}/{key}"
+
+
+def test_future_sales_cannot_change_training_or_forecast_features():
+    import pandas as pd
+    b=_bench();p=b.Panel(PANEL,n_series=4);o=140
+    X,y=b.build_training(p,o,True);features=b.pd_frame(b.build_matrix(p,o,1,True))
+    p.y[:,o:]=1234567
+    X2,y2=b.build_training(p,o,True);features2=b.pd_frame(b.build_matrix(p,o,1,True))
+    pd.testing.assert_frame_equal(X,X2);pd.testing.assert_frame_equal(features,features2)
+    np.testing.assert_array_equal(y,y2)
+
+
+def test_subset_run_does_not_overwrite_published_metrics(tmp_path,monkeypatch):
+    b=_bench();monkeypatch.setattr(b,'OUTDIR',tmp_path)
+    published=tmp_path/'metrics.json';published.write_text('preserve')
+    monkeypatch.setattr(sys,'argv',['bench_rossmann.py','--quick','--n-series','3','--models','SeasonalNaive7'])
+    b.main()
+    assert published.read_text()=='preserve'
+    assert (tmp_path/'runs/quick-3-SeasonalNaive7/smoke.json').exists()
+
+
+def test_unknown_model_is_rejected(tmp_path,monkeypatch):
+    b=_bench();monkeypatch.setattr(b,'OUTDIR',tmp_path)
+    monkeypatch.setattr(sys,'argv',['bench_rossmann.py','--models','typo'])
+    with pytest.raises(SystemExit) as e:b.main()
+    assert e.value.code==2
+    assert not (tmp_path/'metrics.json').exists()

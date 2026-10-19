@@ -1,0 +1,8 @@
+{
+  "repro/fg_state_exog.py": "0171ec0a2e3db5ae9611d557aa950681ae02e45007755385de75706b628b0ae5",
+  "repro/alt/rossmann_factors.py": "a708811d156d0d8a97eb61277a29127ca968b778cd9e24b7d470861988210bb3",
+  "repro/alt/bench_multifactor.py": "be55e2088e54a0fbc9359fc698a3785e1c337b9751dadf655a42254e4ef59f6a",
+  "repro/alt/bench_rossmann.py": "acb8ec35c28e9113c0c010b40669a1f1b52a5451beda4680a88c7ea0fb0add7c",
+  "data/alt/rossmann/panel.npz": "564b4a817fe488992c0663512ada5e6adfd7c5e986383c3a0ae4a0d85fda4297",
+  "data/alt/rossmann/store.csv": "f56bd124a2849489e6bbb5c000f5fc9640204355e316475c918ae4d089afb344"
+}

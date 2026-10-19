@@ -1,10 +1,10 @@
 {
-  "snapshot_utc": "2026-10-18T15:58:51.804566+00:00",
+  "snapshot_utc": "2026-10-19T15:30:57.390501+00:00",
   "status": "completed delivery; finite-budget BSTS convergence limitations documented",
   "bsts_completed": 359,
   "bsts_total": 359,
   "bsts_failed": 0,
-  "tests": "19 passed",
+  "tests": "32 passed",
   "completed_work": [
     "repository audit and fixes",
     "State-Fourier experiments",
@@ -14,12 +14,18 @@
     "predictive diagnostics and leaderboard",
     "cache fingerprint validation",
     "fixed 12-series BSTS 4000-iteration default/regularized sensitivity study",
-    "frozen-protocol leaderboard export isolation"
+    "frozen-protocol leaderboard export isolation",
+    "review latest Rossmann additions and correct statistical/reporting issues",
+    "six-factor State-Fourier and matching-factor LightGBM, 400 stores x 3 origins",
+    "all-store weekly contribution CSV and example plot"
   ],
   "pending": [],
   "research_limitations": [
     "BSTS monitored-parameter convergence criteria passed for 0/359 series; predictive diagnostics passed for 198/359. Scores are exploratory.",
     "State-Fourier is not a new model family.",
-    "Both 4000-iteration sensitivity arms still pass all monitored parameter diagnostics for 0/12 series; regularized predictive diagnostics pass 12/12 but subset WAPE is worse."
-  ]
+    "Both 4000-iteration sensitivity arms still pass all monitored parameter diagnostics for 0/12 series; regularized predictive diagnostics pass 12/12 but subset WAPE is worse.",
+    "Rossmann turnover not unit sales; archived future covariates assumed preannounced, no plan vintages; complete-store selection bias",
+    "Six factor groups do not imply six identifiable causal effects; holdout periods previously inspected"
+  ],
+  "latest_base_commit": "929519e"
 }

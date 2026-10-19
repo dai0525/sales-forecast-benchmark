@@ -1,0 +1,239 @@
+[
+  {
+    "model": "SF_univariate",
+    "origin": 816,
+    "wape_mean": 0.3121356635321938,
+    "wape_aggregate": 0.30942002306321614,
+    "elapsed_s": 0.14734284599944658,
+    "min_covariance_eigenvalue": 0.002449620541356506
+  },
+  {
+    "model": "SF_open_only",
+    "origin": 816,
+    "wape_mean": 0.23530410479042252,
+    "wape_aggregate": 0.23328329947304557,
+    "elapsed_s": 0.1475629470005515,
+    "min_covariance_eigenvalue": 0.002449620541356506
+  },
+  {
+    "model": "SF_full",
+    "origin": 816,
+    "wape_mean": 0.13264302705116035,
+    "wape_aggregate": 0.13153088179504957,
+    "elapsed_s": 0.31726881899885484,
+    "min_covariance_eigenvalue": 0.002110410768553973
+  },
+  {
+    "model": "SF_without_open",
+    "origin": 816,
+    "wape_mean": 0.19715943387175,
+    "wape_aggregate": 0.19547822487067115,
+    "elapsed_s": 0.2990253570005734,
+    "min_covariance_eigenvalue": 0.0020947706531732214
+  },
+  {
+    "model": "SF_drop_promo",
+    "origin": 816,
+    "wape_mean": 0.240581020493088,
+    "wape_aggregate": 0.23812722735281322,
+    "elapsed_s": 0.28127994499845954,
+    "min_covariance_eigenvalue": 0.0024271122528881457
+  },
+  {
+    "model": "SF_drop_school",
+    "origin": 816,
+    "wape_mean": 0.13650463975102106,
+    "wape_aggregate": 0.13555369207096465,
+    "elapsed_s": 0.2798896389995207,
+    "min_covariance_eigenvalue": 0.002146227972100894
+  },
+  {
+    "model": "SF_drop_state_holiday",
+    "origin": 816,
+    "wape_mean": 0.13281404573631522,
+    "wape_aggregate": 0.13178009657577008,
+    "elapsed_s": 0.2332737469987478,
+    "min_covariance_eigenvalue": 0.002110652857036833
+  },
+  {
+    "model": "SF_drop_promo2_active",
+    "origin": 816,
+    "wape_mean": 0.1289356476235068,
+    "wape_aggregate": 0.1279842475921466,
+    "elapsed_s": 0.2802036639986909,
+    "min_covariance_eigenvalue": 0.002111311126583691
+  },
+  {
+    "model": "SF_drop_competition_open",
+    "origin": 816,
+    "wape_mean": 0.13264907200472295,
+    "wape_aggregate": 0.13153867933001065,
+    "elapsed_s": 0.2785551859997213,
+    "min_covariance_eigenvalue": 0.0021104107685539775
+  },
+  {
+    "model": "SF_univariate",
+    "origin": 858,
+    "wape_mean": 0.24658773911828333,
+    "wape_aggregate": 0.24339398386322852,
+    "elapsed_s": 0.15376984500107937,
+    "min_covariance_eigenvalue": 0.002330393474317458
+  },
+  {
+    "model": "SF_open_only",
+    "origin": 858,
+    "wape_mean": 0.16166774615709165,
+    "wape_aggregate": 0.15963083013186322,
+    "elapsed_s": 0.15479652599969995,
+    "min_covariance_eigenvalue": 0.002330393474317458
+  },
+  {
+    "model": "SF_full",
+    "origin": 858,
+    "wape_mean": 0.10414501465884016,
+    "wape_aggregate": 0.10265167681611483,
+    "elapsed_s": 0.33406023099996673,
+    "min_covariance_eigenvalue": 0.0019967740498935166
+  },
+  {
+    "model": "SF_without_open",
+    "origin": 858,
+    "wape_mean": 0.14460581833511807,
+    "wape_aggregate": 0.14294430365886898,
+    "elapsed_s": 0.3136297030014248,
+    "min_covariance_eigenvalue": 0.0019832314505700476
+  },
+  {
+    "model": "SF_drop_promo",
+    "origin": 858,
+    "wape_mean": 0.16271637582673634,
+    "wape_aggregate": 0.16048007692717697,
+    "elapsed_s": 0.2956830290004291,
+    "min_covariance_eigenvalue": 0.0023059340579548505
+  },
+  {
+    "model": "SF_drop_school",
+    "origin": 858,
+    "wape_mean": 0.10476794120986155,
+    "wape_aggregate": 0.10332856043522948,
+    "elapsed_s": 0.2925648350010306,
+    "min_covariance_eigenvalue": 0.0020323000141351222
+  },
+  {
+    "model": "SF_drop_state_holiday",
+    "origin": 858,
+    "wape_mean": 0.10445641514562846,
+    "wape_aggregate": 0.10310707249011405,
+    "elapsed_s": 0.24335678900024504,
+    "min_covariance_eigenvalue": 0.001997088606421077
+  },
+  {
+    "model": "SF_drop_promo2_active",
+    "origin": 858,
+    "wape_mean": 0.10358393192485962,
+    "wape_aggregate": 0.10205193079457875,
+    "elapsed_s": 0.29330369099989184,
+    "min_covariance_eigenvalue": 0.0019978258122689517
+  },
+  {
+    "model": "SF_drop_competition_open",
+    "origin": 858,
+    "wape_mean": 0.10414306029253055,
+    "wape_aggregate": 0.1026530251039263,
+    "elapsed_s": 0.2989456079994852,
+    "min_covariance_eigenvalue": 0.0019967740498935166
+  },
+  {
+    "model": "SF_univariate",
+    "origin": 900,
+    "wape_mean": 0.2105851248683571,
+    "wape_aggregate": 0.20657064261193914,
+    "elapsed_s": 0.16397146899907966,
+    "min_covariance_eigenvalue": 0.0022222329802775703
+  },
+  {
+    "model": "SF_open_only",
+    "origin": 900,
+    "wape_mean": 0.19630502477137626,
+    "wape_aggregate": 0.19327867089998674,
+    "elapsed_s": 0.16424256400023296,
+    "min_covariance_eigenvalue": 0.0022222329802775703
+  },
+  {
+    "model": "SF_full",
+    "origin": 900,
+    "wape_mean": 0.11221774204572636,
+    "wape_aggregate": 0.11073854974923207,
+    "elapsed_s": 0.3475786759991024,
+    "min_covariance_eigenvalue": 0.0019091472674747818
+  },
+  {
+    "model": "SF_without_open",
+    "origin": 900,
+    "wape_mean": 0.11475775737427373,
+    "wape_aggregate": 0.1124224875647014,
+    "elapsed_s": 0.3330034139999043,
+    "min_covariance_eigenvalue": 0.0018968981569048053
+  },
+  {
+    "model": "SF_drop_promo",
+    "origin": 900,
+    "wape_mean": 0.19374627767239694,
+    "wape_aggregate": 0.1908315815698138,
+    "elapsed_s": 0.31664662699949986,
+    "min_covariance_eigenvalue": 0.0022022341709226276
+  },
+  {
+    "model": "SF_drop_school",
+    "origin": 900,
+    "wape_mean": 0.10815547753702952,
+    "wape_aggregate": 0.106658234394752,
+    "elapsed_s": 0.31288271300036286,
+    "min_covariance_eigenvalue": 0.0019402160268326696
+  },
+  {
+    "model": "SF_drop_state_holiday",
+    "origin": 900,
+    "wape_mean": 0.11226370340087964,
+    "wape_aggregate": 0.11080332989374364,
+    "elapsed_s": 0.26095553699997254,
+    "min_covariance_eigenvalue": 0.0019095046372987587
+  },
+  {
+    "model": "SF_drop_promo2_active",
+    "origin": 900,
+    "wape_mean": 0.11404378755108159,
+    "wape_aggregate": 0.112616877096587,
+    "elapsed_s": 0.32053890000133833,
+    "min_covariance_eigenvalue": 0.0019099668537200085
+  },
+  {
+    "model": "SF_drop_competition_open",
+    "origin": 900,
+    "wape_mean": 0.11221340174104252,
+    "wape_aggregate": 0.11073350313496176,
+    "elapsed_s": 0.3211980260002747,
+    "min_covariance_eigenvalue": 0.0019091472674747818
+  },
+  {
+    "model": "LGBM_six",
+    "origin": 816,
+    "wape_mean": 0.10488032125500707,
+    "wape_aggregate": 0.10416276778876032,
+    "elapsed_s": 20.72999469500064
+  },
+  {
+    "model": "LGBM_six",
+    "origin": 858,
+    "wape_mean": 0.08883148484357077,
+    "wape_aggregate": 0.08766665111775707,
+    "elapsed_s": 21.061632139999347
+  },
+  {
+    "model": "LGBM_six",
+    "origin": 900,
+    "wape_mean": 0.08363481631069329,
+    "wape_aggregate": 0.08166149789308612,
+    "elapsed_s": 22.511144608000905
+  }
+]

@@ -320,14 +320,26 @@ def main() -> None:
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--models", default="")
     ap.add_argument("--n-series", type=int, default=0)
+    ap.add_argument("--output-dir",type=Path,default=None)
+    global OUTDIR,PREDDIR
     args = ap.parse_args()
 
     p = Panel(PANEL, n_series=(args.n_series or (80 if args.quick else None)))
+    if args.output_dir:
+        OUTDIR=args.output_dir
+    elif args.quick or args.models or args.n_series:
+        label='quick' if args.quick else 'subset'
+        names=args.models.replace(',','-').replace('+','plus') or 'all'
+        OUTDIR=OUTDIR/'runs'/f'{label}-{p.n}-{names}'
+    PREDDIR=OUTDIR/'preds'
     OUTDIR.mkdir(parents=True, exist_ok=True)
     PREDDIR.mkdir(parents=True, exist_ok=True)
     print(f"[data] {p.n} series x {p.T} days, zero share {(p.y == 0).mean():.3f}", flush=True)
 
-    models = [m for m in MODEL_NAMES if not args.models or m in args.models.split(",")]
+    requested=['LGBM-direct','LGBM-cal'] if args.models.lower()=='lgbm' else args.models.split(',')
+    if args.models and any(m not in MODEL_NAMES for m in requested):
+        ap.error('Unknown model; use exact MODEL_NAMES or lgbm')
+    models=[m for m in MODEL_NAMES if not args.models or m in requested]
     if args.quick:
         models = [m for m in models if m != "UCM7"]
     origins = (VAL_ORIGIN,) if args.quick else (VAL_ORIGIN,) + OUTER_ORIGINS
