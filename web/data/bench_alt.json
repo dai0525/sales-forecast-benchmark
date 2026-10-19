@@ -6,6 +6,8 @@
     "freq": "D",
     "n_origins": 3,
     "factors": [
+      "Open",
+      "Promo2",
       "Promo",
       "StateHoliday",
       "SchoolHoliday",
@@ -18,42 +20,81 @@
   },
   "models": [
     {
+      "id": "LGBM_six",
+      "name": "LightGBM 相同六类因子",
+      "short": "LGBM 六因子",
+      "family": "gbdt",
+      "wape_mean": 0.0924488741364237,
+      "wape_aggregate": 0.09116363893320117,
+      "runtime_s": 21.434257147666965,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 1,
+      "wape": 0.0924488741364237
+    },
+    {
       "id": "LGBM-direct",
       "name": "LightGBM 直接多步（含促销/假日/门店）",
       "short": "LightGBM+外生",
       "family": "gbdt",
       "wape_mean": 0.093444,
       "wape_aggregate": 0.09196,
-      "runtime_s": 77.08,
-      "n_series": 400,
-      "n_origins": 3,
-      "rank": 1,
-      "wape": 0.093444
-    },
-    {
-      "id": "LGBM-cal",
-      "name": "LightGBM 仅日历（消融）",
-      "short": "LightGBM 仅日历",
-      "family": "gbdt",
-      "wape_mean": 0.198554,
-      "wape_aggregate": 0.196218,
-      "runtime_s": 37.79,
+      "runtime_s": 25.69,
       "n_series": 400,
       "n_origins": 3,
       "rank": 2,
+      "wape": 0.093444
+    },
+    {
+      "id": "SF_full",
+      "name": "State-Fourier 六因子",
+      "short": "SF 六因子",
+      "family": "state",
+      "wape_mean": 0.11633526125190896,
+      "wape_aggregate": 0.11497370278679882,
+      "runtime_s": 0.332969241999308,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 3,
+      "wape": 0.11633526125190896
+    },
+    {
+      "id": "SF_open_only",
+      "name": "State-Fourier 仅营业状态",
+      "short": "SF 营业状态",
+      "family": "state",
+      "wape_mean": 0.19775895857296347,
+      "wape_aggregate": 0.19539760016829852,
+      "runtime_s": 0.15553401233349481,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 4,
+      "wape": 0.19775895857296347
+    },
+    {
+      "id": "LGBM-cal",
+      "name": "LightGBM 历史+日历+店ID（消融）",
+      "short": "LightGBM 无外因",
+      "family": "gbdt",
+      "wape_mean": 0.198554,
+      "wape_aggregate": 0.196218,
+      "runtime_s": 12.6,
+      "n_series": 400,
+      "n_origins": 3,
+      "rank": 5,
       "wape": 0.198554
     },
     {
       "id": "SeasonalNaive7+Open",
-      "name": "SeasonalNaive7+Open",
-      "short": "SeasonalNaive7+Open",
-      "family": "other",
+      "name": "SeasonalNaive7 + 营业开关",
+      "short": "SN7+Open",
+      "family": "baseline",
       "wape_mean": 0.23225,
       "wape_aggregate": 0.229326,
       "runtime_s": 0.0,
       "n_series": 400,
       "n_origins": 3,
-      "rank": 3,
+      "rank": 6,
       "wape": 0.23225
     },
     {
@@ -63,10 +104,10 @@
       "family": "state",
       "wape_mean": 0.256436,
       "wape_aggregate": 0.253128,
-      "runtime_s": 0.16,
+      "runtime_s": 0.05,
       "n_series": 400,
       "n_origins": 3,
-      "rank": 4,
+      "rank": 7,
       "wape": 0.256436
     },
     {
@@ -76,10 +117,10 @@
       "family": "state",
       "wape_mean": 0.259652,
       "wape_aggregate": 0.256255,
-      "runtime_s": 38.03,
+      "runtime_s": 12.68,
       "n_series": 400,
       "n_origins": 3,
-      "rank": 5,
+      "rank": 8,
       "wape": 0.259652
     },
     {
@@ -92,7 +133,7 @@
       "runtime_s": 0.0,
       "n_series": 400,
       "n_origins": 3,
-      "rank": 6,
+      "rank": 9,
       "wape": 0.287171
     },
     {
@@ -105,9 +146,9 @@
       "runtime_s": 0.0,
       "n_series": 400,
       "n_origins": 3,
-      "rank": 7,
+      "rank": 10,
       "wape": 0.430138
     }
   ],
-  "note": "H=42 天；3 个扩张窗原点（o=816/858/900）各打分一次后取平均；超参只在更早的内部验证原点 o=774 选择，测试段未参与选参；负预测 clip 到 0 并逐模型记录。数据：Rossmann Store Sales 400 店抽样，闭店日占 18.2%。LGBM-cal 是同一模型的日历-only 消融，用来看外生变量的增量价值。"
+  "note": "H=42 天；3 个扩张窗原点（o=816/858/900）各打分一次后取平均；超参只在更早的内部验证原点 o=774 选择，测试段未参与选参；负预测 clip 到 0 并逐模型记录。数据：Rossmann 400店日营业额；闭店日全样本占16.94%，三个测试窗占18.2%。LGBM-cal保留历史、日历、店ID，分别选参；此表State-Fourier仍未接外因。新增六因子行包含Promo2计划与竞争已开业状态；外因均按预测可用条件评估，细节见MULTIFACTOR-ROSSMANN.md。"
 }

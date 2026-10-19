@@ -1,0 +1,200 @@
+{
+  "summary": {
+    "SF_univariate": {
+      "wape_mean": 0.2564361758396114,
+      "by_origin": [
+        0.3121356635321938,
+        0.24658773911828333,
+        0.2105851248683571
+      ],
+      "pooled_aggregate_wape": 0.25349353147821957
+    },
+    "SF_open_only": {
+      "wape_mean": 0.19775895857296347,
+      "by_origin": [
+        0.23530410479042252,
+        0.16166774615709165,
+        0.19630502477137626
+      ],
+      "pooled_aggregate_wape": 0.19588258875526726
+    },
+    "SF_full": {
+      "wape_mean": 0.11633526125190895,
+      "by_origin": [
+        0.13264302705116035,
+        0.10414501465884016,
+        0.11221774204572636
+      ],
+      "pooled_aggregate_wape": 0.11515857092378913
+    },
+    "SF_without_open": {
+      "wape_mean": 0.15217433652704726,
+      "by_origin": [
+        0.19715943387175,
+        0.14460581833511807,
+        0.11475775737427373
+      ],
+      "pooled_aggregate_wape": 0.1505710711913169
+    },
+    "SF_drop_promo": {
+      "wape_mean": 0.19901455799740708,
+      "by_origin": [
+        0.240581020493088,
+        0.16271637582673634,
+        0.19374627767239694
+      ],
+      "pooled_aggregate_wape": 0.19698561235480433
+    },
+    "SF_drop_school": {
+      "wape_mean": 0.11647601949930404,
+      "by_origin": [
+        0.13650463975102106,
+        0.10476794120986155,
+        0.10815547753702952
+      ],
+      "pooled_aggregate_wape": 0.1153805463000161
+    },
+    "SF_drop_state_holiday": {
+      "wape_mean": 0.11651138809427444,
+      "by_origin": [
+        0.13281404573631522,
+        0.10445641514562846,
+        0.11226370340087964
+      ],
+      "pooled_aggregate_wape": 0.11541336942404726
+    },
+    "SF_drop_promo2_active": {
+      "wape_mean": 0.11552112236648268,
+      "by_origin": [
+        0.1289356476235068,
+        0.10358393192485962,
+        0.11404378755108159
+      ],
+      "pooled_aggregate_wape": 0.11438711317118047
+    },
+    "SF_drop_competition_open": {
+      "wape_mean": 0.11633517801276536,
+      "by_origin": [
+        0.13264907200472295,
+        0.10414306029253055,
+        0.11221340174104252
+      ],
+      "pooled_aggregate_wape": 0.11515997010987589
+    },
+    "LGBM_six": {
+      "wape_mean": 0.09244887413642372,
+      "by_origin": [
+        0.10488032125500707,
+        0.08883148484357077,
+        0.08363481631069329
+      ],
+      "pooled_aggregate_wape": 0.09125822104273011
+    }
+  },
+  "comparisons": {
+    "SF_univariate": {
+      "delta_vs_full": 0.14010091458770244,
+      "store_cluster_ci95": [
+        0.1367132825012659,
+        0.14365675801033856
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "SF_open_only": {
+      "delta_vs_full": 0.08142369732105452,
+      "store_cluster_ci95": [
+        0.0787518674663596,
+        0.08413543894787993
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "SF_full": {
+      "delta_vs_full": 0.0,
+      "store_cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "SF_without_open": {
+      "delta_vs_full": 0.03583907527513832,
+      "store_cluster_ci95": [
+        0.034101469651053054,
+        0.03808193743907442
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "SF_drop_promo": {
+      "delta_vs_full": 0.08267929674549818,
+      "store_cluster_ci95": [
+        0.0798469391002886,
+        0.08549007391639596
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "SF_drop_school": {
+      "delta_vs_full": 0.00014075824739509342,
+      "store_cluster_ci95": [
+        -0.00023862316474913483,
+        0.0005430833745701679
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "SF_drop_state_holiday": {
+      "delta_vs_full": 0.00017612684236549507,
+      "store_cluster_ci95": [
+        7.024662055738242e-05,
+        0.00030014213421151645
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "SF_drop_promo2_active": {
+      "delta_vs_full": -0.0008141388854262763,
+      "store_cluster_ci95": [
+        -0.001074702669287865,
+        -0.0005416648779790701
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "SF_drop_competition_open": {
+      "delta_vs_full": -8.323914360865907e-08,
+      "store_cluster_ci95": [
+        -9.243187059347405e-06,
+        8.474099448745402e-06
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    },
+    "LGBM_six": {
+      "delta_vs_full": -0.023886387115485234,
+      "store_cluster_ci95": [
+        -0.025407142387569224,
+        -0.022391934450578455
+      ],
+      "note": "Same stores retained across three dates; conditional on dates, not accounting for shared calendar shocks. Ablations refit with frozen full-model hyperparameters; correlated factor deltas do not add."
+    }
+  },
+  "open_day_support": {
+    "Promo": {
+      "stores_with_variation_on_open_training_days": 400
+    },
+    "SchoolHoliday": {
+      "stores_with_variation_on_open_training_days": 400
+    },
+    "StateHoliday_a": {
+      "stores_with_variation_on_open_training_days": 44
+    },
+    "StateHoliday_b": {
+      "stores_with_variation_on_open_training_days": 12
+    },
+    "StateHoliday_c": {
+      "stores_with_variation_on_open_training_days": 7
+    },
+    "Promo2Active": {
+      "stores_with_variation_on_open_training_days": 185
+    },
+    "CompetitionOpen": {
+      "stores_with_variation_on_open_training_days": 52
+    }
+  },
+  "validation": "All saved IDs/dates/truth/metrics checked; component sum and covariance eigenvalues checked"
+}

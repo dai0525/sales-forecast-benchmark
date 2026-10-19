@@ -1,0 +1,56 @@
+{
+  "selection": [
+    {
+      "config": {
+        "qr": 0.002,
+        "beta_var": 0.1
+      },
+      "wape_mean": 0.09736627921415295,
+      "wape_aggregate": 0.09319496775870137
+    },
+    {
+      "config": {
+        "qr": 0.002,
+        "beta_var": 1.0
+      },
+      "wape_mean": 0.0983763785071612,
+      "wape_aggregate": 0.09415277208368156
+    },
+    {
+      "config": {
+        "qr": 0.02,
+        "beta_var": 0.1
+      },
+      "wape_mean": 0.09549906717383035,
+      "wape_aggregate": 0.09137673120257563
+    },
+    {
+      "config": {
+        "qr": 0.02,
+        "beta_var": 1.0
+      },
+      "wape_mean": 0.09701107146036086,
+      "wape_aggregate": 0.09281100027039567
+    },
+    {
+      "config": {
+        "qr": 0.2,
+        "beta_var": 0.1
+      },
+      "wape_mean": 0.09970970541123154,
+      "wape_aggregate": 0.09544768748464574
+    },
+    {
+      "config": {
+        "qr": 0.2,
+        "beta_var": 1.0
+      },
+      "wape_mean": 0.10577363308047967,
+      "wape_aggregate": 0.1012352222329069
+    }
+  ],
+  "chosen": {
+    "qr": 0.02,
+    "beta_var": 0.1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "tests": "32 passed",
+  "original_prediction_files_verified": 21,
+  "truth_files_verified": 3,
+  "original_lgbm_retrained_origins": [
+    900
+  ],
+  "new_models": 10,
+  "new_forecast_origins": [
+    816,
+    858,
+    900
+  ],
+  "n_stores": 400,
+  "new_saved_prediction_files_verified": 30,
+  "weekly_contribution_rows": 7200,
+  "syntax": "Python compileall and node --check web/js/app.js passed"
+}

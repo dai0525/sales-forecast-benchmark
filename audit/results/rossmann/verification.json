@@ -227,30 +227,36 @@
     "StateFourier7 - UCM7": {
       "mean_diff": -0.003216197734578344,
       "ci95": [
-        -0.004912961909575479,
-        -0.0016977458374637132
+        -0.005302668961393686,
+        -0.0012232786479860183
       ],
-      "p_two_sided": 0.001,
+      "bootstrap_unit": "store; all three origins retained together",
+      "n_store_clusters": 400,
+      "limitation": "Conditional on three dates; shared calendar shocks across stores not captured; not a generalization CI over future dates",
       "n_series_origins": 1200,
       "share_series_a_better": 0.5058333333333334
     },
     "LGBM-direct - LGBM-cal": {
       "mean_diff": -0.10511059422247002,
       "ci95": [
-        -0.10866305217900935,
-        -0.10138354454451144
+        -0.1073192917978409,
+        -0.10311331065773682
       ],
-      "p_two_sided": 0.0,
+      "bootstrap_unit": "store; all three origins retained together",
+      "n_store_clusters": 400,
+      "limitation": "Conditional on three dates; shared calendar shocks across stores not captured; not a generalization CI over future dates",
       "n_series_origins": 1200,
       "share_series_a_better": 0.9758333333333333
     },
     "LGBM-direct - StateFourier7": {
       "mean_diff": -0.1629926021299896,
       "ci95": [
-        -0.16638310113888533,
-        -0.1595187645083745
+        -0.1671658037191418,
+        -0.15918364294839074
       ],
-      "p_two_sided": 0.0,
+      "bootstrap_unit": "store; all three origins retained together",
+      "n_store_clusters": 400,
+      "limitation": "Conditional on three dates; shared calendar shocks across stores not captured; not a generalization CI over future dates",
       "n_series_origins": 1200,
       "share_series_a_better": 0.9941666666666666
     }

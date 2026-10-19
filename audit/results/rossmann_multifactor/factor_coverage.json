@@ -1,0 +1,30 @@
+{
+  "Promo": {
+    "stores_with_train_variation": 400,
+    "train_nonzero_share": 0.38113695090439276
+  },
+  "SchoolHoliday": {
+    "stores_with_train_variation": 400,
+    "train_nonzero_share": 0.1850355297157623
+  },
+  "StateHoliday_a": {
+    "stores_with_train_variation": 400,
+    "train_nonzero_share": 0.018152454780361756
+  },
+  "StateHoliday_b": {
+    "stores_with_train_variation": 400,
+    "train_nonzero_share": 0.00516795865633075
+  },
+  "StateHoliday_c": {
+    "stores_with_train_variation": 400,
+    "train_nonzero_share": 0.00516795865633075
+  },
+  "Promo2Active": {
+    "stores_with_train_variation": 185,
+    "train_nonzero_share": 0.14107558139534884
+  },
+  "CompetitionOpen": {
+    "stores_with_train_variation": 52,
+    "train_nonzero_share": 0.5630071059431525
+  }
+}

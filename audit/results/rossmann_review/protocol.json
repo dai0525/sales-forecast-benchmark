@@ -1,0 +1,43 @@
+{
+  "base_commit": "929519e",
+  "dataset": "Rossmann existing 400-store panel; target Sales is turnover, not unit demand",
+  "horizon": 42,
+  "validation_origin": 774,
+  "test_origins": [
+    816,
+    858,
+    900
+  ],
+  "factors": [
+    "Promo",
+    "Open",
+    "SchoolHoliday",
+    "StateHoliday",
+    "Promo2 active schedule",
+    "Competition already open"
+  ],
+  "static_lgbm_extra": [
+    "StoreType",
+    "Assortment",
+    "CompetitionDistance",
+    "Promo2 participation"
+  ],
+  "availability": "Promo/Open/holidays treated as preannounced plans; archive contains realized fields, no vintage plans. Promo2 only enrolled at origin; competitor future status held at origin. Store metadata snapshot not historically versioned. Customers excluded.",
+  "state_model": "Joint linear Gaussian damped-level/Fourier regression; weekly K3, trend disabled as previous Rossmann benchmark; store-specific regression coefficients; Open used as structural gate",
+  "grid": {
+    "qr": [
+      0.002,
+      0.02,
+      0.2
+    ],
+    "beta_var": [
+      0.1,
+      1.0
+    ]
+  },
+  "lgbm": "Existing full benchmark independently rerun at o900; extended-factor LightGBM fixed 600 trees same training-origin rows; no test tuning",
+  "ablations": "State-Fourier old; same new sampler with no exog/open; Open only; six factors; remove each five regression groups (Open kept). Fixed selected full-model hyperparameters for group ablations.",
+  "metric": "Mean per-store WAPE, equal origins; pooled aggregate WAPE separately. Store-cluster bootstrap averaged over origins; cannot represent unseen-date uncertainty.",
+  "selection_note": "Previously inspected outer windows; exploratory retrospective extension, not new blind validation",
+  "panel_sha256": "564b4a817fe488992c0663512ada5e6adfd7c5e986383c3a0ae4a0d85fda4297"
+}

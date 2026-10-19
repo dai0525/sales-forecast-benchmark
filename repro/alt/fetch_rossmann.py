@@ -7,7 +7,7 @@ state/school holidays, store type/assortment, competition distance.  That is a
 different factor structure, which is the point of the second dataset.
 
 Source: Kaggle competition "Rossmann Store Sales" (the official CSVs are behind
-a Kaggle login; this script pulls byte-identical copies mirrored on GitHub and
+a Kaggle login; this script pulls CSV copies mirrored on GitHub (not independently authenticated against Kaggle) and
 verifies them by size / row count / store count / date range / column set).
 
 Usage:  python repro/alt/fetch_rossmann.py [--force]
@@ -27,8 +27,9 @@ OUT = ROOT / "data" / "alt" / "rossmann"
 
 MIRRORS = [
     "https://raw.githubusercontent.com/bisman16/Kaggle_Rossmann_Store_Sales_Forecasting/master/data/",
-    "https://ghfast.top/https://raw.githubusercontent.com/bisman16/Kaggle_Rossmann_Store_Sales_Forecasting/master/data/",
 ]
+
+EXPECTED_MIRROR_SHA256 = {"train.csv": "f6e4597c142d7d909a13d53b68a8e85c00b9a4c7b5ff40adbb37d6829cc1f4cc", "store.csv": "f56bd124a2849489e6bbb5c000f5fc9640204355e316475c918ae4d089afb344"}
 
 FILES = {
     "train.csv": {
@@ -85,6 +86,8 @@ def _validate(name: str) -> dict:
         raise SystemExit(f"{name}: row count {rows} != {expect['rows']}")
     if path.stat().st_size != expect["bytes"]:
         raise SystemExit(f"{name}: byte size mismatch")
+    if hashlib.sha256(path.read_bytes()).hexdigest()!=EXPECTED_MIRROR_SHA256[name]:
+        raise SystemExit(f"{name}: pinned mirror SHA256 mismatch")
     return {
         "file": name,
         "bytes": path.stat().st_size,
