@@ -8,8 +8,8 @@ NAMES=['Promo','SchoolHoliday','StateHoliday_a','StateHoliday_b','StateHoliday_c
 
 
 class FactorPanel(Panel):
-    def __init__(self):
-        super().__init__(PANEL)
+    def __init__(self, panel_path=PANEL):
+        super().__init__(panel_path)
         store=pd.read_csv(ROOT/'data/alt/rossmann/store.csv').set_index('Store').loc[self.stores]
         self.promo2_start=np.full(self.n,np.datetime64('2100-01-01'),dtype='datetime64[D]')
         self.competition_start=self.promo2_start.copy();self.promo2_months=np.zeros((self.n,12),bool)

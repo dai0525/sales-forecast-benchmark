@@ -33,3 +33,15 @@ def test_same_weekday_uses_four_observed_days_and_stable_holiday_schema():
         idx=[i for i in range(148) if i%7==target%7][-4:]
         np.testing.assert_array_equal(r['same_dow_4w'],np.full(4,np.mean(idx)))
     assert list(ase._row(ds,105,1,ds.y[:,:105]))==list(ase._row(ds,148,1,ds.y[:,:148]))
+
+
+def test_open_only_model_future_sales_invariance_and_closed_gate(monkeypatch):
+    import research_iteration as r
+    monkeypatch.setitem(r.rf.PARAMS,'n_estimators',3)
+    p=r.rf.b.Panel(r.rf.b.PANEL,n_series=4)
+    first=r.fit_ross(p,140,'open_l1')
+    p.y[:,140:]=999999
+    second=r.fit_ross(p,140,'open_l1')
+    np.testing.assert_array_equal(first,second)
+    assert np.all(first[p.open_[:,140:182]==0]==0)
+    assert np.isfinite(first).all()

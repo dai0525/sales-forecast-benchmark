@@ -1,0 +1,7 @@
+{
+  "timing": "Added before confirmation cohort predictions or scores are computed; primary proposal and comparisons unchanged",
+  "comparator": "Existing six-factor LightGBM from bench_multifactor.py, fixed previously chosen 600-tree configuration and same clipping policy",
+  "reason": "Previous audit found this baseline beats original ASE at one development origin; it must not be omitted from the stronger-baseline discussion",
+  "development": "Reuse three stored and aligned predictions",
+  "confirmation": "Retrain on all 534 new stores' histories at origins 816/858/900; no tuning on confirmation"
+}
