@@ -16,13 +16,13 @@ STEP = 7
 
 
 def base_same_dow(yh, openh, o, h, weeks=4):
-    """Median of open same-weekday values over the last `weeks` weeks."""
+    """Median of the last observed same weekdays, never future targets."""
     N = yh.shape[0]
     j = o + h - 1
     vals = np.full((N, weeks), np.nan)
     for k in range(1, weeks + 1):
-        t = j - 7 * k
-        if t >= 0:
+        t = j - 7 * ((h + 6) // 7) - 7 * (k - 1)
+        if 0 <= t < o:
             v = np.where(openh[:, t] == 1, yh[:, t], np.nan)
             vals[:, k - 1] = v
     med = np.nanmedian(vals, axis=1)

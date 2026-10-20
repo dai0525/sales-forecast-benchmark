@@ -58,13 +58,13 @@ def main():
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    names=['validation_best_single','original_stage',r.PRIMARY,'equal_original_arithmetic','equal_open_arithmetic','existing_six_factor_lgbm']
-    labels=['Validation-selected single','Original ASE','Proposed pooled blend','50/50 original L1/L2','50/50 open-only L1/L2','Existing six-factor LGBM']
+    names=['validation_best_single','original_stage',r.PRIMARY,'pooled_stage_log','equal_all_arithmetic','equal_original_arithmetic','equal_open_arithmetic','existing_six_factor_lgbm']
+    labels=['Validation-selected single','Original ASE','Proposed pooled blend','Pooled stage blend','Equal blend of all 4','50/50 original L1/L2','50/50 open-only L1/L2','Existing six-factor LGBM']
     vals=[data['confirmation']['mean_wape'][k]*100 for k in names]
-    fig,ax=plt.subplots(figsize=(9,4.2));bars=ax.barh(labels,vals,color=['#94a3b8','#64748b','#0d9488','#94a3b8','#94a3b8','#94a3b8'])
+    fig,ax=plt.subplots(figsize=(9,5.2));bars=ax.barh(labels,vals,color=['#94a3b8','#64748b','#0d9488']+['#94a3b8']*5)
     ax.bar_label(bars,fmt='%.4f%%',padding=4);ax.set_xlim(0,max(vals)*1.15);ax.invert_yaxis()
     ax.set_xlabel('Mean per-store WAPE (%) — lower is better')
-    ax.set_title('534 previously unused stores, 3 fixed windows\nWeights frozen on the original 400 stores; same calendar period')
+    ax.set_title('534 stores outside the development cohort, 3 fixed windows\nWeights frozen on the original 400 stores; same calendar period')
     fig.tight_layout();fig.savefig(OUT/'confirmation_comparison.png',dpi=160);plt.close(fig)
 
 if __name__=='__main__':main()

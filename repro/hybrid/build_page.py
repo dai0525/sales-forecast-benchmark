@@ -4,8 +4,11 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-REP = json.loads((ROOT / "audit/results/ase/final_report.json").read_text())
-OUT = Path("/opt/data/tmp/ase-report")
+REPORT = ROOT / "audit/results/ase/final_report_recomputed.json"
+if not REPORT.exists():
+    REPORT = ROOT / "audit/results/ase/final_report.json"
+REP = json.loads(REPORT.read_text())
+OUT = ROOT / "audit/results/ase/report"
 OUT.mkdir(parents=True, exist_ok=True)
 
 W = REP["weekly"]
@@ -17,16 +20,18 @@ def pct(x, d=2):
 
 
 def row_weekly(o, v):
+    delta = v.get("delta_vs_selected_lgb_pp", v.get("delta_vs_best_lgb_pp"))
     return (f"<tr><td>{o}</td><td>{pct(v['wape']['l2'])}</td>"
             f"<td class='hi'>{pct(v['wape']['ase'])}</td>"
-            f"<td>{v['delta_vs_best_lgb_pp']:+.2f}</td>"
+            f"<td>{delta:+.2f}</td>"
             f"<td>[{v['ci95_pp'][0]:+.2f}, {v['ci95_pp'][1]:+.2f}]</td></tr>")
 
 
 def row_ross(o, v):
+    delta = v.get("delta_vs_selected_lgb_pp", v.get("delta_vs_best_lgb_pp"))
     return (f"<tr><td>{o}</td><td>{pct(R['repo'][o])}</td>"
             f"<td class='hi'>{pct(v['wape']['ase'])}</td>"
-            f"<td>{v['delta_vs_best_lgb_pp']:+.2f}</td>"
+            f"<td>{delta:+.2f}</td>"
             f"<td>[{v['ci95_pp'][0]:+.2f}, {v['ci95_pp'][1]:+.2f}]</td></tr>")
 
 
@@ -110,8 +115,8 @@ html = f"""<!DOCTYPE html>
 <body><div class="wrap">
 <header>
   <p class="dateline">2026-10-19 · M4-Weekly + Rossmann · 7 个回测阶段 · 指标 WAPE 均值</p>
-  <h1>ASE：同一个通用方案，<br>在 7 个回测阶段全部跑赢 LightGBM</h1>
-  <p class="lede">两个数据集、两种预测步长（13 周 / 42 天）、7 个互不重叠的回测原点。ASE 的每个阶段都优于按验证集选出的最强 LightGBM，且配对 bootstrap 的 95% 区间不含 0。<b>Weekly 平均 7.46% vs 7.96%，Rossmann 平均 9.06% vs 9.34%。</b></p>
+  <h1>历史 ASE 回测：<br>七个窗口优于指定的单模型基线</h1>
+  <p class="lede">历史存档的七个回测窗口中，ASE 均优于报告指定的单模型（Weekly=L2，Rossmann=L1）。同窗口均值为 <b>Weekly 7.46% vs 8.88%，Rossmann 9.06% vs 9.15%。</b>这不代表优于所有 LightGBM 配置。独立审查及后续消融见仓库 ASE-REVIEW.md 和 ASE-ITERATION.md；本页保留的是历史存档结果。</p>
 </header>
 
 <section class="figure">
@@ -119,13 +124,13 @@ html = f"""<!DOCTYPE html>
   <p class="figure-cap">阶段胜率。Weekly 4 个原点、Rossmann 3 个原点；全部使用严格早于测试段的验证原点选参。</p>
 </section>
 
-<p class="note">读法：先看两张回测表，再看方法与归因；最后一节是校验和局限。所有数字都能从 <code>audit/results/ase/final_report.json</code> 复算。</p>
+<p class="note">这是历史结果页。Weekly 原源码的特征列错误已修复，新实验另存于 <code>audit/results/ase_iteration/</code>，不与本页混用。指定基线比较不等于对所有 LightGBM 配置全面领先。</p>
 
 <section class="topic">
   <h2>一、结果：同一测试集的不同阶段</h2>
   <p class="topic-note">每个原点只用之前的数据训练；ASE 的权重只在该测试段之前的验证原点拟合。</p>
 
-  <p class="body"><b>M4-Weekly</b>（359 条序列，H=13）。LightGBM 列为直接多步、log1p 目标的 L2 版本，在验证原点 148 上选出。</p>
+  <p class="body"><b>M4-Weekly</b>（359 条序列，H=13）。LightGBM 列为历史报告指定的直接多步、log1p 目标 L2 版本；原验证预测未保存，不能独立核实当时的选择记录。</p>
   <div class="tablewrap"><table>
     <thead><tr><th>测试原点</th><th>LGBM-L2</th><th>ASE</th><th>Δ pp</th><th>95% CI</th></tr></thead>
     <tbody>{''.join(row_weekly(o, v) for o, v in W['origins'].items())}</tbody>
@@ -142,7 +147,7 @@ html = f"""<!DOCTYPE html>
 
 <section class="topic">
   <h2>二、方案：四个通用部件</h2>
-  <p class="topic-note">没有针对某个数据集写分支；数据集适配器只提供季节长度、预测步长、可预知协变量和静态属性。</p>
+  <p class="topic-note">两个数据集共享预测组合思路，但分别使用 Weekly 和 Rossmann 的特征实现及训练配置。</p>
   <div class="grid2">
     <div class="kpi"><b>01</b><span>全局直接多步 GBM，统一 log1p 目标，避免递归误差回填。</span></div>
     <div class="kpi"><b>02</b><span>L2 与 L1 两个目标函数，在 log 空间做几何集成。</span></div>
@@ -160,8 +165,8 @@ html = f"""<!DOCTYPE html>
 </section>
 
 <section class="topic">
-  <h2>三、归因：哪些因子在推高预测</h2>
-  <p class="topic-note">Rossmann 最后一个原点 900，仅营业日，TreeSHAP 在 log1p 空间精确相加；柱长为该因子组平均 |贡献| 的占比。</p>
+  <h2>三、L1 组件归因：哪些因子在推高预测</h2>
+  <p class="topic-note">Rossmann 最后一个原点 900，仅营业日。这里的 TreeSHAP 只精确解释 L1 组件，未包含 L2，不能精确重构最终 ASE。柱长为该因子组平均绝对 log1p 贡献的占比，不是销量贡献百分比。</p>
   <p class="body">营业/闭店状态是结构性基线（占总 |SHAP| 的 70%），不计入业务因子；下面五组是营业日内部的相对贡献。</p>
   {bars}
   <p class="body" style="margin-top:1rem">促销组在促销日的平均对数贡献 <b>{promo['promo_signed']:+.3f}</b>，非促销日 <b>{promo['nonpromo_signed']:+.3f}</b>，条件差异对应约 <b>{mult:.2f}×</b> 的乘性抬升。历史/水平项占 34.7%，说明模型主要仍由近期水平与滞后驱动；日历项 23.4%。</p>

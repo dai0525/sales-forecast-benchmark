@@ -56,8 +56,11 @@ def boundaries(p,o,h,kind='business'):
         x=arr[:,o:o+h];edge&=x[:,:-1]==x[:,1:]
     if kind=='shuffled':
         rng=np.random.default_rng(20261020)
-        edge=np.stack([rng.permutation(row) for row in edge])
-        edge&=(op[:,:-1]==1)&(op[:,1:]==1)
+        # Shuffle only eligible open/open links, preserving link count.
+        eligible=(op[:,:-1]==1)&(op[:,1:]==1)
+        for i in range(len(edge)):
+            idx=np.flatnonzero(eligible[i])
+            edge[i,idx]=rng.permutation(edge[i,idx])
     return edge.astype(float)
 
 def load_pred(tag,o):
@@ -118,7 +121,7 @@ def evaluate():
             if k=='business_bp':continue
             d=np.mean([errors[o][k]-errors[o]['business_bp'] for o in errors],axis=0)
             comparisons[k]={'delta_pp':float(d.mean()*100),**ci(d)}
-        report[tag]={'origins':rows,'mean_wape':{k:float(np.mean([v[k]['wape_mean'] for v in rows.values()])) for k in methods},'delta_positive_favors_business_bp':comparisons,'router_timing':timing}
+        report[tag]={'origins':rows,'mean_wape':{k:float(np.mean([v[k]['wape_mean'] for v in rows.values()])) for k in methods},'delta_positive_favors_business_bp':comparisons,'router_timing':timing,'evaluation_source_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     r.dump(OUT/'summary.json',report)
     for tag,v in report.items():print(tag,v['mean_wape'],v['delta_positive_favors_business_bp'],flush=True)
 

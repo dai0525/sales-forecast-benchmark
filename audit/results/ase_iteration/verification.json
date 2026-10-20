@@ -1,0 +1,12 @@
+{
+  "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest -q",
+  "passed": 39,
+  "skipped": 1,
+  "skip_reason": "Optional R bsts environment is not active (Rscript unavailable)",
+  "elapsed_s": 4.1,
+  "historical_report_future_target_probe": {
+    "weekly_features_identical": true,
+    "rossmann_train_matrix_identical": true,
+    "rossmann_max_feature_diff": 0.0
+  }
+}

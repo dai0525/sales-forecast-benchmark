@@ -45,3 +45,12 @@ def test_open_only_model_future_sales_invariance_and_closed_gate(monkeypatch):
     np.testing.assert_array_equal(first,second)
     assert np.all(first[p.open_[:,140:182]==0]==0)
     assert np.isfinite(first).all()
+
+
+def test_ratio_probe_does_not_read_future_sales():
+    from probe_rossmann import base_same_dow
+    y=np.tile(np.arange(1,201,dtype=float),(2,1));opened=np.ones_like(y)
+    for h in [1,8,21,42]:
+        first=base_same_dow(y,opened,100,h)
+        changed=y.copy();changed[:,100:]=1e12
+        np.testing.assert_array_equal(first,base_same_dow(changed,opened,100,h))

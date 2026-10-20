@@ -1,0 +1,16 @@
+{
+  "python": "3.12.14",
+  "lightgbm": "4.7.0",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "git_head": "4c91eeb11b60e91bfff48cd820f913658d719927",
+  "sha256": {
+    "repro/hybrid/ase.py": "28033280acec1cfbf440d2f56aa7cafd95ef712ebf5a85a41d8767323fc825cf",
+    "repro/hybrid/research_iteration.py": "58c6e2931508e310beb26081dbab6857974375cdac32fc1879dede838dc663ce",
+    "repro/hybrid/run_rossmann_final.py": "3f7ccd238d6e5f79f1b41e768cd5c6be269a70da3a95bac6d3b4269220816af1",
+    "repro/alt/bench_rossmann.py": "b286037caf322cc1f6905c9906af6063b39e7874f4db9e74b4a8cce4bb3bfb4f",
+    "repro/fg_state.py": "99c91697e992dab5a29f95be7751fcd9373f44e0efe743c7d62ff5ab09580ee6",
+    "audit/results/ase_iteration/protocol.json": "1ddfcfecc86966b7377ae2ff0753b64ced5f01e1f7148f56673a5b6343b1aa02"
+  },
+  "threads": 2
+}

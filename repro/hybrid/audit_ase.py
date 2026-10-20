@@ -70,7 +70,9 @@ def main():
     out['sha256'] = {p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(SRC.iterdir()) if p.is_file()}
     out['data_sha256'] = {str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'data/weekly.npz', rf.b.PANEL]}
     OUT.mkdir(exist_ok=True,parents=True)
-    (OUT/'archive_audit.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+    # Keep the original d594f30 source-failure record immutable after repairs.
+    out['current_ase_source_sha256'] = hashlib.sha256(Path(ase.__file__).read_bytes()).hexdigest()
+    (OUT/'archive_audit_current.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(out,ensure_ascii=False,indent=2))
 
 if __name__ == '__main__':

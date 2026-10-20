@@ -1,0 +1,296 @@
+{
+ "note": "WAPE mean over series; delta = single LGBM minus ASE, positive is better for ASE.",
+ "weekly": {
+  "val_origin": 148,
+  "weights": {
+   "short": {
+    "l2": 0.3111111111111111,
+    "l1": 0.1111111111111111,
+    "state": 0.5777777777777777
+   },
+   "mid": {
+    "l2": 0.34444444444444444,
+    "l1": 0.1111111111111111,
+    "state": 0.5444444444444445
+   },
+   "long": {
+    "l2": 0.2111111111111111,
+    "l1": 0.1111111111111111,
+    "state": 0.6777777777777778
+   }
+  },
+  "origins": {
+   "161": {
+    "wape": {
+     "l2": 0.08979025613879561,
+     "l1": 0.08730040491422367,
+     "state": 0.08327655199397704,
+     "ase": 0.07786125144259141
+    },
+    "delta_vs_selected_lgb_pp": 1.1929004696204197,
+    "delta_vs_l2_pp": 1.1929004696204197,
+    "ci95_pp": [
+     0.7809643987045243,
+     1.642369104262539
+    ],
+    "win_rate_series": 0.6239554317548747,
+    "n": 359,
+    "comparator": "l2"
+   },
+   "174": {
+    "wape": {
+     "l2": 0.08499668598782942,
+     "l1": 0.08450134880195849,
+     "state": 0.08885805490859945,
+     "ase": 0.07876599185119293
+    },
+    "delta_vs_selected_lgb_pp": 0.6230694136636489,
+    "delta_vs_l2_pp": 0.6230694136636489,
+    "ci95_pp": [
+     0.0555733260560854,
+     1.171452655380703
+    ],
+    "win_rate_series": 0.6072423398328691,
+    "n": 359,
+    "comparator": "l2"
+   },
+   "187": {
+    "wape": {
+     "l2": 0.09145735169592387,
+     "l1": 0.08775282040190568,
+     "state": 0.06826025450397664,
+     "ase": 0.06969841041712123
+    },
+    "delta_vs_selected_lgb_pp": 2.1758941278802637,
+    "delta_vs_l2_pp": 2.1758941278802637,
+    "ci95_pp": [
+     1.6303698639310797,
+     2.797081136488664
+    ],
+    "win_rate_series": 0.8022284122562674,
+    "n": 359,
+    "comparator": "l2"
+   },
+   "200": {
+    "wape": {
+     "l2": 0.08886285539961493,
+     "l1": 0.08704401067600155,
+     "state": 0.07625859925551323,
+     "ase": 0.07207605862716962
+    },
+    "delta_vs_selected_lgb_pp": 1.678679677244531,
+    "delta_vs_l2_pp": 1.678679677244531,
+    "ci95_pp": [
+     0.9585286539165377,
+     2.610884733384099
+    ],
+    "win_rate_series": 0.7103064066852368,
+    "n": 359,
+    "comparator": "l2"
+   }
+  },
+  "repo_lgbm_official": 0.07960020423344538,
+  "n_series": 359
+ },
+ "rossmann": {
+  "val_origin": 774,
+  "weights": {
+   "short": {
+    "l2": 0.3666666666666667,
+    "l1": 0.6333333333333333,
+    "state": 0.0
+   },
+   "mid": {
+    "l2": 0.16666666666666666,
+    "l1": 0.8333333333333334,
+    "state": 0.0
+   },
+   "long": {
+    "l2": 0.30000000000000004,
+    "l1": 0.7000000000000001,
+    "state": 0.0
+   }
+  },
+  "origins": {
+   "816": {
+    "wape": {
+     "l2": 0.10166696800884051,
+     "l1": 0.1019143761813162,
+     "state": 0.31213566353217426,
+     "ase": 0.10074725471047902
+    },
+    "delta_vs_selected_lgb_pp": 0.11671214708371819,
+    "delta_vs_repo_pp": 0.5058870745664454,
+    "ci95_pp": [
+     0.08216488346132586,
+     0.15007493604418176
+    ],
+    "win_rate_series": 0.705,
+    "n": 400,
+    "comparator": "l1"
+   },
+   "858": {
+    "wape": {
+     "l2": 0.08868206944832145,
+     "l1": 0.08683043087504845,
+     "state": 0.24658773911827375,
+     "ase": 0.0865151628092439
+    },
+    "delta_vs_selected_lgb_pp": 0.03152680658045498,
+    "delta_vs_repo_pp": 0.1694200164922985,
+    "ci95_pp": [
+     0.00824808267137685,
+     0.05437707340568307
+    ],
+    "win_rate_series": 0.5525,
+    "n": 400,
+    "comparator": "l1"
+   },
+   "900": {
+    "wape": {
+     "l2": 0.08468678139130337,
+     "l1": 0.08572556444387525,
+     "state": 0.21058512486834666,
+     "ase": 0.0844291758666128
+    },
+    "delta_vs_selected_lgb_pp": 0.12963885772624417,
+    "delta_vs_repo_pp": 0.18860573281222065,
+    "ci95_pp": [
+     0.1030110740074762,
+     0.1578386487414422
+    ],
+    "win_rate_series": 0.72,
+    "n": 400,
+    "comparator": "l1"
+   }
+  },
+  "n_series": 400,
+  "repo": {
+   "816": 0.10580612545614347,
+   "858": 0.08820936297416689,
+   "900": 0.08631523319473501
+  }
+ },
+ "attribution": {
+  "origin": 900,
+  "open_days_only": true,
+  "masked_days": 2346,
+  "groups": [
+   {
+    "group": "营业状态",
+    "share": 0.6988164842676016,
+    "mean_abs_log": 1.3490876938349519,
+    "mean_signed_log": 1.3490876938349519,
+    "promo_signed": 1.3651966809352487,
+    "nonpromo_signed": 1.3376873118960602
+   },
+   {
+    "group": "历史/水平",
+    "share": 0.10455130232923358,
+    "mean_abs_log": 0.20183965107035737,
+    "mean_signed_log": 0.03965737051643658,
+    "share_excl_structure": 0.34713487580816815,
+    "promo_signed": 0.03850552068550427,
+    "nonpromo_signed": 0.040472538343384185
+   },
+   {
+    "group": "促销",
+    "share": 0.08868195977694104,
+    "mean_abs_log": 0.17120337498281318,
+    "mean_signed_log": -0.0028982791152189075,
+    "share_excl_structure": 0.2944449318924046,
+    "promo_signed": 0.2030619245133729,
+    "nonpromo_signed": -0.14865697709906403
+   },
+   {
+    "group": "日历",
+    "share": 0.07061735189236809,
+    "mean_abs_log": 0.13632906858093558,
+    "mean_signed_log": 0.12376143348206634,
+    "share_excl_structure": 0.23446619155316456,
+    "promo_signed": 0.146939486779321,
+    "nonpromo_signed": 0.10735825067836176
+   },
+   {
+    "group": "门店属性",
+    "share": 0.02781608163346831,
+    "mean_abs_log": 0.05369984003990719,
+    "mean_signed_log": -0.014112743226792174,
+    "share_excl_structure": 0.09235592315146124,
+    "promo_signed": -0.0149012171070203,
+    "nonpromo_signed": -0.013554737727906722
+   },
+   {
+    "group": "假日/学校",
+    "share": 0.009516820100387405,
+    "mean_abs_log": 0.018372527224124902,
+    "mean_signed_log": 0.01835678284106091,
+    "share_excl_structure": 0.03159807759480137,
+    "promo_signed": 0.01762038953245299,
+    "nonpromo_signed": 0.018877930752044064
+   }
+  ],
+  "business_groups": [
+   {
+    "group": "历史/水平",
+    "share": 0.10455130232923358,
+    "mean_abs_log": 0.20183965107035737,
+    "mean_signed_log": 0.03965737051643658,
+    "share_excl_structure": 0.34713487580816815,
+    "promo_signed": 0.03850552068550427,
+    "nonpromo_signed": 0.040472538343384185
+   },
+   {
+    "group": "促销",
+    "share": 0.08868195977694104,
+    "mean_abs_log": 0.17120337498281318,
+    "mean_signed_log": -0.0028982791152189075,
+    "share_excl_structure": 0.2944449318924046,
+    "promo_signed": 0.2030619245133729,
+    "nonpromo_signed": -0.14865697709906403
+   },
+   {
+    "group": "日历",
+    "share": 0.07061735189236809,
+    "mean_abs_log": 0.13632906858093558,
+    "mean_signed_log": 0.12376143348206634,
+    "share_excl_structure": 0.23446619155316456,
+    "promo_signed": 0.146939486779321,
+    "nonpromo_signed": 0.10735825067836176
+   },
+   {
+    "group": "门店属性",
+    "share": 0.02781608163346831,
+    "mean_abs_log": 0.05369984003990719,
+    "mean_signed_log": -0.014112743226792174,
+    "share_excl_structure": 0.09235592315146124,
+    "promo_signed": -0.0149012171070203,
+    "nonpromo_signed": -0.013554737727906722
+   },
+   {
+    "group": "假日/学校",
+    "share": 0.009516820100387405,
+    "mean_abs_log": 0.018372527224124902,
+    "mean_signed_log": 0.01835678284106091,
+    "share_excl_structure": 0.03159807759480137,
+    "promo_signed": 0.01762038953245299,
+    "nonpromo_signed": 0.018877930752044064
+   }
+  ],
+  "explained_model": "L1 component only, not final ASE",
+  "note": "Absolute log-SHAP importance shares; excluding Open is a display normalization, not a causal or sales-volume decomposition."
+ },
+ "leakage": {
+  "weekly_features_identical": true,
+  "rossmann_train_matrix_identical": true,
+  "rossmann_max_feature_diff": 0.0
+ },
+ "summary": {
+  "weekly_official_beats_repo": true,
+  "weekly_historical_repo_comparisons": "Unavailable: official origin-200 baseline cannot be reused at other origins.",
+  "rossmann_all_stages_beat_repo": true,
+  "weekly_mean_ase": 0.0746004280845188,
+  "rossmann_mean_ase": 0.09056386446211191,
+  "total_stages": 7
+ }
+}

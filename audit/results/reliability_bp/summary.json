@@ -1,0 +1,470 @@
+{
+  "rossmann": {
+    "origins": {
+      "816": {
+        "business_bp": {
+          "wape_mean": 0.10148248864152261,
+          "wape_aggregate": 0.10071816201097238
+        },
+        "no_messages": {
+          "wape_mean": 0.10136157551281062,
+          "wape_aggregate": 0.10062923008635362
+        },
+        "constant_edges": {
+          "wape_mean": 0.10155888552227975,
+          "wape_aggregate": 0.10079524686083655
+        },
+        "shuffled_edges": {
+          "wape_mean": 0.10151585318886645,
+          "wape_aggregate": 0.10075142265135104
+        },
+        "pooled_global_log": {
+          "wape_mean": 0.10100694101366926,
+          "wape_aggregate": 0.10026814645846922
+        },
+        "original_stage": {
+          "wape_mean": 0.10074725471047902,
+          "wape_aggregate": 0.10004115734066997
+        },
+        "validation_best_single": {
+          "wape_mean": 0.10280647651444888,
+          "wape_aggregate": 0.10184212420931107
+        }
+      },
+      "858": {
+        "business_bp": {
+          "wape_mean": 0.08603985410138965,
+          "wape_aggregate": 0.08546918477989625
+        },
+        "no_messages": {
+          "wape_mean": 0.08593498512521883,
+          "wape_aggregate": 0.08537602410908086
+        },
+        "constant_edges": {
+          "wape_mean": 0.08602670770099362,
+          "wape_aggregate": 0.08545900081085245
+        },
+        "shuffled_edges": {
+          "wape_mean": 0.08599770758110414,
+          "wape_aggregate": 0.08543064115172354
+        },
+        "pooled_global_log": {
+          "wape_mean": 0.0856571944496628,
+          "wape_aggregate": 0.085019897279647
+        },
+        "original_stage": {
+          "wape_mean": 0.0865151628092439,
+          "wape_aggregate": 0.08580691545476651
+        },
+        "validation_best_single": {
+          "wape_mean": 0.0867478326992457,
+          "wape_aggregate": 0.08595470805522343
+        }
+      },
+      "900": {
+        "business_bp": {
+          "wape_mean": 0.08300139968566057,
+          "wape_aggregate": 0.08150917503007404
+        },
+        "no_messages": {
+          "wape_mean": 0.08277261161168062,
+          "wape_aggregate": 0.08124403480333296
+        },
+        "constant_edges": {
+          "wape_mean": 0.08303314039550642,
+          "wape_aggregate": 0.08154174763664687
+        },
+        "shuffled_edges": {
+          "wape_mean": 0.082980778780694,
+          "wape_aggregate": 0.0814763772631702
+        },
+        "pooled_global_log": {
+          "wape_mean": 0.08285057892563027,
+          "wape_aggregate": 0.0812384181347134
+        },
+        "original_stage": {
+          "wape_mean": 0.0844291758666128,
+          "wape_aggregate": 0.08293619190224528
+        },
+        "validation_best_single": {
+          "wape_mean": 0.08366264477236879,
+          "wape_aggregate": 0.081868457564073
+        }
+      }
+    },
+    "mean_wape": {
+      "business_bp": 0.09017458080952427,
+      "no_messages": 0.09002305741657002,
+      "constant_edges": 0.09020624453959326,
+      "shuffled_edges": 0.09016477985022153,
+      "pooled_global_log": 0.08983823812965412,
+      "original_stage": 0.09056386446211191,
+      "validation_best_single": 0.09107231799535447
+    },
+    "delta_positive_favors_business_bp": {
+      "no_messages": {
+        "delta_pp": -0.015152339295425121,
+        "ci95_pp": [
+          -0.0216457196866389,
+          -0.008485692425676872
+        ],
+        "ci97_5_pp": [
+          -0.02253861735177831,
+          -0.007343236672448353
+        ]
+      },
+      "constant_edges": {
+        "delta_pp": 0.0031663730068990908,
+        "ci95_pp": [
+          0.00020877857735587644,
+          0.005878517442443643
+        ],
+        "ci97_5_pp": [
+          -0.00028578279956591656,
+          0.006281365206903867
+        ]
+      },
+      "shuffled_edges": {
+        "delta_pp": -0.0009800959302742073,
+        "ci95_pp": [
+          -0.003143278506910431,
+          0.0010674270087147138
+        ],
+        "ci97_5_pp": [
+          -0.003407632558340592,
+          0.001307512676466786
+        ]
+      },
+      "pooled_global_log": {
+        "delta_pp": -0.03363426798701632,
+        "ci95_pp": [
+          -0.04725425448529739,
+          -0.021097643525308303
+        ],
+        "ci97_5_pp": [
+          -0.049067620779967694,
+          -0.0191845484328764
+        ]
+      },
+      "original_stage": {
+        "delta_pp": 0.03892836525876376,
+        "ci95_pp": [
+          0.009222820695438092,
+          0.06857947838998735
+        ],
+        "ci97_5_pp": [
+          0.005222513076419982,
+          0.07301889317007737
+        ]
+      },
+      "validation_best_single": {
+        "delta_pp": 0.08977371858301822,
+        "ci95_pp": [
+          0.05619265963624594,
+          0.12477752297907539
+        ],
+        "ci97_5_pp": [
+          0.05206818876139922,
+          0.12948772986961277
+        ]
+      }
+    },
+    "router_timing": [
+      {
+        "origin": 816,
+        "method": "business_bp",
+        "elapsed_s": 0.06866588499997306
+      },
+      {
+        "origin": 816,
+        "method": "no_messages",
+        "elapsed_s": 0.06342731700004833
+      },
+      {
+        "origin": 816,
+        "method": "constant_edges",
+        "elapsed_s": 0.06355051599996386
+      },
+      {
+        "origin": 816,
+        "method": "shuffled_edges",
+        "elapsed_s": 0.06739707300005193
+      },
+      {
+        "origin": 858,
+        "method": "business_bp",
+        "elapsed_s": 0.0650010640000005
+      },
+      {
+        "origin": 858,
+        "method": "no_messages",
+        "elapsed_s": 0.0643684979999648
+      },
+      {
+        "origin": 858,
+        "method": "constant_edges",
+        "elapsed_s": 0.06477070599999024
+      },
+      {
+        "origin": 858,
+        "method": "shuffled_edges",
+        "elapsed_s": 0.06949027899997873
+      },
+      {
+        "origin": 900,
+        "method": "business_bp",
+        "elapsed_s": 0.06419730900000786
+      },
+      {
+        "origin": 900,
+        "method": "no_messages",
+        "elapsed_s": 0.06432564800002183
+      },
+      {
+        "origin": 900,
+        "method": "constant_edges",
+        "elapsed_s": 0.06227345900003911
+      },
+      {
+        "origin": 900,
+        "method": "shuffled_edges",
+        "elapsed_s": 0.06637006300002213
+      }
+    ],
+    "evaluation_source_sha256": "aca75f7854cf8839713a97a2a95fc5a54c243d07f0d3c36f437263266d7fd225"
+  },
+  "confirmation": {
+    "origins": {
+      "816": {
+        "business_bp": {
+          "wape_mean": 0.10004584055243723,
+          "wape_aggregate": 0.09878531481398209
+        },
+        "no_messages": {
+          "wape_mean": 0.09997451153422245,
+          "wape_aggregate": 0.0986828631577287
+        },
+        "constant_edges": {
+          "wape_mean": 0.10011124892134239,
+          "wape_aggregate": 0.09885219869602588
+        },
+        "shuffled_edges": {
+          "wape_mean": 0.10007781720597062,
+          "wape_aggregate": 0.09881907158435832
+        },
+        "pooled_global_log": {
+          "wape_mean": 0.09966816113772786,
+          "wape_aggregate": 0.09833562514392792
+        },
+        "original_stage": {
+          "wape_mean": 0.10050640299145136,
+          "wape_aggregate": 0.09918992338178127
+        },
+        "validation_best_single": {
+          "wape_mean": 0.10107657190570751,
+          "wape_aggregate": 0.09982586490723158
+        }
+      },
+      "858": {
+        "business_bp": {
+          "wape_mean": 0.08614964265593485,
+          "wape_aggregate": 0.08493447232656524
+        },
+        "no_messages": {
+          "wape_mean": 0.08607541961299361,
+          "wape_aggregate": 0.08485190108241297
+        },
+        "constant_edges": {
+          "wape_mean": 0.0861805315503409,
+          "wape_aggregate": 0.08496958791193539
+        },
+        "shuffled_edges": {
+          "wape_mean": 0.08617527014127656,
+          "wape_aggregate": 0.08495253766533672
+        },
+        "pooled_global_log": {
+          "wape_mean": 0.08575850911552915,
+          "wape_aggregate": 0.08441439171406889
+        },
+        "original_stage": {
+          "wape_mean": 0.0874057431187682,
+          "wape_aggregate": 0.08627546525962831
+        },
+        "validation_best_single": {
+          "wape_mean": 0.08611541929262118,
+          "wape_aggregate": 0.08437352046042948
+        }
+      },
+      "900": {
+        "business_bp": {
+          "wape_mean": 0.08048243872069073,
+          "wape_aggregate": 0.07908462226764636
+        },
+        "no_messages": {
+          "wape_mean": 0.08015499344996804,
+          "wape_aggregate": 0.07875059881123621
+        },
+        "constant_edges": {
+          "wape_mean": 0.08052691845586532,
+          "wape_aggregate": 0.07912103460529361
+        },
+        "shuffled_edges": {
+          "wape_mean": 0.08044882339743664,
+          "wape_aggregate": 0.07904468296796723
+        },
+        "pooled_global_log": {
+          "wape_mean": 0.08022610446536776,
+          "wape_aggregate": 0.0787709802556886
+        },
+        "original_stage": {
+          "wape_mean": 0.08109344816036555,
+          "wape_aggregate": 0.07961830025229825
+        },
+        "validation_best_single": {
+          "wape_mean": 0.08173899701186467,
+          "wape_aggregate": 0.08025019482027612
+        }
+      }
+    },
+    "mean_wape": {
+      "business_bp": 0.08889264064302094,
+      "no_messages": 0.08873497486572805,
+      "constant_edges": 0.08893956630918287,
+      "shuffled_edges": 0.0889006369148946,
+      "pooled_global_log": 0.08855092490620826,
+      "original_stage": 0.08966853142352837,
+      "validation_best_single": 0.08964366273673112
+    },
+    "delta_positive_favors_business_bp": {
+      "no_messages": {
+        "delta_pp": -0.0157665777292903,
+        "ci95_pp": [
+          -0.020653862846063135,
+          -0.010916651206048471
+        ],
+        "ci97_5_pp": [
+          -0.021470567869063577,
+          -0.01028756543660091
+        ]
+      },
+      "constant_edges": {
+        "delta_pp": 0.0046925666161935645,
+        "ci95_pp": [
+          0.002537522650575919,
+          0.0070428526051743824
+        ],
+        "ci97_5_pp": [
+          0.002314877286025387,
+          0.007429397738383517
+        ]
+      },
+      "shuffled_edges": {
+        "delta_pp": 0.0007996271873667108,
+        "ci95_pp": [
+          -0.000927519467854298,
+          0.0025977532121923843
+        ],
+        "ci97_5_pp": [
+          -0.0011871767312934016,
+          0.0029015617414146527
+        ]
+      },
+      "pooled_global_log": {
+        "delta_pp": -0.03417157368126863,
+        "ci95_pp": [
+          -0.04438247796634001,
+          -0.024623770630509224
+        ],
+        "ci97_5_pp": [
+          -0.04593651417739754,
+          -0.023396339186717442
+        ]
+      },
+      "original_stage": {
+        "delta_pp": 0.07758907805074257,
+        "ci95_pp": [
+          0.056881989673929385,
+          0.09855902079610118
+        ],
+        "ci97_5_pp": [
+          0.05376005272822024,
+          0.10174460343265493
+        ]
+      },
+      "validation_best_single": {
+        "delta_pp": 0.07510220937101808,
+        "ci95_pp": [
+          0.0476265525675785,
+          0.10300896171519597
+        ],
+        "ci97_5_pp": [
+          0.043895657822017896,
+          0.1086977699595897
+        ]
+      }
+    },
+    "router_timing": [
+      {
+        "origin": 816,
+        "method": "business_bp",
+        "elapsed_s": 0.0799970319999943
+      },
+      {
+        "origin": 816,
+        "method": "no_messages",
+        "elapsed_s": 0.07796780600000375
+      },
+      {
+        "origin": 816,
+        "method": "constant_edges",
+        "elapsed_s": 0.07684805200000255
+      },
+      {
+        "origin": 816,
+        "method": "shuffled_edges",
+        "elapsed_s": 0.08031465300001628
+      },
+      {
+        "origin": 858,
+        "method": "business_bp",
+        "elapsed_s": 0.07812057999996114
+      },
+      {
+        "origin": 858,
+        "method": "no_messages",
+        "elapsed_s": 0.0788350700000251
+      },
+      {
+        "origin": 858,
+        "method": "constant_edges",
+        "elapsed_s": 0.07840958799999953
+      },
+      {
+        "origin": 858,
+        "method": "shuffled_edges",
+        "elapsed_s": 0.08126821799999107
+      },
+      {
+        "origin": 900,
+        "method": "business_bp",
+        "elapsed_s": 0.07842424499995104
+      },
+      {
+        "origin": 900,
+        "method": "no_messages",
+        "elapsed_s": 0.07831842799998867
+      },
+      {
+        "origin": 900,
+        "method": "constant_edges",
+        "elapsed_s": 0.08948714299998528
+      },
+      {
+        "origin": 900,
+        "method": "shuffled_edges",
+        "elapsed_s": 0.08805289399998628
+      }
+    ],
+    "evaluation_source_sha256": "aca75f7854cf8839713a97a2a95fc5a54c243d07f0d3c36f437263266d7fd225"
+  }
+}

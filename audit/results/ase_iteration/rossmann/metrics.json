@@ -1,0 +1,152 @@
+{
+  "816": {
+    "l2": {
+      "wape_mean": 0.10166696800884051,
+      "wape_aggregate": 0.10104607523969103
+    },
+    "l1": {
+      "wape_mean": 0.1019143761813162,
+      "wape_aggregate": 0.10106580494147759
+    },
+    "open_l2": {
+      "wape_mean": 0.1051068075867759,
+      "wape_aggregate": 0.1045669053911609
+    },
+    "open_l1": {
+      "wape_mean": 0.10280647651444888,
+      "wape_aggregate": 0.10184212420931107
+    },
+    "pooled_global_log": {
+      "wape_mean": 0.10100694101366926,
+      "wape_aggregate": 0.10026814645846922
+    },
+    "pooled_stage_log": {
+      "wape_mean": 0.10086453668729103,
+      "wape_aggregate": 0.10012576637445066
+    },
+    "original_stage": {
+      "wape_mean": 0.10074725471047902,
+      "wape_aggregate": 0.10004115734066997
+    },
+    "equal_original_log": {
+      "wape_mean": 0.10038321154291782,
+      "wape_aggregate": 0.09973574259130691
+    },
+    "equal_original_arithmetic": {
+      "wape_mean": 0.10031863042064618,
+      "wape_aggregate": 0.09967765726238186
+    },
+    "equal_all_arithmetic": {
+      "wape_mean": 0.10071670025077685,
+      "wape_aggregate": 0.1000747120169644
+    },
+    "equal_open_arithmetic": {
+      "wape_mean": 0.10235937909145625,
+      "wape_aggregate": 0.10162501890187607
+    },
+    "validation_best_single": {
+      "wape_mean": 0.10280647651444888,
+      "wape_aggregate": 0.10184212420931107
+    }
+  },
+  "858": {
+    "l2": {
+      "wape_mean": 0.08868206944832145,
+      "wape_aggregate": 0.08787273131543338
+    },
+    "l1": {
+      "wape_mean": 0.08683043087504845,
+      "wape_aggregate": 0.08613771491823675
+    },
+    "open_l2": {
+      "wape_mean": 0.0877965824131429,
+      "wape_aggregate": 0.08708220428109736
+    },
+    "open_l1": {
+      "wape_mean": 0.0867478326992457,
+      "wape_aggregate": 0.08595470805522343
+    },
+    "pooled_global_log": {
+      "wape_mean": 0.0856571944496628,
+      "wape_aggregate": 0.085019897279647
+    },
+    "pooled_stage_log": {
+      "wape_mean": 0.08567339086283011,
+      "wape_aggregate": 0.08502584392509491
+    },
+    "original_stage": {
+      "wape_mean": 0.0865151628092439,
+      "wape_aggregate": 0.08580691545476651
+    },
+    "equal_original_log": {
+      "wape_mean": 0.08674555054493055,
+      "wape_aggregate": 0.08601577406552888
+    },
+    "equal_original_arithmetic": {
+      "wape_mean": 0.08670714271743642,
+      "wape_aggregate": 0.08597677426663046
+    },
+    "equal_all_arithmetic": {
+      "wape_mean": 0.08578955457371487,
+      "wape_aggregate": 0.08515117726917382
+    },
+    "equal_open_arithmetic": {
+      "wape_mean": 0.08589096132172053,
+      "wape_aggregate": 0.08523838225357364
+    },
+    "validation_best_single": {
+      "wape_mean": 0.0867478326992457,
+      "wape_aggregate": 0.08595470805522343
+    }
+  },
+  "900": {
+    "l2": {
+      "wape_mean": 0.08468678139130337,
+      "wape_aggregate": 0.08324411128279247
+    },
+    "l1": {
+      "wape_mean": 0.08572556444387525,
+      "wape_aggregate": 0.08415361791552853
+    },
+    "open_l2": {
+      "wape_mean": 0.08318787542004814,
+      "wape_aggregate": 0.08156611677048242
+    },
+    "open_l1": {
+      "wape_mean": 0.08366264477236879,
+      "wape_aggregate": 0.081868457564073
+    },
+    "pooled_global_log": {
+      "wape_mean": 0.08285057892563027,
+      "wape_aggregate": 0.0812384181347134
+    },
+    "pooled_stage_log": {
+      "wape_mean": 0.08261915100858473,
+      "wape_aggregate": 0.08102297072949295
+    },
+    "original_stage": {
+      "wape_mean": 0.0844291758666128,
+      "wape_aggregate": 0.08293619190224528
+    },
+    "equal_original_log": {
+      "wape_mean": 0.08407087017941169,
+      "wape_aggregate": 0.08260194720159504
+    },
+    "equal_original_arithmetic": {
+      "wape_mean": 0.08406948623331754,
+      "wape_aggregate": 0.08259347991529688
+    },
+    "equal_all_arithmetic": {
+      "wape_mean": 0.08261195088835457,
+      "wape_aggregate": 0.08104948029658858
+    },
+    "equal_open_arithmetic": {
+      "wape_mean": 0.082093299729394,
+      "wape_aggregate": 0.08041674383332943
+    },
+    "validation_best_single": {
+      "wape_mean": 0.08366264477236879,
+      "wape_aggregate": 0.081868457564073
+    }
+  }
+}

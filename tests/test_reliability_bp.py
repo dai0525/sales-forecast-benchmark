@@ -28,3 +28,13 @@ def test_gate_features_do_not_read_future_sales():
     x,n=features(p,140,pred);p.y[:,140:]=999999
     x2,n2=features(p,140,pred)
     np.testing.assert_array_equal(x,x2);assert n==n2
+
+
+def test_shuffled_control_preserves_number_of_messages_and_closed_cuts():
+    from reliability_bp import boundaries
+    p=r.rf.b.Panel(r.rf.b.PANEL,n_series=8)
+    original=boundaries(p,816,42)
+    shuffled=boundaries(p,816,42,'shuffled')
+    eligible=boundaries(p,816,42,'constant')
+    np.testing.assert_array_equal(original.sum(1),shuffled.sum(1))
+    assert np.all(shuffled[eligible==0]==0)

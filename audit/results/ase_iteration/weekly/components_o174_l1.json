@@ -1,0 +1,12 @@
+{
+  "origin": 174,
+  "model": "l1",
+  "source": "refit",
+  "elapsed_s": 24.661836380999375,
+  "state_cfg": {
+    "harmonics": 4,
+    "qr": 0.1,
+    "trend_q": 0.0001,
+    "damp": 0.98
+  }
+}

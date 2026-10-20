@@ -1,0 +1,5 @@
+{
+ "correction":"The first implementation shuffled all horizon links then cut closed days again, reducing the number of active links. The corrected negative control permutes only open/open positions and preserves each store's active-link count.",
+ "reason":"Isolate link location from total propagation strength; no change to primary business BP, no-message baseline, learned gate, lambda, temperature or primary ASE iteration.",
+ "disclosure":"Correction made after initial exploratory evaluation; all final secondary results regenerated with the corrected control and evaluation source hash recorded."
+}
