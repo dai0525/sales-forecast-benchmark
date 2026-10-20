@@ -1,0 +1,47 @@
+{
+  "chosen_lambda": 4,
+  "grid": [
+    {
+      "lambda": 0,
+      "wape_mean": 0.09024172300327354,
+      "wape_aggregate": 0.08751474770272441
+    },
+    {
+      "lambda": 0.5,
+      "wape_mean": 0.09022781432782973,
+      "wape_aggregate": 0.08749764576254762
+    },
+    {
+      "lambda": 2,
+      "wape_mean": 0.09015596237709861,
+      "wape_aggregate": 0.08741655920933336
+    },
+    {
+      "lambda": 4,
+      "wape_mean": 0.09009694361333682,
+      "wape_aggregate": 0.08735512778758239
+    }
+  ],
+  "feature_names": [
+    "promo",
+    "open",
+    "school",
+    "state_a",
+    "state_b",
+    "state_c",
+    "dow_sin",
+    "dow_cos",
+    "horizon",
+    "history_cv",
+    "history_ratio",
+    "relative_log_l2",
+    "relative_log_l1",
+    "relative_log_open_l2",
+    "relative_log_open_l1",
+    "disagreement"
+  ],
+  "train_origin": 732,
+  "selection_origin": 774,
+  "source_sha256": "cb6bc7228100844d42cdb1a5a3d67bb5c5840b46a5e78c592bf45ec1aedeaae3",
+  "protocol_sha256": "70bf7e7041ccafe86cebda75e293f4c18ac2c5ef35acc737dd92d9ae522fa34b"
+}
