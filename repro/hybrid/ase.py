@@ -104,29 +104,30 @@ def _row(ds: Panel, o: int, h: int, hist: np.ndarray) -> pd.DataFrame:
     d: dict[str, np.ndarray] = {}
     for k in (1, 2, 3, 7, 14, 21, 28, ds.season, 2 * ds.season):
         j = o - k
-        if j >= 0 and f"lag{k}" not in d:
-            d[f"lag{k}"] = hist[:, j]
+        if f"lag{k}" not in d:
+            d[f"lag{k}"] = hist[:, j] if j >= 0 else np.full(N, np.nan)
     if USE_RELATIVE:
         for k in (1, 2, 3, 7, 14, 28, ds.season, ds.season + 1, 2 * ds.season):
             j = t - k
             d[f"tlag{k}"] = hist[:, j] if 0 <= j < o else np.full(N, np.nan)
-    for w in (max(2, ds.season // 2), ds.season, 2 * ds.season, min(4 * ds.season, o)):
-        w = min(w, o)
-        seg = hist[:, -w:]
+    for w in (max(2, ds.season // 2), ds.season, 2 * ds.season, 4 * ds.season):
+        seg = hist[:, -min(w, o):]
         d[f"m{w}"] = seg.mean(1)
         d[f"s{w}"] = seg.std(1)
         d[f"x{w}"] = seg.max(1)
-    d["lvl_ratio"] = d[f"m{ds.season}"] / np.maximum(d[f"m{min(2*ds.season,o)}"], 1.0)
+    d["lvl_ratio"] = d[f"m{ds.season}"] / np.maximum(d[f"m{2*ds.season}"], 1.0)
     if o >= 28:
         d["ratio_7_28"] = hist[:, -7:].mean(1) / np.maximum(hist[:, -28:].mean(1), 1.0)
     if ds.exog:
         for k, arr in ds.exog.items():
             seg = arr[:, max(0, o - 28):o]
-            if set(np.unique(seg)) <= {0.0, 1.0}:
-                d[f"{k}_rate28"] = seg.mean(1)
+            # Stable schema even when a holiday category first appears.
+            d[f"{k}_nonzero_rate28"] = (seg != 0).mean(1)
     if ds.season == 7 and o >= 28:
-        # same weekday over the last four weeks, anchored at the origin
-        d["same_dow_4w"] = hist[:, -7:].mean(1)
+        # Last four observed occurrences of the target weekday.
+        last = t - 7 * ((h + 6) // 7)
+        idx = [last - 7 * k for k in range(4) if last - 7 * k >= 0]
+        d["same_dow_4w"] = hist[:, idx].mean(1)
     d["phase"] = np.full(N, t % ds.season)
     d["h"] = np.full(N, h)
     d["sid"] = np.arange(N)
@@ -333,7 +334,8 @@ if __name__ == "__main__":
     which = sys.argv[1]
     ds = load_weekly() if which == "weekly" else load_rossmann()
     res = run(ds, which)
-    out = ROOT / "audit" / "results" / "ase"
+    # Preserve the originally published artifacts for comparison.
+    out = ROOT / "audit" / "results" / "ase_repaired"
     out.mkdir(parents=True, exist_ok=True)
     (out / f"{which}_summary.json").write_text(
         json.dumps(res["summary"], ensure_ascii=False, indent=1), encoding="utf-8")
