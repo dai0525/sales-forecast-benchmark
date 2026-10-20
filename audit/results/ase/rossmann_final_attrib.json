@@ -1,0 +1,43 @@
+{
+ "origin": 900,
+ "groups": [
+  {
+   "group": "营业状态",
+   "share": 0.7675554725113041,
+   "mean_abs_log": 2.064497961866685,
+   "mean_signed_log": 0.2568965055964568
+  },
+  {
+   "group": "历史/水平",
+   "share": 0.06963033727767,
+   "mean_abs_log": 0.1872850817199046,
+   "mean_signed_log": 0.03709487652151994
+  },
+  {
+   "group": "日历",
+   "share": 0.06847136783542061,
+   "mean_abs_log": 0.18416779556003765,
+   "mean_signed_log": 0.03971578464790071
+  },
+  {
+   "group": "促销",
+   "share": 0.0643297243216819,
+   "mean_abs_log": 0.17302799537736613,
+   "mean_signed_log": -0.02798517918550442
+  },
+  {
+   "group": "门店属性",
+   "share": 0.019191295373047392,
+   "mean_abs_log": 0.05161892736378657,
+   "mean_signed_log": -0.014490710883604502
+  },
+  {
+   "group": "假日/学校",
+   "share": 0.01082180268087599,
+   "mean_abs_log": 0.02910745917203121,
+   "mean_signed_log": 0.0024928650947661514
+  }
+ ],
+ "mean_base_log": 7.238245932879346,
+ "note": "log1p space; exp(sum) is a multiplicative factor on (1+y)"
+}
