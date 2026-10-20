@@ -1,0 +1,11 @@
+{
+ "date":"2026-10-20",
+ "status":"Secondary exploratory extension requested by user during the primary frozen experiment; specified without inspecting confirmation cohort scores. Does not replace the primary ASE iteration or its hypothesis.",
+ "idea":"Business-boundary-aware message passing over latent expert reliability, not decomposition of sales into causal factors.",
+ "experts":["l2","l1","open_l2","open_l1"],
+ "gate_training":{"cohort":"original 400 stores","origin":732,"target":"per-day absolute errors divided by each store validation-window mean sales, then centered across experts","features":"known future promo/open/holidays/calendar/horizon; historical volatility/trend; model disagreement; no store-ID, future sales or future Customers","model":"standardized Ridge alpha=100, no hyperparameter search","temperature":0.05,"mix_with_frozen_global_weights":0.5},
+ "message_graph":{"type":"4-state chain, exact forward/backward sum-product","pair_factor":"exp(lambda * boundary_mask[h] * 1[z_h=z_h+1])","boundary_mask":"1 only if both days open and promo, school holiday, state holiday are unchanged","lambda_grid":[0,0.5,2,4],"selection":"minimum mean WAPE at origin 774 on original 400 stores; keep 732-trained gate without refit"},
+ "ablations":["lambda=0, same trained gate and temperature","constant temporal coupling at chosen lambda, still cut closed-day links","shuffled business boundaries at same lambda, fixed seed 20261020","frozen static global blend"],
+ "evaluation":{"development_origins":[816,858,900],"confirmation_stores":534,"confirmation_origins":[816,858,900],"no_retuning":true,"metric":"mean per-store WAPE, then mean across windows","bootstrap":"paired store clusters, 4000 draws, descriptive 95% CI; exploratory comparisons not confirmatory novelty evidence"},
+ "novelty_limit":"HMM experts, state-dependent forecast combinations and contextual gating are prior art. Only the specific business-boundary prior and its usefulness are investigated; no first-in-literature claim."
+}
