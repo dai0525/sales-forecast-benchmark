@@ -1,0 +1,93 @@
+{
+  "python": "3.12.14",
+  "lightgbm": "4.7.0",
+  "params": {
+    "n_estimators": 600,
+    "learning_rate": 0.05,
+    "num_leaves": 63,
+    "min_child_samples": 50,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "reg_lambda": 1.0,
+    "n_jobs": 2,
+    "verbose": -1
+  },
+  "validation": {
+    "l2": 0.09485990425818873,
+    "l1": 0.09055128870844481,
+    "state": 0.19411232662754582
+  },
+  "origin900": {
+    "l2": {
+      "wape": 0.08468678139130031,
+      "max_abs_difference_from_archive": 1.1050360626541078e-08
+    },
+    "l1": {
+      "wape": 0.08572556444387525,
+      "max_abs_difference_from_archive": 0.0
+    }
+  },
+  "weights": {
+    "short": {
+      "weights": {
+        "l2": 0.3666666666666667,
+        "l1": 0.6333333333333333,
+        "state": 0.0
+      },
+      "scores": {
+        "l2": 0.11085940079522696,
+        "l1": 0.10975714250776437,
+        "state": 0.27971330517461335
+      },
+      "keep": [
+        "l2",
+        "l1"
+      ],
+      "matches_archive": true
+    },
+    "mid": {
+      "weights": {
+        "l2": 0.16666666666666666,
+        "l1": 0.8333333333333334,
+        "state": 0.0
+      },
+      "scores": {
+        "l2": 0.08518745428627751,
+        "l1": 0.07587057337182684,
+        "state": 0.17183945148199345
+      },
+      "keep": [
+        "l2",
+        "l1"
+      ],
+      "matches_archive": true
+    },
+    "long": {
+      "weights": {
+        "l2": 0.30000000000000004,
+        "l1": 0.7000000000000001,
+        "state": 0.0
+      },
+      "scores": {
+        "l2": 0.08688404166446034,
+        "l1": 0.08493561343932596,
+        "state": 0.16647487170383676
+      },
+      "keep": [
+        "l2",
+        "l1"
+      ],
+      "matches_archive": true
+    }
+  },
+  "constant_validation_fitted_weights": {
+    "l2": 0.2,
+    "l1": 0.8,
+    "state": 0.0
+  },
+  "constant_validation_fitted_test_wape": {
+    "816": 0.10100359581712057,
+    "858": 0.08653836050533684,
+    "900": 0.08477880718028466
+  }
+}
