@@ -69,7 +69,7 @@ def main():
             valid=c[[a,b]].dropna();wins=int((valid[a]<valid[b]).sum());ties=int((valid[a]==valid[b]).sum())
             lines.extend(['',f'开发期选中的 {a} 相对 state_fourier：{len(valid)} 家有定义的商家中 {wins} 胜、{ties} 平、{len(valid)-wins-ties} 负。商家零销量造成的未定义 WAPE 保留为空，不当成零误差。'])
         lines.extend(['','最终零分母序列数：'+str(int(final.iloc[0].zero_denominator_series))+'；它们仍计入总体误差，但不计入逐序列平均 WAPE。','',
-                      '| 预先定义对照（候选−基线） | 最终 WAPE 差（百分点） | 95% 配对簇自助区间 |', '|---|---:|---:|'])
+                      '| 探索性配对对照（候选−基线） | 最终 WAPE 差（百分点） | 95% 配对簇自助区间 |', '|---|---:|---:|'])
         for r in intervals[tag]:lines.append(f"| {r['candidate']} − {r['baseline']} | {r['delta_wape_pp']:+.3f} | [{r['ci95_pp'][0]:+.3f}, {r['ci95_pp'][1]:+.3f}] |")
         lines.extend(['','负值表示候选更好。叮咚按门店、VN1 按商家进行 2,000 次配对重采样；区间只反映这些日期下的簇差异，不证明跨未来时间的稳定性，也未进行多重比较校正。',''])
     (OUT/'verification.json').write_text(json.dumps({'status':'all_saved_metrics_recomputed','files':verification,'bootstrap':intervals},indent=2)+'\n')
