@@ -1,0 +1,59 @@
+{
+  "source": "https://supchains.com/downloads/vn1-forecasting-competition.zip",
+  "bytes": 8532724,
+  "sha256": "0b5fe01aca827fb223533afe50e234e568ab304164c22e5d93037a69289e23a9",
+  "files": [
+    {
+      "name": "vn1-forecasting-competition/README.md",
+      "bytes": 5428
+    },
+    {
+      "name": "vn1-forecasting-competition/vn1_score.py",
+      "bytes": 4576
+    },
+    {
+      "name": "vn1-forecasting-competition/vn1_benchmarks.py",
+      "bytes": 2596
+    },
+    {
+      "name": "vn1-forecasting-competition/Phase 0 - Sales.csv",
+      "bytes": 10804654
+    },
+    {
+      "name": "vn1-forecasting-competition/Phase 0 - Price.csv",
+      "bytes": 7588298
+    },
+    {
+      "name": "vn1-forecasting-competition/Phase 1 - Sales.csv",
+      "bytes": 1018396
+    },
+    {
+      "name": "vn1-forecasting-competition/Phase 1 - Price.csv",
+      "bytes": 962283
+    },
+    {
+      "name": "vn1-forecasting-competition/Phase 2 - Sales.csv",
+      "bytes": 1012437
+    },
+    {
+      "name": "vn1-forecasting-competition/Top 5 forecasts/1st - Jakub Figura and Philip Stubbs.csv",
+      "bytes": 1977980
+    },
+    {
+      "name": "vn1-forecasting-competition/Top 5 forecasts/2nd - Justin Furlotte.csv",
+      "bytes": 3909379
+    },
+    {
+      "name": "vn1-forecasting-competition/Top 5 forecasts/3rd - Arsa Nikzad.csv",
+      "bytes": 3889724
+    },
+    {
+      "name": "vn1-forecasting-competition/Top 5 forecasts/4th - Antoine Schwartz.csv",
+      "bytes": 607483
+    },
+    {
+      "name": "vn1-forecasting-competition/Top 5 forecasts/5th - An Hoang.csv",
+      "bytes": 1810532
+    }
+  ]
+}
