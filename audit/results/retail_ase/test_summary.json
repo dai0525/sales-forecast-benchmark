@@ -1,0 +1,11 @@
+{
+  "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest tests -q",
+  "passed": 44,
+  "skipped": 1,
+  "elapsed_seconds": 4.88,
+  "resume_tests": [
+    "cached predictions retain original timing and avoid refit",
+    "changed target rejects checkpoint"
+  ],
+  "reconstruction": "verification.json: recompute weights, predictions, metrics, frozen state selection and reference IDs"
+}

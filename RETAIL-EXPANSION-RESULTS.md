@@ -1,5 +1,7 @@
 # 新零售数据首轮实测
 
+后续已补齐 [ASE 追加对照](RETAIL-ASE-RESULTS.md)；下文保留首轮未包含 ASE 的实验结果。
+
 固定协议见 [protocol.json](audit/results/retail_expansion/protocol.json)。本轮不使用动态专家组合，没有根据最终测试结果调整参数。开发期前两个窗口选择单一模型，第三个窗口只做最终评估。
 
 ## 本轮结论

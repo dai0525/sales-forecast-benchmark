@@ -45,10 +45,31 @@ def select_weights(val,truth):
     return dict(original=original,static=static,development_aggregate_wape=scores,best_single=min(scores,key=scores.get))
 
 
-def run(tag,group):
+def tree_component(p,o,group,name,out,resume):
+    path=out/f'o{o}_{name}.npz';meta_path=path.with_suffix('.json')
+    if resume and path.exists() and meta_path.exists():
+        z=np.load(path);meta=json.loads(meta_path.read_text())
+        np.testing.assert_array_equal(z['truth'],p['y'][:,o:o+p['H']])
+        metrics(z['pred'],z['truth'])
+        expected=dict(ase.LGB_PARAMS,n_jobs=2)
+        if name=='l1':expected.update(objective='regression_l1',random_state=43)
+        assert all(meta['params'][k]==v for k,v in expected.items())
+        assert meta['features']==list(features(p,o,group))
+        assert max(meta['training_origins'])+p['H']<=o
+        return z['pred'],{k:v for k,v in meta.items() if k!='seconds'},meta['seconds']
+    t=time.perf_counter();pred,meta=fit_tree(p,o,group,name)
+    return pred,meta,time.perf_counter()-t
+
+
+def run(tag,group,resume=False):
     key=tag+'_'+group;out=OUT/key
-    if out.exists():raise RuntimeError('Refusing overwrite: '+str(out))
-    out.mkdir(parents=True)
+    if out.exists() and not resume:raise RuntimeError('Refusing overwrite: '+str(out))
+    if resume:
+        if (out/'manifest.json').exists():raise RuntimeError('Already completed; refusing resume')
+        previous=json.loads((out/'selection.json').read_text())
+        assert previous['protocol_sha256']==digest(OUT/'protocol.json')
+        (out/'resume.json').write_text(json.dumps({'reason':'execution environment restarted during final L1 fit','prior_checkpoint_sha256':{f.name:digest(f) for f in out.glob('*.npz')},'preserve_cached_training_seconds':True},indent=2)+'\n')
+    out.mkdir(parents=True,exist_ok=resume)
     p=load(tag);H=p['H'];dev=p['origins'][:-1];final=p['origins'][-1]
     ids=pd.read_csv(BASE/tag/'series_ids.csv');pd.testing.assert_frame_equal(ids,p['static'],check_dtype=False)
     p['static'].to_csv(out/'series_ids.csv',index=False)
@@ -63,7 +84,7 @@ def run(tag,group):
     for o in dev:
         val[o]={'state':states[json.dumps(cfg_original)][o],'pooled_state':states[json.dumps(cfg_pooled)][o]}
         for name in ['l2','l1']:
-            t=time.perf_counter();pred,meta=fit_tree(p,o,group,name);secs=time.perf_counter()-t;val[o][name]=pred
+            pred,meta,secs=tree_component(p,o,group,name,out,resume);val[o][name]=pred
             np.savez_compressed(out/f'o{o}_{name}.npz',pred=pred,truth=truth[o])
             (out/f'o{o}_{name}.json').write_text(json.dumps(dict(seconds=secs,**meta),indent=2)+'\n')
             rows.append(dict(origin=o,model=name,seconds=secs,**metrics(pred,truth[o])))
@@ -72,14 +93,21 @@ def run(tag,group):
             np.savez_compressed(out/f'o{o}_{name}.npz',pred=pred,truth=truth[o]);rows.append(dict(origin=o,model=name,seconds=None,**metrics(pred,truth[o])))
     t=time.perf_counter();selection=select_weights(val,truth);weight_seconds=time.perf_counter()-t
     selection.update(protocol_sha256=ph,original_state_cfg=cfg_original,pooled_state_cfg=cfg_pooled,state_search=scores,state_search_seconds=search_seconds,weight_selection_seconds=weight_seconds,final_origin=final)
-    (out/'selection.json').write_text(json.dumps(selection,indent=2)+'\n')
+    if resume:
+        for k in ['original','static','best_single','original_state_cfg','pooled_state_cfg','development_aggregate_wape']:
+            assert selection[k]==previous[k],('Resume changed frozen selection',k)
+        selection=previous
+    else:
+        (out/'selection.json').write_text(json.dumps(selection,indent=2)+'\n')
     # Selection is persisted before final inference or final scoring.
     final_components={};base_seconds={};yy=p['y'][:,final:final+H]
     for name in ['l2','l1','original_state','state']:
         t=time.perf_counter();meta={}
-        if name in ['l2','l1']:pred,meta=fit_tree(p,final,group,name)
-        else:pred=ase.state_forecast(p['y'][:,:final],h=H,period=p['period'],**(cfg_original if name=='original_state' else cfg_pooled))
-        secs=time.perf_counter()-t;base_seconds[name]=secs;final_components[name]=pred
+        if name in ['l2','l1']:pred,meta,secs=tree_component(p,final,group,name,out,resume)
+        else:
+            pred=ase.state_forecast(p['y'][:,:final],h=H,period=p['period'],**(cfg_original if name=='original_state' else cfg_pooled))
+            secs=time.perf_counter()-t
+        base_seconds[name]=secs;final_components[name]=pred
         np.savez_compressed(out/f'o{final}_{name}.npz',pred=pred,truth=yy)
         (out/f'o{final}_{name}.json').write_text(json.dumps(dict(seconds=secs,**meta),indent=2)+'\n')
         rows.append(dict(origin=final,model=name,seconds=secs,**metrics(pred,yy)))
@@ -109,6 +137,6 @@ def run(tag,group):
 
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser();ap.add_argument('dataset',choices=['freshretail','vn1']);ap.add_argument('group',choices=['history','plan']);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('dataset',choices=['freshretail','vn1']);ap.add_argument('group',choices=['history','plan']);ap.add_argument('--resume',action='store_true');args=ap.parse_args()
     if args.dataset=='vn1' and args.group!='history':ap.error('VN1 only uses history in this protocol')
-    run(args.dataset,args.group)
+    run(args.dataset,args.group,args.resume)

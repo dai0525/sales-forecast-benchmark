@@ -1,0 +1,215 @@
+{
+  "status": "weights_predictions_metrics_and_ids_verified",
+  "files": [
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o76_l2.npz",
+      "sha256": "c5756faba005c6a2524e5443d69f1799a9d14375ff386ad3e392220b0722ff6d"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o76_l1.npz",
+      "sha256": "0ff17a11ddcc9abb3212f5d4452edd34ecca030a09f41b17875068264091b2ea"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o76_original_state.npz",
+      "sha256": "89d6ceba03941c9336c766b74e7fe1ce77eaaa51c31e910727770f778b22704c"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o76_state.npz",
+      "sha256": "89d6ceba03941c9336c766b74e7fe1ce77eaaa51c31e910727770f778b22704c"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o83_l2.npz",
+      "sha256": "bc28f401580e9b5e50187b1b0553b582ec19e87e09c40b6e6f51f8ab5e5a10c5"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o83_l1.npz",
+      "sha256": "67887a5020e79056c00e51da2fbaf9b88879d9ffac9cc2ab95a17ee7ca38a6a2"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o83_original_state.npz",
+      "sha256": "69e588bbd2cdb3dc80582297ac4630754c673ac24a7b60581e5d23685e57cf85"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o83_state.npz",
+      "sha256": "69e588bbd2cdb3dc80582297ac4630754c673ac24a7b60581e5d23685e57cf85"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_l2.npz",
+      "sha256": "4edadd1f12afcdf61b52fe7a924ce9d37af98b67ed541fee0bb5a32f83b01a1b"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_l1.npz",
+      "sha256": "46b337f675d943822d25748377f5a461fa2a0fb090f1dcae5a5346d520299528"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_original_state.npz",
+      "sha256": "80e6834e577fd12d5b8fe5aece983d09298747e6892478cd41d88eeb45a4cede"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_state.npz",
+      "sha256": "80e6834e577fd12d5b8fe5aece983d09298747e6892478cd41d88eeb45a4cede"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_ase_original.npz",
+      "sha256": "66a53a82a9fca5036063e3d8d93c189a9a91d03f81d3156d8cac8f6b586eab70"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_ase_static.npz",
+      "sha256": "f1254a09c8cf29350197a6f6e4fbbcea549d1c0bdb3fdf1c5477cd61acb8a4b3"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_equal_log.npz",
+      "sha256": "f66cdba1cf846e2828b48c232529a94328d347cf95d95ee45872192ad5fa89c9"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_equal_arithmetic.npz",
+      "sha256": "e02b9810218bee134e629d478cca6098e155f6412c7906cf9b8551a58ad6b0f7"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_history/o90_selected_single.npz",
+      "sha256": "80e6834e577fd12d5b8fe5aece983d09298747e6892478cd41d88eeb45a4cede"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o76_l2.npz",
+      "sha256": "45aff4bf48bb075f43aa39173ebde1423e7b544014a4642c60d8c1481757cc8d"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o76_l1.npz",
+      "sha256": "2eba7d9c53c29df95ec87b4d618cfbf235f0bee1f565ab964dfa9dbdc05a57e2"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o76_original_state.npz",
+      "sha256": "89d6ceba03941c9336c766b74e7fe1ce77eaaa51c31e910727770f778b22704c"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o76_state.npz",
+      "sha256": "89d6ceba03941c9336c766b74e7fe1ce77eaaa51c31e910727770f778b22704c"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o83_l2.npz",
+      "sha256": "092f68cbbca2fd3e342e31e7182d733feacc75e9ab965afc6254fe736f9f7cd9"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o83_l1.npz",
+      "sha256": "2cae0b28fe14d8f9b31a25106433938a76f2ca02cf2d5d66008acb721bde3b6f"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o83_original_state.npz",
+      "sha256": "69e588bbd2cdb3dc80582297ac4630754c673ac24a7b60581e5d23685e57cf85"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o83_state.npz",
+      "sha256": "69e588bbd2cdb3dc80582297ac4630754c673ac24a7b60581e5d23685e57cf85"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_l2.npz",
+      "sha256": "166fad792a554e7823b2bbe5a0b8e215e63a6a063aebfc57f516734cd74d3d8d"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_l1.npz",
+      "sha256": "977d32d09a8df657e2691bd286fd802ff25b8b89f1abe8956322b30c2cd5ad42"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_original_state.npz",
+      "sha256": "80e6834e577fd12d5b8fe5aece983d09298747e6892478cd41d88eeb45a4cede"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_state.npz",
+      "sha256": "80e6834e577fd12d5b8fe5aece983d09298747e6892478cd41d88eeb45a4cede"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_ase_original.npz",
+      "sha256": "8044c952712f82947f26c277b58ad53948f7bafff7bdb8e416f087b21a7d2c4d"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_ase_static.npz",
+      "sha256": "491c51cb43705b3ffdf676ca328de1b7550a9126baf688bd371016a8dbe32e5a"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_equal_log.npz",
+      "sha256": "98e8d5943987c2c4797bb43e3b14f8d0c9fbc21c207c2cbc27c8cac9a1d29e4c"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_equal_arithmetic.npz",
+      "sha256": "8f8d2d91067ce0554dac0247dd9a6d30d37c2c5de542f50278b41a6f6d7e8b3f"
+    },
+    {
+      "file": "audit/results/retail_ase/freshretail_plan/o90_selected_single.npz",
+      "sha256": "977d32d09a8df657e2691bd286fd802ff25b8b89f1abe8956322b30c2cd5ad42"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o157_l2.npz",
+      "sha256": "bf7bb5b2d0498bfa221a61835f83bdad5620aca4480d1fb1189b0cb4c2a8b980"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o157_l1.npz",
+      "sha256": "ca8e08e2bf1651d81cd65b17d4762bb96e3bdecb7d5227f252d9aba3870f8620"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o157_original_state.npz",
+      "sha256": "05806aeee482a23b2abd40111b4ae71218121ed27d785175c9f68d274bbea254"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o157_state.npz",
+      "sha256": "05806aeee482a23b2abd40111b4ae71218121ed27d785175c9f68d274bbea254"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o170_l2.npz",
+      "sha256": "f00e41fcfb5837be72133ce93c49474d26de2aa64e60d605cc568a5629a1cce2"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o170_l1.npz",
+      "sha256": "4ec84dfe56d5d6536662dc74b8e4c7448b00b63f7eb09629b294f856268c60cc"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o170_original_state.npz",
+      "sha256": "b3ebfd0a9c83736e944fa5c69c61850ddd7781b856ce054bd7a584913e1971d9"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o170_state.npz",
+      "sha256": "b3ebfd0a9c83736e944fa5c69c61850ddd7781b856ce054bd7a584913e1971d9"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_l2.npz",
+      "sha256": "d496b3189eb5fb0f91cd2ff255b740cbfbd8d41bb88613c101e70bcaa3da9a34"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_l1.npz",
+      "sha256": "1e5b360665739df9ca2a77edc705fc0286467a6fc508865a0656496bc6758178"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_original_state.npz",
+      "sha256": "537f663fbf0e54330bf02c7ca342c9916c012b964b44497dff15917262d83f84"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_state.npz",
+      "sha256": "537f663fbf0e54330bf02c7ca342c9916c012b964b44497dff15917262d83f84"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_ase_original.npz",
+      "sha256": "2448f3055518233c9423eb8c6b79331ebc51bd9ed017f17f658a7af7d6b07a52"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_ase_static.npz",
+      "sha256": "7c3b2fd676efb44f1fd28ed5407c41f7de8e24e3bfb9e657a2aff19ece022c96"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_equal_log.npz",
+      "sha256": "a104a0c3255284fa98c5f0e9120f89f9ffa0cfa82fc163f93cd78732443f3107"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_equal_arithmetic.npz",
+      "sha256": "134da26f251cf5f9f74c4335678b16cb0d8c39db71059f82ddc25ba1764bda8c"
+    },
+    {
+      "file": "audit/results/retail_ase/vn1_history/o183_selected_single.npz",
+      "sha256": "1e5b360665739df9ca2a77edc705fc0286467a6fc508865a0656496bc6758178"
+    }
+  ],
+  "initial_runner_commit": "fd161a4",
+  "verification_time_source_sha256": {
+    "repro/retail_ase.py": "04ce5e5668f0fb6e6661b72ed50019d19dc9ebb0152b2693248bfa77099ec704",
+    "repro/retail_expansion.py": "14010351307760a8d194a671221395372bff402e8212282168c35f6dd86f0784",
+    "repro/hybrid/ase.py": "28033280acec1cfbf440d2f56aa7cafd95ef712ebf5a85a41d8767323fc825cf"
+  }
+}

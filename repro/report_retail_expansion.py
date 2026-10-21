@@ -20,7 +20,7 @@ def paired_ci(tag,o,a,b,cluster):
 
 
 def main():
-    lines=['# 新零售数据首轮实测','',
+    lines=['# 新零售数据首轮实测','', '后续已补齐 [ASE 追加对照](RETAIL-ASE-RESULTS.md)；下文保留首轮未包含 ASE 的实验结果。','',
            '固定协议见 [protocol.json](audit/results/retail_expansion/protocol.json)。本轮不使用动态专家组合，没有根据最终测试结果调整参数。开发期前两个窗口选择单一模型，第三个窗口只做最终评估。',
            '', '## 本轮结论','',
            '叮咚上，条件性促销计划信息改善了预测；继续加入简单天气和缺货摘要没有优于计划组。VN1 上，开发期选中的单一 LightGBM 的 WAPE 优于简单基线和 State Fourier，但系统性低估较明显，按官方 WAPE + |Bias| 分数反而不如最近值基线。不能宣称全面优于基线或已经改善库存业务。',

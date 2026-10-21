@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "protocol_sha256": "f6beb066147446abbbd7a263dd86dbf32ebcfaf7a95a8f1f7c6a85d5748a7659",
+  "final_base_seconds": {
+    "l2": 110.51231594199999,
+    "l1": 26.764767924999433,
+    "original_state": 0.011159472999679565,
+    "state": 0.009917667999616242
+  },
+  "state_search_seconds": 0.42253259400058596,
+  "weight_selection_seconds": 1.3250398000000132,
+  "series": 3000,
+  "limitations": "ported feature adapter; added after observing first-pass tests"
+}

@@ -1,0 +1,15 @@
+{
+  "reason": "execution environment restarted during final L1 fit",
+  "prior_checkpoint_sha256": {
+    "o183_l2.npz": "d496b3189eb5fb0f91cd2ff255b740cbfbd8d41bb88613c101e70bcaa3da9a34",
+    "o170_original_state.npz": "b3ebfd0a9c83736e944fa5c69c61850ddd7781b856ce054bd7a584913e1971d9",
+    "o157_state.npz": "05806aeee482a23b2abd40111b4ae71218121ed27d785175c9f68d274bbea254",
+    "o157_l2.npz": "bf7bb5b2d0498bfa221a61835f83bdad5620aca4480d1fb1189b0cb4c2a8b980",
+    "o170_state.npz": "b3ebfd0a9c83736e944fa5c69c61850ddd7781b856ce054bd7a584913e1971d9",
+    "o170_l2.npz": "f00e41fcfb5837be72133ce93c49474d26de2aa64e60d605cc568a5629a1cce2",
+    "o157_original_state.npz": "05806aeee482a23b2abd40111b4ae71218121ed27d785175c9f68d274bbea254",
+    "o170_l1.npz": "4ec84dfe56d5d6536662dc74b8e4c7448b00b63f7eb09629b294f856268c60cc",
+    "o157_l1.npz": "ca8e08e2bf1651d81cd65b17d4762bb96e3bdecb7d5227f252d9aba3870f8620"
+  },
+  "preserve_cached_training_seconds": true
+}
