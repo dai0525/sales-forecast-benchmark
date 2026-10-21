@@ -1,0 +1,16 @@
+{
+ "status":"additional comparison after first-pass final results were seen; not a new blind test",
+ "tracks":{"freshretail_history":"3000 existing IDs, history/calendar only","freshretail_plan":"same 3000 IDs, conditional known discount/activity/holiday","vn1_history":"all 15053 existing IDs, history/calendar only"},
+ "origins":{"freshretail":[76,83,90],"vn1":[157,170,183]},
+ "base_features_and_training_origins":"reuse retail_expansion.py without change",
+ "tree_parameters":"original ase.LGB_PARAMS, 500 trees, L2 seed42 and L1 seed43; n_jobs=2",
+ "state_grid":"original ase.run grid: harmonics {2,min(4,(period-1)//2)}, qr {0.02,0.1}, trend_q {0,0.0001}, damp0.98; original state chosen on latest development window, pooled state chosen on mean nonzero-series WAPE across both development windows",
+ "original":"original ase._fit_weights and ase._combine: 3 horizon stages, latest development window; L2+L1+selected state",
+ "improved_static":"same fitter, both development windows stacked, one weight vector across horizon; L2+L1+pooled-selected state",
+ "fitter":"original mean per-series WAPE on positive denominators; gate1.5, simplex step0.05, shrink1/3 to equal; zero-target series excluded from weight fitting but INCLUDED in aggregate final error",
+ "comparators":["each L1/L2/state component","best single selected by pooled development aggregate WAPE","original ASE","pooled static ASE","equal arithmetic and equal log of original components"],
+ "adaptation_limits":"dataset adapter required; this ports the existing algorithm, not a bitwise reproduction of M4/Rossmann experiments. Rossmann open-only experts are not applicable: neither data source has that same known Open gate; stockout is not store closure. No dynamic experts or new algorithm invented.",
+ "no_final_tuning":true,
+ "timing":"base refits and state search separately logged; combination selection/application timing separate from total base model cost",
+ "metrics":["aggregate WAPE","mean positive-series WAPE with excluded count","signed bias","VN1 official WAPE+absBias","per-client WAPE"]
+}
