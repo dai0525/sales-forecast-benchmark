@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "frozen_before_model_execution": true,
+  "freshretail": {"sample": "3000 smallest SHA256 of freshretail:{store_id}:{product_id}; IDs only", "origins": [76,83,90], "horizon": 7, "period": 7, "final_origin":90},
+  "vn1": {"sample": "all 15053 series in official row order", "origins": [157,170,183], "horizon":13, "period":52, "final_origin":183},
+  "state": {"qr":0.02,"trend_q":0,"daily_harmonics":3,"weekly_harmonics":2,"beta_var":1},
+  "lightgbm": {"objective":"regression","target":"log1p(y)","n_estimators":250,"learning_rate":0.05,"num_leaves":31,"min_child_samples":80,"reg_lambda":1,"seed":42,"n_jobs":2},
+  "development": "first two origins; choose best single model by pooled aggregate WAPE; final origin not used for selection",
+  "training_origins": "freshretail: from 28 with step7, plus latest valid origin; vn1: latest 8 origins separated by 13 weeks, all at least 52",
+  "information": "calendar known; fresh planned discount/activity/holiday conditional on plan availability; weather and stock history summaries at origin only; VN1 price history only, never test prices",
+  "metrics": ["aggregate WAPE","signed bias","mean per-series WAPE excluding zero-denominator with count","MAE","VN1 WAPE + absolute bias","per-client WAPE"],
+  "non_goals": ["no ensemble", "no causal attribution claim", "no latent demand accuracy claim", "no hyperparameter search on final test", "no claim of best achievable LightGBM accuracy"]
+}
