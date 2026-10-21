@@ -1,0 +1,14 @@
+{
+  "development_wape": {
+    "seasonal_naive": 0.7817881208685582,
+    "last_value": 0.516620175266935,
+    "mean_recent": 0.5089758769359635,
+    "state_fourier": 0.5255522626511584,
+    "lgb_history": 0.4958236500670131,
+    "lgb_price": 0.5020652913412809,
+    "state_price": 0.5256540223418275
+  },
+  "selected": "lgb_history",
+  "final_origin": 183,
+  "protocol_sha256": "7caa7e2d2b5ccea5094b767ca1549715f1a2cb8cfe651c237b123016bc8aa766"
+}

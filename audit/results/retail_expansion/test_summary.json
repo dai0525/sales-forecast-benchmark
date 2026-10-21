@@ -1,0 +1,13 @@
+{
+  "command": "python -m pytest tests -q",
+  "passed": 42,
+  "skipped": 1,
+  "elapsed_seconds": 6.24,
+  "added_checks": [
+    "future realized weather/stock/price/target perturbations do not alter origin features",
+    "annual target-relative lag indexing",
+    "zero-demand series retained in aggregate errors"
+  ],
+  "saved_prediction_verification": "verification.json",
+  "vn1_reference_checks": "last_value official score matches 50.70%; recent12 mean matches 80.46%, within published rounding"
+}

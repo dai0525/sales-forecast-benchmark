@@ -1,0 +1,6 @@
+{
+  "protocol_sha256": "7caa7e2d2b5ccea5094b767ca1549715f1a2cb8cfe651c237b123016bc8aa766",
+  "train_start": 7,
+  "min_covariance_eigenvalue": 3.691528738519051e-05,
+  "note": "per-series regression coefficients; future weather/price persistence; conditional planned promotions"
+}

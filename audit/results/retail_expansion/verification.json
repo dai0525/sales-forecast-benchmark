@@ -1,0 +1,319 @@
+{
+  "status": "all_saved_metrics_recomputed",
+  "files": [
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_seasonal_naive.npz",
+      "sha256": "c835be3385c3300049c7236b54d2fb1dac251a8e70a5fd243006c3c3371675fc"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_last_value.npz",
+      "sha256": "73f5de995c5c1c641ff52e2a61e413ee777ee768a83cdf6d2708eb5f731b43cb"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_mean_recent.npz",
+      "sha256": "9221396874b9f1fb9a745e1015c82ab6c236b6480d578e3c81018e82585125dd"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_state_fourier.npz",
+      "sha256": "a69eb68da708b6dab8c22bb5f1bdb2741b7a4cdfc595edc34433228b03028e63"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_lgb_history.npz",
+      "sha256": "0d37bc507a733e2bbe79fddf0c007132ea7858d2d0e4e6fb02d03f9f6487bd5b"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_lgb_plan.npz",
+      "sha256": "ddacb8cbf4142ea03df6084a80bfc2271bb87b7b669bf4e9ecf8097f4a6313e5"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_lgb_weather.npz",
+      "sha256": "d4fc0f12e4128ffde56256b1e076d4ed2ca7c8616881f4fe32c8456f898f18e3"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_lgb_stock.npz",
+      "sha256": "c2f602258344c745d6b4b9b1c9a315c652e2b8ab9f9399b0281a1fee407896a5"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_state_plan.npz",
+      "sha256": "4bde4c0440b63ed799d379760bda66074fd7474d7d8158f2b8d18834143dd61b"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o76_state_weather.npz",
+      "sha256": "766c430656f91f1570a86cdec9eb3a0deeb5cf0b16c1a657236e8df5ceccc7a0"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_seasonal_naive.npz",
+      "sha256": "4be30bf9e3dd8816105d9a15edc3a8e4099155ec338d84c453d928bc034058aa"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_last_value.npz",
+      "sha256": "5aa04e0f9502689dd88e3d055b49340bdccb02ab517d2bb8de53b4b69e30e872"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_mean_recent.npz",
+      "sha256": "ea49e0270cde1ce0c2c89dcadad8f599e066b93aaa01267d862ae10e23a62f68"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_state_fourier.npz",
+      "sha256": "c37b50d72edc53babd9f288a655b3a00acfb6890ee908799575391e7a3790f1f"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_lgb_history.npz",
+      "sha256": "85ea2e30319b183192660670ccabd2dabb7a4142bf315aff96cd58cd0390e55d"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_lgb_plan.npz",
+      "sha256": "45807d0dbeceb64e0773ca7ad99ea0f7ed40271648323839aa0caedc1e30a610"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_lgb_weather.npz",
+      "sha256": "a408402b3b2e4ee851261c6b54f4ccd9c9040bd34b6063728c3e44d32ef6994e"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_lgb_stock.npz",
+      "sha256": "e7882daccb9deff4c3482bee7460849fc7bcc5fba898e67ddbbc46926d55fea4"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_state_plan.npz",
+      "sha256": "2f965c0235d0704b721a5ebf6272936112adf047d89819ffd194172d437e594b"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o83_state_weather.npz",
+      "sha256": "5e6d229d1179931c6a280ea852a82ae6ebe8276a975ef148e8406dfd02c4e32b"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_seasonal_naive.npz",
+      "sha256": "39ce8fe337a486d954c9105e406700a525769f17aa2ff33f48a9b361e3f46b08"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_last_value.npz",
+      "sha256": "dbdd0882bb62d77f5a42e2d8bbf835327a0ef2f38523d00f32fa5945a983f307"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_mean_recent.npz",
+      "sha256": "9e25f735b4728fc8aa38ac8db2b965120b874853115feeb4e1be8551a2202dcc"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_state_fourier.npz",
+      "sha256": "9d88807e3dae9859afb3cafaf52d06d33f358a2c0071185e4ccf1f3929b818df"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_lgb_history.npz",
+      "sha256": "cd578d270ba97f72271bd1930948b0bc0d7d044d79cf6c2833376dc96ba36627"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_lgb_plan.npz",
+      "sha256": "0a67ff5f30bfe5e9e1b265faf80410374027ec27315c2cc8d7c85936a5e22041"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_lgb_weather.npz",
+      "sha256": "6126edfbe719b0180f785926cfdb3ded381fad0fd6f450e65f23efc7f9e75c38"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_lgb_stock.npz",
+      "sha256": "6bc4efca19e6bcc710869fbe76daff6b0281d62bf429baaac2f58a39aaf1e425"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_state_plan.npz",
+      "sha256": "3963014b37a2b35f3ada539e4028f31f495425bfd120f79d3cd95145b8442ad5"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/o90_state_weather.npz",
+      "sha256": "6d289d793847a4050347c5c95e057e7db6fa8443d187fb4cb07d45bbac891d1f"
+    },
+    {
+      "file": "audit/results/retail_expansion/freshretail/series_ids.csv",
+      "sha256": "9c53eea82c345899deecdd8a3d19209c657427192856590a63d48c0f59bbf304"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o157_seasonal_naive.npz",
+      "sha256": "5eff46ab83291643afdeb4081f41ede73d298f715bd767e9629aef81637b7360"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o157_last_value.npz",
+      "sha256": "ab0bc6faa41c7f908b6378b0ab874640988bb892ba8a2ac37dddc2185e9e4739"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o157_mean_recent.npz",
+      "sha256": "9d6c26e383a0abfbb9e3db1e78873c28938d00641628c771482eea5771000ead"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o157_state_fourier.npz",
+      "sha256": "f46d13e10e8922e8c88c474e09578896f155ed7569d3b3cd8bc5be361b5cd111"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o157_lgb_history.npz",
+      "sha256": "b828d8a637a28a999ca5ed0af00945f93c3cf4417fd7f67dc7b12c99b2146ac1"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o157_lgb_price.npz",
+      "sha256": "5a3bfa3b42e75630cd0f8922c14899bbbab5fe72ecc76354a85c54dc9653e58e"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o157_state_price.npz",
+      "sha256": "5c51b1fe5d45266fc69b183daff59d2a3938de899cd74b914da13d9a5b77aecc"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o170_seasonal_naive.npz",
+      "sha256": "9bbf454d991b036e55474e27d6411294e1b840163f6f077270ba37639874404e"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o170_last_value.npz",
+      "sha256": "5ccca7f7592b3bc71c600a9b16c162dbff72b96347fb52c0267e1636c9b1a85b"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o170_mean_recent.npz",
+      "sha256": "815b600cb1af8f103437659dbb2ca991fdd41887f0b14d7a467a12de475e0250"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o170_state_fourier.npz",
+      "sha256": "a63509a7bc084bb46971b441270948372fa39f1138a8913b749dee986ffb3c35"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o170_lgb_history.npz",
+      "sha256": "04223ef11d3b2cbc9be56646236569d2aad29cf2ac03d6d25a11dd277ee7521c"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o170_lgb_price.npz",
+      "sha256": "5f29175e3fcdc7183995535db4ea993eb947e235227e2886c30b7ccc3c6c8940"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o170_state_price.npz",
+      "sha256": "e6c7d01c0ef08e128221325b3c34d10fe67c12fa5d18319662eb5e7a5be4c650"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o183_seasonal_naive.npz",
+      "sha256": "0076d80a3b8705f8ddee8f02cd863b0905e78edc1fc78f015e0d4b6c3be84f5a"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o183_last_value.npz",
+      "sha256": "0bb4674cc32b5d487a945352cc29def49fcb6cddc53ceb0900d537b4e4f7fcbc"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o183_mean_recent.npz",
+      "sha256": "283f4c09bc737aea8b29cbf95efa208980ff1dae43f8016cef64322db1cb7c7e"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o183_state_fourier.npz",
+      "sha256": "5cf53723d2ce5bbb9661dd01604a4020ad61195c4484b2ed07b45ea6bc9993e5"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o183_lgb_history.npz",
+      "sha256": "b3912e5caf40d50ac680064040512e0fc40ee19d1ea513129cbbe092306a55e6"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o183_lgb_price.npz",
+      "sha256": "b1101872213d78eaf2c7a454d44c06638c5aba9e81b530072906a6fe0af86fdc"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/o183_state_price.npz",
+      "sha256": "93e257bc57fd55a68bc460ecf4c35f81d14e3544e75b615413653c13d141c5fa"
+    },
+    {
+      "file": "audit/results/retail_expansion/vn1/series_ids.csv",
+      "sha256": "0bfe7b303c116c00aebe95debea4d6103faae222daaac9a0fdf8b0110605322e"
+    }
+  ],
+  "bootstrap": {
+    "freshretail": [
+      {
+        "candidate": "lgb_plan",
+        "baseline": "lgb_history",
+        "delta_wape_pp": -1.880717197793699,
+        "ci95_pp": [
+          -2.2426950782338353,
+          -1.5389816704178136
+        ],
+        "clusters": 790,
+        "bootstrap_replicates": 2000,
+        "caveat": "paired cluster bootstrap conditional on these test dates; not future-date uncertainty"
+      },
+      {
+        "candidate": "lgb_weather",
+        "baseline": "lgb_plan",
+        "delta_wape_pp": 0.34623046006778296,
+        "ci95_pp": [
+          0.17274782917031148,
+          0.5134660519139363
+        ],
+        "clusters": 790,
+        "bootstrap_replicates": 2000,
+        "caveat": "paired cluster bootstrap conditional on these test dates; not future-date uncertainty"
+      },
+      {
+        "candidate": "lgb_stock",
+        "baseline": "lgb_weather",
+        "delta_wape_pp": -0.1693376997980198,
+        "ci95_pp": [
+          -0.2967485718008443,
+          -0.038028232232245204
+        ],
+        "clusters": 790,
+        "bootstrap_replicates": 2000,
+        "caveat": "paired cluster bootstrap conditional on these test dates; not future-date uncertainty"
+      },
+      {
+        "candidate": "state_fourier",
+        "baseline": "mean_recent",
+        "delta_wape_pp": -0.3937743511441293,
+        "ci95_pp": [
+          -0.7462310616981876,
+          -0.021870610095443676
+        ],
+        "clusters": 790,
+        "bootstrap_replicates": 2000,
+        "caveat": "paired cluster bootstrap conditional on these test dates; not future-date uncertainty"
+      }
+    ],
+    "vn1": [
+      {
+        "candidate": "lgb_price",
+        "baseline": "lgb_history",
+        "delta_wape_pp": -0.3795732573062844,
+        "ci95_pp": [
+          -0.8583099076462745,
+          0.05937004422075558
+        ],
+        "clusters": 46,
+        "bootstrap_replicates": 2000,
+        "caveat": "paired cluster bootstrap conditional on these test dates; not future-date uncertainty"
+      },
+      {
+        "candidate": "lgb_history",
+        "baseline": "last_value",
+        "delta_wape_pp": -4.4676416980544875,
+        "ci95_pp": [
+          -9.119239198492542,
+          -0.9566202585840899
+        ],
+        "clusters": 46,
+        "bootstrap_replicates": 2000,
+        "caveat": "paired cluster bootstrap conditional on these test dates; not future-date uncertainty"
+      },
+      {
+        "candidate": "state_fourier",
+        "baseline": "last_value",
+        "delta_wape_pp": 5.772358612199859,
+        "ci95_pp": [
+          1.8505311302163245,
+          10.278903495126565
+        ],
+        "clusters": 46,
+        "bootstrap_replicates": 2000,
+        "caveat": "paired cluster bootstrap conditional on these test dates; not future-date uncertainty"
+      },
+      {
+        "candidate": "state_fourier",
+        "baseline": "mean_recent",
+        "delta_wape_pp": -5.062908014767859,
+        "ci95_pp": [
+          -11.233417556916876,
+          -1.4333395944238354
+        ],
+        "clusters": 46,
+        "bootstrap_replicates": 2000,
+        "caveat": "paired cluster bootstrap conditional on these test dates; not future-date uncertainty"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "development_wape": {
+    "seasonal_naive": 0.4187475869403043,
+    "last_value": 0.43080145033737566,
+    "mean_recent": 0.36176480010048895,
+    "state_fourier": 0.3527889130503566,
+    "lgb_history": 0.3668890643904436,
+    "lgb_plan": 0.3391117155438717,
+    "lgb_weather": 0.3393744343912554,
+    "lgb_stock": 0.34074149283435157,
+    "state_plan": 0.3456484275796017,
+    "state_weather": 0.3461631661403749
+  },
+  "selected": "lgb_plan",
+  "final_origin": 90,
+  "protocol_sha256": "7caa7e2d2b5ccea5094b767ca1549715f1a2cb8cfe651c237b123016bc8aa766"
+}
