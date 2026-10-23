@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "protocol_sha256": "bbfe6df4b708a6e008ed17338392855a0b297c4f8845bd19a39b41cb869d9751",
+  "selection_metric": "wape",
+  "final_origin": 90,
+  "series": 3000,
+  "selected_prediction": "poisson_calibrated",
+  "versions": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "lightgbm": "4.7.0"
+  }
+}

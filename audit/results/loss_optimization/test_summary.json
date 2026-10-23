@@ -1,0 +1,13 @@
+{
+  "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest tests -q",
+  "passed": 48,
+  "skipped": 1,
+  "elapsed_seconds": 3.29,
+  "new_checks": [
+    "calibration factor estimated from earlier window, rejection possible",
+    "correction transfers correctly when stable",
+    "zero/extreme scale bounded",
+    "target-aligned weight fitting counts errors on all-zero series"
+  ],
+  "verification": "verification.json"
+}

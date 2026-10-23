@@ -1,0 +1,51 @@
+{
+  "options": {
+    "log_l2": {
+      "strength": 0.0,
+      "first_origin_factor": 0.8924447512324881,
+      "second_origin_scores": {
+        "0.0": 0.35914630453419943,
+        "0.5": 0.37274447676445516,
+        "1.0": 0.39067550328196177
+      },
+      "selection_score": 0.35914630453419943,
+      "final_factor": 1.013812625516046
+    },
+    "raw_l2": {
+      "strength": 0.0,
+      "first_origin_factor": 0.8374213142239392,
+      "second_origin_scores": {
+        "0.0": 0.3542801214269065,
+        "0.5": 0.3726033313387057,
+        "1.0": 0.40115998379992723
+      },
+      "selection_score": 0.3542801214269065,
+      "final_factor": 0.9588104806909353
+    },
+    "poisson": {
+      "strength": 0.0,
+      "first_origin_factor": 0.8730417122369144,
+      "second_origin_scores": {
+        "0.0": 0.3527088770647022,
+        "0.5": 0.36642527665395314,
+        "1.0": 0.38645235210849277
+      },
+      "selection_score": 0.3527088770647022,
+      "final_factor": 0.9805893837821245
+    },
+    "tweedie": {
+      "strength": 0.0,
+      "first_origin_factor": 0.8593947916060649,
+      "second_origin_scores": {
+        "0.0": 0.3529708943341875,
+        "0.5": 0.36940223190084276,
+        "1.0": 0.39327022685542495
+      },
+      "selection_score": 0.3529708943341875,
+      "final_factor": 0.9776354876198068
+    }
+  },
+  "selected_model": "poisson",
+  "metric": "wape",
+  "protocol_sha256": "bbfe6df4b708a6e008ed17338392855a0b297c4f8845bd19a39b41cb869d9751"
+}

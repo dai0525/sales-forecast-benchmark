@@ -1,0 +1,10 @@
+{
+ "status":"additional exploratory arm; specified before this arm's weight search, after prior test outcomes are known",
+ "source":"existing retail_ase components; pooled-selected state, L2 and L1 unchanged",
+ "fit":"both development windows pooled; same simplex step0.05, gate1.5 and equal-weight shrink1/3 as old static ASE",
+ "only_primary_change":"fit and gate by aggregate WAPE on FreshRetailNet, official WAPE+absBias on VN1, including all-zero series",
+ "variants":["log1p blend (primary objective-only comparison)","arithmetic blend (additional change in blend space)"],
+ "selection":"choose blend space using post-shrink pooled development score, not final test",
+ "no_final_tuning":true,
+ "no_new_training":true
+}

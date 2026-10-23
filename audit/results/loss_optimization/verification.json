@@ -1,0 +1,222 @@
+{
+  "status": "chronology_selection_calibration_and_metrics_reconstructed",
+  "files": [
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o76_log_l2.npz",
+      "sha256": "0d37bc507a733e2bbe79fddf0c007132ea7858d2d0e4e6fb02d03f9f6487bd5b"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o76_raw_l2.npz",
+      "sha256": "5352572d1b5cf37a7777a3cacf1dfab7ca10199cc45b84df29686e51e86aac0c"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o76_poisson.npz",
+      "sha256": "b681d3eb467ce46025a7b4daca0a50de673adf2ba110d9e387d0d137109f2e64"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o76_tweedie.npz",
+      "sha256": "0bd0356c489c4b583b936f1bc8854ef62658cb32e3dc4dc1ea6975c8adc0d595"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o83_log_l2.npz",
+      "sha256": "85ea2e30319b183192660670ccabd2dabb7a4142bf315aff96cd58cd0390e55d"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o83_raw_l2.npz",
+      "sha256": "b494344f5fc1d8dac162a9954653c55fc8d460f2a6a667d4a7a643ab91e8f2ad"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o83_poisson.npz",
+      "sha256": "fcac06c89d1840e171c12d68c42872f33cab885ea6e5a78eeb379da4c73dd7fd"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o83_tweedie.npz",
+      "sha256": "bfb0f001b7413a1cc366430a4f6dafd9d6d6f0172f59ab1d2097496fcb52d706"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o90_log_l2.npz",
+      "sha256": "cd578d270ba97f72271bd1930948b0bc0d7d044d79cf6c2833376dc96ba36627"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o90_raw_l2.npz",
+      "sha256": "a327dc350dbea3be5b20e2dcf6b19833c3e264da25f6c536ebb5e151b2074f00"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o90_poisson.npz",
+      "sha256": "1027d70f443264995a3a2f472a4f33021e1c1e0011f2ef53216702f13b2b2433"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o90_tweedie.npz",
+      "sha256": "980983e8a1b95cc3b99a4515df6d068904cf761265c293c7a16cbbdc10fb74de"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o90_log_l2_calibrated.npz",
+      "sha256": "cd578d270ba97f72271bd1930948b0bc0d7d044d79cf6c2833376dc96ba36627"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o90_raw_l2_calibrated.npz",
+      "sha256": "a327dc350dbea3be5b20e2dcf6b19833c3e264da25f6c536ebb5e151b2074f00"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o90_poisson_calibrated.npz",
+      "sha256": "1027d70f443264995a3a2f472a4f33021e1c1e0011f2ef53216702f13b2b2433"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_history/o90_tweedie_calibrated.npz",
+      "sha256": "980983e8a1b95cc3b99a4515df6d068904cf761265c293c7a16cbbdc10fb74de"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o76_log_l2.npz",
+      "sha256": "ddacb8cbf4142ea03df6084a80bfc2271bb87b7b669bf4e9ecf8097f4a6313e5"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o76_raw_l2.npz",
+      "sha256": "ea34ea7b9c837c3cdeee5cfb0ed2e46b2051ea2ccf77ee7f52fdecd104f21c86"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o76_poisson.npz",
+      "sha256": "0509f8b52a4515569be31b554996e317c03ff724b21540ebc0d71e551dc258e2"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o76_tweedie.npz",
+      "sha256": "ae5a5a73ae8b166b090dec1e424de23671abeeb9e6ba8b8b72be295af7389c75"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o83_log_l2.npz",
+      "sha256": "45807d0dbeceb64e0773ca7ad99ea0f7ed40271648323839aa0caedc1e30a610"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o83_raw_l2.npz",
+      "sha256": "8ed4802d925267de4eb373d53533a39e9d9db51b42903722625e6e87979c8136"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o83_poisson.npz",
+      "sha256": "39aaef981151855efe7765f30cef9286ccbe2bc4ba89b8188692a0eabe2f6ced"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o83_tweedie.npz",
+      "sha256": "90cc0e2fcb7de7910f520054ecbda76505a2ddc5bef3cae2cdf2247d723f42b9"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o90_log_l2.npz",
+      "sha256": "0a67ff5f30bfe5e9e1b265faf80410374027ec27315c2cc8d7c85936a5e22041"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o90_raw_l2.npz",
+      "sha256": "278a919c5326b9a8e869f51563952e4c44b4e7b69b7cd78586965829c2110e1a"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o90_poisson.npz",
+      "sha256": "dcf2257e9c89ad6bbd33ce1a7b1181a977e34dda41abaf1c9c1ab82db962a695"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o90_tweedie.npz",
+      "sha256": "a5755c6dc109417971eff6551dbc3e299b816ce16b84b95b050471397ec00b53"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o90_log_l2_calibrated.npz",
+      "sha256": "0a67ff5f30bfe5e9e1b265faf80410374027ec27315c2cc8d7c85936a5e22041"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o90_raw_l2_calibrated.npz",
+      "sha256": "278a919c5326b9a8e869f51563952e4c44b4e7b69b7cd78586965829c2110e1a"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o90_poisson_calibrated.npz",
+      "sha256": "dcf2257e9c89ad6bbd33ce1a7b1181a977e34dda41abaf1c9c1ab82db962a695"
+    },
+    {
+      "file": "audit/results/loss_optimization/freshretail_plan/o90_tweedie_calibrated.npz",
+      "sha256": "a5755c6dc109417971eff6551dbc3e299b816ce16b84b95b050471397ec00b53"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o157_log_l2.npz",
+      "sha256": "b828d8a637a28a999ca5ed0af00945f93c3cf4417fd7f67dc7b12c99b2146ac1"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o157_raw_l2.npz",
+      "sha256": "e545357feb61ad1a8aa08c4c70e96d83cbc73110c013e6e2fb8daf837f0f744d"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o157_poisson.npz",
+      "sha256": "f7646789e4c1a26250408e9ecb3f91b375148c190028bab93d61417e73735c57"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o157_tweedie.npz",
+      "sha256": "9bc4a8a198ad092e6fd5c9a29a3e561bd22374140e82cbf370294cdfd385d992"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o170_log_l2.npz",
+      "sha256": "04223ef11d3b2cbc9be56646236569d2aad29cf2ac03d6d25a11dd277ee7521c"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o170_raw_l2.npz",
+      "sha256": "236ed2a92302825f2038cee94fec4a182ff147c60a104f7305ffab92cb08bf48"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o170_poisson.npz",
+      "sha256": "711c14e05a261554d549ece94b136a0d78666f4fcd204fa838f9c6059ce5810c"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o170_tweedie.npz",
+      "sha256": "cfe329cbc9a78b261edaf2242c46453cf2cd6915e351a25fa6e0dad500bbc3f2"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o183_log_l2.npz",
+      "sha256": "b3912e5caf40d50ac680064040512e0fc40ee19d1ea513129cbbe092306a55e6"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o183_raw_l2.npz",
+      "sha256": "3bb2d9121e8c1242e8f160d81c70011057230b6996064bba1c422919c656d60e"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o183_poisson.npz",
+      "sha256": "5f3ff5e8efbd968ba3df10656060ac39b632a0b3328fbe9f2fb738bfe10883b3"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o183_tweedie.npz",
+      "sha256": "c9800725e531ac096c20946b4112a2c4ba7a306f738bdf0f0d048b7732084097"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o183_log_l2_calibrated.npz",
+      "sha256": "b3912e5caf40d50ac680064040512e0fc40ee19d1ea513129cbbe092306a55e6"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o183_raw_l2_calibrated.npz",
+      "sha256": "3bb2d9121e8c1242e8f160d81c70011057230b6996064bba1c422919c656d60e"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o183_poisson_calibrated.npz",
+      "sha256": "5f3ff5e8efbd968ba3df10656060ac39b632a0b3328fbe9f2fb738bfe10883b3"
+    },
+    {
+      "file": "audit/results/loss_optimization/vn1_history/o183_tweedie_calibrated.npz",
+      "sha256": "c9800725e531ac096c20946b4112a2c4ba7a306f738bdf0f0d048b7732084097"
+    },
+    {
+      "file": "audit/results/loss_optimization/aligned_freshretail_history/log.npz",
+      "sha256": "6c744f2de64c3b481d57826637522670d28a120a6b198c4b808d4848ef289a90"
+    },
+    {
+      "file": "audit/results/loss_optimization/aligned_freshretail_history/arithmetic.npz",
+      "sha256": "cf5397ed24dac9629da3ab5bbeb49212a52b31fca35e6fa57a774cb7f39e5aaa"
+    },
+    {
+      "file": "audit/results/loss_optimization/aligned_freshretail_plan/log.npz",
+      "sha256": "cb74afbf1ccdd5cefd0458e44c23a32b5da509b6528bc9eb9b438e243ae05323"
+    },
+    {
+      "file": "audit/results/loss_optimization/aligned_freshretail_plan/arithmetic.npz",
+      "sha256": "1d11237cd74e38c18e120d42b1be02e36583eec0c2af02ac38f06a991ee2710c"
+    },
+    {
+      "file": "audit/results/loss_optimization/aligned_vn1_history/log.npz",
+      "sha256": "4ab553e5773d1d20e650ce9187383658447011dbde25c9d1bb2de90b137f519f"
+    },
+    {
+      "file": "audit/results/loss_optimization/aligned_vn1_history/arithmetic.npz",
+      "sha256": "601d4098f6b1ef4dd8f21dc244a84d294db608c429caba59cd00cfa35016e564"
+    }
+  ],
+  "runner_sha256": "be8e299c122855e6d90cf6e4383638cd2224022acb782913dcb1e389aa957fb8"
+}
