@@ -1,0 +1,13 @@
+{
+ "date":"2026-10-23",
+ "status":"exploratory optimization after final outcomes were seen; NOT independent confirmation",
+ "tracks":["freshretail_history","freshretail_plan","vn1_history"],
+ "data_and_features":"identical fixed sample/full panel, origins and information availability as retail_expansion.py",
+ "models":["log_l2 (reuse first-pass forecasts)","raw_l2","poisson (nonnegative mean loss)","tweedie (variance_power=1.5)"],
+ "capacity":"identical first-pass 250 trees,31 leaves,min_child80,lr0.05,lambda1,seed42,2 threads; only objective and target transform change",
+ "calibration":"one global multiplicative factor clipped to [0.5,2], based on sum(truth)/sum(pred); shrink strengths [0,0.5,1]",
+ "chronology":"first development origin fits calibration factor; second development origin selects shrink for each model and best model; final factor refitted on both earlier development origins, then final forecast scored once under this protocol",
+ "selection_metric":{"freshretail":"aggregate WAPE","vn1":"official WAPE+absolute signed bias"},
+ "secondary":"report aggregate WAPE and bias for all predefined candidates, no post-test switch of selected primary",
+ "limitations":["observed sales, not latent demand","planned promotion scenario conditional, as-of availability unverified","no new-method claim","no ensemble","new independent business/time validation required before deployment claim"]
+}
